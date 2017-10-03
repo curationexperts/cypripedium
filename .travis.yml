@@ -1,0 +1,13 @@
+dist: trusty
+language: ruby
+cache: bundler
+sudo: false
+services:
+  - redis-server
+rvm:
+  - 2.4.2
+before_script:
+  - bundle exec rake db:create
+script:
+  - bundle exec rubocop
+  - xvfb-run -a bundle exec rake ci
