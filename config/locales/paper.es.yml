@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      paper:     'fa fa-file-text-o'
+    select_type:
+      paper:
+        # TODO: translate `human_name` into Spanish
+        name:               "Paper"
+        # TODO: translate `human_name` into Spanish
+        description:        "Paper trabajos"
