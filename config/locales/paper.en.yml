@@ -1,8 +1,0 @@
-en:
-  hyrax:
-    icons:
-      paper:     'fa fa-file-text-o'
-    select_type:
-      paper:
-        name:               "Paper"
-        description:        "Paper works"
