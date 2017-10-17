@@ -1,6 +1,8 @@
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work Publication`
   config.register_curation_concern :publication
+  # Injected via `rails g hyrax:work ConferenceProceeding`
+  config.register_curation_concern :conference_proceeding
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES

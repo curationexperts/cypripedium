@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      conference_proceeding:     'fa fa-file-text-o'
+    select_type:
+      conference_proceeding:
+        name:               "Conference Proceeding"
+        description:        "Conference proceeding Werke"
