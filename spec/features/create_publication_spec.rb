@@ -19,14 +19,7 @@ RSpec.feature 'Create a Publication', js: false do
     end
 
     scenario do
-      visit '/dashboard'
-      click_link "Works"
-      click_link "Add new work"
-
-      # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "Publication"
-      # click_button "Create work"
-
+      visit '/concern/publications/new'
       expect(page).to have_content "Add New Publication"
     end
   end
