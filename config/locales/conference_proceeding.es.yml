@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      conference_proceeding:     'fa fa-file-text-o'
+    select_type:
+      conference_proceeding:
+        # TODO: translate `human_name` into Spanish
+        name:               "Conference Proceeding"
+        # TODO: translate `human_name` into Spanish
+        description:        "Conference proceeding trabajos"
