@@ -30,7 +30,8 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
     eg. `rvm use --create 2.4.2@cypripedium`
 1. Start redis  
     `redis-server &`  
-    *note:* use ` &` to start in the background, or run redis in a new terminal session  
+    *note:* use ` &` to start in the background, or run redis in a new terminal session
+1. Start sidekiq: `bundle exec sidekiq -d -l tmp/sidekiq.log`
 1. Start the demo server in its own terminal session
     `bin/rails hydra:server`
 1. Run the first time setup script  
