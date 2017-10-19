@@ -67,3 +67,7 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
   2.4.2 :018 > u.errors.messages
    => {:email=>["has already been taken"], :password=>["can't be blank"], :orcid=>[]}
   ```
+
+## Re-create derivatives
+Provide the id of the work to re-create:
+`RAILS_ENV=production bundle exec rake derivatives:recreate_by_id[2801pg32c]`
