@@ -17,6 +17,7 @@ dump.rdb
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+fits.log
 
 /node_modules
 /yarn-error.log
