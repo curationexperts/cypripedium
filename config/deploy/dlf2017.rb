@@ -1,4 +1,4 @@
 # deploys to DCE sandbox
-set :stage, :dlf2017
+set :stage, :demo
 set :rails_env, 'production'
-server 'dlf2017.curationexperts.com', user: 'deploy', roles: [:web, :app, :db]
+server 'demo.curationexperts.com', user: 'deploy', roles: [:web, :app, :db]
