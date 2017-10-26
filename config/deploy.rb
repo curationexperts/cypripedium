@@ -18,18 +18,10 @@ SSHKit.config.command_map[:rake] = 'bundle exec rake'
 # Default branch is :master
 set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 
-append :linked_dirs, "public/assets"
-append :linked_dirs, "tmp/pids"
-append :linked_dirs, "tmp/cache"
-append :linked_dirs, "tmp/sockets"
 append :linked_dirs, "log"
 
-append :linked_files, "config/blacklight.yml"
 append :linked_files, "config/database.yml"
-append :linked_files, "config/fedora.yml"
-append :linked_files, "config/redis.yml"
 append :linked_files, "config/secrets.yml"
-append :linked_files, "config/solr.yml"
 
 after 'deploy:published', 'hyrax:ensure_default_admin_set'
 
