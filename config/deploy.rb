@@ -24,7 +24,7 @@ append :linked_dirs, "public/assets"
 append :linked_files, "config/database.yml"
 append :linked_files, "config/secrets.yml"
 
-after 'deploy:published', 'hyrax:ensure_default_admin_set'
+# after 'deploy:published', 'hyrax:ensure_default_admin_set'
 
 namespace :hyrax do
   desc 'Ensure Hyrax default admin set exists'
