@@ -14,10 +14,16 @@
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
 .brand-logo img {
-  height: 28px;
-  margin-top: -4px;
+  height: auto;
+  margin-top:-5px;
 }
 
 .btn-lg {
   border-radius: 0px;
 }
+
+#masthead.navbar {height: 90px; background-color: #ffffff; border: none;}
+ul#user_utility_links a {color: #333333;}
+ul#user_utility_links a:hover, a:active, a:focus {background-color: #d1d3d4;}
+ul#user_utility_links.navbar-inverse.navbar-nav.open,
+a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #d1d3d4 !important;}
