@@ -11,3 +11,8 @@ before_script:
 script:
   - bundle exec rubocop
   - xvfb-run -a bundle exec rake ci
+notifications:
+  email: false
+  slack:
+    on_failure: always
+    on_success: never
