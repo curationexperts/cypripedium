@@ -1473,6 +1473,7 @@
     <created>1995-05-03</created>
     <modified>2011-04-21</modified>
     <identifier>19950503fedmleac1995tjs</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation>Lucas expectations anniversary conference</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1518,6 +1519,7 @@
     <created>1977-10</created>
     <modified>2008-12-16</modified>
     <identifier>19771000fedmnmbcr1975cas</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1793,6 +1795,7 @@
     <created>1977-10</created>
     <modified>2008-12-11</modified>
     <identifier>19771000fedmnmbcr1975fm</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1838,6 +1841,7 @@
     <created>1977-10</created>
     <modified>2008-12-11</modified>
     <identifier>19771000fedmnmbcr1975mw</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1883,6 +1887,7 @@
     <created>1977-10</created>
     <modified>2008-12-11</modified>
     <identifier>19771000fedmnmbcr1975casi</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2427,6 +2432,7 @@
     <created>1978-5</created>
     <modified>2010-7-23</modified>
     <identifier>19780500fedbapc</identifier>
+    <work_type>ConferenceProceeding</work_type>
     <relation>After the Phillips Curve : persistence of high inflation and high unemployment</relation>
     <isPartOf></isPartOf>
     <requires></requires>
