@@ -32,33 +32,12 @@ class ContentdmImporter
   end
 
   def process_record(record)
+    cdm_record = ContentdmRecord.new(record)
     # TODO: How to know whether a work is a Publication, DataSet, ConferenceProceeding, etc?
     work = Publication.new
-    work.title = titles(record)
-    work.creator = creators(record)
+    work.title = cdm_record.title
+    work.creator = cdm_record.creators
     work.save
     work
-  end
-
-  # Return an array of titles for a given record
-  # @param [] record
-  # @return Array
-  def titles(record)
-    return_array = []
-    record.xpath(".//title").each do |a|
-      return_array << a.text
-    end
-    return_array.reject(&:empty?)
-  end
-
-  # Return an array of creators for a given record
-  # @param [] record
-  # @return Array
-  def creators(record)
-    return_array = []
-    record.xpath(".//creator").each do |a|
-      return_array << a.text
-    end
-    return_array.reject(&:empty?)
   end
 end
