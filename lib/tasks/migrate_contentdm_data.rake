@@ -7,7 +7,7 @@ namespace :import do
   # helpers
   #
   def import_data
-    ContentdmImporter.import
+    Contentdm::Importer.import
     puts "Import complete"
   end
 end

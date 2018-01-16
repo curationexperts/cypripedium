@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ContentdmImporter do
+describe Contentdm::Importer do
   let(:cdmi) { described_class.new }
   context "processing an export file" do
     it "can instantiate" do
@@ -20,6 +20,10 @@ describe ContentdmImporter do
     it "turns a contentdm record into a Fedora object" do
       work = cdmi.process_record(@record)
       expect(work).to be_instance_of(Publication)
+    end
+    it "sets the Fedora object's visibility to open" do
+      work = cdmi.process_record(@record)
+      expect(work.visibility).to eq('open')
     end
   end
 end

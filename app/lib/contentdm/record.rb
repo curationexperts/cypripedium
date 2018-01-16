@@ -78,14 +78,14 @@ module Contentdm
       remove_nils([@record_hash["publisher"]])
     end
 
-  private
+    private
 
-    ##
-    # @param property [Array]
-    # @return [Array]
-    # this will remove any blanks in the processed XML
-    def remove_nils(property)
-      property.select { |prop| !prop.nil? }
-    end
+      ##
+      # @param property [Array]
+      # @return [Array]
+      # this will remove any blanks in the processed XML
+      def remove_nils(property)
+        property.select { |prop| !prop.nil? }
+      end
   end
 end
