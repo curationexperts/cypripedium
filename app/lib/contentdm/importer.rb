@@ -3,11 +3,12 @@ require 'nokogiri'
 # An importer for ContentDM exported Metadata
 module Contentdm
   class Importer
-    DATA_PATH = "#{::Rails.root}/data".freeze
     attr_reader :doc
     attr_reader :records
-    def initialize
-      @doc = File.open("#{DATA_PATH}/ContentDM_XML_Full_Fields.xml") { |f| Nokogiri::XML(f) }
+    attr_reader :input_file
+    def initialize(input_file)
+      @input_file = input_file
+      @doc = File.open(input_file) { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
       @collection = collection
       @log = Importer.logger
@@ -16,8 +17,8 @@ module Contentdm
     # Class level method, to be called, e.g., from a rake task
     # @example
     # Contentdm::Importer.import
-    def self.import
-      Importer.new.import
+    def self.import(input_file)
+      Importer.new(input_file).import
     end
 
     def self.logger
