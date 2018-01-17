@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ContentdmImporter do
+describe Contentdm::Importer do
   let(:cdmi) { described_class.new }
   context "processing an export file" do
     it "can instantiate" do
@@ -21,16 +21,9 @@ describe ContentdmImporter do
       work = cdmi.process_record(@record)
       expect(work).to be_instance_of(Publication)
     end
-    # Expect these methods to return arrays
-    it "gets the title(s)" do
-      t = cdmi.titles(@record)
-      expect(t).to be_instance_of(Array)
-      expect(t).to contain_exactly("Classical macroeconomic model for the United States, a / Thomas J. Sargent.")
-    end
-    it "gets the creator(s)" do
-      c = cdmi.creators(@record)
-      expect(c).to be_instance_of(Array)
-      expect(c).to contain_exactly("Sargent, Thomas J.")
+    it "sets the Fedora object's visibility to open" do
+      work = cdmi.process_record(@record)
+      expect(work.visibility).to eq('open')
     end
   end
 end
