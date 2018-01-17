@@ -12,9 +12,13 @@ describe Contentdm::Importer do
     it "knows how many documents are in the import file" do
       expect(cdmi.document_count).to eq(79)
     end
+    it "can determine the collection title" do
+      expect(cdmi.collection_name).to eq(["Sargent and Sims"])
+    end
   end
   context "processing a single record" do
     before do
+      ActiveFedora::Cleaner.clean!
       @record = cdmi.records.first
     end
     it "turns a contentdm record into a Fedora object" do
@@ -24,6 +28,11 @@ describe Contentdm::Importer do
     it "sets the Fedora object's visibility to open" do
       work = cdmi.process_record(@record)
       expect(work.visibility).to eq('open')
+    end
+    it "adds the object to the collection" do
+      work = cdmi.process_record(@record)
+      cdmi.collection.save
+      expect(cdmi.collection.members.last.id).to eq(work.id)
     end
   end
 end

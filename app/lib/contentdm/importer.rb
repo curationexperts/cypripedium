@@ -9,7 +9,8 @@ module Contentdm
     def initialize
       @doc = File.open("#{DATA_PATH}/ContentDM_XML_Full_Fields.xml") { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
-      @log = Logger.new(STDOUT)
+      @collection = collection
+      @log = Importer.logger
     end
 
     # Class level method, to be called, e.g., from a rake task
@@ -19,14 +20,22 @@ module Contentdm
       Importer.new.import
     end
 
+    def self.logger
+      Logger.new(STDOUT)
+    end
+
     def import
       @records.each do |record|
         begin
-          process_record(record)
+          work = process_record(record)
+          @log.info Rainbow("Adding #{work.id} to collection: #{collection_name}")
         rescue
+          @log.error Rainbow("Could not import record #{record}
+").red
           Rails.logger.error "Could not import record #{record}"
         end
       end
+      @collection.save
     end
 
     def document_count
@@ -43,9 +52,22 @@ module Contentdm
       work.contributor = cdm_record.contributors
       work.subject = cdm_record.subjects
       work.description = cdm_record.descriptions
-      work.visibility = 'open'
+      work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       save_work(cdm_record, work)
+      @collection.add_members(work.id)
       work
+    end
+
+    ##
+    # @return [Array<String>] this returns the name of the collection based on the XML
+    def collection_name
+      [@doc.xpath("//collection_name").text]
+    end
+
+    ##
+    # @return [ActiveFedora::Base] return the collection object
+    def collection
+      CollectionBuilder.new(collection_name).find_or_create
     end
 
     private
@@ -53,7 +75,7 @@ module Contentdm
       def save_work(cdm_record, work)
         if work.save! != false
           @log.info Rainbow("Saved #{work.id}").green
-          @log.info Rainbow("Title: #{cdm_record.title[0]}").green
+          @log.info "Title: #{cdm_record.title[0]}"
         else
           @log.info Rainbow("Problem saving #{cdm_record.identifier}").red
         end
