@@ -72,3 +72,20 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
 ## Re-create derivatives
 Provide the id of the work to re-create:
 `RAILS_ENV=production bundle exec rake derivatives:recreate_by_id[2801pg32c]`
+
+## Import records from Content DM
+
+To import records using XML files that were exported from Content DM, you can run a rake task and pass in the XML file that you want to import.
+
+This method of importing records is meant to be used only for creating new records.  It's not meant to be used to update/edit existing records.  If you need to re-run an import for some reason, you'll need to delete those existing records from fedora before re-running that import.
+
+**NOTE**: Please notice that there is an extra `--` in each of these rake commands.  This is to differentiate the options for the `import:contentdm` task from options for rake itself.
+
+```bash
+  rake import:contentdm -- --input_file /path/to/my/file.xml
+```
+
+To print out a list of arguments that you can pass to this rake task:
+```bash
+  rake import:contentdm -- --help
+```
