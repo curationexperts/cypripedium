@@ -3,10 +3,9 @@ require 'nokogiri'
 # An importer for ContentDM exported Metadata
 module Contentdm
   class Importer
-    attr_reader :doc
-    attr_reader :records
-    attr_reader :input_file
-    def initialize(input_file)
+    attr_reader :doc, :records, :input_file, :data_path
+    def initialize(input_file, data_path)
+      @data_path = data_path
       @input_file = input_file
       @doc = File.open(input_file) { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
@@ -17,8 +16,8 @@ module Contentdm
     # Class level method, to be called, e.g., from a rake task
     # @example
     # Contentdm::Importer.import
-    def self.import(input_file)
-      Importer.new(input_file).import
+    def self.import(input_file, data_path)
+      Importer.new(input_file, data_path).import
     end
 
     def self.logger
@@ -66,6 +65,14 @@ module Contentdm
     end
 
     ##
+    # @return [String] this returns the name of the folder that the collection's
+    # files are stored in the folder specified during the import
+    def collection_path
+      collection_path = @doc.xpath("//collection_name").text.split(' ').join('_')
+      "#{@data_path}/#{collection_path}"
+    end
+
+    ##
     # @return [ActiveFedora::Base] return the collection object
     def collection
       CollectionBuilder.new(collection_name).find_or_create
@@ -87,8 +94,9 @@ module Contentdm
       def save_work(cdm_record, work)
         importer_user = ::User.batch_user
         current_ability = ::Ability.new(importer_user)
-        env = Hyrax::Actors::Environment.new(work, current_ability, {})
-
+        uploaded_file = Contentdm::ImportFile.new(cdm_record, collection_path, importer_user).uploaded_file
+        attributes = { uploaded_files: [uploaded_file.id] }
+        env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
         if Hyrax::CurationConcern.actor.create(env) != false
           @log.info "Saved work with title: #{cdm_record.title[0]}"
         else
