@@ -78,6 +78,13 @@ module Contentdm
       remove_nils([@record_hash["publisher"]])
     end
 
+    ##
+    # @return [String]
+    # returns the type of work that will determine the model
+    def work_type
+      @record_hash["work_type"]
+    end
+
     private
 
       ##
