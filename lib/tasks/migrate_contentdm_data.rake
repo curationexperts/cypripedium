@@ -10,7 +10,7 @@ namespace :import do
   def import_data
     options = options(ARGV)
     puts "Importing records using options: #{options}"
-    Contentdm::Importer.import(options[:input_file])
+    Contentdm::Importer.import(options[:input_file], options[:data_path])
     puts "Import complete"
   end
 
@@ -21,6 +21,9 @@ namespace :import do
     opts = OptionParser.new
     opts.on('-i INPUT FILE', '--input_file', 'The XML file containing the ContentDM records you want to import (required)') do |input_file|
       user_inputs[:input_file] = input_file
+    end
+    opts.on('-d DATA PATH', '--data_path', 'The path to the directory where the collection folders are stored (required)') do |data_path|
+      user_inputs[:data_path] = data_path
     end
     opts.on('-h', '--help', 'Print this help message') do
       puts opts

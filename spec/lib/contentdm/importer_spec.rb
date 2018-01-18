@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe Contentdm::Importer do
-  let(:cdmi) { described_class.new(input_file) }
+  let(:cdmi) { described_class.new(input_file, data_path) }
+  let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
   let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
 
   context "processing an export file" do
