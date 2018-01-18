@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Contentdm::Importer do
   let(:cdmi) { described_class.new(input_file) }
-  let(:input_file) { File.join(fixture_path, 'files', 'ContentDM_XML_Full_Fields.xml') }
+  let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
 
   context "processing an export file" do
     it "can instantiate" do
@@ -39,6 +39,23 @@ describe Contentdm::Importer do
       work = cdmi.process_record(@record)
       cdmi.collection.save
       expect(cdmi.collection.members.last.id).to eq(work.id)
+    end
+  end
+
+  describe "#work_model" do
+    subject(:model) { cdmi.work_model(model_name) }
+
+    context "with a valid string name for a model" do
+      let(:model_name) { "ConferenceProceeding" }
+      it { is_expected.to eq ConferenceProceeding }
+    end
+
+    context "with an invalid string" do
+      let(:model_name) { 'Conference Proceeding' }
+
+      it "raises an error" do
+        expect { model }.to raise_error("Invalid work type: Conference Proceeding")
+      end
     end
   end
 end

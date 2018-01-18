@@ -33,5 +33,9 @@ RSpec.describe Contentdm::Record do
     it 'returns an array of publishers' do
       expect(record.publishers).to eq(['Minneapolis : Federal Reserve Bank of Minneapolis'])
     end
+
+    it 'returns a work_type' do
+      expect(record.work_type).to eq 'Publication'
+    end
   end
 end

@@ -47,7 +47,7 @@ module Contentdm
       cdm_record = Contentdm::Record.new(record)
       # TODO: How to know whether a work is a Publication, DataSet, ConferenceProceeding, etc?
       @log.info "Creating new Publication for #{cdm_record.identifer}"
-      work = Publication.new
+      work = work_model(cdm_record.work_type).new
       work.title = cdm_record.title
       work.creator = cdm_record.creators
       work.contributor = cdm_record.contributors
@@ -69,6 +69,17 @@ module Contentdm
     # @return [ActiveFedora::Base] return the collection object
     def collection
       CollectionBuilder.new(collection_name).find_or_create
+    end
+
+    # Converts a class name into a class.
+    # @param class_name [String] the type of work we want to create, 'Publication', 'ConferenceProceeding', or 'DataSet'.
+    # @return [Class] return the work's class
+    # @example If you pass in a string 'Publication', it returns the class ::Publication
+    def work_model(class_name)
+      # todo - don't hard-code Publication
+      class_name.constantize || Publication
+    rescue NameError
+      raise "Invalid work type: #{class_name}"
     end
 
     private
