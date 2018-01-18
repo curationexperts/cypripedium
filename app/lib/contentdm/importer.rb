@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'nokogiri'
 
 # An importer for ContentDM exported Metadata
@@ -49,10 +50,10 @@ module Contentdm
       @log.info "Creating new Publication for #{cdm_record.identifer}"
       work = work_model(cdm_record.work_type).new
       work.title = cdm_record.title
-      work.creator = cdm_record.creators
-      work.contributor = cdm_record.contributors
-      work.subject = cdm_record.subjects
-      work.description = cdm_record.descriptions
+      work.creator = cdm_record.creator
+      work.contributor = cdm_record.contributor
+      work.subject = cdm_record.subject
+      work.description = cdm_record.description
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       save_work(cdm_record, work)
       @collection.add_members(work.id)

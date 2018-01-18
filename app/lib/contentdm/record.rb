@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This class represents a record in the ContentDM XML
 # export:
 #
@@ -39,28 +40,28 @@ module Contentdm
     ##
     # @return [Array<String>]
     # returns the creators
-    def creators
+    def creator
       remove_nils(@record_hash["creator"])
     end
 
     ##
     # @return [Array<String>]
     # returns the contributors
-    def contributors
+    def contributor
       remove_nils([@record_hash["contributor"]])
     end
 
     ##
     # @return [Array<String>]
     # returns the subjects
-    def subjects
+    def subject
       remove_nils(@record_hash["subject"])
     end
 
     ##
     # @return [Array<String>]
     # returns the descriptions
-    def descriptions
+    def description
       remove_nils([@record_hash["description"]])
     end
 
@@ -74,7 +75,7 @@ module Contentdm
     ##
     # @return [Array<String>]
     # returns the publisher
-    def publishers
+    def publisher
       remove_nils([@record_hash["publisher"]])
     end
 
