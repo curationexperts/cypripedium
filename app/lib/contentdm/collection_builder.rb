@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ###
 # This class creates and returns a collection object
 # It will first look for a Collection with the title it is given
