@@ -4,10 +4,16 @@ require 'nokogiri'
 # An importer for ContentDM exported Metadata
 module Contentdm
   class Importer
-    attr_reader :doc, :records, :input_file, :data_path
-    def initialize(input_file, data_path)
-      @data_path = data_path
+    attr_reader :doc, :records
+    attr_reader :input_file, :data_path, :default_work_model
+
+    # @param input_file [String] the path to the XML file that contains the exported records from ContentDM.
+    # @param data_path [String] the path to directory where the content files are located.
+    # @param default_model [String] the type of work we want to create if the <work_type> isn't specified in the XML file.
+    def initialize(input_file, data_path, default_model)
       @input_file = input_file
+      @data_path = data_path
+      @default_work_model = default_model
       @doc = File.open(input_file) { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
       @collection = collection
@@ -16,9 +22,9 @@ module Contentdm
 
     # Class level method, to be called, e.g., from a rake task
     # @example
-    # Contentdm::Importer.import
-    def self.import(input_file, data_path)
-      Importer.new(input_file, data_path).import
+    # Contentdm::Importer.import('my_file.xml', 'path/to/data_dir', 'Publication')
+    def self.import(input_file, data_path, default_model)
+      Importer.new(input_file, data_path, default_model).import
     end
 
     def self.logger
@@ -83,9 +89,9 @@ module Contentdm
     # @param class_name [String] the type of work we want to create, 'Publication', 'ConferenceProceeding', or 'DataSet'.
     # @return [Class] return the work's class
     # @example If you pass in a string 'Publication', it returns the class ::Publication
-    def work_model(class_name)
-      # todo - don't hard-code Publication
-      class_name.constantize || Publication
+    def work_model(class_name = nil)
+      class_name ||= default_work_model
+      class_name.constantize
     rescue NameError
       raise "Invalid work type: #{class_name}"
     end
