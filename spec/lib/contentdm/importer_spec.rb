@@ -2,9 +2,10 @@
 require 'rails_helper'
 
 describe Contentdm::Importer do
-  let(:cdmi) { described_class.new(input_file, data_path) }
-  let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
+  let(:cdmi) { described_class.new(input_file, data_path, default_model) }
   let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
+  let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
+  let(:default_model) { 'DataSet' }
 
   context 'processing an export file' do
     it 'can instantiate' do
@@ -21,6 +22,9 @@ describe Contentdm::Importer do
     end
     it 'can determine the collection title' do
       expect(cdmi.collection_name).to eq(['Sargent and Sims'])
+    end
+    it 'has a default work type' do
+      expect(cdmi.default_work_model).to eq 'DataSet'
     end
   end
 
@@ -57,6 +61,15 @@ describe Contentdm::Importer do
 
       it 'raises an error' do
         expect { model }.to raise_error('Invalid work type: Conference Proceeding')
+      end
+    end
+
+    context 'with no value' do
+      let(:model_name) { nil }
+
+      it 'uses the default work model' do
+        expect(model).to eq DataSet
+        expect(model.to_s).to eq cdmi.default_work_model
       end
     end
   end

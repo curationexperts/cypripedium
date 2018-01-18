@@ -85,10 +85,18 @@ This method of importing records is meant to be used only for creating new recor
 **NOTE**: Please notice that there is an extra `--` in each of these rake commands.  This is to differentiate the options for the `import:contentdm` task from options for rake itself.
 
 ```bash
-  rake import:contentdm -- --input_file /path/to/my/file.xml
+  rake import:contentdm -- --input_file /path/to/my_file.xml --data_path /path/to/dir/with/data/files --work_type Publication
 ```
 
 To print out a list of arguments that you can pass to this rake task:
 ```bash
   rake import:contentdm -- --help
 ```
+
+Arguments for the rake task:
+
+| Option Switch | Required? | Notes |
+| ------------- | --------- | ----- |
+| `--input_file` | required | The path to the XML file that contains the exported records from Content DM |
+| `--data_path` | required | The path to the directory that contains the content files |
+| `--work_type` | required | The default work type.  This is used to decide which type of record(s) the importer will create.  This value will be ignored if the record in the input XML file has a `<work_type>` entry.  The value for this option must exactly match the class name of the model, including capitalization.  For example, `ConferenceProceeding` is the correct spelling.  `Conference Proceeding` (with a space) or `conferenceproceeding` (with different capitalization) are not valid. |
