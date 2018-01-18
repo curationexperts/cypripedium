@@ -74,9 +74,12 @@ module Contentdm
     private
 
       def save_work(cdm_record, work)
-        if work.save! != false
-          @log.info Rainbow("Saved #{work.id}").green
-          @log.info "Title: #{cdm_record.title[0]}"
+        importer_user = ::User.batch_user
+        current_ability = ::Ability.new(importer_user)
+        env = Hyrax::Actors::Environment.new(work, current_ability, {})
+
+        if Hyrax::CurationConcern.actor.create(env) != false
+          @log.info "Saved work with title: #{cdm_record.title[0]}"
         else
           @log.info Rainbow("Problem saving #{cdm_record.identifier}").red
         end
