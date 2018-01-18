@@ -38,6 +38,9 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
     `bin/setup`
 1. Run the test suite  
     `bin/rails ci`
+1. Create a default [admin set](https://samvera.github.io/what-are-admin-things.html).
+   To add a new work from the dashboard, you will need to setup a default admin set. You
+   do this by running this rake task: `rake hyrax:default_admin_set:create`.
 
 ## How to create an admin user on the console
 
