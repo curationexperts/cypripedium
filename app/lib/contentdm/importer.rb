@@ -52,7 +52,7 @@ module Contentdm
     def process_record(record)
       cdm_record = Contentdm::Record.new(record)
       # TODO: How to know whether a work is a Publication, DataSet, ConferenceProceeding, etc?
-      @log.info "Creating new Publication for #{cdm_record.identifer}"
+      @log.info "Creating new Publication for #{cdm_record.identifier}"
       work = work_model(cdm_record.work_type).new
       work.title = cdm_record.title
       work.creator = cdm_record.creator

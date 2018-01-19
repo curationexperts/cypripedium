@@ -25,7 +25,7 @@ module Contentdm
 
     ##
     # @return [String] Returns the identifier element
-    def identifer
+    def identifier
       @record_hash["identifier"]
     end
 
