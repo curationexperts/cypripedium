@@ -4,44 +4,80 @@ en:
       fields:
         facet:
           based_near_sim: Location
+          bibliographic_citation_tesim: Bibliographic Citation
           creator_sim: Creator
           file_format_sim: Format
           generic_type_sim: Type
+          geographic_name_tesim: Spatial
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
           subject_sim: Subject
+          is_part_of_tesim: Series
         index:
+          abstract_tesim: Abstract
+          alternative_title_tesim: Alternative Title
           based_near_tesim: Location
+          bibliographic_citation_tesim: Bibliographic Citation
           contributor_tesim: Contributor
+          corporate_name_tesim: Corporate Author
           creator_tesim: Creator
           date_created_tesim: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          geographic_name_tesim: Spatial
+          identifier_tesim: DOI
+          is_part_of_tesim: Series
           keyword_tesim: Keyword
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
           subject_tesim: Subject
+          table_of_contents_tesim: Table of Contents
+          temporal_tesim: Temporal
         show:
           based_near_tesim: Location
           contributor_tesim: Contributor
+          bibliographic_citation_tesim: Bibliographic Citation
+          corporate_name_tesim: Corporate Author
           creator_tesim: Creator
           date_created_tesim: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          geographic_name: "Spatial"
+          is_part_of_tesim: Series
+          identifier_tesim: DOI
           keyword_tesim: Keyword
           language_tesim: Language
           publisher_tesim: Publisher
+          replaces_tesim: "Relation: Replaces"
           rights_tesim: Rights
           subject_tesim: Subject
+          table_of_contents_tesim: Table of Contents
           title_tesim: Title
+  simple_form:
+    labels:
+      defaults:
+        description: Description
+        alternative_title: Alternative Title
+        bibliographic_citation: Bibliographic Citation
+        corporate_name: Corporate Author
+        date_available: Date Available
+        geographic_name: Spatial
+        is_part_of: Series
+        is_version_of: "Relation: Is Version Of"
+        is_replaced_by: "Relation: Is Replaced By"
+        is_verison_of: "Relation: Is Version of"
+        has_part: "Relation: Has Part"
+        has_version: "Relation: Has Version"
+        replaces: "Relation: Replaces"
+        requires: "Relation: Requires"
+        table_of_contents: Table of Contents
+
   hyrax:
     product_name:           "Research Database"
     product_twitter_handle: "@MinneapolisFed"
