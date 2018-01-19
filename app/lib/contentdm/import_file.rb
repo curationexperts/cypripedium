@@ -42,7 +42,7 @@ module Contentdm
     # @return [String]
     # this returns the full path to the PDF
     def file_path
-      "#{@collection_path}/#{@record.identifer}#{extension}"
+      "#{@collection_path}/#{@record.identifier}#{extension}"
     end
 
     ##

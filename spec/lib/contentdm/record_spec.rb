@@ -9,7 +9,7 @@ RSpec.describe Contentdm::Record do
   context "when initialized with a Nokogiri document" do
     describe '#identifier' do
       it 'returns the idenitifer' do
-        expect(record.identifer).to eq('19750900fedmwp22')
+        expect(record.identifier).to eq('19750900fedmwp22')
       end
     end
     describe '#title' do
