@@ -30,7 +30,7 @@ RSpec.describe Contentdm::Record do
 
     describe '#description' do
       it 'returns an array of descriptions' do
-        expect(record.description).to eq(['Natural unemployment rate ; Montarist model ; Postwar United States ; post-1945 ; Rational expectations theory'])
+        expect(record.description).to eq(['Natural unemployment rate ; Montarist model ; Postwar United States ; post-1945 ; Rational expectations theory', 'Description 2'])
       end
     end
 

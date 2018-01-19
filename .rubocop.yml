@@ -49,6 +49,9 @@ Style/Semicolon:
 Style/StringLiteralsInInterpolation:
   Enabled: false
 
+Style/SymbolProc:
+  Enabled: false
+
 Layout/MultilineMethodCallIndentation:
   Enabled: false
 
