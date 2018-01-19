@@ -85,7 +85,7 @@ This method of importing records is meant to be used only for creating new recor
 **NOTE**: Please notice that there is an extra `--` in each of these rake commands.  This is to differentiate the options for the `import:contentdm` task from options for rake itself.
 
 ```bash
-  rake import:contentdm -- --input_file /path/to/my_file.xml --data_path /path/to/dir/with/data/files --work_type Publication
+  RAILS_ENV=production bundle exec rake import:contentdm -- --input_file /opt/cypripedium/current/data/ContentDM_XML_Full_Fields.xml --data_path /opt/cypripedium/import_data --work_type Publication
 ```
 
 To print out a list of arguments that you can pass to this rake task:
