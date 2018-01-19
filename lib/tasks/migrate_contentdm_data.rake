@@ -20,6 +20,7 @@ namespace :import do
   def options(args)
     require 'optparse'
     user_inputs = {}
+    valid_work_types = ['ConferenceProceeding', 'DataSet', 'Publication']
     opts = OptionParser.new
 
     opts.on('-i INPUT FILE', '--input_file', '(required) The XML file containing the ContentDM records you want to import') do |input_file|
@@ -30,7 +31,7 @@ namespace :import do
       user_inputs[:data_path] = data_path
     end
 
-    opts.on('-w WORK TYPE', '--work_type', '(required) The type of work records to create by default.  Valid choices are: ConferenceProceeding, DataSet, Publication') do |work_type|
+    opts.on('-w WORK TYPE', '--work_type', "(required) The type of work records to create by default.  Valid choices are: #{valid_work_types.inspect}") do |work_type|
       user_inputs[:work_type] = work_type
     end
 
@@ -46,8 +47,11 @@ namespace :import do
     missing_options = required_options - user_inputs.keys
     missing_options.each { |o| puts "Error: Missing required option: --#{o}" }
 
-    # If any required options are missing, print the usage message and abort.
-    unless missing_options.blank?
+    invalid_work_type = !valid_work_types.include?(user_inputs[:work_type])
+    puts "Error: Not a valid work_type: #{user_inputs[:work_type]}" if invalid_work_type
+
+    # If any required options are missing or invalid, print the usage message and abort.
+    if !missing_options.blank? || invalid_work_type
       puts ""
       puts opts
       exit 1
