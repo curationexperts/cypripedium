@@ -38,6 +38,9 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
     `bin/setup`
 1. Run the test suite  
     `bin/rails ci`
+1. Create a default [admin set](https://samvera.github.io/what-are-admin-things.html).
+   To add a new work from the dashboard, you will need to setup a default admin set. You
+   do this by running this rake task: `rake hyrax:default_admin_set:create`.
 
 ## How to create an admin user on the console
 
@@ -72,3 +75,28 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
 ## Re-create derivatives
 Provide the id of the work to re-create:
 `RAILS_ENV=production bundle exec rake derivatives:recreate_by_id[2801pg32c]`
+
+## Import records from Content DM
+
+To import records using XML files that were exported from Content DM, you can run a rake task and pass in the XML file that you want to import.
+
+This method of importing records is meant to be used only for creating new records.  It's not meant to be used to update/edit existing records.  If you need to re-run an import for some reason, you'll need to delete those existing records from fedora before re-running that import.
+
+**NOTE**: Please notice that there is an extra `--` in each of these rake commands.  This is to differentiate the options for the `import:contentdm` task from options for rake itself.
+
+```bash
+  rake import:contentdm -- --input_file /path/to/my_file.xml --data_path /path/to/dir/with/data/files --work_type Publication
+```
+
+To print out a list of arguments that you can pass to this rake task:
+```bash
+  rake import:contentdm -- --help
+```
+
+Arguments for the rake task:
+
+| Option Switch | Required? | Notes |
+| ------------- | --------- | ----- |
+| `--input_file` | required | The path to the XML file that contains the exported records from Content DM |
+| `--data_path` | required | The path to the directory that contains the content files |
+| `--work_type` | required | The default work type.  This is used to decide which type of record(s) the importer will create.  This value will be ignored if the record in the input XML file has a `<work_type>` entry.  The value for this option must exactly match the class name of the model, including capitalization.  For example, `ConferenceProceeding` is the correct spelling.  `Conference Proceeding` (with a space) or `conferenceproceeding` (with different capitalization) are not valid. |
