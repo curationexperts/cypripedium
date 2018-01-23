@@ -24,9 +24,9 @@ module Contentdm
     end
 
     ##
-    # @return [String] Returns the identifier element
-    def identifier
-      @record_hash["identifier"]
+    # @return [String] Returns the legacyFileName element
+    def legacy_file_name
+      @record_hash["legacyFileName"]
     end
 
     ##

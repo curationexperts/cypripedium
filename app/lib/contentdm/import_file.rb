@@ -14,7 +14,7 @@
 # `data/Sargent_and_Sims`
 #
 # The PDFs that are in that folder should have a filename that is the same as the
-# `<identifier>` element in the CDM XML.
+# `<legacyFileName>` element in the CDM XML.
 module Contentdm
   class ImportFile
     EXTENSION = '.pdf'.freeze
@@ -42,7 +42,7 @@ module Contentdm
     # @return [String]
     # this returns the full path to the PDF
     def file_path
-      "#{@collection_path}/#{@record.identifier}#{extension}"
+      "#{@collection_path}/#{@record.legacy_file_name}#{extension}"
     end
 
     ##

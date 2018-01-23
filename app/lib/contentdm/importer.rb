@@ -46,7 +46,7 @@ module Contentdm
     def process_record(record)
       cdm_record = Contentdm::Record.new(record)
       work_type = work_model(cdm_record.work_type)
-      Contentdm::Log.new("Creating new #{work_type} for #{cdm_record.identifier}", 'info')
+      Contentdm::Log.new("Creating new #{work_type} for #{cdm_record.legacy_file_name}", 'info')
       work = work_type.new
       work.title = cdm_record.title
       work.creator = cdm_record.creator
@@ -101,7 +101,7 @@ module Contentdm
         if Hyrax::CurationConcern.actor.create(env) != false
           Contentdm::Log.new("Saved work with title: #{cdm_record.title[0]}", 'info')
         else
-          Contentdm::Log.new("Problem saving #{cdm_record.identifier}", 'error')
+          Contentdm::Log.new("Problem saving #{cdm_record.legacy_file_name}", 'error')
         end
       end
   end
