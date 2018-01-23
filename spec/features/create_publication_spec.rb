@@ -3,7 +3,6 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-# NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.feature 'Create a Publication', js: true do
   context 'a logged in admin user' do
     let(:user) { FactoryBot.create(:admin) }
@@ -34,6 +33,7 @@ RSpec.feature 'Create a Publication', js: true do
       fill_in 'Relation: Has Version', with: 'Relation: Has Version'
       fill_in 'Relation: Is Replaced By', with: 'Relation: Is Replaced By'
       fill_in 'Language', with: 'Language'
+      fill_in 'DOI', with: 'my_doi:1234'
       fill_in 'Publisher', with: 'Publisher'
       fill_in 'Relation: Replaces', with: 'Relation: Replaces'
       fill_in 'Relation: Requires', with: 'Relation: Requires'
@@ -67,6 +67,7 @@ RSpec.feature 'Create a Publication', js: true do
       expect(page).not_to have_content('Relation: Has Version')
       expect(page).not_to have_content('Relation: Is Replaced By')
       expect(page).to have_content('Language')
+      expect(page).to have_content('DOI my_doi:1234')
       expect(page).to have_content('Publisher')
       expect(page).to have_content('Relation: Replaces')
       expect(page).not_to have_content('Relation: Requires')
