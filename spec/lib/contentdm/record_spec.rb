@@ -7,9 +7,9 @@ RSpec.describe Contentdm::Record do
   let(:first_record) { doc.xpath("//record[1]") }
 
   context "when initialized with a Nokogiri document" do
-    describe '#identifier' do
-      it 'returns the idenitifer' do
-        expect(record.identifier).to eq('19750900fedmwp22')
+    describe '#legacy_file_name' do
+      it 'returns the legacy file name' do
+        expect(record.legacy_file_name).to eq('19750900fedmwp22')
       end
     end
     describe '#title' do

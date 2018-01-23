@@ -23,7 +23,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-09</created>
     <modified>2008-12-03</modified>
-    <identifier>19750900fedmwp22</identifier>
+    <legacyFileName>19750900fedmwp22</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>22</requires>
@@ -68,7 +68,7 @@
     <tableOfContents></tableOfContents>
     <created>1974-04</created>
     <modified>2008-09-19</modified>
-    <identifier>19740400fedmwp25</identifier>
+    <legacyFileName>19740400fedmwp25</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>25</requires>
@@ -113,7 +113,7 @@
     <tableOfContents></tableOfContents>
     <created>1978-06</created>
     <modified>2008-10-17</modified>
-    <identifier>19780600fedmwp108</identifier>
+    <legacyFileName>19780600fedmwp108</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>108</requires>
@@ -158,7 +158,7 @@
     <tableOfContents></tableOfContents>
     <created>1980-07</created>
     <modified>2008-10-23</modified>
-    <identifier>19800700fedmwp157</identifier>
+    <legacyFileName>19800700fedmwp157</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>157</requires>
@@ -204,7 +204,7 @@
       total income : Friedman's model ; Friedman's model : the cross-section data ; Projections on labor income and current assets ; Transitory consumption ; Conclusions.</tableOfContents>
     <created>1985-12</created>
     <modified>2008-12-08</modified>
-    <identifier>19851200fedmwp30</identifier>
+    <legacyFileName>19851200fedmwp30</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>30</requires>
@@ -249,7 +249,7 @@
     <tableOfContents></tableOfContents>
     <created>1976-02</created>
     <modified>2008-10-14</modified>
-    <identifier>19760200fedmwp43</identifier>
+    <legacyFileName>19760200fedmwp43</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>43</requires>
@@ -294,7 +294,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-05</created>
     <modified>2008-12-10</modified>
-    <identifier>19750500fedm</identifier>
+    <legacyFileName>19750500fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -339,7 +339,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-09</created>
     <modified>2008-10-17</modified>
-    <identifier>19770900fedmwp93</identifier>
+    <legacyFileName>19770900fedmwp93</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>93</requires>
@@ -384,7 +384,7 @@
     <tableOfContents></tableOfContents>
     <created>1976-01</created>
     <modified>2008-10-16</modified>
-    <identifier>19760100fedmwp78</identifier>
+    <legacyFileName>19760100fedmwp78</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>78</requires>
@@ -429,7 +429,7 @@
     <tableOfContents></tableOfContents>
     <created>1979-03</created>
     <modified>2008-11-26</modified>
-    <identifier>19790300fedmwp127</identifier>
+    <legacyFileName>19790300fedmwp127</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>127</requires>
@@ -476,7 +476,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-08</created>
     <modified>2008-09-23</modified>
-    <identifier>19840800fedmwp211</identifier>
+    <legacyFileName>19840800fedmwp211</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>211</requires>
@@ -523,7 +523,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-10</created>
     <modified>2008-10-28</modified>
-    <identifier>19841000fedmwp211</identifier>
+    <legacyFileName>19841000fedmwp211</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>211</requires>
@@ -568,7 +568,7 @@
     <tableOfContents></tableOfContents>
     <created>1980-01</created>
     <modified>2008-10-22</modified>
-    <identifier>19800100fedmwp147</identifier>
+    <legacyFileName>19800100fedmwp147</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>147</requires>
@@ -614,7 +614,7 @@
     <tableOfContents></tableOfContents>
     <created>1988-11</created>
     <modified>2008-11-04</modified>
-    <identifier>19881100fedmwp224</identifier>
+    <legacyFileName>19881100fedmwp224</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>224</requires>
@@ -659,7 +659,7 @@
     <tableOfContents></tableOfContents>
     <created>1982-09</created>
     <modified>2008-10-28</modified>
-    <identifier>19820900fedmwp214</identifier>
+    <legacyFileName>19820900fedmwp214</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>214</requires>
@@ -704,7 +704,7 @@
     <tableOfContents></tableOfContents>
     <created>1982-01</created>
     <modified>2008-10-24</modified>
-    <identifier>19820100fedmwp192</identifier>
+    <legacyFileName>19820100fedmwp192</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>192</requires>
@@ -749,7 +749,7 @@
     <tableOfContents></tableOfContents>
     <created>1983-09</created>
     <modified>2008-11-26</modified>
-    <identifier>19830900fedmwp241</identifier>
+    <legacyFileName>19830900fedmwp241</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>241</requires>
@@ -794,7 +794,7 @@
     <tableOfContents></tableOfContents>
     <created>1974-03</created>
     <modified>2008-10-10</modified>
-    <identifier>19740300fedmwp32</identifier>
+    <legacyFileName>19740300fedmwp32</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>32</requires>
@@ -839,7 +839,7 @@
     <tableOfContents></tableOfContents>
     <created>1976-09</created>
     <modified>2008-10-15</modified>
-    <identifier>19760900fedmwp67</identifier>
+    <legacyFileName>19760900fedmwp67</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>67</requires>
@@ -884,7 +884,7 @@
     <tableOfContents></tableOfContents>
     <created>1982-11</created>
     <modified>2008-10-29</modified>
-    <identifier>19821100fedmwp229</identifier>
+    <legacyFileName>19821100fedmwp229</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>229</requires>
@@ -929,7 +929,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-01</created>
     <modified>2008-09-23</modified>
-    <identifier>19750100fedmwp21</identifier>
+    <legacyFileName>19750100fedmwp21</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>21</requires>
@@ -974,7 +974,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-05</created>
     <modified>2008-10-14</modified>
-    <identifier>19750500fedmwp41</identifier>
+    <legacyFileName>19750500fedmwp41</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>41</requires>
@@ -1019,7 +1019,7 @@
     <tableOfContents></tableOfContents>
     <created>1974-03</created>
     <modified>2009-02-20</modified>
-    <identifier>19740300fedmwp28</identifier>
+    <legacyFileName>19740300fedmwp28</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>28</requires>
@@ -1064,7 +1064,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-02</created>
     <modified>2008-10-15</modified>
-    <identifier>19770200fedmwp66</identifier>
+    <legacyFileName>19770200fedmwp66</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>66</requires>
@@ -1110,7 +1110,7 @@
       total income : Friedman's model ; Friedman's model : the cross-section data ; Projections on labor income and current assets ; Transitory consumption ; Conclusions.</tableOfContents>
     <created>1970</created>
     <modified>2009-02-20</modified>
-    <identifier>197x0000fedmwp30</identifier>
+    <legacyFileName>197x0000fedmwp30</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>30</requires>
@@ -1155,7 +1155,7 @@
     <tableOfContents></tableOfContents>
     <created>1974-02</created>
     <modified>2008-10-10</modified>
-    <identifier>19740200fedmwp31</identifier>
+    <legacyFileName>19740200fedmwp31</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>31</requires>
@@ -1200,7 +1200,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-03</created>
     <modified>2008-10-29</modified>
-    <identifier>19840300fedmwp238</identifier>
+    <legacyFileName>19840300fedmwp238</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>238</requires>
@@ -1245,7 +1245,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-09</created>
     <modified>2008-10-29</modified>
-    <identifier>19840900fedmwp227</identifier>
+    <legacyFileName>19840900fedmwp227</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>227</requires>
@@ -1290,7 +1290,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-04</created>
     <modified>2008-12-03</modified>
-    <identifier>19840400fedmwp125</identifier>
+    <legacyFileName>19840400fedmwp125</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>125</requires>
@@ -1335,7 +1335,7 @@
     <tableOfContents></tableOfContents>
     <created>1976-07</created>
     <modified>2008-10-15</modified>
-    <identifier>19760700fedmwp64</identifier>
+    <legacyFileName>19760700fedmwp64</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>64</requires>
@@ -1380,7 +1380,7 @@
     <tableOfContents></tableOfContents>
     <created>1987-05</created>
     <modified>2008-11-07</modified>
-    <identifier>19870500fedmwp351</identifier>
+    <legacyFileName>19870500fedmwp351</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>351</requires>
@@ -1428,7 +1428,7 @@
     <tableOfContents></tableOfContents>
     <created>1983-08</created>
     <modified>2008-09-23</modified>
-    <identifier>19830800fedmwp243</identifier>
+    <legacyFileName>19830800fedmwp243</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>243</requires>
@@ -1473,7 +1473,7 @@
     <tableOfContents></tableOfContents>
     <created>1995-05-03</created>
     <modified>2011-04-21</modified>
-    <identifier>19950503fedmleac1995tjs</identifier>
+    <legacyFileName>19950503fedmleac1995tjs</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation>Lucas expectations anniversary conference</relation>
     <isPartOf></isPartOf>
@@ -1519,7 +1519,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975cas</identifier>
+    <legacyFileName>19771000fedmnmbcr1975cas</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
@@ -1565,7 +1565,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-11</modified>
-    <identifier>19771000fedmnmbcr1975cgpn</identifier>
+    <legacyFileName>19771000fedmnmbcr1975cgpn</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1610,7 +1610,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975tscs</identifier>
+    <legacyFileName>19771000fedmnmbcr1975tscs</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1655,7 +1655,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975jg</identifier>
+    <legacyFileName>19771000fedmnmbcr1975jg</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1700,7 +1700,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975dap</identifier>
+    <legacyFileName>19771000fedmnmbcr1975dap</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1745,7 +1745,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975rjs</identifier>
+    <legacyFileName>19771000fedmnmbcr1975rjs</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1795,7 +1795,7 @@
       Klein ; A Comment / Albert Ando ; Repsonse to Gordon and Ando / Thomas J. Sargent ; References</tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-11</modified>
-    <identifier>19771000fedmnmbcr1975fm</identifier>
+    <legacyFileName>19771000fedmnmbcr1975fm</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation></relation>
     <isPartOf></isPartOf>
@@ -1841,7 +1841,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-11</modified>
-    <identifier>19771000fedmnmbcr1975mw</identifier>
+    <legacyFileName>19771000fedmnmbcr1975mw</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
@@ -1887,7 +1887,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-11</modified>
-    <identifier>19771000fedmnmbcr1975casi</identifier>
+    <legacyFileName>19771000fedmnmbcr1975casi</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
@@ -1933,7 +1933,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975az</identifier>
+    <legacyFileName>19771000fedmnmbcr1975az</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -1978,7 +1978,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-16</modified>
-    <identifier>19771000fedmnmbcr1975rjg</identifier>
+    <legacyFileName>19771000fedmnmbcr1975rjg</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2023,7 +2023,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-17</modified>
-    <identifier>19771000fedmnmbcr1975dfh</identifier>
+    <legacyFileName>19771000fedmnmbcr1975dfh</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2068,7 +2068,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-17</modified>
-    <identifier>19771000fedmnmbcr1975lrk</identifier>
+    <legacyFileName>19771000fedmnmbcr1975lrk</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2113,7 +2113,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-17</modified>
-    <identifier>19771000fedmnmbcr1975aa</identifier>
+    <legacyFileName>19771000fedmnmbcr1975aa</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2158,7 +2158,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-17</modified>
-    <identifier>19771000fedmnmbcr1975tjs</identifier>
+    <legacyFileName>19771000fedmnmbcr1975tjs</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2203,7 +2203,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-10</created>
     <modified>2008-12-17</modified>
-    <identifier>19771000fedmnmbcr1975bm</identifier>
+    <legacyFileName>19771000fedmnmbcr1975bm</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2252,7 +2252,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-10</created>
     <modified>2010-7-22</modified>
-    <identifier>19751000fedmnmbcr</identifier>
+    <legacyFileName>19751000fedmnmbcr</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2297,7 +2297,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-11</created>
     <modified>2010-7-22</modified>
-    <identifier>19751100fedmnmbcr</identifier>
+    <legacyFileName>19751100fedmnmbcr</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2342,7 +2342,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-9-27</created>
     <modified>2010-7-22</modified>
-    <identifier>19750927fedmnmbcr</identifier>
+    <legacyFileName>19750927fedmnmbcr</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2387,7 +2387,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-10</created>
     <modified>2010-7-23</modified>
-    <identifier>19751000fedmnmbcrSargentSims</identifier>
+    <legacyFileName>19751000fedmnmbcrSargentSims</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2432,7 +2432,7 @@
     <tableOfContents></tableOfContents>
     <created>1978-5</created>
     <modified>2010-7-23</modified>
-    <identifier>19780500fedbapc</identifier>
+    <legacyFileName>19780500fedbapc</legacyFileName>
     <work_type>ConferenceProceeding</work_type>
     <relation>After the Phillips Curve : persistence of high inflation and high unemployment</relation>
     <isPartOf></isPartOf>
@@ -2480,7 +2480,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-9</created>
     <modified>2010-7-23</modified>
-    <identifier>19750900fedm</identifier>
+    <legacyFileName>19750900fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2525,7 +2525,7 @@
     <tableOfContents></tableOfContents>
     <created>1978-07</created>
     <modified>2008-12-10</modified>
-    <identifier>19780700fedm</identifier>
+    <legacyFileName>19780700fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2570,7 +2570,7 @@
     <tableOfContents></tableOfContents>
     <created>1975-11-25</created>
     <modified>2010-2-1</modified>
-    <identifier>19751125fedm</identifier>
+    <legacyFileName>19751125fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2615,7 +2615,7 @@
     <tableOfContents></tableOfContents>
     <created>1987</created>
     <modified>2010-1-26</modified>
-    <identifier>198x0000fedmdp14</identifier>
+    <legacyFileName>198x0000fedmdp14</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2660,7 +2660,7 @@
     <tableOfContents></tableOfContents>
     <created></created>
     <modified></modified>
-    <identifier></identifier>
+    <legacyFileName></legacyFileName>
     <relation></relation>
     <isPartOf>Staff report (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>75</requires>
@@ -2705,7 +2705,7 @@
     <tableOfContents></tableOfContents>
     <created>1980-12</created>
     <modified>2012-4-5</modified>
-    <identifier>19801200fedmwp158</identifier>
+    <legacyFileName>19801200fedmwp158</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2750,7 +2750,7 @@
     <tableOfContents></tableOfContents>
     <created>1986-7</created>
     <modified></modified>
-    <identifier>19860700fedmsr93</identifier>
+    <legacyFileName>19860700fedmsr93</legacyFileName>
     <relation></relation>
     <isPartOf>Staff report (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>93</requires>
@@ -2795,7 +2795,7 @@
     <tableOfContents></tableOfContents>
     <created>1979-11</created>
     <modified></modified>
-    <identifier>19791100fedmwp127</identifier>
+    <legacyFileName>19791100fedmwp127</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>127</requires>
@@ -2840,7 +2840,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-9</created>
     <modified></modified>
-    <identifier>19770900fedmsr25</identifier>
+    <legacyFileName>19770900fedmsr25</legacyFileName>
     <relation></relation>
     <isPartOf>Staff report (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>25</requires>
@@ -2885,7 +2885,7 @@
     <tableOfContents></tableOfContents>
     <created>1981-5</created>
     <modified></modified>
-    <identifier>19810500fedmwp158</identifier>
+    <legacyFileName>19810500fedmwp158</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -2932,7 +2932,7 @@
     <tableOfContents></tableOfContents>
     <created>1978-4</created>
     <modified></modified>
-    <identifier>19780400fedmsr27</identifier>
+    <legacyFileName>19780400fedmsr27</legacyFileName>
     <relation></relation>
     <isPartOf>Staff report (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>27</requires>
@@ -2977,7 +2977,7 @@
     <tableOfContents></tableOfContents>
     <created>1981-9</created>
     <modified></modified>
-    <identifier>19810900fedmqr5</identifier>
+    <legacyFileName>19810900fedmqr5</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3022,7 +3022,7 @@
     <tableOfContents></tableOfContents>
     <created>1989-04</created>
     <modified></modified>
-    <identifier>19890401fedmdp11</identifier>
+    <legacyFileName>19890401fedmdp11</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3068,7 +3068,7 @@
     <tableOfContents></tableOfContents>
     <created>1977-1</created>
     <modified></modified>
-    <identifier>19770100fedmwp55</identifier>
+    <legacyFileName>19770100fedmwp55</legacyFileName>
     <relation>New methods in business cycle research</relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3113,7 +3113,7 @@
     <tableOfContents></tableOfContents>
     <created>1974-8</created>
     <modified></modified>
-    <identifier>19780800fedmwp29</identifier>
+    <legacyFileName>19780800fedmwp29</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3158,7 +3158,7 @@
     <tableOfContents></tableOfContents>
     <created>1986-12</created>
     <modified></modified>
-    <identifier>19861200fedmqr10</identifier>
+    <legacyFileName>19861200fedmqr10</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3203,7 +3203,7 @@
     <tableOfContents></tableOfContents>
     <created>1981-5</created>
     <modified></modified>
-    <identifier>19810500frbmwpw</identifier>
+    <legacyFileName>19810500frbmwpw</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>W</requires>
@@ -3249,7 +3249,7 @@
       total income : Friedman's model ; Friedman's model : the cross-section data ; Projections on labor income and current assets ; Transitory consumption ; Conclusions.</tableOfContents>
     <created>1986-07</created>
     <modified>2012-04-17</modified>
-    <identifier>19860700fedmwp30</identifier>
+    <legacyFileName>19860700fedmwp30</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>30</requires>
@@ -3294,7 +3294,7 @@
     <tableOfContents></tableOfContents>
     <created>1983-12</created>
     <modified>2012-04-16</modified>
-    <identifier>19831200aer742</identifier>
+    <legacyFileName>19831200aer742</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3339,7 +3339,7 @@
     <tableOfContents></tableOfContents>
     <created>1983-12-08</created>
     <modified>2012-04-16</modified>
-    <identifier>19831208fedm</identifier>
+    <legacyFileName>19831208fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3386,7 +3386,7 @@
     <tableOfContents></tableOfContents>
     <created>1979-06</created>
     <modified>2012-04-16</modified>
-    <identifier>19790600fedmsr27</identifier>
+    <legacyFileName>19790600fedmsr27</legacyFileName>
     <relation></relation>
     <isPartOf>Staff report (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>27</requires>
@@ -3431,7 +3431,7 @@
     <tableOfContents></tableOfContents>
     <created>1984-05</created>
     <modified>2012-04-17</modified>
-    <identifier>19840500eatd</identifier>
+    <legacyFileName>19840500eatd</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3477,7 +3477,7 @@
       currency equilibria ; 7. Optimality ; 8. Four examples on inflation and its causes ; 9. Seignorage and the Laffer Curve ; 10. International exchange rates</tableOfContents>
     <created>1985-04</created>
     <modified>2012-04-16</modified>
-    <identifier>19850400fedmwp283</identifier>
+    <legacyFileName>19850400fedmwp283</legacyFileName>
     <relation></relation>
     <isPartOf>Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)</isPartOf>
     <requires>283</requires>
@@ -3525,7 +3525,7 @@
       Leads&quot; ; 13. Locally Unpredictable Stochastic Processes b. Examples of Nonstationary Processes ; 15. Discrete Sampling: The Folding Formula</tableOfContents>
     <created>1983</created>
     <modified>2012-04-16</modified>
-    <identifier>19830000fedm</identifier>
+    <legacyFileName>19830000fedm</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
@@ -3570,7 +3570,7 @@
     <tableOfContents></tableOfContents>
     <created>1981-10</created>
     <modified>2012-04-19</modified>
-    <identifier>1981100fedmqr531</identifier>
+    <legacyFileName>1981100fedmqr531</legacyFileName>
     <relation></relation>
     <isPartOf></isPartOf>
     <requires></requires>
