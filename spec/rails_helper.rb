@@ -20,23 +20,83 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
 require 'active_fedora/cleaner'
+require 'capybara/poltergeist'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'database_cleaner'
+require 'support/factory_bot'
+
+# Uses faster rack_test driver when JavaScript support not needed
+Capybara.default_driver = :rack_test
+
+# Adding the below to deal with random Capybara-related timeouts in CI.
+# Found in this thread: https://github.com/teampoltergeist/poltergeist/issues/375
+poltergeist_options = {
+  js_errors: false,
+  timeout: 30,
+  logger: false,
+  debug: false,
+  phantomjs_logger: StringIO.new,
+  phantomjs_options: [
+    '--load-images=no',
+    '--ignore-ssl-errors=yes'
+  ]
+}
+
+Capybara.register_driver(:poltergeist) do |app|
+  Capybara::Poltergeist::Driver.new(app, poltergeist_options)
+end
+
+# Capybara.register_driver :chrome do |app|
+#  profile = Selenium::WebDriver::Chrome::Profile.new
+#  Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
+# end
+
+Capybara.javascript_driver = :poltergeist
+
+Capybara.register_driver :chrome do |app|
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  profile['extensions.password_manager_enabled'] = false
+  Capybara::Selenium::Driver.new(app, browser: :chrome, profile: profile)
+end
+
+Capybara.default_max_wait_time = 10
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
+  config.before :suite do
+    DatabaseCleaner.clean_with(:truncation)
+    ActiveFedora::Cleaner.clean!
+  end
+
+  config.before do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before js: true do
+    DatabaseCleaner.clean_with(:truncation)
+    ActiveFedora::Cleaner.clean!
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before do
+    DatabaseCleaner.start
+  end
+
+  config.append_after do
+    DatabaseCleaner.clean
+  end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

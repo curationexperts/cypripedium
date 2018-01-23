@@ -10,6 +10,7 @@ class ConferenceProceeding < ActiveFedora::Base
 
   self.human_readable_type = 'Conference Proceeding'
 
+  include Metadata
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
