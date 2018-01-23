@@ -31,10 +31,10 @@ module Contentdm
     # @return [Hyrax::UploadedFile]
     def uploaded_file
       if check_for_file(file_path)
-        Importer.logger.info Rainbow("Loading file: #{file_path}").green
+        Contentdm::Log.new("Loading file: #{file_path}", 'info')
         Hyrax::UploadedFile.create(user: @user, file: File.open(file_path, 'r'))
       else
-        Importer.logger.error Rainbow("This file does not exist: #{file_path}").red
+        Contentm::Log.new("This file does not exist: #{file_path}", 'error')
       end
     end
 

@@ -17,7 +17,6 @@ module Contentdm
       @doc = File.open(input_file) { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
       @collection = collection
-      @log = Importer.logger
     end
 
     # Class level method, to be called, e.g., from a rake task
@@ -27,18 +26,13 @@ module Contentdm
       Importer.new(input_file, data_path, default_model).import
     end
 
-    def self.logger
-      Logger.new(STDOUT)
-    end
-
     def import
       @records.each do |record|
         begin
           work = process_record(record)
-          @log.info Rainbow("Adding #{work.id} to collection: #{collection_name}")
+          Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name}", 'info')
         rescue
-          @log.error Rainbow("Could not import record #{record}
-").red
+          Contentdm::Log.new("Could not import record #{record})", 'error')
           Rails.logger.error "Could not import record #{record}"
         end
       end
@@ -52,7 +46,7 @@ module Contentdm
     def process_record(record)
       cdm_record = Contentdm::Record.new(record)
       work_type = work_model(cdm_record.work_type)
-      @log.info "Creating new #{work_type} for #{cdm_record.identifier}"
+      Contentdm::Log.new("Creating new #{work_type} for #{cdm_record.identifier}", 'info')
       work = work_type.new
       work.title = cdm_record.title
       work.creator = cdm_record.creator
@@ -105,9 +99,9 @@ module Contentdm
         attributes = { uploaded_files: [uploaded_file.id] }
         env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
         if Hyrax::CurationConcern.actor.create(env) != false
-          @log.info "Saved work with title: #{cdm_record.title[0]}"
+          Contentdm::Log.new("Saved work with title: #{cdm_record.title[0]}", 'info')
         else
-          @log.info Rainbow("Problem saving #{cdm_record.identifier}").red
+          Contentdm::Log.new("Problem saving #{cdm_record.identifier}", 'error')
         end
       end
   end
