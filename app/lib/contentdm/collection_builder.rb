@@ -18,9 +18,9 @@ module Contentdm
       collection = ::Collection.where(title_tesim: @title).first || ::Collection.new(title: @title)
       collection.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       if collection.id
-        Importer.logger.info Rainbow("Found collection: #{@title[0]} with ID: #{collection.id}").green
+        Contentdm::Log.new("Found collection: #{@title[0]} with ID: #{collection.id}", 'info')
       else
-        Importer.logger.info Rainbow("Creating collection: #{@title[0]}").green
+        Contentdm::Log.new("Creating collection: #{@title[0]}", 'info')
       end
       return collection if collection.save! != false
     end
