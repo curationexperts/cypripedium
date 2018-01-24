@@ -87,6 +87,13 @@ module Contentdm
     end
 
     ##
+    # @return [Array<String>]
+    # returns the requires attribute
+    def requires
+      get_values(@record_hash["requires"])
+    end
+
+    ##
     # @return [String]
     # returns the type of work that will determine the model
     def work_type

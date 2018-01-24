@@ -60,5 +60,10 @@ RSpec.describe Contentdm::Record do
         expect(record.abstract[0]).to match(/A statistical definition/)
       end
     end
+    describe '#requires' do
+      it 'returns a requires attribute' do
+        expect(record.requires).to eq(['22', 'requires'])
+      end
+    end
   end
 end

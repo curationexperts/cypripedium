@@ -32,7 +32,7 @@
     <alternative></alternative>
     <isReplacedBy>19760400jpe8402</isReplacedBy>
     <replaces></replaces>
-    <requires></requires>
+    <requires>requires</requires>
     <unmapped></unmapped>
     <fullResolution></fullResolution>
     <cdmid>0</cdmid>

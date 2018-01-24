@@ -53,6 +53,7 @@ module Contentdm
       work.contributor = cdm_record.contributor
       work.subject = cdm_record.subject
       work.description = cdm_record.description
+      work.requires = cdm_record.requires
       work.abstract = cdm_record.abstract
       work.table_of_contents = cdm_record.table_of_contents
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
