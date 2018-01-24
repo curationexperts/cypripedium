@@ -74,9 +74,23 @@ module Contentdm
 
     ##
     # @return [Array<String>]
+    # returns the abstract
+    def abstract
+      get_values(@record_hash["abstract"])
+    end
+
+    ##
+    # @return [Array<String>]
     # returns the publisher
     def publisher
       get_values(@record_hash["publisher"])
+    end
+
+    ##
+    # @return [Array<String>]
+    # returns the requires attribute
+    def requires
+      get_values(@record_hash["requires"])
     end
 
     ##
@@ -84,6 +98,41 @@ module Contentdm
     # returns the type of work that will determine the model
     def work_type
       @record_hash["work_type"]
+    end
+
+    ##
+    # @return [String]
+    # returns a table of contents
+    def table_of_contents
+      get_values(@record_hash["tableOfContents"])
+    end
+
+    ##
+    # @return [String]
+    # returns a replaces attribute
+    def replaces
+      get_values(@record_hash["replaces"])
+    end
+
+    ##
+    # @return [String]
+    # returns a is_replaced_by attribute
+    def is_replaced_by # rubocop:disable Naming/PredicateName
+      get_values(@record_hash["isReplacedBy"])
+    end
+
+    ##
+    # @return [String]
+    # returns an alternative title  attribute
+    def alternative_title
+      get_values(@record_hash["alternative"])
+    end
+
+    ##
+    # @return [String]
+    # returns a series attribute
+    def series
+      get_values(@record_hash["isPartOf"])
     end
 
     private

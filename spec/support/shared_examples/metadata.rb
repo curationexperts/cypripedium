@@ -90,4 +90,9 @@ RSpec.shared_examples 'a work with additional metadata' do
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/temporal/)
     expect(work.temporal).to eq(multivalued)
   end
+  it 'has series' do
+    work.series = multivalued
+    expect(work.resource.dump(:ttl)).to match(/schema.org\/isPartOf/)
+    expect(work.series).to eq(multivalued)
+  end
 end

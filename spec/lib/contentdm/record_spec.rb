@@ -50,5 +50,40 @@ RSpec.describe Contentdm::Record do
         expect(record.work_type).to eq 'Publication'
       end
     end
+    describe '#table of contents' do
+      it 'returns a table of contents' do
+        expect(record.table_of_contents).to eq(['Table of contents'])
+      end
+    end
+    describe '#abstract' do
+      it 'returns an abstract' do
+        expect(record.abstract[0]).to match(/A statistical definition/)
+      end
+    end
+    describe '#requires' do
+      it 'returns a requires attribute' do
+        expect(record.requires).to eq(['22', 'requires'])
+      end
+    end
+    describe '#replaces' do
+      it 'returns a repaces attribute' do
+        expect(record.replaces).to eq(['replaces'])
+      end
+    end
+    describe '#is_replaced_by' do
+      it 'returns an is replaced by attribute' do
+        expect(record.is_replaced_by).to eq(['19760400jpe8402'])
+      end
+    end
+    describe '#alternative_title' do
+      it 'returns an alternative title attribute' do
+        expect(record.alternative_title).to eq(['alternative'])
+      end
+    end
+    describe '#series' do
+      it 'returns a series attribute' do
+        expect(record.series).to eq(['Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)'])
+      end
+    end
   end
 end

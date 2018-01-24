@@ -61,5 +61,9 @@ module Metadata
     property :temporal, predicate: RDF::Vocab::DC.temporal do |index|
       index.as :stored_searchable
     end
+
+    property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
+      index.as :stored_searchable
+    end
   end
 end
