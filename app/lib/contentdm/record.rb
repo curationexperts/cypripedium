@@ -107,6 +107,13 @@ module Contentdm
       get_values(@record_hash["tableOfContents"])
     end
 
+    ##
+    # @return [String]
+    # returns a replaces attribute
+    def replaces
+      get_values(@record_hash["replaces"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property

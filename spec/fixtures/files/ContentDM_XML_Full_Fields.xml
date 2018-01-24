@@ -31,7 +31,7 @@
     <alternative></alternative>
     <alternative></alternative>
     <isReplacedBy>19760400jpe8402</isReplacedBy>
-    <replaces></replaces>
+    <replaces>replaces</replaces>
     <requires>requires</requires>
     <unmapped></unmapped>
     <fullResolution></fullResolution>

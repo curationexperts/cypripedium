@@ -65,5 +65,10 @@ RSpec.describe Contentdm::Record do
         expect(record.requires).to eq(['22', 'requires'])
       end
     end
+    describe '#replaces' do
+      it 'returns a repaces attribute' do
+        expect(record.replaces).to eq(['replaces'])
+      end
+    end
   end
 end
