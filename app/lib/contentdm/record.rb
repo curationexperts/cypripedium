@@ -74,6 +74,13 @@ module Contentdm
 
     ##
     # @return [Array<String>]
+    # returns the abstract
+    def abstract
+      get_values(@record_hash["abstract"])
+    end
+
+    ##
+    # @return [Array<String>]
     # returns the publisher
     def publisher
       get_values(@record_hash["publisher"])

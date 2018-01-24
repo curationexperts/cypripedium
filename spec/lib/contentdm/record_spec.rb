@@ -55,5 +55,10 @@ RSpec.describe Contentdm::Record do
         expect(record.table_of_contents).to eq(['Table of contents'])
       end
     end
+    describe '#abstract' do
+      it 'returns an abstract' do
+        expect(record.abstract[0]).to match(/A statistical definition/)
+      end
+    end
   end
 end
