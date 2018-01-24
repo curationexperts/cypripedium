@@ -75,5 +75,10 @@ RSpec.describe Contentdm::Record do
         expect(record.is_replaced_by).to eq(['19760400jpe8402'])
       end
     end
+    describe '#alternative_title' do
+      it 'returns an alternative title attribute' do
+        expect(record.alternative_title).to eq(['alternative'])
+      end
+    end
   end
 end

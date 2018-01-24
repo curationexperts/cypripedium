@@ -121,6 +121,13 @@ module Contentdm
       get_values(@record_hash["isReplacedBy"])
     end
 
+    ##
+    # @return [String]
+    # returns an alternative title  attribute
+    def alternative_title
+      get_values(@record_hash["alternative"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property
