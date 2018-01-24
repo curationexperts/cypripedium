@@ -50,5 +50,10 @@ RSpec.describe Contentdm::Record do
         expect(record.work_type).to eq 'Publication'
       end
     end
+    describe '#table of contents' do
+      it 'returns a table of contents' do
+        expect(record.table_of_contents).to eq(['Table of contents'])
+      end
+    end
   end
 end

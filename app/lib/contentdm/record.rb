@@ -86,6 +86,13 @@ module Contentdm
       @record_hash["work_type"]
     end
 
+    ##
+    # @return [String]
+    # returns a table of contents
+    def table_of_contents
+      get_values(@record_hash["tableOfContents"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property
