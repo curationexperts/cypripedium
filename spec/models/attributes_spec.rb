@@ -8,7 +8,7 @@ RSpec.describe Attributes do
      "date_available", "extent", "has_part",
      "is_version_of", "has_version", "is_replaced_by",
      "replaces", "requires", "geographic_name",
-     "table_of_contents", "temporal"]
+     "table_of_contents", "temporal", "series"]
   end
   describe '#to_a' do
     it 'returns the correct attributes' do

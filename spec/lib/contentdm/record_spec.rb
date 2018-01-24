@@ -80,5 +80,10 @@ RSpec.describe Contentdm::Record do
         expect(record.alternative_title).to eq(['alternative'])
       end
     end
+    describe '#series' do
+      it 'returns a series attribute' do
+        expect(record.series).to eq(['Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)'])
+      end
+    end
   end
 end

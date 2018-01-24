@@ -128,6 +128,13 @@ module Contentdm
       get_values(@record_hash["alternative"])
     end
 
+    ##
+    # @return [String]
+    # returns a series attribute
+    def series
+      get_values(@record_hash["isPartOf"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property
