@@ -11,14 +11,19 @@ RSpec.feature 'Create a Publication', js: true do
       AdminSet.find_or_create_default_admin_set_id
     end
 
-    scenario do
+    scenario 'fill in and submit the form' do
       visit '/concern/publications/new'
       expect(page).to have_content "Add New Publication"
+
+      # Only the 'title' field should be required
+      expect(page).to have_css('li#required-metadata.incomplete')
       fill_in 'Title', with: 'Title'
+      expect(page).to have_css('li#required-metadata.complete')
+
+      click_on 'Additional fields'
       fill_in 'Creator', with: 'Creator'
       fill_in 'Keyword', with: 'Keyword'
       select 'In Copyright', from: 'Rights statement'
-      click_on 'Additional fields'
       fill_in 'Abstract', with: 'Abstract'
       fill_in 'Alternative Title', with: 'Alternative Title'
       fill_in 'Bibliographic Citation', with: 'Bibliographic Citation'
@@ -51,8 +56,10 @@ RSpec.feature 'Create a Publication', js: true do
       sleep(1)
       find('#agreement').click
 
+      # Save the form
       find('#with_files_submit').click
 
+      # Now we are on the show page for the new record
       expect(page).to have_content('Abstract')
       expect(page).to have_content('Alternative Title')
       expect(page).to have_content('Bibliographic Citation')

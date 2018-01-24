@@ -5,5 +5,6 @@ module Hyrax
     self.model_class = ::DataSet
     self.terms += [:resource_type]
     self.terms += ::Attributes.to_a
+    self.required_fields = [:title]
   end
 end

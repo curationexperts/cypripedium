@@ -3,8 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-# NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a DataSet', js: false do
+RSpec.feature 'Create a DataSet', js: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -21,6 +20,11 @@ RSpec.feature 'Create a DataSet', js: false do
     scenario do
       visit '/concern/data_sets/new'
       expect(page).to have_content "Add New Data Set"
+
+      # Only the 'title' field should be required
+      expect(page).to have_css('li#required-metadata.incomplete')
+      fill_in 'Title', with: 'Title 123'
+      expect(page).to have_css('li#required-metadata.complete')
     end
   end
 end
