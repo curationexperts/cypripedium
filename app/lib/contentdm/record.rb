@@ -114,6 +114,13 @@ module Contentdm
       get_values(@record_hash["replaces"])
     end
 
+    ##
+    # @return [String]
+    # returns a is_replaced_by attribute
+    def is_replaced_by # rubocop:disable Naming/PredicateName
+      get_values(@record_hash["isReplacedBy"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property

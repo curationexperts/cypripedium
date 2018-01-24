@@ -70,5 +70,10 @@ RSpec.describe Contentdm::Record do
         expect(record.replaces).to eq(['replaces'])
       end
     end
+    describe '#is_replaced_by' do
+      it 'returns an is replaced by attribute' do
+        expect(record.is_replaced_by).to eq(['19760400jpe8402'])
+      end
+    end
   end
 end

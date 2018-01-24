@@ -56,6 +56,7 @@ module Contentdm
       work.requires = cdm_record.requires
       work.replaces = cdm_record.replaces
       work.abstract = cdm_record.abstract
+      work.is_replaced_by = cdm_record.is_replaced_by
       work.table_of_contents = cdm_record.table_of_contents
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
       save_work(cdm_record, work)
