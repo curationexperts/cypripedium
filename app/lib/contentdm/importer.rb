@@ -73,14 +73,6 @@ module Contentdm
     end
 
     ##
-    # @return [String] this returns the name of the folder that the collection's
-    # files are stored in the folder specified during the import
-    def collection_path
-      collection_path = @doc.xpath("//collection_name").text.split(' ').join('_')
-      "#{@data_path}/#{collection_path}"
-    end
-
-    ##
     # @return [ActiveFedora::Base] return the collection object
     def collection
       CollectionBuilder.new(collection_name).find_or_create
@@ -102,7 +94,7 @@ module Contentdm
       def save_work(cdm_record, work)
         importer_user = ::User.batch_user
         current_ability = ::Ability.new(importer_user)
-        uploaded_file = Contentdm::ImportFile.new(cdm_record, collection_path, importer_user).uploaded_file
+        uploaded_file = Contentdm::ImportFile.new(cdm_record, data_path, importer_user).uploaded_file
         attributes = { uploaded_files: [uploaded_file.id] }
         env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
         if Hyrax::CurationConcern.actor.create(env) != false

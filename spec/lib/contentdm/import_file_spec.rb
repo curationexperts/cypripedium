@@ -4,12 +4,12 @@ describe Contentdm::ImportFile do
   let(:doc) { File.open(file_fixture('ContentDM_XML_Full_Fields.xml')) { |f| Nokogiri::XML(f) } }
   let(:first_record) { doc.xpath("//record[1]") }
   let(:record) { Contentdm::Record.new(first_record) }
-  let(:collection_path) { Rails.root.join('spec', 'fixtures', 'files', 'Sargent_and_Sims') }
-  let(:file_path) { Rails.root.join('spec', 'fixtures', 'files', 'Sargent_and_Sims', '19750900fedmwp22.pdf').to_s }
-  let(:bad_file_path) { Rails.root.join('data', 'Sargent_and_Sims', 'bad_file_path.pdf') }
+  let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
+  let(:file_path) { File.join(data_path, '19750900fedmwp22.pdf') }
+  let(:bad_file_path) { File.join(data_path, 'bad_file_path.pdf') }
   let(:extension) { '.pdf' }
   let(:user) { ::User.batch_user }
-  let(:import_file) { described_class.new(record, collection_path, user) }
+  let(:import_file) { described_class.new(record, data_path, user) }
 
   context 'when given the details for creating a new File to import' do
     describe '#uploaded_file' do
