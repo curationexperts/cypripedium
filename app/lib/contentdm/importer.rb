@@ -11,6 +11,7 @@ module Contentdm
     # @param data_path [String] the path to directory where the content files are located.
     # @param default_model [String] the type of work we want to create if the <work_type> isn't specified in the XML file.
     def initialize(input_file, data_path, default_model)
+      Validator.new(input_file).validate
       @input_file = input_file
       @data_path = data_path
       @default_work_model = default_model
@@ -28,13 +29,8 @@ module Contentdm
 
     def import
       @records.each do |record|
-        begin
-          work = process_record(record)
-          Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name}", 'info')
-        rescue
-          Contentdm::Log.new("Could not import record #{record})", 'error')
-          Rails.logger.error "Could not import record #{record}"
-        end
+        work = process_record(record)
+        Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name}", 'info')
       end
       @collection.save
     end
@@ -94,8 +90,11 @@ module Contentdm
       def save_work(cdm_record, work)
         importer_user = ::User.batch_user
         current_ability = ::Ability.new(importer_user)
+
         uploaded_file = Contentdm::ImportFile.new(cdm_record, data_path, importer_user).uploaded_file
-        attributes = { uploaded_files: [uploaded_file.id] }
+        uploaded_file_id = uploaded_file.try(:id)
+        attributes = { uploaded_files: [uploaded_file_id] }
+
         env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
         if Hyrax::CurationConcern.actor.create(env) != false
           Contentdm::Log.new("Saved work with title: #{cdm_record.title[0]}", 'info')
