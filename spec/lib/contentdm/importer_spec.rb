@@ -66,6 +66,20 @@ describe Contentdm::Importer do
     end
   end
 
+  context 'A record with no file to attach' do
+    let(:input_file) { file_fixture('minimal_record.xml') }
+
+    before do
+      ActiveFedora::Cleaner.clean!
+      AdminSet.find_or_create_default_admin_set_id
+    end
+
+    it 'successfully imports without logging any error messages' do
+      expect(Contentdm::Log).not_to receive(:new).with(any_args, 'error')
+      expect { cdmi.import }.to change { cdmi.work_model.count }.by(1)
+    end
+  end
+
   describe '#work_model' do
     subject(:model) { cdmi.work_model(model_name) }
 

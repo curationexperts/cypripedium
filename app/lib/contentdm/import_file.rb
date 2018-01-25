@@ -22,8 +22,9 @@ module Contentdm
 
     ##
     # this returns a Hyrax::Uploaded file object, that will be used when importing
-    # @return [Hyrax::UploadedFile]
+    # @return [Hyrax::UploadedFile, nil]
     def uploaded_file
+      return nil if @record.legacy_file_name.blank?
       if check_for_file(file_path)
         Contentdm::Log.new("Loading file: #{file_path}", 'info')
         Hyrax::UploadedFile.create(user: @user, file: File.open(file_path, 'r'))
