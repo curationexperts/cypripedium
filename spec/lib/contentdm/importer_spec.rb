@@ -3,7 +3,9 @@ require 'rails_helper'
 
 describe Contentdm::Importer do
   let(:cdmi) { described_class.new(input_file, data_path, default_model) }
+  let(:cdmi_invalid) { described_class.new(input_file_with_no_title, data_path, default_model) }
   let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
+  let(:input_file_with_no_title) { file_fixture('cdm_xml_with_errors.xml') }
   let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
   let(:default_model) { 'DataSet' }
 
@@ -45,6 +47,22 @@ describe Contentdm::Importer do
       work = cdmi.process_record(@record)
       cdmi.collection.save
       expect(cdmi.collection.members.last.id).to eq(work.id)
+    end
+  end
+
+  context 'processing multiple records' do
+    before do
+      ActiveFedora::Cleaner.clean!
+      AdminSet.find_or_create_default_admin_set_id
+    end
+    describe 'import' do
+      it 'has a completed message' do
+        expect { cdmi.import }.to output(/Saved work with title: Classical macroeconomic model/).to_stdout_from_any_process
+      end
+
+      it 'has an error message when something goes wrong during the import' do
+        expect { cdmi_invalid.import }.to raise_error('XML is invalid')
+      end
     end
   end
 

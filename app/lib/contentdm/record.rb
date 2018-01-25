@@ -34,7 +34,7 @@ module Contentdm
     # the title without the / Author, Name
     # part at the end and without any spaces at the end
     def title
-      get_values(@record_hash["title"]).map { |title| title.split('/')[0].strip! }
+      get_values(remove_author(@record_hash["title"]))
     end
 
     ##
@@ -153,8 +153,19 @@ module Contentdm
         property.select { |prop| !prop.nil? }
       end
 
+      ##
+      # @param values [Array]
+      # @return [Array]
       def strip_whitespace(values)
         values.map { |v| v.strip }
+      end
+
+      ##
+      # @param title [String]
+      # @return [String]
+      def remove_author(title)
+        return title unless title.include?('/')
+        title.split('/')[0].strip!
       end
   end
 end
