@@ -11,6 +11,15 @@ describe Contentdm::ImportFile do
   let(:user) { ::User.batch_user }
   let(:import_file) { described_class.new(record, data_path, user) }
 
+  context 'with no entry for legacyFileName' do
+    let(:doc) { File.open(file_fixture('minimal_record.xml')) { |f| Nokogiri::XML(f) } }
+
+    describe '#uploaded_file' do
+      subject { import_file.uploaded_file }
+      it { is_expected.to eq nil }
+    end
+  end
+
   context 'when given the details for creating a new File to import' do
     describe '#uploaded_file' do
       it 'returns a Hyrax::UploadedFile' do
