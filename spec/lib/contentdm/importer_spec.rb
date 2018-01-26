@@ -9,7 +9,8 @@ describe Contentdm::Importer do
   let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
   let(:default_model) { 'DataSet' }
   let(:collection_name) { ['Test Collection'] }
-  let(:problem_record_file_name) { "#{Time.now.in_time_zone.strftime('%v')}_#{collection_name[0].split(' ').join('_')}.xml" }
+  let(:problem_record_file_name) { cdmi.problem_record_file_name }
+
   context 'processing an export file' do
     it 'can instantiate' do
       expect(cdmi).to be_instance_of(described_class)
@@ -85,9 +86,16 @@ describe Contentdm::Importer do
         expect { cdmi.import }.to change { model.count }.by(2)
       end
 
+      it 'logs the errors for the failed records' do
+        expect { cdmi.import }
+          .to output(/Record 222 failed!/).to_stdout_from_any_process
+      end
+
       it 'exports an XML with the failed records' do
+        cdmi.import
         problem_record_file = File.open(Rails.root.join('log', problem_record_file_name))
         expect(problem_record_file.readlines.join).to match(/Record 222/) && match(/Record 444/)
+        problem_record_file.close
       end
     end
   end

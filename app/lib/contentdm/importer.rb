@@ -4,8 +4,11 @@ require 'nokogiri'
 # An importer for ContentDM exported Metadata
 module Contentdm
   class Importer
-    attr_reader :doc, :records, :problem_record, :problem_record_file_name
+    attr_reader :doc, :records
     attr_reader :input_file, :data_path, :default_work_model
+
+    # A place to collect the records that had errors during import
+    attr_reader :problem_record, :problem_record_file_name
 
     # @param input_file [String] the path to the XML file that contains the exported records from ContentDM.
     # @param data_path [String] the path to directory where the content files are located.
@@ -19,7 +22,7 @@ module Contentdm
       @records = @doc.xpath("//record")
       @collection = collection
 
-      @problem_record_file_name = "#{Time.now.in_time_zone.strftime('%v')}_#{collection_name[0].split(' ').join('_')}.xml"
+      @problem_record_file_name = "#{Time.now.in_time_zone.strftime('%v-%H:%M:%S')}_#{collection_name[0].split(' ').join('_')}.xml"
       @problem_record = Contentdm::ProblemRecord.new(collection_name[0], Rails.root.join('log', problem_record_file_name))
     end
 
@@ -35,8 +38,8 @@ module Contentdm
         begin
           work = process_record(record)
           Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name[0]}", 'info')
-        rescue
-          Contentdm::Log.new("Problem importing record #{record}", 'error')
+        rescue => e
+          Contentdm::Log.new("Problem importing record #{record}: ERROR: #{e}", 'error')
           Contentdm::Log.new("Records that were unable to be imported will be saved at #{@problem_record_file_name}", 'error')
           rake_command = "rake import:contentdm -- -i #{@problem_record_file_name} -d #{data_path} -w #{default_work_model}"
           Contentdm::Log.new("To run again: ", 'error')
