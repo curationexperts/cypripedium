@@ -8,7 +8,7 @@ module Contentdm
     ##
     # @param [String] message level
     def initialize(message, level, file = nil)
-      file = File.open(Rails.root.join('log', 'contentdm_import.log'), 'w') if file.nil?
+      file = File.open(Rails.root.join('log', 'contentdm_import.log'), 'a') if file.nil?
       # Logger for the console
       std_out_logger = Logger.new(STDOUT)
       # Logger for the file
