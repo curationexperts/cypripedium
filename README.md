@@ -76,6 +76,16 @@ is a rare, terrestrial, temperate, lady's-slipper orchid native to northern Nort
 Provide the id of the work to re-create:
 `RAILS_ENV=production bundle exec rake derivatives:recreate_by_id[2801pg32c]`
 
+## Clean all Fedora records
+
+To clean out all Fedora records run these lines from the rails console:
+
+```ruby
+require 'active_fedora/cleaner' 
+ActiveFedora::Cleaner.clean! 
+AdminSet.find_or_create_default_admin_set_id
+```
+
 ## Import records from Content DM
 
 To import records using XML files that were exported from Content DM, you can run a rake task and pass in the XML file that you want to import.
