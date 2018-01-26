@@ -49,6 +49,7 @@ describe Contentdm::Importer do
       work = cdmi.process_record(@record)
       cdmi.collection.save
       expect(cdmi.collection.members.last.id).to eq(work.id)
+      expect(work.member_of_collections).to eq [cdmi.collection]
     end
   end
 

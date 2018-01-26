@@ -74,6 +74,7 @@ module Contentdm
       work.alternative_title = cdm_record.alternative_title
       work.series = cdm_record.series
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      work.member_of_collections << @collection
       save_work(cdm_record, work)
       @collection.add_members(work.id)
       work
