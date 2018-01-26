@@ -4,7 +4,7 @@ require 'nokogiri'
 # An importer for ContentDM exported Metadata
 module Contentdm
   class Importer
-    attr_reader :doc, :records
+    attr_reader :doc, :records, :problem_record, :problem_record_file_name
     attr_reader :input_file, :data_path, :default_work_model
 
     # @param input_file [String] the path to the XML file that contains the exported records from ContentDM.
@@ -18,6 +18,9 @@ module Contentdm
       @doc = File.open(input_file) { |f| Nokogiri::XML(f) }
       @records = @doc.xpath("//record")
       @collection = collection
+
+      @problem_record_file_name = "#{Time.now.in_time_zone.strftime('%v')}_#{collection_name[0].split(' ').join('_')}.xml"
+      @problem_record = Contentdm::ProblemRecord.new(collection_name[0], Rails.root.join('log', problem_record_file_name))
     end
 
     # Class level method, to be called, e.g., from a rake task
@@ -29,10 +32,21 @@ module Contentdm
 
     def import
       @records.each do |record|
-        work = process_record(record)
-        Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name}", 'info')
+        begin
+          work = process_record(record)
+          Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name[0]}", 'info')
+        rescue
+          Contentdm::Log.new("Problem importing record #{record}", 'error')
+          Contentdm::Log.new("Records that were unable to be imported will be saved at #{@problem_record_file_name}", 'error')
+          rake_command = "rake import:contentdm -- -i #{@problem_record_file_name} -d #{data_path} -w #{default_work_model}"
+          Contentdm::Log.new("To run again: ", 'error')
+          Contentdm::Log.new(rake_command, 'error')
+          @problem_record.add_record(record)
+        end
       end
       @collection.save
+      @problem_record.save_xml
+      @problem_record.clean_up # Remove the problem record if there were no problems
     end
 
     def document_count

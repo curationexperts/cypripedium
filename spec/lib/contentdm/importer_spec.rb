@@ -8,7 +8,8 @@ describe Contentdm::Importer do
   let(:input_file_with_no_title) { file_fixture('cdm_xml_with_errors.xml') }
   let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
   let(:default_model) { 'DataSet' }
-
+  let(:collection_name) { ['Test Collection'] }
+  let(:problem_record_file_name) { "#{Time.now.in_time_zone.strftime('%v')}_#{collection_name[0].split(' ').join('_')}.xml" }
   context 'processing an export file' do
     it 'can instantiate' do
       expect(cdmi).to be_instance_of(described_class)
@@ -23,7 +24,7 @@ describe Contentdm::Importer do
       expect(cdmi.input_file).to eq input_file
     end
     it 'can determine the collection title' do
-      expect(cdmi.collection_name).to eq(['Sargent and Sims'])
+      expect(cdmi.collection_name).to eq(['Test Collection'])
     end
     it 'has a default work type' do
       expect(cdmi.default_work_model).to eq 'DataSet'
@@ -85,7 +86,8 @@ describe Contentdm::Importer do
       end
 
       it 'exports an XML with the failed records' do
-        skip 'Write this spec for Story #101'
+        problem_record_file = File.open(Rails.root.join('log', problem_record_file_name))
+        expect(problem_record_file.readlines.join).to match(/Record 222/) && match(/Record 444/)
       end
     end
   end
