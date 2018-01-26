@@ -72,3 +72,6 @@ RSpec/VerifiedDoubles:
 
 Style/BlockDelimiters:
   Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false

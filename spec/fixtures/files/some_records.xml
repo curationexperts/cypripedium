@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <collection_name>Test Collection</collection_name>
+  <record>
+    <title>Record 111</title>
+    <subject></subject>
+  </record>
+
+  <record>
+    <title>Record 222</title>
+    <subject></subject>
+  </record>
+
+  <record>
+    <title>Record 333</title>
+    <subject></subject>
+  </record>
+
+  <record>
+    <title>Record 444</title>
+    <subject></subject>
+  </record>
+</metadata>
