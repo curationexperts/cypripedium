@@ -34,6 +34,7 @@ module Contentdm
     end
 
     def import
+      log_counts('Fedora record counts before import:')
       @records.each do |record|
         begin
           work = process_record(record)
@@ -50,6 +51,7 @@ module Contentdm
       @collection.save
       @problem_record.save_xml
       @problem_record.clean_up # Remove the problem record if there were no problems
+      log_counts('Fedora record counts after import:')
     end
 
     def document_count
@@ -103,6 +105,14 @@ module Contentdm
     end
 
     private
+
+      def log_counts(first_msg)
+        Contentdm::Log.new(first_msg, 'info')
+        Contentdm::Log.new("   Conference Proceeding: #{ConferenceProceeding.count}", 'info')
+        Contentdm::Log.new("   Data Set: #{DataSet.count}", 'info')
+        Contentdm::Log.new("   Publication: #{Publication.count}", 'info')
+        Contentdm::Log.new("   FileSet (attached files): #{FileSet.count}", 'info')
+      end
 
       def save_work(cdm_record, work)
         importer_user = ::User.batch_user
