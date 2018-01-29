@@ -861,6 +861,7 @@ DEPENDENCIES
   rainbow
   rsolr (>= 1.0)
   rspec-rails
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq

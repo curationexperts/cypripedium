@@ -35,5 +35,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/bulk_download/:id', to: 'bulk_download#download'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
