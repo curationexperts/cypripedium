@@ -31,6 +31,9 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Enabled: false
 
+Rails/Date:
+  Enabled: false
+
 Rails/FindBy:
   Enabled: false
 

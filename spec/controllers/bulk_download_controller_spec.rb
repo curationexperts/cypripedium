@@ -9,9 +9,10 @@ describe BulkDownloadController do
   end
 
   let(:work) { FactoryBot.create(:publication) }
-  let(:date) { Time.now.in_time_zone.strftime('%Y-%m-%d') }
+  let(:date) { Date.today.strftime('%Y-%m-%d') }
   let(:title) { Shellwords.escape(work.title[0][0..30].gsub(/\s+/, "")) }
   let(:filename) { "#{title}_#{date}.zip" }
+
   describe 'GET #download' do
     it 'provides a download' do
       expect(BulkDownloadJob).to receive(:perform_now).once
