@@ -83,4 +83,37 @@ RSpec.describe WorkZip, type: :model do
       end
     end
   end
+
+  describe '.latest' do
+    subject(:latest) { WorkZip.latest(work_id) }
+
+    let(:work_id) { '123' }
+    let(:work_zip) { WorkZip.create(work_id: work_id) }
+    let(:xmas_work_zip) { WorkZip.create(work_id: work_id, updated_at: xmas) }
+    let(:belongs_to_another_work) { WorkZip.create(work_id: 'a_different_work') }
+
+    context 'when there is more than one work_zip for a work' do
+      before do
+        # Create the WorkZip records
+        [xmas_work_zip, work_zip, belongs_to_another_work]
+      end
+
+      it 'finds the most recent WorkZip for this work' do
+        expect(WorkZip.count).to eq 3
+        expect(latest).to eq [work_zip]
+      end
+    end
+
+    context 'when there is no work_zip for a work' do
+      before do
+        # Create the WorkZip records
+        belongs_to_another_work
+      end
+
+      it 'returns empty set' do
+        expect(WorkZip.count).to eq 1
+        expect(latest).to eq []
+      end
+    end
+  end
 end

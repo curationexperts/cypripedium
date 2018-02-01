@@ -70,4 +70,10 @@ class WorkZip < ApplicationRecord
       file_name
     end
   end
+
+  # @param id [String] The ID for the work
+  # Returns the most recent WorkZip record for that work
+  def self.latest(id)
+    where(work_id: id).order(updated_at: :desc).limit(1)
+  end
 end
