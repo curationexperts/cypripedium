@@ -34,7 +34,6 @@ class WorkZip < ApplicationRecord
     end
 
     temps.each { |temp_file| temp_file.delete }
-
     self.file_path = zip_file_name
     save!
   end
