@@ -116,4 +116,37 @@ RSpec.describe WorkZip, type: :model do
       end
     end
   end
+
+  describe '#status' do
+    subject { work_zip.status }
+    let(:work_zip) { described_class.new(job_id: job_id) }
+    let(:job_id) { '123' }
+
+    context 'when the job_id isn\'t set yet' do
+      let(:job_id) { nil }
+      it { is_expected.to eq :unavailable }
+    end
+
+    context 'when ActiveJobStatus returns a status' do
+      let(:expected_status) { :some_status }
+      before do
+        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_return(expected_status)
+      end
+      it { is_expected.to eq expected_status }
+    end
+
+    context 'when ActiveJobStatus returns nothing' do
+      before do
+        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_return(nil)
+      end
+      it { is_expected.to eq :unavailable }
+    end
+
+    context 'when ActiveJobStatus raises an error' do
+      before do
+        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_raise('some error')
+      end
+      it { is_expected.to eq :unavailable }
+    end
+  end
 end

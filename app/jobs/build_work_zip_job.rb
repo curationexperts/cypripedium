@@ -1,4 +1,4 @@
-class BuildWorkZipJob < ApplicationJob
+class BuildWorkZipJob < ActiveJobStatus::TrackableJob
   queue_as :default
 
   # Find the WorkZip record and tell it to build a

@@ -7,6 +7,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_job_status', '~> 1.2.1'
+gem 'redis-activesupport'
+
 gem 'bixby'
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem 'capistrano'

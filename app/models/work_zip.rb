@@ -74,6 +74,14 @@ class WorkZip < ApplicationRecord
     end
   end
 
+  # The status of the background job that builds the zip file.
+  def status
+    return :unavailable if job_id.nil?
+    ActiveJobStatus.get_status(job_id) || :unavailable
+  rescue
+    :unavailable
+  end
+
   # @param id [String] The ID for the work
   # Returns the most recent WorkZip record for that work
   def self.latest(id)

@@ -40,6 +40,9 @@ Rails/FindBy:
 RSpec/ExampleLength:
   Enabled: false
 
+RSpec/LetSetup:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 
