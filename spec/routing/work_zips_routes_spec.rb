@@ -8,4 +8,12 @@ describe 'WorkZip routes:', type: :routing do
       work_id: '123'
     )
   end
+
+  it 'a route to create a new WorkZip' do
+    expect(post: 'zip/123').to route_to(
+      controller: 'work_zips',
+      action: 'create',
+      work_id: '123'
+    )
+  end
 end

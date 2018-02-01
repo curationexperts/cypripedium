@@ -8,6 +8,7 @@ RSpec.describe WorkZipsController, type: :controller do
   let(:work_zip) { WorkZip.create(work_id: work_id, file_path: zip) }
   let(:older_work_zip) { WorkZip.create(work_id: work_id, file_path: zip, updated_at: xmas) }
 
+  # Downloading the zip file for a work
   describe 'GET download' do
     context 'with no errors' do
       before do
@@ -23,12 +24,33 @@ RSpec.describe WorkZipsController, type: :controller do
       end
     end
 
-    context 'when it fails to find the zip' do
+    context 'when it fails to find the work_zip' do
       it 'returns not found status' do
         expect(WorkZip.count).to eq 0
         expect {
           get :download, params: { work_id: work_id }
         }.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+  end
+
+  # Creating a new zip file for a work
+  describe 'POST create' do
+    let(:stubbed_job) { double('a fake job', job_id: 'stubbed_job_id') }
+
+    context 'with no errors' do
+      it 'queues a job to build the zip file' do
+        expect(BuildWorkZipJob).to receive(:perform_later).and_return(stubbed_job)
+
+        expect {
+          post :create, params: { work_id: work_id }
+        }.to change { WorkZip.count }.by(1)
+
+        # The new WorkZip record contains the work ID and the job ID.
+        expect(WorkZip.count).to eq 1
+        wz = WorkZip.first
+        expect(wz.work_id).to eq work_id
+        expect(wz.job_id).to eq 'stubbed_job_id'
       end
     end
   end

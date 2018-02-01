@@ -6,6 +6,9 @@
 #
 # The ID for the background job that will create the zip file:
 #   work_zip.job_id
+#
+# The ID of the work that is associated with this WorkZip record:
+#   work_zip.work_id
 
 class WorkZip < ApplicationRecord
   # Create a zip file that contains all the files
