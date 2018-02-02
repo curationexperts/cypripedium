@@ -110,3 +110,8 @@ Arguments for the rake task:
 | `--input_file` | required | The path to the XML file that contains the exported records from Content DM |
 | `--data_path` | required | The path to the directory that contains the content files |
 | `--work_type` | required | The default work type.  This is used to decide which type of record(s) the importer will create.  This value will be ignored if the record in the input XML file has a `<work_type>` entry.  The value for this option must exactly match the class name of the model, including capitalization.  For example, `ConferenceProceeding` is the correct spelling.  `Conference Proceeding` (with a space) or `conferenceproceeding` (with different capitalization) are not valid. |
+
+## Downloading a Zip File for a Work
+
+See notes in the [README_work_zips.md](README_work_zips.md)
+
