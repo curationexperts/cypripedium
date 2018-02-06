@@ -35,5 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get  '/zip/:work_id', to: 'work_zips#download', as: 'download_zip'
+  post '/zip/:work_id', to: 'work_zips#create', as: 'create_zip'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
