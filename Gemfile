@@ -74,6 +74,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'hyrax', '2.0.1'
+gem 'redcarpet'
 gem 'rubyzip'
 
 group :development, :test do

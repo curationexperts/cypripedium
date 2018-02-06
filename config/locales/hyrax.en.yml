@@ -60,6 +60,9 @@ en:
           table_of_contents: Table of Contents
           title: Title
   simple_form:
+    hints:
+      defaults:
+         related_url: An example is the URL of a research project from which the work was derived. In this box you can use Markdown to create a link to the resource. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML and if you enter a URL by itself it will be automatically linked.
     labels:
       defaults:
         description: Description

@@ -1,6 +1,7 @@
 # Generated via
 #  `rails generate hyrax:work Publication`
 require 'rails_helper'
+
 include Warden::Test::Helpers
 
 RSpec.feature 'Create a Publication', js: true do
@@ -48,6 +49,7 @@ RSpec.feature 'Create a Publication', js: true do
       fill_in 'Subject', with: 'Subject'
       fill_in 'Table of Contents', with: 'Table of Contents'
       fill_in 'Temporal', with: 'Temporal'
+      fill_in 'Related URL', with: '<http://curationexperts.com>'
 
       click_link "Files"
 
@@ -85,6 +87,7 @@ RSpec.feature 'Create a Publication', js: true do
       expect(page).to have_content('Table of Contents')
       expect(page).to have_content('Temporal')
       expect(page).to have_content('Title')
+      expect(page).to have_link('http://curationexperts.com')
     end
   end
 end
