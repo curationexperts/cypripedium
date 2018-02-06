@@ -18,7 +18,15 @@ When the user reloads the page, if the background job isn't finished yet, instea
 
 * If there is some kind of problem building the zip file, it will raise an exception.  That will cause the background job to fail.  If the background jobs are configured to retry after a failure, there might be several attempts to build the zip file.  In that case, the download link won't appear on the work show page, but the button to build a new zip should appear, so the user can try again.  (If it fails after another try, I would expect that a developer will need to look at the errors to figure out what is wrong.)
 
+### Config
+
+You can configure the root directory where Rails will put the zip files by setting an environment variable in the shell that runs the Sidekiq workers.  If you don't set the environment variable, the zips will be placed in a default location.  See the `path_root` method in [the WorkZip class](app/models/work_zip.rb)
+
+```bash
+export CYPRIPEDIUM_ZIP_DIR="/Users/valerie/work/dce/projects/fed_reserve/cypripedium/tmp/zips"
+```
+
 ### More Info
 
-See the comments in: `app/models/work_zip.rb`
+See the comments in [the WorkZip class](app/models/work_zip.rb)
 

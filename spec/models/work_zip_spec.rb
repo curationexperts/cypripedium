@@ -4,7 +4,7 @@ RSpec.describe WorkZip, type: :model do
   subject(:work_zip) { described_class.new(work_id: publication.id) }
 
   let(:xmas) { Date.new(2017, 12, 25) }
-  let(:file_path) { Rails.root.join('tmp', 'MyPublication_2017-12-25.zip') }
+  let(:file_path) { Rails.root.join('tmp', 'zip_exports', 'MyPublication_2017-12-25.zip') }
 
   let(:pdf_file) do
     File.open(file_fixture('pdf-sample.pdf')) { |file| create(:file_set, content: file) }
@@ -21,6 +21,7 @@ RSpec.describe WorkZip, type: :model do
   describe '#create_zip' do
     before do
       allow(Date).to receive(:today).and_return(xmas)
+      File.delete(file_path) if File.exist?(file_path)
     end
 
     after { File.delete(file_path) if File.exist?(file_path) }

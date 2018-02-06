@@ -39,8 +39,7 @@ class WorkZip < ApplicationRecord
   end
 
   def path_root
-    # TODO: Make this configurable
-    Rails.root.join('tmp')
+    ENV["CYPRIPEDIUM_ZIP_DIR"] || Rails.root.join('tmp', 'zip_exports')
   end
 
   def file_name(work_title)
