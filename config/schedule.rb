@@ -19,6 +19,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
 # Delete blacklight saved searches
 every :day, at: '11:55pm' do
   rake 'blacklight:delete_old_searches[1]'
@@ -29,7 +30,7 @@ every :day, at: '1:00am' do
   command '/usr/bin/find /tmp -type f -mtime +7 -user deploy -execdir /bin/rm – {} \\;'
 end
 
-# Remove files in default directory for storing zipped download files owned by the deploy user that are older than 7 days
-every :day, at: '1:00am' do
-  command "/usr/bin/find #{Rails.root.join('tmp', 'zip_exports')} -type f -mtime +7 -user deploy -execdir /bin/rm – {} \\;" # rubocop:disable Rails/FilePath
+# Remove older zip files from bulk downloads
+every :day, at: '1:05am' do
+  rake 'cleanup:zips'
 end
