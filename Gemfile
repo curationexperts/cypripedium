@@ -85,6 +85,8 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
+gem 'whenever', require: false
+
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
