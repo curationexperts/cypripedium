@@ -26,6 +26,10 @@ You can configure the root directory where Rails will put the zip files by setti
 export CYPRIPEDIUM_ZIP_DIR="/Users/valerie/work/dce/projects/fed_reserve/cypripedium/tmp/zips"
 ```
 
+If you change the directory where the zip files are stored, you probably also want to edit the scheduled cleanup task to make sure it's cleaning up the correct directories.
+
+[Config for Scheduled Tasks](config/schedule.rb)
+
 ### More Info
 
 See the comments in [the WorkZip class](app/models/work_zip.rb)
