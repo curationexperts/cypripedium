@@ -9,34 +9,34 @@ A repository for managing and discovering assets for the Federal Reserve Bank of
 is a rare, terrestrial, temperate, lady's-slipper orchid native to northern North America. It is the <a href="http://www.dnr.state.mn.us/snapshots/plants/showyladysslipper.html">state flower of Minnesota</a>.
 <br/><br/>
 
-[![Build Status](https://travis-ci.org/curationexperts/cypripedium.svg?branch=master)](https://travis-ci.org/curationexperts/cypripedium)      
-[![Dependency Status](https://gemnasium.com/badges/github.com/curationexperts/cypripedium.svg)](https://gemnasium.com/github.com/curationexperts/cypripedium)     
-[![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=master)](https://coveralls.io/github/curationexperts/cypripedium?branch=master)    
-[![Inline docs](http://inch-ci.org/github/curationexperts/cypripedium.svg?branch=master)](http://inch-ci.org/github/curationexperts/cypripedium)     
-[![Stories in Ready](https://badge.waffle.io/curationexperts/cypripedium.png?label=ready&title=Ready)](https://waffle.io/curationexperts/cypripedium)  
+[![Build Status](https://travis-ci.org/curationexperts/cypripedium.svg?branch=master)](https://travis-ci.org/curationexperts/cypripedium)
+[![Dependency Status](https://gemnasium.com/badges/github.com/curationexperts/cypripedium.svg)](https://gemnasium.com/github.com/curationexperts/cypripedium)
+[![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=master)](https://coveralls.io/github/curationexperts/cypripedium?branch=master)
+[![Inline docs](http://inch-ci.org/github/curationexperts/cypripedium.svg?branch=master)](http://inch-ci.org/github/curationexperts/cypripedium)
+[![Stories in Ready](https://badge.waffle.io/curationexperts/cypripedium.png?label=ready&title=Ready)](https://waffle.io/curationexperts/cypripedium)
 
 </td></tr>
 </table>
 
 ## Developer Setup
 
-1. Change to your working directory for new development projects   
+1. Change to your working directory for new development projects
     `cd .`
-1. Clone this repo   
+1. Clone this repo
     `git clone https://github.com/curationexperts/cypripedium.git`
-1. Change to the application directory  
+1. Change to the application directory
     `cd cypripedium`
-1. Use set your ruby version to **2.4.2** and the gemset of your choice  
+1. Use set your ruby version to **2.4.2** and the gemset of your choice
     eg. `rvm use --create 2.4.2@cypripedium`
-1. Start redis  
-    `redis-server &`  
+1. Start redis
+    `redis-server &`
     *note:* use ` &` to start in the background, or run redis in a new terminal session
 1. Start sidekiq: `bundle exec sidekiq -d -l tmp/sidekiq.log`
 1. Start the demo server in its own terminal session
     `bin/rails hydra:server`
-1. Run the first time setup script  
+1. Run the first time setup script
     `bin/setup`
-1. Run the test suite  
+1. Run the test suite
     `bin/rails ci`
 1. Create a default [admin set](https://samvera.github.io/what-are-admin-things.html).
    To add a new work from the dashboard, you will need to setup a default admin set. You
@@ -81,8 +81,8 @@ Provide the id of the work to re-create:
 To clean out all Fedora records run these lines from the rails console:
 
 ```ruby
-require 'active_fedora/cleaner' 
-ActiveFedora::Cleaner.clean! 
+require 'active_fedora/cleaner'
+ActiveFedora::Cleaner.clean!
 AdminSet.find_or_create_default_admin_set_id
 ```
 
@@ -115,3 +115,24 @@ Arguments for the rake task:
 
 See notes in the [README_work_zips.md](README_work_zips.md)
 
+## Related URL Field
+
+In this application, the `Related URL` field has been customized to allow Markdown text. With this change users can enter URLs like this:
+
+```markdown
+[Link Text](http://url_here.com) Explanatory text
+```
+
+If a user forgets to insert the markup and just adds a URL, that will be autolinked:
+
+```markdown
+http://url_here.com Explanatory text
+```
+
+HTML call also be entered in the field.
+
+In the help field for the entry there is a link to instructions on how to make links in Markdown: https://daringfireball.net/projects/markdown/syntax#link.
+
+The UI is also changed from a single line text entry to a mutli-line textarea:
+
+![screenshot-2018-2-7 new publication research database](related_url.png)
