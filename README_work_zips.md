@@ -30,6 +30,8 @@ If you change the directory where the zip files are stored, you probably also wa
 
 [Config for Scheduled Tasks](config/schedule.rb)
 
+[Rake task that does the cleanup](lib/tasks/cleanup.rake)
+
 ### More Info
 
 See the comments in [the WorkZip class](app/models/work_zip.rb)
