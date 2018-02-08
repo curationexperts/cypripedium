@@ -75,7 +75,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'hyrax', '2.0.1'
 gem 'redcarpet'
-gem 'rubyzip'
+gem 'rubyzip', require: 'zip'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
