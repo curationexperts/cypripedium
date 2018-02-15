@@ -41,7 +41,6 @@ RSpec.feature 'Create a Publication', js: true do
       fill_in 'Language', with: 'Language'
       fill_in 'DOI', with: 'my_doi:1234'
       fill_in 'Publisher', with: 'Publisher'
-      fill_in 'Relation: Replaces', with: 'Relation: Replaces'
       fill_in 'Relation: Requires', with: 'Relation: Requires'
       select 'Article', from: 'Resource type'
       fill_in 'Source', with: 'Source'
@@ -78,7 +77,6 @@ RSpec.feature 'Create a Publication', js: true do
       expect(page).to have_content('Language')
       expect(page).to have_content('DOI my_doi:1234')
       expect(page).to have_content('Publisher')
-      expect(page).to have_content('Relation: Replaces')
       expect(page).not_to have_content('Relation: Requires')
       expect(page).to have_content('Article')
       expect(page).to have_content('Source')
