@@ -13,11 +13,16 @@
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
-.brand-logo img {
-  height: auto;
-  margin-top:-5px;
-}
 
+#left { max-height:76px;}
+
+.img-responsive {
+  max-width:100%;
+  height:auto;
+  display:block;
+  object-fit:scale-down;
+}
+.background-container {background-image: url('/assets/chalkboardcrop.png') !important;}
 .btn-lg {
   border-radius: 0px;
 }

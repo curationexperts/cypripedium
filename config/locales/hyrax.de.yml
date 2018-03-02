@@ -48,9 +48,9 @@ de:
     directory:
       suffix: "@ Example.org"
     footer:
-      copyright_html: "<strong>Copyright © 2017 Samvera lizenziert</strong> unter der Apache Lizenz, Version 2.0"
-      service_html: Ein Dienst von <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a> .
-    institution_name: Institution
-    institution_name_full: Name des Instituts
-    product_name: Hyrax
-    product_twitter_handle: "@SamveraRepo"
+      copyright_html: "<strong>Copyright &copy; 2018 Federal Reserve Bank of Minneapolis</strong>"
+      service_html: Ein Dienst von <a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.
+    institution_name: Federal Reserve Bank of Minneapolis
+    institution_name_full: Federal Reserve Bank of Minneapolis Research Division
+    product_name: Research Database
+    product_twitter_handle: "@MinneapolisFed"
