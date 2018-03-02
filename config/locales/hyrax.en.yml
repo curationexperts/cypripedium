@@ -91,5 +91,5 @@ en:
     directory:
       suffix:               "@example.org"
     footer:
-      copyright_html: "<strong>Copyright &copy; 2017 Federal Reserve Bank of Minneapolis</strong>"
-      service_html: A service of the <a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Minneapolis Fed Research Division</a>.
+      copyright_html: "<strong>Copyright &copy; 2018 Federal Reserve Bank of Minneapolis</strong>"
+      service_html: A service of the <a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.

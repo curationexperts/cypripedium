@@ -48,9 +48,9 @@ zh:
     directory:
       suffix: "@example.org"
     footer:
-      copyright_html: "<strong>版权所有 &copy; 2017 Samvera</strong> 根据Apache许可证2.0版许可"
-      service_html: 的服务<a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
-    institution_name: 机构
-    institution_name_full: 机构名称
-    product_name: 蹄兔
-    product_twitter_handle: "@SamveraRepo"
+      copyright_html: "<strong>版权所有 &copy; 2018 Federal Reserve Bank of Minneapolis</strong>"
+      service_html: 的服务<a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.
+    institution_name: Federal Reserve Bank of Minneapolis
+    institution_name_full: Federal Reserve Bank of Minneapolis
+    product_name: Research Database
+    product_twitter_handle: "@MinneapolisFed"
