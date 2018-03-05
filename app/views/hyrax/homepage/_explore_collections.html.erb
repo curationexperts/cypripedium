@@ -1,0 +1,30 @@
+<table class="table table-striped">
+  <tbody>
+    <% collections.each do |collection| %>
+      <tr>
+        <td class="col-sm-2">
+          <div class="media">
+            <%= link_to [hyrax, collection], class: 'media-left', 'aria-hidden' => true do %>
+              <%= render_thumbnail_tag collection, { class: 'hidden-xs file_listing_thumbnail' }, { suppress_link: true } %>
+            <% end %>
+            <div class="media-body">
+              <div class="media-heading">
+                <%= link_to [hyrax, collection] do %>
+                <h4>  <%= collection.title_or_label %></h4>
+                <p><%= link_to_facet_list(collection.description, 'description', '').html_safe %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+ </tbody>
+</table>
+<ul class="list-inline collection-highlights-list">
+  <li>
+    <%= link_to t('hyrax.homepage.admin_sets.link'),
+                main_app.search_catalog_path(f: { human_readable_type_sim: ["Collection"]}),
+                class: 'btn btn-default' %>
+  </li>
+</ul>

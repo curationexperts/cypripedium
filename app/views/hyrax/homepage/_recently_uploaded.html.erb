@@ -3,11 +3,9 @@
   <p><%= t('.no_public') %></p>
 <% else %>
   <div id="recent_docs">
-    <table class="table table-bordered table-striped">
+    <table class="table table-striped">
       <tr>
-        <th scope="col"><%= t('.details') %></th>
-      </tr>
-      <%= render partial: "recent_document", collection: recent_documents %>
+    <%= render partial: "recent_document", collection: recent_documents %></tr>
     </table>
   </div>
 <% end %>
