@@ -22,7 +22,7 @@
   display:block;
   object-fit:scale-down;
 }
-.background-container {background-image: url('https://raw.githubusercontent.com/MPLSFedResearch/cypripedium/master/app/assets/images/chalkboardcrop.png') !important;}
+
 .btn-lg {
   border-radius: 0px;
 }
@@ -32,3 +32,9 @@ ul#user_utility_links a {color: #333333;}
 ul#user_utility_links a:hover, a:active, a:focus {background-color: #d1d3d4;}
 ul#user_utility_links.navbar-inverse.navbar-nav.open,
 a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #d1d3d4 !important;}
+
+#recent_docs .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+}
