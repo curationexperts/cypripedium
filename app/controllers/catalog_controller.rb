@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    config.add_index_field solr_name("series", :stored_searchable), label:"Series", link_to_search: solr_name("series", :facetable)
+    config.add_index_field solr_name("series", :stored_searchable), label: "Series", link_to_search: solr_name("series", :facetable)
     config.add_index_field solr_name("abstract", :stored_searchable)
     config.add_index_field solr_name("alternative_title", :stored_searchable)
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
