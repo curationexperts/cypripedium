@@ -19,7 +19,7 @@ RSpec.feature 'Create a DataSet', js: true do
 
     scenario do
       visit '/concern/data_sets/new'
-      expect(page).to have_content "Add New Data Set"
+      expect(page).to have_content "Add New Dataset"
 
       # Only the 'title' field should be required
       expect(page).to have_css('li#required-metadata.incomplete')

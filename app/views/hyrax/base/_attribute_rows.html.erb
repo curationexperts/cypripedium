@@ -1,3 +1,4 @@
+<%= presenter.attribute_to_html(:series, render_as: :linked, search_field: 'series' ) %>
 <%= presenter.attribute_to_html(:abstract ) %>
 <%= presenter.attribute_to_html(:alternative_title ) %>
 <%= presenter.attribute_to_html(:bibliographic_citation ) %>
@@ -9,14 +10,14 @@
 <%= presenter.attribute_to_html(:date_modified )%>
 <%= presenter.attribute_to_html(:description, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:extent ) %>
-<%= presenter.attribute_to_html(:identifier, render_as: :related_url ) %>
+<%= presenter.attribute_to_html(:geographic_name ) %>
+<%= presenter.attribute_to_html(:identifier, render_as: :external_link ) %>
 <%= presenter.attribute_to_html(:language ) %>
 <%= presenter.attribute_to_html(:publisher ) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :related_url ) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :linked, search_field: 'resource_type' ) %>
 <%= presenter.attribute_to_html(:rights ) %>
 <%= presenter.attribute_to_html(:source, render_as: :linked, search_field: 'source' ) %>
-<%= presenter.attribute_to_html(:geographic_name ) %>
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:table_of_contents ) %>
 <%= presenter.attribute_to_html(:temporal ) %>

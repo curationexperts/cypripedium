@@ -30,7 +30,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim"
+      qf: "title_tesim description_tesim creator_tesim keyword_tesim is_part_of_tesim"
     }
 
     # solr field configuration for document/show views
@@ -40,9 +40,10 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Resource Type", limit: 5
-    # config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
-    config.add_facet_field solr_name("creator", :facetable), limit: 5
+    config.add_facet_field solr_name("creator", :facetable), collapse: false, limit: 5
+    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
+    config.add_facet_field solr_name("resource_type", :facetable), limit: 5
+    config.add_facet_field solr_name("series", :facetable), limit: 5
     config.add_facet_field solr_name("date_created", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
     # End Facet Fields
@@ -58,15 +59,14 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
+    config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
+    config.add_index_field solr_name("series", :stored_searchable), label: "Series", link_to_search: solr_name("series", :facetable)
     config.add_index_field solr_name("abstract", :stored_searchable)
     config.add_index_field solr_name("alternative_title", :stored_searchable)
-    config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
+    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
     config.add_index_field solr_name("description", :stored_searchable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
-    config.add_index_field solr_name("table_of_contents", :stored_searchable)
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
-    config.add_index_field solr_name("temporal", :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -227,6 +227,13 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('series') do |field|
+      solr_name = solr_name("series", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
