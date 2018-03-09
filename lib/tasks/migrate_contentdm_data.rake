@@ -20,7 +20,7 @@ namespace :import do
   def options(args)
     require 'optparse'
     user_inputs = {}
-    valid_work_types = ['ConferenceProceeding', 'DataSet', 'Publication']
+    valid_work_types = ['ConferenceProceeding', 'Dataset', 'Publication']
     opts = OptionParser.new
 
     opts.on('-i INPUT FILE', '--input_file', '(required) The XML file containing the ContentDM records you want to import') do |input_file|

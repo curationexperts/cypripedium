@@ -1,9 +1,9 @@
 # Generated via
-#  `rails generate hyrax:work DataSet`
+#  `rails generate hyrax:work Dataset`
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Create a DataSet', js: true do
+RSpec.feature 'Create a Dataset', js: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -18,7 +18,7 @@ RSpec.feature 'Create a DataSet', js: true do
     end
 
     scenario do
-      visit '/concern/data_sets/new'
+      visit '/concern/datasets/new'
       expect(page).to have_content "Add New Dataset"
 
       # Only the 'title' field should be required

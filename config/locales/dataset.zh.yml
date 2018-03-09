@@ -1,10 +1,10 @@
 zh:
   hyrax:
     icons:
-      data_set:     'fa fa-file-text-o'
+      dataset:     'fa fa-file-text-o'
     select_type:
-      data_set:
+      dataset:
         # TODO: translate `human_name` into Chinese
-        name:               "Data Set"
+        name:               "Dataset"
         # TODO: translate `human_name` into Chinese
-        description:        "Data set 作品"
+        description:        "Dataset 作品"

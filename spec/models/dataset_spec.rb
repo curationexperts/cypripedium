@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe DataSet do
-  let(:work) { FactoryBot.build(:data_set) }
+RSpec.describe Dataset do
+  let(:work) { FactoryBot.build(:dataset) }
   it_behaves_like 'a work with additional metadata'
 end
