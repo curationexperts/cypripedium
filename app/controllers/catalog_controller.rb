@@ -43,8 +43,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("creator", :facetable), collapse: false, limit: 5
     config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
-    config.add_facet_field solr_name("series", :facetable), limit: 5
-    config.add_facet_field solr_name("date_created", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
     # End Facet Fields
 
@@ -60,7 +58,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    config.add_index_field solr_name("series", :stored_searchable), label: "Series", link_to_search: solr_name("series", :facetable)
+    config.add_index_field solr_name("series", :stored_searchable), label: "Series"
     config.add_index_field solr_name("abstract", :stored_searchable)
     config.add_index_field solr_name("alternative_title", :stored_searchable)
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
