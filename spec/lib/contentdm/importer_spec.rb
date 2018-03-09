@@ -7,7 +7,7 @@ describe Contentdm::Importer do
   let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
   let(:input_file_with_no_title) { file_fixture('cdm_xml_with_errors.xml') }
   let(:data_path) { Rails.root.join('spec', 'fixtures', 'files') }
-  let(:default_model) { 'DataSet' }
+  let(:default_model) { 'Dataset' }
   let(:collection_name) { ['Test Collection'] }
   let(:problem_record_file_name) { cdmi.problem_record_file_name }
 
@@ -28,7 +28,7 @@ describe Contentdm::Importer do
       expect(cdmi.collection_name).to eq(['Test Collection'])
     end
     it 'has a default work type' do
-      expect(cdmi.default_work_model).to eq 'DataSet'
+      expect(cdmi.default_work_model).to eq 'Dataset'
     end
   end
 
@@ -135,7 +135,7 @@ describe Contentdm::Importer do
       let(:model_name) { nil }
 
       it 'uses the default work model' do
-        expect(model).to eq DataSet
+        expect(model).to eq Dataset
         expect(model.to_s).to eq cdmi.default_work_model
       end
     end

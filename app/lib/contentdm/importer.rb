@@ -95,7 +95,7 @@ module Contentdm
     end
 
     # Converts a class name into a class.
-    # @param class_name [String] the type of work we want to create, 'Publication', 'ConferenceProceeding', or 'DataSet'.
+    # @param class_name [String] the type of work we want to create, 'Publication', 'ConferenceProceeding', or 'Dataset'.
     # @return [Class] return the work's class
     # @example If you pass in a string 'Publication', it returns the class ::Publication
     def work_model(class_name = nil)
@@ -110,7 +110,7 @@ module Contentdm
       def log_counts(first_msg)
         Contentdm::Log.new(first_msg, 'info')
         Contentdm::Log.new("   Conference Proceeding: #{ConferenceProceeding.count}", 'info')
-        Contentdm::Log.new("   Data Set: #{DataSet.count}", 'info')
+        Contentdm::Log.new("   Data Set: #{Dataset.count}", 'info')
         Contentdm::Log.new("   Publication: #{Publication.count}", 'info')
         Contentdm::Log.new("   FileSet (attached files): #{FileSet.count}", 'info')
       end

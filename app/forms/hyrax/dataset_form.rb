@@ -1,8 +1,8 @@
 # Generated via
-#  `rails generate hyrax:work DataSet`
+#  `rails generate hyrax:work Dataset`
 module Hyrax
-  class DataSetForm < Hyrax::Forms::WorkForm
-    self.model_class = ::DataSet
+  class DatasetForm < Hyrax::Forms::WorkForm
+    self.model_class = ::Dataset
     self.terms += [:resource_type]
     self.terms += ::Attributes.to_a
     self.required_fields = [:title]
