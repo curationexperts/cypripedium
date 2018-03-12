@@ -2,6 +2,13 @@ module Metadata
   extend ActiveSupport::Concern
 
   included do
+    property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
+      index.as :stored_searchable
+    end
+
+    property :issue_number, predicate: RDF::Vocab::SCHEMA.issueNumber do |index|
+      index.as :stored_searchable
+    end
     property :abstract, predicate: RDF::Vocab::DC.abstract do |index|
       index.as :stored_searchable
     end
@@ -59,10 +66,6 @@ module Metadata
     end
 
     property :temporal, predicate: RDF::Vocab::DC.temporal do |index|
-      index.as :stored_searchable
-    end
-
-    property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
       index.as :stored_searchable
     end
   end
