@@ -9,6 +9,7 @@ class Publication < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   self.human_readable_type = 'Publication'
+  
 
   include Metadata
   # This must be included at the end, because it finalizes the metadata

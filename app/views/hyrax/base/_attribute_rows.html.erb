@@ -1,10 +1,10 @@
+<%= presenter.attribute_to_html(:creator, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:series, render_as: :linked, search_field: 'is_part_of' ) %>
+<%= presenter.attribute_to_html(:issue_number ) %>
 <%= presenter.attribute_to_html(:abstract ) %>
 <%= presenter.attribute_to_html(:alternative_title ) %>
-<%= presenter.attribute_to_html(:bibliographic_citation ) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:corporate_name) %>
-<%= presenter.attribute_to_html(:creator, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:date_available ) %>
 <%= presenter.attribute_to_html(:date_created ) %>
 <%= presenter.attribute_to_html(:date_modified )%>
@@ -21,3 +21,4 @@
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:table_of_contents ) %>
 <%= presenter.attribute_to_html(:temporal ) %>
+<%= presenter.attribute_to_html(:bibliographic_citation ) %>
