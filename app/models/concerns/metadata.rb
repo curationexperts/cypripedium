@@ -2,7 +2,6 @@ module Metadata
   extend ActiveSupport::Concern
 
   included do
-    
     property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
       index.as :stored_searchable
     end
