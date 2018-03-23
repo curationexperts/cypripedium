@@ -44,6 +44,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
+    config.add_facet_field solr_name("series", :facetable), limit: 5
     # End Facet Fields
 
     # The generic_type isn't displayed on the facet list
