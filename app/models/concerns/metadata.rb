@@ -3,12 +3,13 @@ module Metadata
 
   included do
     property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :issue_number, predicate: RDF::Vocab::SCHEMA.issueNumber do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :stored_sortable
     end
+
     property :abstract, predicate: RDF::Vocab::DC.abstract do |index|
       index.as :stored_searchable
     end
