@@ -2,14 +2,14 @@
 lock "3.10.1"
 
 set :application, "cypripedium"
-set :repo_url, "https://github.com/curationexperts/cypripedium.git"
+set :repo_url, "https://github.com/MPLSFedResearch/cypripedium.git"
 set :deploy_to, '/opt/cypripedium'
 
-set :log_level, :debug
+set :log_level, :error
 set :bundle_flags, '--deployment'
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
-set :keep_releases, 5
+set :keep_releases, 3
 set :assets_prefix, "#{shared_path}/public/assets"
 
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
