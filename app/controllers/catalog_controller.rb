@@ -30,7 +30,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim is_part_of_tesim"
+      qf: "title_tesim description_tesim creator_tesim keyword_tesim is_part_of_tesim issue_number_tesim abstract_tesim"
     }
 
     # solr field configuration for document/show views
@@ -44,7 +44,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
-    config.add_facet_field solr_name("series", :facetable), limit: 5
     # End Facet Fields
 
     # The generic_type isn't displayed on the facet list
@@ -61,9 +60,9 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
     config.add_index_field solr_name("series", :stored_searchable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
-    config.add_index_field solr_name("abstract", :stored_searchable)
-    config.add_index_field solr_name("alternative_title", :stored_searchable)
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
+    config.add_index_field solr_name("keyword", :stored_searchable)
+    config.add_index_field solr_name("abstract", :stored_searchable)
     config.add_index_field solr_name("description", :stored_searchable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
     config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
