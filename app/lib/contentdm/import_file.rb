@@ -11,7 +11,7 @@
 # `<legacyFileName>` element in the CDM XML.
 module Contentdm
   class ImportFile
-    EXTENSION = '.zip'.freeze
+    EXTENSION = '.pdf'.freeze
     ##
     # @param record data_path user [Contentdm::Record, String, User]
     def initialize(record, data_path, user)
