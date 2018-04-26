@@ -89,6 +89,8 @@
          title_tesim
          creator_tesim
          subject_tesim
+         isPartOf_tesim
+         issue_number_tesim
        </str>
        <str name="pf">
          all_text_timv^10

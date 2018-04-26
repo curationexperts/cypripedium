@@ -43,7 +43,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("creator", :facetable), collapse: false, limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
-    config.add_facet_field solr_name("file_format", :facetable), limit: 5
     # End Facet Fields
 
     # The generic_type isn't displayed on the facet list
@@ -57,7 +56,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
+    config.add_index_field solr_name("title_tesim", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
     config.add_index_field solr_name("series", :stored_searchable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
@@ -227,19 +226,27 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('series') do |field|
-      solr_name = solr_name("is_part_of", :stored_searchable)
+      solr_name = solr_name("series", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
       }
     end
+
+    config.add_search_field('issue_number') do |field|
+      solr_name = solr_name("issue_number", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, title_si asc", label: "relevance"
-    config.add_sort_field 'title_si asc', label: 'title'
+    config.add_sort_field "score desc, #{uploaded_field} asc", label: "relevance"
     config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
