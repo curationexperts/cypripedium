@@ -13,7 +13,7 @@ en:
           language_sim: Language
           publisher_sim: Publisher
           subject_sim: Subject
-          is_part_of_tesim: Series
+          isPartOf_tesim: Series
         index:
           abstract_tesim: Abstract
           alternative_title_tesim: Alternative Title
@@ -22,14 +22,14 @@ en:
           contributor_tesim: Contributor
           corporate_name_tesim: Corporate Author
           creator_tesim: Creator
-          date_created_tesim: Date Created
+          date_created_dtsi: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
           geographic_name_tesim: Spatial
           identifier_tesim: DOI
-          is_part_of_tesim: Series
+          isPartOf_tesim: Series
           keyword_tesim: Keyword
           language_tesim: Language
           publisher_tesim: Publisher
@@ -49,7 +49,7 @@ en:
           description: Description
           file_format: File Format
           geographic_name: "Spatial"
-          is_part_of: Series
+          isPartOf: Series
           identifier: DOI
           keyword: Keyword
           language: Language
@@ -72,7 +72,7 @@ en:
         date_available: Date Available
         geographic_name: Spatial
         identifier: DOI
-        is_part_of: Series
+        isPartOf: Series
         is_version_of: "Relation: Is Version Of"
         is_replaced_by: "Relation: Is Replaced By"
         is_verison_of: "Relation: Is Version of"
