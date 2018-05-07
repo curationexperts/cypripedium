@@ -6,7 +6,7 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
-    property :issue_number, predicate: RDF::Vocab::SCHEMA.issueNumber do |index|
+    property :issue_number, predicate: RDF::Vocab::SCHEMA.issueNumber, multiple: false do |index|
       index.as :stored_searchable, :stored_sortable
     end
 

@@ -30,7 +30,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim abstract_tesim"
+      qf: "title_tesim^1000 description_tesim creator_tesim keyword_tesim abstract_tesim issue_number_tesim"
     }
 
     # solr field configuration for document/show views
@@ -66,6 +66,17 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
 
+    # solr fields to be displayed in the show (single result) view
+    #   The ordering of the field names is the order of the display
+    config.add_show_field solr_name('title', :stored_searchable)
+    config.add_show_field solr_name("creator", :stored_searchable)
+    config.add_show_field solr_name("series", :stored_searchable)
+    config.add_show_field solr_name("abstract", :stored_searchable)
+    config.add_show_field solr_name('issue_number', :stored_searchable)
+    config.add_show_field solr_name("description", :stored_searchable)
+    config.add_show_field solr_name("keyword", :stored_searchable)
+    config.add_show_field solr_name("subject", :stored_searchable)
+    config.add_show_field solr_name("id", :stored_searchable)
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
     #
@@ -87,7 +98,7 @@ class CatalogController < ApplicationController
       all_names = config.show_fields.values.map(&:field).join(" ")
       title_name = solr_name("title", :stored_searchable)
       field.solr_parameters = {
-        qf: "#{all_names} file_format_tesim all_text_timv",
+        qf: "#{all_names} id file_format_tesim all_text_timv",
         pf: title_name.to_s
       }
     end
@@ -246,7 +257,7 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, #{uploaded_field} asc", label: "relevance"
+    config.add_sort_field "score desc, #{modified_field} asc", label: "relevance"
     config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
