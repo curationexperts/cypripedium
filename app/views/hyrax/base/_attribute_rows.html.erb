@@ -6,13 +6,13 @@
 <%= presenter.attribute_to_html(:description ) %>
 <%= presenter.attribute_to_html(:abstract ) %>
 <%= presenter.attribute_to_html(:table_of_contents ) %>
-<%= presenter.attribute_to_html(:related_url, render_as: :related_url ) %>
+<%= presenter.attribute_to_html(:related_url, render_as: :related_url, label: 'Related information' ) %>
 <%= presenter.attribute_to_html(:alternative_title ) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:corporate_name) %>
-<%= presenter.attribute_to_html(:date_available ) %>
-<%= presenter.attribute_to_html(:date_created ) %>
-<%= presenter.attribute_to_html(:date_modified )%>
+<%= presenter.attribute_to_html(:date_available, label: 'Date available' ) %>
+<%= presenter.attribute_to_html(:date_created, label: 'Date created' ) %>
+<%= presenter.attribute_to_html(:date_modified, label: 'Date modified' )%>
 <%= presenter.attribute_to_html(:extent ) %>
 <%= presenter.attribute_to_html(:geographic_name ) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :external_link ) %>
@@ -22,4 +22,4 @@
 <%= presenter.attribute_to_html(:rights ) %>
 <%= presenter.attribute_to_html(:source, render_as: :linked, search_field: 'source' ) %>
 <%= presenter.attribute_to_html(:temporal ) %>
-<%= presenter.attribute_to_html(:bibliographic_citation ) %>
+<%= presenter.attribute_to_html(:bibliographic_citation, label: 'Bibliographic citation' ) %>
