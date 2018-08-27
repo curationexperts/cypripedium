@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.10.2"
+lock "3.11.0"
 
 set :application, "cypripedium"
 set :repo_url, "https://github.com/MPLSFedResearch/cypripedium.git"
