@@ -10,11 +10,6 @@ module Hyrax
     def self.model_attributes(form_params)
       result = super
       result[:related_url].map! { |related_url| RDF::Markdown::Literal.new(related_url) }
-      result
-    end
-    
-    def self.model_attributes(form_params)
-      result = super
       result[:description].map! { |description| RDF::Markdown::Literal.new(description) }
       result
     end
