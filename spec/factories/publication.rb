@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :publication do
-    title ['Testing']
+    title { ["Testing"] }
 
     transient do
-      file_sets []
+      file_sets { [] }
     end
 
     before(:create) do |work, evaluator|

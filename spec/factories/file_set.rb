@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :file_set do
     transient do
-      content nil
+      content { nil }
     end
 
     after(:create) do |file, evaluator|

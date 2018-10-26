@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :conference_proceeding do
-    title ['Testing']
+    title { ['Testing'] }
   end
 end
