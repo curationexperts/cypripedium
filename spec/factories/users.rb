@@ -3,8 +3,8 @@ FactoryBot.define do
     sequence :email do |n|
       "person#{User.count}_#{n}@example.com"
     end
-    password 'password'
-    display_name 'User'
+    password { 'password' }
+    display_name { 'User' }
     after(:create) { |user| user.remove_role(:admin) }
 
     factory :admin do

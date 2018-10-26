@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :dataset do
-    title ['Testing']
+    title { ['Testing'] }
   end
 end
