@@ -8,8 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'active_job_status', '~> 1.2.1'
-gem 'redis-activesupport'
-
+gem 'bagit'
 gem 'bixby'
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem 'capistrano'
@@ -21,6 +20,7 @@ gem 'hydra-role-management'
 gem 'nokogiri', '>=1.8.2'
 gem 'parser', '< 2.5'
 gem 'pg', '~> 0.18'
+gem 'redis-activesupport'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'sidekiq'
