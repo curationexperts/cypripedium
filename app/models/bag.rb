@@ -9,22 +9,24 @@ require 'fileutils'
 class Bag
   attr_reader :bag_path, :bag
 
-  # @param work_id [String]
+  # @param work_id [Array<String>]
   # @param time_stamp [String]
-  def initialize(work_id:, time_stamp:)
-    @work_id = work_id
+  def initialize(work_ids:, time_stamp:)
+    @work_ids = work_ids
     @time_stamp = time_stamp
-    @work_file_sets = ActiveFedora::Base.find(work_id).file_sets
-    @bag_path = Rails.root.join('tmp', 'bags', "#{@work_id}_#{@time_stamp}")
+    @bag_path = Rails.root.join('tmp', 'bags', "mpls_fed_research.#{@time_stamp}")
     @bag = BagIt::Bag.new(@bag_path)
   end
 
   def create
-    @work_file_sets.each do |work_file_set|
-      work_file_set.files.each do |work_file|
-        @bag.add_file(work_file.file_name.first) do |io|
-          io.set_encoding Encoding::BINARY
-          io.write work_file.content
+    @work_ids.each do |work_id|
+      @work_file_sets = ActiveFedora::Base.find(work_id).file_sets
+      @work_file_sets.each do |work_file_set|
+        work_file_set.files.each do |work_file|
+          @bag.add_file("#{work_id}/#{work_file.file_name.first}") do |io|
+            io.set_encoding Encoding::BINARY
+            io.write work_file.content
+          end
         end
       end
     end
@@ -35,18 +37,20 @@ class Bag
 
   def tar
     block_size = 1024 * 1000
-    tar_file = Rails.root.join('tmp', 'bags', "#{@work_id}_#{@time_stamp}.tar")
+    tar_file = Rails.root.join('tmp', 'bags', "mpls_fed_research.#{@time_stamp}.tar")
     src = @bag_path.to_s
 
     File.open tar_file, 'wb' do |open_tar_file|
       Gem::Package::TarWriter.new open_tar_file do |tar|
         Find.find *src do |file|
+          relative_path = file.sub @bag_path.to_s, "mpls_fed_research.#{@time_stamp}"
+
           mode = File.stat(file).mode
           size = File.stat(file).size
           if File.directory? file
-            tar.mkdir file, mode
+            tar.mkdir relative_path, mode
           else
-            tar.add_file_simple file, mode, size do |tar_io|
+            tar.add_file_simple relative_path, mode, size do |tar_io|
               File.open file, 'rb' do |rio|
                 while (buffer = rio.read(block_size))
                   tar_io.write buffer
