@@ -14,7 +14,7 @@ class Bag
   def initialize(work_ids:, time_stamp:)
     @work_ids = work_ids
     @time_stamp = time_stamp
-    @bag_path = Rails.root.join('tmp', 'bags', "mpls_fed_research.#{@time_stamp}")
+    @bag_path = Rails.application.config.bag_path.join("mpls_fed_research.#{@time_stamp}")
     @bag = BagIt::Bag.new(@bag_path)
   end
 
@@ -37,7 +37,7 @@ class Bag
 
   def tar
     block_size = 1024 * 1000
-    tar_file = Rails.root.join('tmp', 'bags', "mpls_fed_research.#{@time_stamp}.tar")
+    tar_file = Rails.application.config.bag_path.join("mpls_fed_research.#{@time_stamp}.tar")
     src = @bag_path.to_s
 
     File.open tar_file, 'wb' do |open_tar_file|

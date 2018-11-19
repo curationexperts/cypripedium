@@ -6,7 +6,7 @@ RSpec.describe Bag, type: :model do
 
   let(:tar_size) { 202_752 }
   let(:time_stamp) { 109_092 }
-  let(:file_path) { Rails.root.join('tmp', 'bags') }
+  let(:file_path) { Rails.application.config.bag_path }
 
   let(:pdf_file) do
     File.open(file_fixture('pdf-sample.pdf')) { |file| create(:file_set, content: file) }
@@ -27,7 +27,7 @@ RSpec.describe Bag, type: :model do
   describe '#create' do
     before do
       FileUtils.rm_rf(file_path)
-      FileUtils.mkdir(Rails.root.join('tmp', 'bags'))
+      FileUtils.mkdir(Rails.application.config.bag_path)
     end
 
     after do
