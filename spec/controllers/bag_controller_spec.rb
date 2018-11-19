@@ -1,0 +1,22 @@
+require 'rails_helper'
+require 'fileutils'
+
+RSpec.describe BagController, type: :controller do
+  let(:bag_path) { Rails.application.config.bag_path }
+  let(:bag_file_path) { [Rails.application.config.bag_path, '/test.tar'].join }
+  before do
+    FileUtils.mkdir(bag_path)
+    FileUtils.touch(bag_file_path)
+  end
+
+  after do
+    FileUtils.rm_rf(bag_path)
+  end
+
+  describe "GET #download" do
+    it "returns http success" do
+      get :download, params: { file_name: 'test.tar' }
+      expect(response).to have_http_status(:success)
+    end
+  end
+end
