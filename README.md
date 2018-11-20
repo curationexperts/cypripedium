@@ -24,3 +24,5 @@ The bag will be located in the directory set by the `ENV['BAG_PATH']` environmen
 variable. It will be named `mpls_fed_research.<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in
 the specified publications. The created bag will use `sha256` to create checksums for
 the files.
+
+To download a bag that has been created you can visit the route: `/bag/mpls_fed_research.<time-stamp>.tar`.
