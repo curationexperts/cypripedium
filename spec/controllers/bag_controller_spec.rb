@@ -15,7 +15,7 @@ RSpec.describe BagController, type: :controller do
 
   describe "GET #download" do
     it "returns http success" do
-      get :download, params: { file_name: 'test.tar' }
+      get :download, params: { file_name: 'test' }
       expect(response).to have_http_status(:success)
     end
   end

@@ -18,11 +18,13 @@ The Research Database is a digital repository designed for public discovery of t
 
 BagIt archives can be created from the command line using the bag rake task:
 
-`rake bag:create[publication1,publication2,publication3]`
+`USER_ID=1 BAG_PATH=/tmp/bags rake bag:create[publication1,publication2,publication3]`
+
+`USER_ID` is the id of the user that will be notified.
 
 The bag will be located in the directory set by the `ENV['BAG_PATH']` environment
-variable. It will be named `mpls_fed_research.<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in
+variable or you can specify it when running the rake task. It will be named `mpls_fed_research_<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in
 the specified publications. The created bag will use `sha256` to create checksums for
 the files.
 
-To download a bag that has been created you can visit the route: `/bag/mpls_fed_research.<time-stamp>.tar`.
+To download a bag that has been created you can visit the route: `/bag/mpls_fed_research_<time-stamp>.tar`.
