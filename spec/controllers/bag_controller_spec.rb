@@ -3,7 +3,7 @@ require 'fileutils'
 
 RSpec.describe BagController, type: :controller do
   let(:bag_path) { Rails.application.config.bag_path }
-  let(:bag_file_path) { [Rails.application.config.bag_path, '/test.tar'].join }
+  let(:bag_file_path) { [Rails.application.config.bag_path, '/test.zip'].join }
   before do
     FileUtils.mkdir(bag_path)
     FileUtils.touch(bag_file_path)

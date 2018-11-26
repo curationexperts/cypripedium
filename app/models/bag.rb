@@ -2,11 +2,12 @@
 
 require 'bagit'
 require 'stringio'
-require 'rubygems/package'
+require 'rubygems'
+require 'zip'
 require 'fileutils'
 require 'find'
 
-# A class for creating a tarred bag when given a work id
+# A class for creating a zipped bag when given a work id
 class Bag
   attr_reader :bag_path, :bag
 
@@ -34,36 +35,20 @@ class Bag
     end
 
     @bag.manifest!(algo: 'sha256')
-    tar
+    zip
     remove_bag
   end
 
-  def tar
-    block_size = 1024 * 1000
-    tar_file = "#{@bag_path}.tar"
+  def zip
+    zip_name = "#{@bag_path}.zip"
     src = @bag_path.to_s
 
-    File.open tar_file, 'wb' do |open_tar_file|
-      Gem::Package::TarWriter.new open_tar_file do |tar|
-        ::Find.find *src do |file|
-          relative_path = file.sub @bag_path.to_s, "mpls_fed_research_#{@time_stamp}"
-
-          mode = File.stat(file).mode
-          size = File.stat(file).size
-          if File.directory? file
-            tar.mkdir relative_path, mode
-          else
-            tar.add_file_simple relative_path, mode, size do |tar_io|
-              File.open file, 'rb' do |rio|
-                while (buffer = rio.read(block_size))
-                  tar_io.write buffer
-                end
-              end
-            end
-          end
-        end
+    Zip::File.open(zip_name, Zip::File::CREATE) do |zip_file|
+      ::Find.find(*src) do |file|
+        relative_path = file.sub(@bag_path.to_s, "mpls_fed_research_#{@time_stamp}")
+        zip_file.add(relative_path, File.new(file))
       end
-    end # end File.open
+    end
   end
 
   def remove_bag
