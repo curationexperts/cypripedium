@@ -14,9 +14,9 @@ class BagJob < ActiveJobStatus::TrackableJob
   private
 
     def after_bag_creation
-      bag_file_name = @bag.bag_path.split.last.to_s
+      bag_file_name = @bag.bag_path.split('/').last.to_s
       @user.send_message(@user,
-                         "Your bag has been created and can be downloaded <a href='/bag/download/#{bag_file_name}'>here</a>.",
+                         "Your bag has been created and can be downloaded <a data-turbolinks='false' href='/bag/#{bag_file_name}'>here</a>.",
                          "Your BagIt archive is ready")
     end
 end

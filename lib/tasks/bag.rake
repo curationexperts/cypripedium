@@ -4,6 +4,7 @@ namespace :bag do
     work_ids = args[:work_ids]
     extra_ids = args.extras
     all_ids = [work_ids] | extra_ids
-    BagJob.perform_now(work_ids: all_ids)
+    user = User.find(ENV['USER_ID'])
+    BagJob.perform_now(work_ids: all_ids, user: user)
   end
 end
