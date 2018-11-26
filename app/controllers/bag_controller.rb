@@ -2,7 +2,7 @@
 
 class BagController < ApplicationController
   def download
-    send_file("#{Rails.application.config.bag_path}/#{bag_params}.tar", type: 'application/x-tar', disposition: 'attachment')
+    send_file("#{Rails.application.config.bag_path}/#{bag_params}.zip", type: 'application/zip', disposition: 'attachment')
   end
 
   def create
