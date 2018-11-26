@@ -215,6 +215,10 @@ GEM
     diff-lcs (1.3)
     docile (1.3.1)
     docopt (0.5.0)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     dropbox_api (0.1.12)
       faraday (~> 0.9, ~> 0.8)
       oauth2 (~> 1.1)
@@ -851,6 +855,7 @@ DEPENDENCIES
   database_cleaner
   devise
   devise-guests (~> 0.6)
+  dotenv-rails
   factory_bot
   fcrepo_wrapper
   honeybadger (~> 3.1)
@@ -893,4 +898,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
