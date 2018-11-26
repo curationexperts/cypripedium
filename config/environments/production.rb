@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.bag_path = ENV['BAG_PATH'] || Rails.root.join('opt', 'derivatives', 'bags')
+  config.bag_path = ENV['BAG_PATH'] || '/tmp/bags'
 end
 
 Hyrax.config.derivatives_path = '/opt/derivatives'
