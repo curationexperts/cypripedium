@@ -53,4 +53,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
+
+  config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 end

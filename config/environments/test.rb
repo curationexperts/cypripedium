@@ -40,4 +40,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.bag_path = config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
+
+  config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 end
