@@ -25,7 +25,7 @@ class Bag
       @work_file_sets = ActiveFedora::Base.find(work_id).file_sets
       @work_file_sets.each do |work_file_set|
         work_file_set.files.each do |work_file|
-          work_file.file_name.first.empty? { next }
+          next if work_file.file_name.first.empty?
           @bag.add_file("#{work_id}/#{work_file.file_name.first}") do |io|
             io.set_encoding Encoding::BINARY
             io.write work_file.content
@@ -33,7 +33,6 @@ class Bag
         end
       end
     end
-
     @bag.manifest!(algo: 'sha256')
     zip
     remove_bag
