@@ -90,6 +90,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.bag_path = ENV['BAG_PATH'] || '/tmp/bags'
+
+  config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 end
 
 Hyrax.config.derivatives_path = '/opt/derivatives'
