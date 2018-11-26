@@ -4,6 +4,7 @@ lock "3.11.0"
 set :application, "cypripedium"
 set :repo_url, "https://github.com/MPLSFedResearch/cypripedium.git"
 set :deploy_to, '/opt/cypripedium'
+set :ssh_options, keys: ["cypripedium-cd-deploy"] if File.exist?("cypripedium-cd-deploy")
 
 set :log_level, :error
 set :bundle_flags, '--deployment'
