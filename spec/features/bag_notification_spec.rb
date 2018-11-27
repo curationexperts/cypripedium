@@ -3,10 +3,11 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Recieve a notfication when creating a bag', js: false do
+RSpec.feature 'Recieve a notfication when creating a bag', js: true do
   describe 'creating a notification when running a bag job' do
     let(:work_ids) { [publication.id, publication2.id] }
     let(:file_path) { Rails.application.config.bag_path }
+    let(:user) { FactoryBot.create(:admin) }
 
     let(:pdf_file) do
       File.open(file_fixture('pdf-sample.pdf')) { |file| create(:file_set, content: file) }
@@ -22,13 +23,6 @@ RSpec.feature 'Recieve a notfication when creating a bag', js: false do
 
     let(:publication2) do
       create(:publication, title: ['My Publication 2'], file_sets: [pdf_file, image_file])
-    end
-
-    let(:user_attributes) do
-      { email: 'test@example.com' }
-    end
-    let(:user) do
-      User.new(user_attributes) { |u| u.save(validate: false) }
     end
 
     before do
@@ -47,6 +41,18 @@ RSpec.feature 'Recieve a notfication when creating a bag', js: false do
       visit '/notifications'
       expect(page).to have_link('here')
       expect(page).to have_content('bag')
+    end
+
+    it 'creates a notification using the UI' do
+      publication.depositor = user.email
+      publication.save
+      publication2.depositor = user.email
+      publication2.save
+      visit '/dashboard/my/works'
+      find('#check_all').click
+      expect(page).to have_content('Add to Bag')
+      find('.submits-ids-for-bags').click
+      expect(page).to have_content 'bagged'
     end
   end
 end

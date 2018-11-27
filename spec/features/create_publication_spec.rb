@@ -19,6 +19,7 @@ RSpec.feature 'Create a Publication', js: true do
       # Only the 'title' field should be required
       expect(page).to have_css('li#required-metadata.incomplete')
       fill_in 'Title', with: 'Title'
+      click_on 'Title'
       expect(page).to have_css('li#required-metadata.complete')
 
       click_on 'Additional fields'
