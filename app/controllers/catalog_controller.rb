@@ -262,8 +262,8 @@ class CatalogController < ApplicationController
     config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
     config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"
     config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
-    config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
-    config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
+    config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
+    config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
 
