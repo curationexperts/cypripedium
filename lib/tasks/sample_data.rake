@@ -7,7 +7,7 @@ task sample_data: :environment do
 
   ['Collection One 111', 'Collection Two 222'].each do |title|
     puts "Create a Collection: #{title}"
-    ::Collection.create!(title: [title], visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+    ::Collection.create!(title: [title], visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC, collection_type: Hyrax::CollectionType.find_or_create_default_collection_type)
   end
 
   data_path = Rails.root.join('spec', 'fixtures', 'files')

@@ -1,4 +1,9 @@
 en:
+  activefedora:
+    models:
+      publication: Publication
+      conference_proceeding: Conference Proceeding
+      dataset: Dataset
   blacklight:
     search:
       fields:
