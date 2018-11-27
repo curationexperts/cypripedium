@@ -59,12 +59,20 @@ end
 #  Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
 # end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :chrome
+
+# Capybara.register_driver :chrome do |app|
+#  profile = Selenium::WebDriver::Chrome::Profile.new
+#  profile['extensions.password_manager_enabled'] = false
+#  Capybara::Selenium::Driver.new(app, browser: :chrome, profile: profile)
+# end
 
 Capybara.register_driver :chrome do |app|
-  profile = Selenium::WebDriver::Chrome::Profile.new
-  profile['extensions.password_manager_enabled'] = false
-  Capybara::Selenium::Driver.new(app, browser: :chrome, profile: profile)
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new
+  browser_options.args << '--headless'
+  browser_options.args << '--disable-gpu'
+  browser_options.args << '--no-sandbox'
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
 Capybara.default_max_wait_time = 10

@@ -71,6 +71,7 @@ group :development do
   gem 'pry-doc'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'xray-rails'
   gem 'yard'
 end
 
@@ -92,6 +93,7 @@ gem 'rsolr', '>= 1.0'
 gem 'whenever', require: false
 
 group :development, :test do
+  gem 'chromedriver-helper'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
