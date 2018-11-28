@@ -1,7 +1,7 @@
-<%= presenter.attribute_to_html(:creator, render_as: :linked, search_field: 'creator' ) %>
+<%= presenter.attribute_to_html(:alpha_creator, render_as: :linked, search_field: 'creator' ) %>
 <%= presenter.attribute_to_html(:series, render_as: :linked, search_field: 'is_part_of' ) %>
 <%= presenter.attribute_to_html(:issue_number ) %>
-<%= presenter.attribute_to_html(:keyword, render_as: :linked, search_field: 'all_fields'  ) %>
+<%= presenter.attribute_to_html(:keyword, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'subject' ) %>
 <%= presenter.attribute_to_html(:description, render_as: :description ) %>
 <%= presenter.attribute_to_html(:abstract ) %>

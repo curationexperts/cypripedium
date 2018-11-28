@@ -5,5 +5,6 @@ module Hyrax
     include ::Hyrax::HasZip
 
     Attributes.to_a.each { |term| delegate term, to: :solr_document }
+    delegate :alpha_creator, to: :solr_document
   end
 end
