@@ -39,7 +39,7 @@ RSpec.feature 'Recieve a notfication when creating a bag', js: true do
     it 'creates a notification' do
       BagJob.perform_now(work_ids: work_ids, user: user)
       visit '/notifications'
-      expect(page).to have_link('here')
+      expect(page).to have_content('has been created')
       expect(page).to have_content('bag')
     end
 
