@@ -17,6 +17,7 @@ class Bag
     @work_ids = work_ids
     @time_stamp = time_stamp
     @bag_path = "#{Rails.application.config.bag_path}/mpls_fed_research_#{@time_stamp}"
+    create_bag_storage_dir
     @bag = BagIt::Bag.new(@bag_path)
   end
 
@@ -37,19 +38,25 @@ class Bag
     zip
   end
 
-  def zip
-    zip_name = "#{@bag_path}.zip"
-    src = @bag_path.to_s
-
-    Zip::File.open(zip_name, Zip::File::CREATE) do |zip_file|
-      ::Find.find(*src) do |file|
-        relative_path = file.sub(@bag_path.to_s, "mpls_fed_research_#{@time_stamp}")
-        zip_file.add(relative_path, File.new(file))
-      end
-    end
-  end
-
   def remove_bag
     FileUtils.rm_rf(@bag.bag_dir)
   end
+
+  private
+
+    def create_bag_storage_dir
+      FileUtils.mkdir(Rails.application.config.bag_path) unless File.exist?(Rails.application.config.bag_path)
+    end
+
+    def zip
+      zip_name = "#{@bag_path}.zip"
+      src = @bag_path.to_s
+
+      Zip::File.open(zip_name, Zip::File::CREATE) do |zip_file|
+        ::Find.find(*src) do |file|
+          relative_path = file.sub(@bag_path.to_s, "mpls_fed_research_#{@time_stamp}")
+          zip_file.add(relative_path, File.new(file))
+        end
+      end
+    end
 end

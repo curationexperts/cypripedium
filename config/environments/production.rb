@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.bag_path = ENV['BAG_PATH'] || '/tmp/bags'
+  config.bag_path = ENV['BAG_PATH'] || '/opt/derivatives/bags'
 
   config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 end
