@@ -23,11 +23,6 @@ RSpec.describe Bag, type: :model do
   end
 
   describe '#create' do
-    before do
-      FileUtils.rm_rf(file_path)
-      FileUtils.mkdir(Rails.application.config.bag_path)
-    end
-
     after do
       FileUtils.rm_rf(file_path)
     end
