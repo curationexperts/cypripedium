@@ -21,7 +21,7 @@ en:
           bibliographic_citation_tesim: Bibliographic Citation
           contributor_tesim: Contributor
           corporate_name_tesim: Corporate Author
-          creator_tesim: Creator
+          alpha_creator_tesim: Creator
           date_created_dtsi: Date Created
           date_modified_dtsi: Date Modified
           date_uploaded_dtsi: Date Uploaded
@@ -42,7 +42,7 @@ en:
           contributor: Contributor
           bibliographic_citation: Bibliographic Citation
           corporate_name: Corporate Author
-          creator: Creator
+          alpha_creator: Creator
           date_created: Date Created
           date_modified: Date Modified
           date_uploaded: Date Uploaded

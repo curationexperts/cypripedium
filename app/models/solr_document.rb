@@ -26,6 +26,10 @@ class SolrDocument
     end
   end
 
+  def alpha_creator
+    self['alpha_creator_tesim']
+  end
+
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
