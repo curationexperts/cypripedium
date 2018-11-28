@@ -35,7 +35,6 @@ class Bag
     end
     @bag.manifest!(algo: 'sha256')
     zip
-    remove_bag
   end
 
   def zip
