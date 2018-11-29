@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class BagJob < ActiveJobStatus::TrackableJob
+  rescue_from(StandardError) do |exception|
+    @user.send_message(@user, render_error_message(error: exception), "Error creating your BagIt Archive")
+  end
+
   after_perform :after_bag_creation
 
   attr_reader :bag, :user
@@ -22,5 +26,10 @@ class BagJob < ActiveJobStatus::TrackableJob
       ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_notification.html.erb',
                                                                           locals: { bag_file_name: bag_file_name,
                                                                                     bag_files: bag_files }
+    end
+
+    def render_error_message(error:)
+      ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_error_notification.html.erb',
+                                                                          locals: { error: error }
     end
 end
