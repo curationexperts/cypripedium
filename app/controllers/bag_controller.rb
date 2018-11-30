@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class BagController < ApplicationController
-  skip_after_action :discard_flash_if_xhr
-
   def download
     send_file("#{Rails.application.config.bag_path}/#{bag_params}.zip", type: 'application/zip', disposition: 'attachment')
   end
