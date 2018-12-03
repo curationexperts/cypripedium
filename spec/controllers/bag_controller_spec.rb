@@ -7,7 +7,7 @@ RSpec.describe BagController, type: :controller do
   let(:user) { FactoryBot.create(:admin) }
 
   before do
-    FileUtils.mkdir(bag_path)
+    FileUtils.mkdir(bag_path) unless File.exist?(bag_path)
     FileUtils.touch(bag_file_path)
   end
 
