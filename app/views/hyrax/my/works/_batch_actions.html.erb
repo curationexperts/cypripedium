@@ -3,9 +3,9 @@
 
   <div class="batch-toggle">
     <script>
-      document.addEventListener("DOMContentLoaded", function(event) {
-        BagUI.init()
-      })
+     document.addEventListener('turbolinks:load', function(event) {
+       BagUI.init()
+     })
     </script>
     <%= button_tag "Add to Bag", class: 'btn btn-primary submits-batches submits-ids-for-bags' %>
 
