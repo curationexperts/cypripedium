@@ -1,5 +1,7 @@
 desc 'Create some fake sample data in your dev environment'
 task sample_data: :environment do
+  $stdout.sync = true # Flush output immediately
+
   puts "Creating some fake sample data"
 
   puts "Make sure the default AdminSet exists"
