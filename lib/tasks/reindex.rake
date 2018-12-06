@@ -1,9 +1,10 @@
-desc 'Re-index solr records for cypripedium works'
+desc 'Re-index solr records for cypripedium works & collections'
 task reindex: :environment do
-  work_classes = Hyrax.config.curation_concerns
-  work_classes.each do |work_class|
-    puts "Re-indexing #{work_class} records"
-    work_class.all.each do |record|
+  $stdout.sync = true # Flush output immediately
+  classes_to_reindex = [::Collection] + Hyrax.config.curation_concerns
+  classes_to_reindex.each do |klass|
+    puts "Re-indexing #{klass} records"
+    klass.all.each do |record|
       record.update_index
     end
   end
