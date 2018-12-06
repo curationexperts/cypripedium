@@ -10,6 +10,10 @@ Lint/UnusedBlockArgument:
 Lint/AmbiguousOperator:
   Enabled: false
 
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/controllers/homepage_controller.rb'
+
 Metrics/AbcSize:
   Enabled: false
 
