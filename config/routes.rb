@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'homepage#index'
   mount Blacklight::Engine => '/'
 
   # Mount sidekiq web ui and require authentication by an admin user
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
-  root 'hyrax/homepage#index'
   curation_concerns_basic_routes
   concern :exportable, Blacklight::Routes::Exportable.new
 
