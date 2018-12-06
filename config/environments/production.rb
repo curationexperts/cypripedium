@@ -92,6 +92,8 @@ Rails.application.configure do
   config.bag_path = ENV['BAG_PATH'] || '/opt/derivatives/bags'
 
   config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
+
+  config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
 end
 
 Hyrax.config.derivatives_path = '/opt/derivatives'
