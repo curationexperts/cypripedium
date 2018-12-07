@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'fileutils'
 
-RSpec.describe Bag, type: :model do
+RSpec.describe Hyrax::TarBag, type: :model do
   subject(:work_bag) { described_class.new(work_ids: [publication.id, publication2.id], time_stamp: time_stamp) }
   let(:time_stamp) { 109_092 }
   let(:file_path) { Rails.application.config.bag_path }
@@ -30,7 +30,7 @@ RSpec.describe Bag, type: :model do
     context 'a work file attached files' do
       it 'creates a bag from the works' do
         work_bag.create
-        expect(File.exist?("#{work_bag.bag_path}.zip"))
+        expect(File.exist?("#{work_bag.bag_path}.tar"))
       end
     end
   end

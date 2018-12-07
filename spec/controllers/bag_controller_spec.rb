@@ -17,7 +17,7 @@ RSpec.describe BagController, type: :controller do
 
   describe "GET #download" do
     it "returns http success" do
-      get :download, params: { file_name: 'test' }
+      get :download, params: { file_name: 'test', format: 'zip' }
       expect(response).to have_http_status(:success)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe BagController, type: :controller do
       allow(request.env['warden']).to receive(:authenticate!).and_return(user)
       allow(controller).to receive(:current_user).and_return(user)
 
-      post :create, params: { work_ids: ['ids1'] }
+      post :create, params: { work_ids: ['ids1'], compression: 'zip' }
       expect(response).to have_http_status(302)
     end
   end

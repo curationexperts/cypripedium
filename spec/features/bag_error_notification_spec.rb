@@ -20,7 +20,7 @@ RSpec.feature 'Recieve an error notfication when creating a bag', js: true do
     end
 
     it 'creates an error notification' do
-      BagJob.perform_now(work_ids: work_ids, user: user)
+      BagJob.perform_now(work_ids: work_ids, user: user, compression: 'zip')
       visit '/notifications'
       expect(page).to have_content('error')
     end

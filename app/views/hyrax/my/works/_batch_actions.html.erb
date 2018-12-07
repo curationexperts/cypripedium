@@ -7,7 +7,8 @@
        BagUI.init()
      })
     </script>
-    <%= button_tag "Add to Bag", class: 'btn btn-primary submits-batches submits-ids-for-bags' %>
+    <%= button_tag "Add to Zip Bag", class: 'btn btn-primary submits-batches submits-ids-for-zip-bag' %>
+    <%= button_tag "Add to Tar Bag", class: 'btn btn-primary submits-batches submits-ids-for-tar-bag' %>
 
     <% session[:batch_edit_state] = "on" %>
     <div class="button_to-inline">

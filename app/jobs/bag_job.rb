@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class BagJob < ActiveJobStatus::TrackableJob
   rescue_from(StandardError) do |exception|
     @user.send_message(@user, render_error_message(error: exception), "Error creating your BagIt Archive")
@@ -7,25 +6,38 @@ class BagJob < ActiveJobStatus::TrackableJob
 
   after_perform :after_bag_creation
 
-  attr_reader :bag, :user
+  attr_reader :bag, :user, :compression, :work_ids, :time_stamp
 
-  def perform(work_ids:, time_stamp: Time.now.to_i, user:)
+  def perform(work_ids:, time_stamp: Time.now.to_i, user:, compression:)
     @user = user
-    @bag = Bag.new(work_ids: work_ids, time_stamp: time_stamp)
-    @bag.create
+    @compression = compression
+    @work_ids = work_ids
+    @time_stamp = time_stamp
+    initialize_bag
   end
 
   private
 
-    def after_bag_creation
-      @user.send_message(@user, render_message(bag_file_name: @bag.bag_path.split('/').last.to_s, bag_files: @bag.bag.paths), "Your BagIt archive is ready")
-      @bag.remove_bag
+    def initialize_bag
+      case @compression
+      when 'zip'
+        @bag = Hyrax::ZipBag.new(work_ids: @work_ids, time_stamp: @time_stamp)
+      when 'tar'
+        @bag = Hyrax::TarBag.new(work_ids: @work_ids, time_stamp: @time_stamp)
+      end
+      @bag.create
     end
 
-    def render_message(bag_file_name:, bag_files:)
+    def after_bag_creation
+      @user.send_message(@user, render_message(bag_file_name: @bag.bag_path.split('/').last.to_s,
+                                               bag_files: @bag.bag.paths, bag_format: @compression), "Your BagIt archive is ready")
+      @bag.remove
+    end
+
+    def render_message(bag_file_name:, bag_files:, bag_format:)
       ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_notification.html.erb',
                                                                           locals: { bag_file_name: bag_file_name,
-                                                                                    bag_files: bag_files }
+                                                                                    bag_files: bag_files, bag_file_format: bag_format }
     end
 
     def render_error_message(error:)

@@ -94,6 +94,8 @@ Rails.application.configure do
   config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 
   config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
+
+  config.bag_prefix = 'mpls_fed_research'
 end
 
 Hyrax.config.derivatives_path = '/opt/derivatives'
