@@ -26,6 +26,8 @@ RSpec.feature 'Recieve a notfication when creating a bag', js: true do
     end
 
     before do
+      publication
+      publication2
       AdminSet.find_or_create_default_admin_set_id
       login_as user
       FileUtils.rm_rf(file_path)
@@ -37,22 +39,10 @@ RSpec.feature 'Recieve a notfication when creating a bag', js: true do
     end
 
     it 'creates a notification' do
-      BagJob.perform_now(work_ids: work_ids, user: user)
+      BagJob.perform_now(work_ids: work_ids, user: user, compression: 'tar')
       visit '/notifications'
       expect(page).to have_content('has been created')
       expect(page).to have_content('bag')
-    end
-
-    it 'creates a notification using the UI' do
-      publication.depositor = user.email
-      publication.save
-      publication2.depositor = user.email
-      publication2.save
-      visit '/dashboard/my/works'
-      find('#check_all').click
-      expect(page).to have_content('Add to Bag')
-      find('.submits-ids-for-bags').click
-      expect(page).to have_content 'bagged'
     end
   end
 end
