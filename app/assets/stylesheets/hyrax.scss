@@ -14,6 +14,20 @@
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
 
+body.dashboard {
+  padding-top: 73px;
+}
+
+@media (max-width: 979px) {
+  body.dashboard {
+    padding-top: 0px;
+  }
+}
+
+button.navbar-toggle {
+  background: #5c5c5c;
+}
+
 #left { max-height:76px;}
 
 .img-responsive {
@@ -27,7 +41,7 @@
   border-radius: 0px;
 }
 
-#masthead.navbar {height: 90px; background-color: #ffffff; border: none;}
+#masthead.navbar { background-color: #ffffff; border: none;}
 ul#user_utility_links a {color: #333333;}
 ul#user_utility_links a:hover, a:active, a:focus {background-color: #d1d3d4;}
 ul#user_utility_links.navbar-inverse.navbar-nav.open,
