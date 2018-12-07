@@ -18,6 +18,11 @@ RSpec.describe WorkZip, type: :model do
     create(:publication, title: ['My Publication'], file_sets: [pdf_file, image_file])
   end
 
+  before do
+    DatabaseCleaner.clean_with(:truncation)
+    ActiveFedora::Cleaner.clean!
+  end
+
   describe '#create_zip' do
     before do
       allow(Date).to receive(:today).and_return(xmas)
