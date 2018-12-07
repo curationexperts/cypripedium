@@ -23,6 +23,9 @@ class Bag
 
   def create
     @work_ids.each do |work_id|
+      @bag.add_file("#{work_id}/#{work_id}.xml") do |io|
+        io.write xml(work_id: work_id)
+      end
       @work_file_sets = ActiveFedora::Base.find(work_id).file_sets
       @work_file_sets.each do |work_file_set|
         work_file_set.files.each do |work_file|
@@ -58,5 +61,10 @@ class Bag
           zip_file.add(relative_path, File.new(file))
         end
       end
+    end
+
+    def xml(work_id:)
+      rdf_xml_service = RdfXmlService.new(work_id: work_id)
+      rdf_xml_service.xml
     end
 end
