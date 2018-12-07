@@ -1,3 +1,5 @@
+require 'find'
+
 module Hyrax
   class WorkBag
     attr_reader :bag_path, :bag, :work_id
