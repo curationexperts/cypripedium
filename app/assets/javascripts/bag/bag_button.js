@@ -5,7 +5,7 @@ var bagButton = {
     if (submitIdsForBagButton) {
       submitIdsForBagButton.addEventListener('click', function (event) {
         var checkedWorks = []
-        document.querySelectorAll("[name='batch_document_ids[]']").forEach((el) => { if (el.checked) { checkedWorks.push(el.value) } })
+        document.querySelectorAll("[name='batch_document_ids[]']").forEach(function (el) { if (el.checked) { checkedWorks.push(el.value) } })
         bagButton.postBagRequest(checkedWorks, options)
         event.stopPropagation()
       }, false)
