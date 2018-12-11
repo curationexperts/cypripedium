@@ -1,3 +1,5 @@
+require 'rdf/rdfxml'
+
 class RdfXmlService
   attr_reader :graph_exporter
   def initialize(work_id:)
