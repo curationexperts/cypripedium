@@ -40,6 +40,9 @@ RSpec.feature 'Bagit export:', js: true do
       check "batch_document_#{publication.id}"
       click_on 'Add to Zip Bag'
 
+      # Should redirect to notifications page
+      expect(page).to have_current_path(Hyrax::Engine.routes.url_helpers.notifications_path(locale: I18n.locale))
+
       # Correct background job should queue
       expect(BagJob).to have_been_enqueued.with(job_params).exactly(:once)
     end
