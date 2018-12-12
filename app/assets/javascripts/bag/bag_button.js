@@ -1,17 +1,19 @@
 var bagButton = {
-  init: function (options) {
-    var submitIdsForBagButton = document.querySelector('.submits-ids-for-' + options.compression + '-bag')
+  bindClick: function (options) {
+    var buttonSelector = '.submits-ids-for-' + options.compression + '-bag'
 
-    if (submitIdsForBagButton) {
-      submitIdsForBagButton.addEventListener('click', function (event) {
-        var checkedWorks = []
-        document.querySelectorAll("[name='batch_document_ids[]']").forEach(function (el) { if (el.checked) { checkedWorks.push(el.value) } })
-        bagButton.postBagRequest(checkedWorks, options)
-        event.stopPropagation()
-      }, false)
-    }
+    $(document).off('click', buttonSelector, function () {}).on('click', buttonSelector, function () {
+      var checkedWorks = []
+      $("[name='batch_document_ids[]']").each(function (index, el) {
+        if (el.checked) { checkedWorks.push(el.value) }
+      })
+      bagButton.postBagRequest(checkedWorks, options)
+    })
   },
   postBagRequest: function (workIds, options) {
-    $.post('/bag/create', { 'work_ids': workIds, 'compression': options.compression }, function (response) {})
+    if (workIds.length > 0) {
+      $.post('/bag/create', { 'work_ids': workIds, 'compression': options.compression }, function (response) {
+      })
+    }
   }
 }

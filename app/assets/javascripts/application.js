@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= 
+//=
 //= require turbolinks
 //
 // Required by Blacklight
@@ -23,3 +23,5 @@
 //= require_tree .
 //= require hyrax
 
+bagButton.bindClick({'compression': 'zip'})
+bagButton.bindClick({'compression': 'tar'})
