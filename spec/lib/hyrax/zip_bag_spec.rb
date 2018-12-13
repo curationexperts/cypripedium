@@ -22,12 +22,23 @@ RSpec.describe Hyrax::ZipBag, type: :model do
     create(:publication, title: ['My Publication 2'], file_sets: [pdf_file, image_file])
   end
 
+  describe '#work_count' do
+    after do
+      FileUtils.rm_rf(file_path)
+    end
+
+    it 'can return the number of works in the bag' do
+      work_bag.create
+      expect(work_bag.work_count).to eq(2)
+    end
+  end
+
   describe '#create' do
     after do
       FileUtils.rm_rf(file_path)
     end
 
-    context 'a work file attached files' do
+    context 'a work with attached files' do
       it 'creates a bag from the works' do
         work_bag.create
         expect(File.exist?("#{work_bag.bag_path}.zip"))
