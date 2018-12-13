@@ -31,14 +31,16 @@ class BagJob < ActiveJobStatus::TrackableJob
 
     def after_bag_creation
       @user.send_message(@user, render_message(bag_file_name: @bag.bag_path.split('/').last.to_s,
-                                               bag_files: @bag.bag.paths, bag_format: @compression), "Your BagIt archive is ready")
+                                               bag_files: @bag.bag.paths, bag_format: @compression,
+                                               work_count: @bag.work_count), "Your BagIt archive is ready")
       @bag.remove
     end
 
-    def render_message(bag_file_name:, bag_files:, bag_format:)
+    def render_message(bag_file_name:, bag_files:, bag_format:, work_count:)
       ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_notification.html.erb',
                                                                           locals: { bag_file_name: bag_file_name,
-                                                                                    bag_files: bag_files, bag_file_format: bag_format }
+                                                                                    bag_files: bag_files, bag_file_format: bag_format,
+                                                                                    work_count: work_count }
     end
 
     def render_error_message(error:)

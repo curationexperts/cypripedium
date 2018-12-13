@@ -32,6 +32,10 @@ module Hyrax
       raise 'Not yet implemented'
     end
 
+    def work_count
+      Set.new(@bag.paths.map { |path| path.split('/')[0] }).length
+    end
+
     private
 
       def create_bag_storage_dir
