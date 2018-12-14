@@ -209,3 +209,9 @@ Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
+
+# Override collection form class so that we can
+# add markdown to some of the fields in the form.
+Cypripedium::Application.config.after_initialize do
+  Hyrax::Forms::CollectionForm.prepend ::CollectionFormMarkdown
+end
