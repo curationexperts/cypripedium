@@ -6,7 +6,7 @@ module Hyrax
       private
 
         def attribute_value_to_html(value)
-          renderer = Redcarpet::Render::HTML.new({})
+          renderer = Redcarpet::Render::HTML.new(escape_html: true)
           markdown = Redcarpet::Markdown.new(renderer, autolink: true)
           markdown.render(value)
         end

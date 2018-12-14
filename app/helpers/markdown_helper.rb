@@ -1,19 +1,15 @@
 module MarkdownHelper
-  # Temporarily disable rubocop rule to mark the
-  # rendered strings as html_safe.
-  # rubocop:disable Rails/OutputSafety
   def render_with_markdown(args)
-    renderer = Redcarpet::Render::HTML.new({})
+    # Use escape_html to sanitize the user inputs so we can later mark it as html_safe.
+    renderer = Redcarpet::Render::HTML.new(escape_html: true)
     markdown = Redcarpet::Markdown.new(renderer, autolink: true)
 
-    # Run user input values through a sanitizer
-    # before marking the strings as html_safe.
     rendered_values = args[:value].map do |value|
-      sanitized_value = sanitize(value)
-      markdown.render(sanitized_value).html_safe
+      # rubocop:disable Rails/OutputSafety
+      markdown.render(value).html_safe
+      # rubocop:enable Rails/OutputSafety
     end
 
     safe_join(rendered_values, ' ')
   end
-  # rubocop:enable Rails/OutputSafety
 end

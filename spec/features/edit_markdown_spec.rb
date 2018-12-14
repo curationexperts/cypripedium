@@ -25,8 +25,9 @@ RSpec.feature 'Edit markdown fields:', js: true do
     end
 
     # The new description contains markdown text
-    let(:new_description) { good_markdown + malicious_markdown }
+    let(:new_description) { [good_markdown, malicious_markdown, good_markdown_2].join("\n\n") }
     let(:good_markdown) { 'An [example of a link](http://example.com/) inside a sentence with *italic text*.' }
+    let(:good_markdown_2) { '>This is a blockquote' }
     let(:malicious_markdown) { '<script>console.log("javascript attack");</script>' }
 
     it 'properly saves and displays the markdown' do
@@ -46,6 +47,10 @@ RSpec.feature 'Edit markdown fields:', js: true do
       # The markdown should be rendered
       expect(page).to have_link('example of a link', href: 'http://example.com/')
       expect(page).to have_selector('em', text: 'italic text')
+
+      within('blockquote') do
+        expect(page).to have_content 'This is a blockquote'
+      end
 
       # The potentially malicious javascript should not be run, but should be displayed as text instead
       expect(page).to have_content('console.log(')
