@@ -69,6 +69,8 @@ en:
       defaults:
          related_url: Example - URL for related report. This is a markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
          description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+      collection:
+         description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
     labels:
       defaults:
         description: Description
