@@ -42,7 +42,7 @@ Hyrax.config do |config|
   # config.analytics = false
 
   # Google Analytics tracking ID to gather usage statistics
-  # config.google_analytics_id = 'UA-99999999-1'
+    config.google_analytics_id = 'UA-131289387-1'
 
   # Date you wish to start collecting Google Analytic statistics for
   # Leaving it blank will set the start date to when ever the file was uploaded by
@@ -134,11 +134,11 @@ Hyrax.config do |config|
   # config.derivatives_path = Rails.root.join('tmp', 'derivatives')
 
   # Should schema.org microdata be displayed?
-  # config.display_microdata = true
+    config.display_microdata = true
 
   # What default microdata type should be used if a more appropriate
   # type can not be found in the locale file?
-  # config.microdata_default_type = 'http://schema.org/CreativeWork'
+  #  config.microdata_default_type = 'http://schema.org/CreativeWork'
 
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
