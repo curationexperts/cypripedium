@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # deploys to dce cd
 set :stage, :dce_cd
 set :rails_env, 'production'

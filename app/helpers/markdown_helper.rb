@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MarkdownHelper
   def render_with_markdown(args)
     # Use escape_html to sanitize the user inputs so we can later mark it as html_safe.

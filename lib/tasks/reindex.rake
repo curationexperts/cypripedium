@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Note:  This re-indexing tasks uses solr queries to
 # determine which records to re-index.  That means
 # that you can only use it to re-index solr records

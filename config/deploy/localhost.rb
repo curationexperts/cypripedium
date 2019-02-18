@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # capistrano bootstrapping deploy, run by ansible
 # this *must* be named localhost
 set :stage, :localhost

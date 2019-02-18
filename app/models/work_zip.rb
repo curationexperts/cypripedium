@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class creates a zip file that contains all the
 # files that are attached to a work.
 #

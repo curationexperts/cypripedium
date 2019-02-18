@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # deploys to FRBM AWS qa
 set :stage, :qa
 set :rails_env, 'production'

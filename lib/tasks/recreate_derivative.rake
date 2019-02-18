@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :derivatives do
   desc "Recreate derivatives -- rake derivatives:recreate_by_id['c821gj76b']"
   task :recreate_by_id, [:id] => :environment do |_task, args|

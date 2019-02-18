@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hyrax
   module HasZip
     extend ActiveSupport::Concern

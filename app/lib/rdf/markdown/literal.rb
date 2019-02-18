@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RDF
   module Markdown
     ##
@@ -13,7 +15,7 @@ module RDF
       # valid. If your markdown parser barfs, that's your problem.
       #
       # @see http://roopc.net/posts/2014/markdown-cfg/
-      GRAMMAR = %r{.*}
+      GRAMMAR = %r{.*}.freeze
 
       # support ActiveJob serialization
       include GlobalID::Identification
