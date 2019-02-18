@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :cleanup do
   desc 'Clean up old zip files for bulk downloads'
   task zips: :environment do

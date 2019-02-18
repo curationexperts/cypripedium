@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Connects this user object to Hydra behaviors.
   include Hydra::User
@@ -35,7 +37,7 @@ class User < ApplicationRecord
 
   def remove_role(name)
     role = Role.find_by(name: name)
-    role.users.delete(self) if role && role.users && role.users.include?(self)
+    role.users.delete(self) if role&.users && role.users.include?(self)
     reload
   end
 end

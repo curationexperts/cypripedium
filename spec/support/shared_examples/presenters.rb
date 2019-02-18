@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'a work presenter' do
   describe '#work_zip' do
     subject(:work_zip) { presenter.work_zip }

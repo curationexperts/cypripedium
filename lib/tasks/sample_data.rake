@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'Create some fake sample data in your dev environment'
 task sample_data: :environment do
   $stdout.sync = true # Flush output immediately

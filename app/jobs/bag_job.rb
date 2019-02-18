@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class BagJob < ActiveJobStatus::TrackableJob
   rescue_from(StandardError) do |exception|
-    @bag.remove if @bag
+    @bag&.remove
     @user.send_message(@user, render_error_message(error: exception), "Error creating your BagIt Archive")
   end
 

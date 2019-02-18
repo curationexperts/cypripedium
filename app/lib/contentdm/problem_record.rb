@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Contentdm
   ##
   # This class is used for collection records that have

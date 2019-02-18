@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WorkZipsHelper
   def display_work_zip_controls(work_zip)
     if work_zip.file_path && File.exist?(work_zip.file_path)

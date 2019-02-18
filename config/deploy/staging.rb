@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # deploys to FRBM AWS staging
 set :stage, :staging
 set :rails_env, 'production'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :import do
   desc "Import data from ContentDM export"
   task contentdm: :environment do

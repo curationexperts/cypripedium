@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '2.4.2'
@@ -9,7 +11,7 @@ end
 
 gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
-gem 'bixby'
+gem 'bixby', '2.0.0.pre.beta1'
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem 'capistrano'
 gem 'capistrano-bundler', '~> 1.3'
@@ -19,15 +21,15 @@ gem 'dotenv-rails'
 gem 'honeybadger', '~> 3.1'
 gem 'hydra-role-management'
 gem 'nokogiri', '>=1.8.2'
-gem 'parser', '< 2.5'
-gem 'pg', '~> 0.18'
+gem 'parser'
+gem 'pg'
 gem 'redis-activesupport'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'sidekiq'
 # Use sqlite3 as the database for Active Record
 gem 'simple_form', '= 3.5.0'
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'rainbow'

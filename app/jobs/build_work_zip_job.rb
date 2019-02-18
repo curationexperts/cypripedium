@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BuildWorkZipJob < ActiveJobStatus::TrackableJob
   queue_as :default
 

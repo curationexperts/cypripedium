@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :bag do
   desc "Create a bag from a list of Publication IDs"
   task :create, [:work_ids] => :environment do |t, args|

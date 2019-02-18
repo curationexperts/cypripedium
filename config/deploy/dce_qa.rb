@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # deploys to dce qa
 set :stage, :dce_qa
 set :rails_env, 'production'
