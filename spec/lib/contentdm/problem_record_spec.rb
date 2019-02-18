@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Contentdm::ProblemRecord do
   let(:collection_name) { 'Test Collection' }
-  let(:file_name) { Dir::Tmpname.make_tmpname(['problem', '.xml'], nil) }
+  let(:file_name) { Tempfile.create(['problem', '.xml'], nil) }
   let(:file) { Rails.root.join('tmp', file_name) }
   let(:problem_record) { described_class.new(collection_name, file) }
   let(:record_xml) { Nokogiri::XML(file_fixture('some_records.xml')).xpath('//record')[2] }
