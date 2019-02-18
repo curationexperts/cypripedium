@@ -27,7 +27,7 @@ gem 'rails', '~> 5.1.4'
 gem 'sidekiq'
 # Use sqlite3 as the database for Active Record
 gem 'simple_form', '= 3.5.0'
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'rainbow'
