@@ -28,3 +28,11 @@ the specified publications. The created bag will use `sha256` to create checksum
 the files.
 
 To download a bag that has been created you can visit the route: `/bag/mpls_fed_research_<time-stamp>.tar`.
+
+## Local Development
+
+### Running in postgres
+Because we use the postgresql database in production, we follow the rails recommendation and also use it in development. The easiest way to set up a local development instance:
+1. Install postgresql
+2. Set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
+3. Run `bundle exec rake db:setup` to create expected databases and run database migrations
