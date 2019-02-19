@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'fileutils'
+
 module Contentdm
   ##
   # This class is used for collection records that have
@@ -7,7 +9,7 @@ module Contentdm
   # to a file that can be used to re-import them at a
   # later time
   class ProblemRecord
-    attr_accessor :doc
+    attr_accessor :doc, :file_name
     ##
     # @param [String, String] collection_name, file_name
     def initialize(collection_name, file_name)
@@ -38,7 +40,7 @@ module Contentdm
     end
 
     def clean_up
-      File.unlink(@file_name) if @doc.xpath('//record').empty?
+      FileUtils.rm([@file_name]) if @doc.xpath('//record').empty?
     end
   end
 end

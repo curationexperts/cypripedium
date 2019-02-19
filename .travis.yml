@@ -7,7 +7,7 @@ addons:
 services:
 - redis-server
 rvm:
-- 2.4.2
+- 2.5.3
 before_script:
 - bundle exec rake db:create
 script:
