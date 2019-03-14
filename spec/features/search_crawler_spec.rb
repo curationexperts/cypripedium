@@ -4,10 +4,10 @@ include Warden::Test::Helpers
 
 RSpec.describe "Search History Page" do
   describe "crawler search" do
-    it "remembers human searches" do
+    it "doesn't remember human searches" do
       visit root_path
       fill_in "q", with: 'chicken'
-      expect { click_button 'Go' }.to change { Search.count }.by(1)
+      expect { click_button 'Go' }.not_to change { Search.count }
     end
 
     it "doesn't remember bot searches" do
