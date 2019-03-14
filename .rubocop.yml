@@ -41,6 +41,9 @@ Rails/Date:
 Rails/FindBy:
   Enabled: false
 
+RSpec/DescribeClass:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
 
