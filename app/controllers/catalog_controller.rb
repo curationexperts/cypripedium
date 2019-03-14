@@ -16,8 +16,8 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    # Do not store searches for crawler bots
-    config.crawler_detector = ->(req) { req.env['HTTP_USER_AGENT'] =~ /bot/ }
+    # Do not store searches for anyone since Hyrax can't display them anyway
+    config.crawler_detector = ->(req) { true }
 
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
