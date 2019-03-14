@@ -16,6 +16,9 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # Do not store searches for crawler bots
+    config.crawler_detector = ->(req) { req.env['HTTP_USER_AGENT'] =~ /bot/ }
+
     config.view.gallery.partials = [:index_header, :index]
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
