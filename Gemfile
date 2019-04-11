@@ -9,6 +9,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "actionview", ">= 5.1.6.2"
 gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
 gem 'bixby', '2.0.0.pre.beta1'
@@ -24,7 +25,7 @@ gem 'parser'
 gem 'pg'
 gem 'redis-activesupport'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.6'
 gem 'sidekiq'
 # Use sqlite3 as the database for Active Record
 gem 'simple_form', '= 3.5.0'
