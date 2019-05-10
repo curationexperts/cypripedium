@@ -1,0 +1,2551 @@
+terms:
+  - id: 'A00 - General Economics and Teaching'
+    term: 'A00 - General Economics and Teaching'
+    active: true
+  - id: 'A10 - General Economics: General'
+    term: 'A10 - General Economics: General'
+    active: true
+  - id: 'A11 - Role of Economics; Role of Economists; Market for Economists'
+    term: 'A11 - Role of Economics; Role of Economists; Market for Economists'
+    active: true
+  - id: 'A12 - Relation of Economics to Other Disciplines'
+    term: 'A12 - Relation of Economics to Other Disciplines'
+    active: true
+  - id: 'A13 - Relation of Economics to Social Values'
+    term: 'A13 - Relation of Economics to Social Values'
+    active: true
+  - id: 'A14 - Sociology of Economics'
+    term: 'A14 - Sociology of Economics'
+    active: true
+  - id: 'A19 - General Economics: Other'
+    term: 'A19 - General Economics: Other'
+    active: true
+  - id: 'A20 - Economics Education and Teaching of Economics: General'
+    term: 'A20 - Economics Education and Teaching of Economics: General'
+    active: true
+  - id: 'A21 - Economic Education and Teaching of Economics: Pre-college'
+    term: 'A21 - Economic Education and Teaching of Economics: Pre-college'
+    active: true
+  - id: 'A22 - Economic Education and Teaching of Economics: Undergraduate'
+    term: 'A22 - Economic Education and Teaching of Economics: Undergraduate'
+    active: true
+  - id: 'A23 - Economic Education and Teaching of Economics: Graduate'
+    term: 'A23 - Economic Education and Teaching of Economics: Graduate'
+    active: true
+  - id: 'A29 - Economic Education and Teaching of Economics: Other'
+    term: 'A29 - Economic Education and Teaching of Economics: Other'
+    active: true
+  - id: 'A30 - Collective Works: General'
+    term: 'A30 - Collective Works: General'
+    active: true
+  - id: 'A31 - Collected Writings of Individuals'
+    term: 'A31 - Collected Writings of Individuals'
+    active: true
+  - id: 'A32 - Collective Volumes'
+    term: 'A32 - Collective Volumes'
+    active: true
+  - id: 'A33 - Handbooks'
+    term: 'A33 - Handbooks'
+    active: true
+  - id: 'A39 - Collective Works: Other'
+    term: 'A39 - Collective Works: Other'
+    active: true
+  - id: 'B00 - History of Economic Thought, Methodology, and Heterodox Approaches'
+    term: 'B00 - History of Economic Thought, Methodology, and Heterodox Approaches'
+    active: true
+  - id: 'B10 - History of Economic Thought through 1925: General'
+    term: 'B10 - History of Economic Thought through 1925: General'
+    active: true
+  - id: 'B11 - History of Economic Thought: Preclassical (Ancient, Medieval, Mercantilist, Physiocratic)'
+    term: 'B11 - History of Economic Thought: Preclassical (Ancient, Medieval, Mercantilist, Physiocratic)'
+    active: true
+  - id: 'B12 - History of Economic Thought: Classical (includes Adam Smith)'
+    term: 'B12 - History of Economic Thought: Classical (includes Adam Smith)'
+    active: true
+  - id: 'B13 - History of Economic Thought: Neoclassical through 1925 (Austrian, Marshallian, Walrasian, Wicksellian)'
+    term: 'B13 - History of Economic Thought: Neoclassical through 1925 (Austrian, Marshallian, Walrasian, Wicksellian)'
+    active: true
+  - id: 'B14 - History of Economic Thought through 1925: Socialist; Marxist'
+    term: 'B14 - History of Economic Thought through 1925: Socialist; Marxist'
+    active: true
+  - id: 'B15 - History of Economic Thought through 1925: Historical; Institutional; Evolutionary'
+    term: 'B15 - History of Economic Thought through 1925: Historical; Institutional; Evolutionary'
+    active: true
+  - id: 'B16 - History of Economic Thought through 1925: Quantitative and Mathematical'
+    term: 'B16 - History of Economic Thought through 1925: Quantitative and Mathematical'
+    active: true
+  - id: 'B17 - History of Economic Thought through 1925: International Trade and Finance'
+    term: 'B17 - History of Economic Thought through 1925: International Trade and Finance'
+    active: true
+  - id: 'B19 - History of Economic Thought through 1925: Other'
+    term: 'B19 - History of Economic Thought through 1925: Other'
+    active: true
+  - id: 'B20 - History of Economic Thought since 1925: General'
+    term: 'B20 - History of Economic Thought since 1925: General'
+    active: true
+  - id: 'B21 - History of Economic Thought: Microeconomics'
+    term: 'B21 - History of Economic Thought: Microeconomics'
+    active: true
+  - id: 'B22 - History of Economic Thought: Macroeconomics'
+    term: 'B22 - History of Economic Thought: Macroeconomics'
+    active: true
+  - id: 'B23 - History of Economic Thought: Quantitative and Mathematical'
+    term: 'B23 - History of Economic Thought: Quantitative and Mathematical'
+    active: true
+  - id: 'B24 - History of Economic Thought since 1925: Socialist; Marxist; Sraffian'
+    term: 'B24 - History of Economic Thought since 1925: Socialist; Marxist; Sraffian'
+    active: true
+  - id: 'B25 - History of Economic Thought since 1925: Historical; Institutional; Evolutionary; Austrian; Stockholm School'
+    term: 'B25 - History of Economic Thought since 1925: Historical; Institutional; Evolutionary; Austrian; Stockholm School'
+    active: true
+  - id: 'B26 - History of Economic Thought since 1925: Financial Economics'
+    term: 'B26 - History of Economic Thought since 1925: Financial Economics'
+    active: true
+  - id: 'B27 - History of Economic Thought since 1925: International Trade and Finance'
+    term: 'B27 - History of Economic Thought since 1925: International Trade and Finance'
+    active: true
+  - id: 'B29 - History of Economic Thought since 1925: Other'
+    term: 'B29 - History of Economic Thought since 1925: Other'
+    active: true
+  - id: 'B30 - History of Economic Thought: Individuals: General'
+    term: 'B30 - History of Economic Thought: Individuals: General'
+    active: true
+  - id: 'B31 - History of Economic Thought: Individuals'
+    term: 'B31 - History of Economic Thought: Individuals'
+    active: true
+  - id: 'B32 - Obituaries'
+    term: 'B32 - Obituaries'
+    active: true
+  - id: 'B40 - Economic Methodology: General'
+    term: 'B40 - Economic Methodology: General'
+    active: true
+  - id: 'B41 - Economic Methodology'
+    term: 'B41 - Economic Methodology'
+    active: true
+  - id: 'B49 - Economic Methodology: Other'
+    term: 'B49 - Economic Methodology: Other'
+    active: true
+  - id: 'B50 - Current Heterodox Approaches: General'
+    term: 'B50 - Current Heterodox Approaches: General'
+    active: true
+  - id: 'B51 - Current Heterodox Approaches: Socialist; Marxian; Sraffian'
+    term: 'B51 - Current Heterodox Approaches: Socialist; Marxian; Sraffian'
+    active: true
+  - id: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary'
+    term: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary'
+    active: true
+  - id: 'B53 - Current Heterodox Approaches: Austrian'
+    term: 'B53 - Current Heterodox Approaches: Austrian'
+    active: true
+  - id: 'B54 - Feminist Economics'
+    term: 'B54 - Feminist Economics'
+    active: true
+  - id: 'B55 - Social Economics'
+    term: 'B55 - Social Economics'
+    active: true
+  - id: 'B59 - Current Heterodox Approaches: Other'
+    term: 'B59 - Current Heterodox Approaches: Other'
+    active: true
+  - id: 'C00 - Mathematical and Quantitative Methods: General'
+    term: 'C00 - Mathematical and Quantitative Methods: General'
+    active: true
+  - id: 'C01 - Econometrics'
+    term: 'C01 - Econometrics'
+    active: true
+  - id: 'C02 - Mathematical Methods'
+    term: 'C02 - Mathematical Methods'
+    active: true
+  - id: 'C10 - Econometric and Statistical Methods and Methodology: General'
+    term: 'C10 - Econometric and Statistical Methods and Methodology: General'
+    active: true
+  - id: 'C11 - Bayesian Analysis: General'
+    term: 'C11 - Bayesian Analysis: General'
+    active: true
+  - id: 'C12 - Hypothesis Testing: General'
+    term: 'C12 - Hypothesis Testing: General'
+    active: true
+  - id: 'C13 - Estimation: General'
+    term: 'C13 - Estimation: General'
+    active: true
+  - id: 'C14 - Semiparametric and Nonparametric Methods: General'
+    term: 'C14 - Semiparametric and Nonparametric Methods: General'
+    active: true
+  - id: 'C15 - Statistical Simulation Methods: General'
+    term: 'C15 - Statistical Simulation Methods: General'
+    active: true
+  - id: 'C18 - Methodological Issues: General'
+    term: 'C18 - Methodological Issues: General'
+    active: true
+  - id: 'C19 - Econometric and Statistical Methods: Other'
+    term: 'C19 - Econometric and Statistical Methods: Other'
+    active: true
+  - id: 'C20 - Single Equation Models; Single Variables: General'
+    term: 'C20 - Single Equation Models; Single Variables: General'
+    active: true
+  - id: 'C21 - Single Equation Models; Single Variables: Cross-Sectional Models; Spatial Models; Treatment Effect Models; Quantile Regressions'
+    term: 'C21 - Single Equation Models; Single Variables: Cross-Sectional Models; Spatial Models; Treatment Effect Models; Quantile Regressions'
+    active: true
+  - id: 'C22 - Single Equation Models; Single Variables: Time-Series Models; Dynamic Quantile Regressions; Dynamic Treatment Effect Models; Diffusion Processes'
+    term: 'C22 - Single Equation Models; Single Variables: Time-Series Models; Dynamic Quantile Regressions; Dynamic Treatment Effect Models; Diffusion Processes'
+    active: true
+  - id: 'C23 - Single Equation Models; Single Variables: Panel Data Models; Spatio-temporal Models'
+    term: 'C23 - Single Equation Models; Single Variables: Panel Data Models; Spatio-temporal Models'
+    active: true
+  - id: 'C24 - Single Equation Models; Single Variables: Truncated and Censored Models; Switching Regression Models; Threshold Regression Models'
+    term: 'C24 - Single Equation Models; Single Variables: Truncated and Censored Models; Switching Regression Models; Threshold Regression Models'
+    active: true
+  - id: 'C25 - Single Equation Models; Single Variables: Discrete Regression and Qualitative Choice Models; Discrete Regressors; Proportions; Probabilities'
+    term: 'C25 - Single Equation Models; Single Variables: Discrete Regression and Qualitative Choice Models; Discrete Regressors; Proportions; Probabilities'
+    active: true
+  - id: 'C26 - Single Equation Models: Single Variables: Instrumental Variables (IV) Estimation'
+    term: 'C26 - Single Equation Models: Single Variables: Instrumental Variables (IV) Estimation'
+    active: true
+  - id: 'C29 - Single Equation Models; Single Variables: Other'
+    term: 'C29 - Single Equation Models; Single Variables: Other'
+    active: true
+  - id: 'C30 - Multiple or Simultaneous Equation Models; Multiple Variables: General'
+    term: 'C30 - Multiple or Simultaneous Equation Models; Multiple Variables: General'
+    active: true
+  - id: 'C31 - Multiple or Simultaneous Equation Models: Cross-Sectional Models; Spatial Models; Treatment Effect Models; Quantile Regressions; Social Interaction Models'
+    term: 'C31 - Multiple or Simultaneous Equation Models: Cross-Sectional Models; Spatial Models; Treatment Effect Models; Quantile Regressions; Social Interaction Models'
+    active: true
+  - id: 'C32 - Multiple or Simultaneous Equation Models: Time-Series Models; Dynamic Quantile Regressions; Dynamic Treatment Effect Models; Diffusion Processes; State Space Models'
+    term: 'C32 - Multiple or Simultaneous Equation Models: Time-Series Models; Dynamic Quantile Regressions; Dynamic Treatment Effect Models; Diffusion Processes; State Space Models'
+    active: true
+  - id: 'C33 - Multiple or Simultaneous Equation Models: Panel Data Models; Spatio-temporal Models'
+    term: 'C33 - Multiple or Simultaneous Equation Models: Panel Data Models; Spatio-temporal Models'
+    active: true
+  - id: 'C34 - Multiple or Simultaneous Equation Models: Truncated and Censored Models; Switching Regression Models'
+    term: 'C34 - Multiple or Simultaneous Equation Models: Truncated and Censored Models; Switching Regression Models'
+    active: true
+  - id: 'C35 - Multiple or Simultaneous Equation Models: Discrete Regression and Qualitative Choice Models; Discrete Regressors; Proportions'
+    term: 'C35 - Multiple or Simultaneous Equation Models: Discrete Regression and Qualitative Choice Models; Discrete Regressors; Proportions'
+    active: true
+  - id: 'C36 - Multiple or Simultaneous Equation Models: Instrumental Variables (IV) Estimation'
+    term: 'C36 - Multiple or Simultaneous Equation Models: Instrumental Variables (IV) Estimation'
+    active: true
+  - id: 'C38 - Multiple or Simultaneous Equation Models: Classification Methods; Cluster Analysis; Principal Components; Factor Models'
+    term: 'C38 - Multiple or Simultaneous Equation Models: Classification Methods; Cluster Analysis; Principal Components; Factor Models'
+    active: true
+  - id: 'C39 - Multiple or Simultaneous Equation Models; Multiple Variables: Other'
+    term: 'C39 - Multiple or Simultaneous Equation Models; Multiple Variables: Other'
+    active: true
+  - id: 'C40 - Econometric and Statistical Methods: Special Topics: General'
+    term: 'C40 - Econometric and Statistical Methods: Special Topics: General'
+    active: true
+  - id: 'C41 - Duration Analysis; Optimal Timing Strategies'
+    term: 'C41 - Duration Analysis; Optimal Timing Strategies'
+    active: true
+  - id: 'C42 - Classification Discontinued 2008. See C83.'
+    term: 'C42 - Classification Discontinued 2008. See C83.'
+    active: true
+  - id: 'C43 - Index Numbers and Aggregation; Leading indicators'
+    term: 'C43 - Index Numbers and Aggregation; Leading indicators'
+    active: true
+  - id: 'C44 - Operations Research; Statistical Decision Theory'
+    term: 'C44 - Operations Research; Statistical Decision Theory'
+    active: true
+  - id: 'C45 - Neural Networks and Related Topics'
+    term: 'C45 - Neural Networks and Related Topics'
+    active: true
+  - id: 'C46 - Specific Distributions; Specific Statistics'
+    term: 'C46 - Specific Distributions; Specific Statistics'
+    active: true
+  - id: 'C49 - Econometric and Statistical Methods: Special Topics: Other'
+    term: 'C49 - Econometric and Statistical Methods: Special Topics: Other'
+    active: true
+  - id: 'C50 - Econometric Modeling: General'
+    term: 'C50 - Econometric Modeling: General'
+    active: true
+  - id: 'C51 - Model Construction and Estimation'
+    term: 'C51 - Model Construction and Estimation'
+    active: true
+  - id: 'C52 - Model Evaluation, Validation, and Selection'
+    term: 'C52 - Model Evaluation, Validation, and Selection'
+    active: true
+  - id: 'C53 - Forecasting Models; Simulation Methods'
+    term: 'C53 - Forecasting Models; Simulation Methods'
+    active: true
+  - id: 'C54 - Quantitative Policy Modeling'
+    term: 'C54 - Quantitative Policy Modeling'
+    active: true
+  - id: 'C55 - Large Data Sets: Modeling and Analysis'
+    term: 'C55 - Large Data Sets: Modeling and Analysis'
+    active: true
+  - id: 'C57 - Econometrics of Games and Auctions'
+    term: 'C57 - Econometrics of Games and Auctions'
+    active: true
+  - id: 'C58 - Financial Econometrics'
+    term: 'C58 - Financial Econometrics'
+    active: true
+  - id: 'C59 - Econometric Modeling: Other'
+    term: 'C59 - Econometric Modeling: Other'
+    active: true
+  - id: 'C60 - Mathematical Methods; Programming Models; Mathematical and Simulation Modeling: General'
+    term: 'C60 - Mathematical Methods; Programming Models; Mathematical and Simulation Modeling: General'
+    active: true
+  - id: 'C61 - Optimization Techniques; Programming Models; Dynamic Analysis'
+    term: 'C61 - Optimization Techniques; Programming Models; Dynamic Analysis'
+    active: true
+  - id: 'C62 - Existence and Stability Conditions of Equilibrium'
+    term: 'C62 - Existence and Stability Conditions of Equilibrium'
+    active: true
+  - id: 'C63 - Computational Techniques; Simulation Modeling'
+    term: 'C63 - Computational Techniques; Simulation Modeling'
+    active: true
+  - id: 'C65 - Miscellaneous Mathematical Tools'
+    term: 'C65 - Miscellaneous Mathematical Tools'
+    active: true
+  - id: 'C67 - Input-Output Models'
+    term: 'C67 - Input-Output Models'
+    active: true
+  - id: 'C68 - Computable General Equilibrium Models'
+    term: 'C68 - Computable General Equilibrium Models'
+    active: true
+  - id: 'C69 - Mathematical Methods; Programming Models; Mathematical and Simulation Modeling: Other'
+    term: 'C69 - Mathematical Methods; Programming Models; Mathematical and Simulation Modeling: Other'
+    active: true
+  - id: 'C70 - Game Theory and Bargaining Theory: General'
+    term: 'C70 - Game Theory and Bargaining Theory: General'
+    active: true
+  - id: 'C71 - Cooperative Games'
+    term: 'C71 - Cooperative Games'
+    active: true
+  - id: 'C72 - Noncooperative Games'
+    term: 'C72 - Noncooperative Games'
+    active: true
+  - id: 'C73 - Stochastic and Dynamic Games; Evolutionary Games; Repeated Games'
+    term: 'C73 - Stochastic and Dynamic Games; Evolutionary Games; Repeated Games'
+    active: true
+  - id: 'C78 - Bargaining Theory; Matching Theory'
+    term: 'C78 - Bargaining Theory; Matching Theory'
+    active: true
+  - id: 'C79 - Game Theory and Bargaining Theory: Other'
+    term: 'C79 - Game Theory and Bargaining Theory: Other'
+    active: true
+  - id: 'C80 - Data Collection and Data Estimation Methodology; Computer Programs: General'
+    term: 'C80 - Data Collection and Data Estimation Methodology; Computer Programs: General'
+    active: true
+  - id: 'C81 - Methodology for Collecting, Estimating, and Organizing Microeconomic Data; Data Access'
+    term: 'C81 - Methodology for Collecting, Estimating, and Organizing Microeconomic Data; Data Access'
+    active: true
+  - id: 'C82 - Methodology for Collecting, Estimating, and Organizing Macroeconomic Data; Data Access'
+    term: 'C82 - Methodology for Collecting, Estimating, and Organizing Macroeconomic Data; Data Access'
+    active: true
+  - id: 'C83 - Survey Methods; Sampling Methods'
+    term: 'C83 - Survey Methods; Sampling Methods'
+    active: true
+  - id: 'C87 - Econometric Software'
+    term: 'C87 - Econometric Software'
+    active: true
+  - id: 'C88 - Data Collection and Data Estimation Methodology; Computer Programs: Other Computer Software'
+    term: 'C88 - Data Collection and Data Estimation Methodology; Computer Programs: Other Computer Software'
+    active: true
+  - id: 'C89 - Data Collection and Data Estimation Methodology; Computer Programs: Other'
+    term: 'C89 - Data Collection and Data Estimation Methodology; Computer Programs: Other'
+    active: true
+  - id: 'C90 - Design of Experiments: General'
+    term: 'C90 - Design of Experiments: General'
+    active: true
+  - id: 'C91 - Design of Experiments: Laboratory, Individual'
+    term: 'C91 - Design of Experiments: Laboratory, Individual'
+    active: true
+  - id: 'C92 - Design of Experiments: Laboratory, Group Behavior'
+    term: 'C92 - Design of Experiments: Laboratory, Group Behavior'
+    active: true
+  - id: 'C93 - Field Experiments'
+    term: 'C93 - Field Experiments'
+    active: true
+  - id: 'C99 - Design of Experiments: Other '
+    term: 'C99 - Design of Experiments: Other '
+    active: true
+  - id: 'D00 - Microeconomics: General'
+    term: 'D00 - Microeconomics: General'
+    active: true
+  - id: 'D01 - Microeconomic Behavior: Underlying Principles'
+    term: 'D01 - Microeconomic Behavior: Underlying Principles'
+    active: true
+  - id: 'D02 - Institutions: Design, Formation, Operations, and Impact'
+    term: 'D02 - Institutions: Design, Formation, Operations, and Impact'
+    active: true
+  - id: 'D04 - Microeconomic Policy: Formulation, Implementation, and Evaluation'
+    term: 'D04 - Microeconomic Policy: Formulation, Implementation, and Evaluation'
+    active: true
+  - id: 'D10 - Household Behavior: General'
+    term: 'D10 - Household Behavior: General'
+    active: true
+  - id: 'D11 - Consumer Economics: Theory'
+    term: 'D11 - Consumer Economics: Theory'
+    active: true
+  - id: 'D12 - Consumer Economics: Empirical Analysis'
+    term: 'D12 - Consumer Economics: Empirical Analysis'
+    active: true
+  - id: 'D13 - Household Production and Intrahousehold Allocation'
+    term: 'D13 - Household Production and Intrahousehold Allocation'
+    active: true
+  - id: 'D14 - Household Saving; Personal Finance'
+    term: 'D14 - Household Saving; Personal Finance'
+    active: true
+  - id: 'D15 - Intertemporal Household Choice; Life Cycle Models and Saving'
+    term: 'D15 - Intertemporal Household Choice; Life Cycle Models and Saving'
+    active: true
+  - id: 'D16 - Collaborative Consumption'
+    term: 'D16 - Collaborative Consumption'
+    active: true
+  - id: 'D18 - Consumer Protection'
+    term: 'D18 - Consumer Protection'
+    active: true
+  - id: 'D19 - Household Behavior and Family Economics: Other'
+    term: 'D19 - Household Behavior and Family Economics: Other'
+    active: true
+  - id: 'D20 - Production and Organizations: General'
+    term: 'D20 - roduction and Organizations: General'
+    active: true
+  - id: 'D21 - Firm Behavior: Theory'
+    term: 'D21 - Firm Behavior: Theory'
+    active: true
+  - id: 'D22 - Firm Behavior: Empirical Analysis'
+    term: 'D22 - Firm Behavior: Empirical Analysis'
+    active: true
+  - id: 'D23 - Organizational Behavior; Transaction Costs; Property Rights'
+    term: 'D23 - Organizational Behavior; Transaction Costs; Property Rights'
+    active: true
+  - id: 'D24 - Production; Cost; Capital; Capital, Total Factor, and Multifactor Productivity; Capacity'
+    term: 'D24 - Production; Cost; Capital; Capital, Total Factor, and Multifactor Productivity; Capacity'
+    active: true
+  - id: 'D25 - Intertemporal Firm Choice: Investment, Capacity, and Financing'
+    term: 'D25 - Intertemporal Firm Choice: Investment, Capacity, and Financing'
+    active: true
+  - id: 'D26 - Crowd-Based Firms'
+    term: 'D26 - Crowd-Based Firms'
+    active: true
+  - id: 'D29 - Production and Organizations: Other'
+    term: 'D29 - Production and Organizations: Other'
+    active: true
+  - id: 'D30 - Distribution: General'
+    term: 'D30 - Distribution: General'
+    active: true
+  - id: 'D31 - Personal Income, Wealth, and Their Distributions'
+    term: 'D31 - Personal Income, Wealth, and Their Distributions'
+    active: true
+  - id: 'D33 - Factor Income Distribution'
+    term: 'D33 - Factor Income Distribution'
+    active: true
+  - id: 'D39 - Distribution: Other'
+    term: 'D39 - Distribution: Other'
+    active: true
+  - id: 'D40 - Market Structure, Pricing, and Design: General'
+    term: 'D40 - Market Structure, Pricing, and Design: General'
+    active: true
+  - id: 'D41 - Market Structure, Pricing, and Design: Perfect Competition'
+    term: 'D41 - Market Structure, Pricing, and Design: Perfect Competition'
+    active: true
+  - id: 'D42 - Market Structure, Pricing, and Design: Monopoly'
+    term: 'D42 - Market Structure, Pricing, and Design: Monopoly'
+    active: true
+  - id: 'D43 - Market Structure, Pricing, and Design: Oligopoly and Other Forms of Market Imperfection'
+    term: 'D43 - Market Structure, Pricing, and Design: Oligopoly and Other Forms of Market Imperfection'
+    active: true
+  - id: 'D44 - Auctions'
+    term: 'D44 - Auctions'
+    active: true
+  - id: 'D45 - Rationing; Licensing'
+    term: 'D45 - Rationing; Licensing'
+    active: true
+  - id: 'D46 - Value Theory'
+    term: 'D46 - Value Theory'
+    active: true
+  - id: 'D47 - Market Design'
+    term: 'D47 - Market Design'
+    active: true
+  - id: 'D49 - Market Structure and Pricing: Other'
+    term: 'D49 - Market Structure and Pricing: Other'
+    active: true
+  - id: 'D50 - General Equilibrium and Disequilibrium: General'
+    term: 'D50 - General Equilibrium and Disequilibrium: General'
+    active: true
+  - id: 'D51 - Exchange and Production Economies'
+    term: 'D51 - Exchange and Production Economies'
+    active: true
+  - id: 'D52 - Incomplete Markets'
+    term: 'D52 - Incomplete Markets'
+    active: true
+  - id: 'D53 - General Equilibrium and Disequilibrium: Financial Markets'
+    term: 'D53 - General Equilibrium and Disequilibrium: Financial Markets'
+    active: true
+  - id: 'D57 - General Equilibrium and Disequilibrium: Input-Output Tables and Analysis'
+    term: 'D57 - General Equilibrium and Disequilibrium: Input-Output Tables and Analysis'
+    active: true
+  - id: 'D58 - Computable and Other Applied General Equilibrium Models'
+    term: 'D58 - Computable and Other Applied General Equilibrium Models'
+    active: true
+  - id: 'D59 - General Equilibrium and Disequilibrium: Other'
+    term: 'D59 - General Equilibrium and Disequilibrium: Other'
+    active: true
+  - id: 'D60 - Welfare Economics: General'
+    term: 'D60 - Welfare Economics: General'
+    active: true
+  - id: 'D61 - Allocative Efficiency; Cost-Benefit Analysis'
+    term: 'D61 - Allocative Efficiency; Cost-Benefit Analysis'
+    active: true
+  - id: 'D62 - Externalities'
+    term: 'D62 - Externalities'
+    active: true
+  - id: 'D63 - Equity, Justice, Inequality, and Other Normative Criteria and Measurement'
+    term: 'D63 - Equity, Justice, Inequality, and Other Normative Criteria and Measurement'
+    active: true
+  - id: 'D64 - Altruism; Philanthropy; Intergenerational Transfer'
+    term: 'D64 - Altruism; Philanthropy; Intergenerational Transfer'
+    active: true
+  - id: 'D69 - Welfare Economics: Other'
+    term: 'D69 - Welfare Economics: Other'
+    active: true
+  - id: 'D70 - Analysis of Collective Decision-Making: General'
+    term: 'D70 - Analysis of Collective Decision-Making: General'
+    active: true
+  - id: 'D71 - Social Choice; Clubs; Committees; Associations'
+    term: 'D71 - Social Choice; Clubs; Committees; Associations'
+    active: true
+  - id: 'D72 - Political Processes: Rent-seeking, Lobbying, Elections, Legislatures, and Voting Behavior'
+    term: 'D72 - Political Processes: Rent-seeking, Lobbying, Elections, Legislatures, and Voting Behavior'
+    active: true
+  - id: 'D73 - Bureaucracy; Administrative Processes in Public Organizations; Corruption'
+    term: 'D73 - Bureaucracy; Administrative Processes in Public Organizations; Corruption'
+    active: true
+  - id: 'D74 - Conflict; Conflict Resolution; Alliances; Revolutions'
+    term: 'D74 - Conflict; Conflict Resolution; Alliances; Revolutions'
+    active: true
+  - id: 'D78 - Positive Analysis of Policy Formulation and Implementation'
+    term: 'D78 - Positive Analysis of Policy Formulation and Implementation'
+    active: true
+  - id: 'D79 - Analysis of Collective Decision-Making: Other'
+    term: 'D79 - Analysis of Collective Decision-Making: Other'
+    active: true
+  - id: 'D80 - Information, Knowledge, and Uncertainty: General'
+    term: 'D80 - Information, Knowledge, and Uncertainty: General'
+    active: true
+  - id: 'D81 - Criteria for Decision-Making under Risk and Uncertainty'
+    term: 'D81 - Criteria for Decision-Making under Risk and Uncertainty'
+    active: true
+  - id: 'D82 - Asymmetric and Private Information; Mechanism Design'
+    term: 'D82 - Asymmetric and Private Information; Mechanism Design'
+    active: true
+  - id: 'D83 - Search; Learning; Information and Knowledge; Communication; Belief; Unawareness'
+    term: 'D83 - Search; Learning; Information and Knowledge; Communication; Belief; Unawareness'
+    active: true
+  - id: 'D84 - Expectations; Speculations'
+    term: 'D84 - Expectations; Speculations'
+    active: true
+  - id: 'D85 - Network Formation and Analysis: Theory'
+    term: 'D85 - Network Formation and Analysis: Theory'
+    active: true
+  - id: 'D86 - Economics of Contract: Theory'
+    term: 'D86 - Economics of Contract: Theory'
+    active: true
+  - id: 'D87 - Neuroeconomics'
+    term: 'D87 - Neuroeconomics'
+    active: true
+  - id: 'D89 - Information and Uncertainty: Other'
+    term: 'D89 - Information and Uncertainty: Other'
+    active: true
+  - id: 'D90 - Micro-Based Behavioral Economics: General'
+    term: 'D90 - Micro-Based Behavioral Economics: General'
+    active: true
+  - id: 'D91 - Micro-Based Behavioral Economics: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making'
+    term: 'D91 - Micro-Based Behavioral Economics: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making'
+    active: true
+  - id: 'E00 - Macroeconomics and Monetary Economics: General'
+    term: 'E00 - Macroeconomics and Monetary Economics: General'
+    active: true
+  - id: 'E01 - Measurement and Data on National Income and Product Accounts and Wealth; Environmental Accounts'
+    term: 'E01 - Measurement and Data on National Income and Product Accounts and Wealth; Environmental Accounts'
+    active: true
+  - id: 'E02 - Institutions and the Macroeconomy'
+    term: 'E02 - Institutions and the Macroeconomy'
+    active: true
+  - id: 'E10 - General Aggregative Models: General'
+    term: 'E10 - General Aggregative Models: General'
+    active: true
+  - id: 'E11 - General Aggregative Models: Marxian; Sraffian; Kaleckian'
+    term: 'E11 - General Aggregative Models: Marxian; Sraffian; Kaleckian'
+    active: true
+  - id: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian'
+    term: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian'
+    active: true
+  - id: 'E13 - General Aggregative Models: Neoclassical'
+    term: 'E13 - General Aggregative Models: Neoclassical'
+    active: true
+  - id: 'E14 - Austrian; Evolutionary; Institutional'
+    term: 'E14 - Austrian; Evolutionary; Institutional'
+    active: true
+  - id: 'E16 - General Aggregative Models: Social Accounting Matrix'
+    term: 'E16 - General Aggregative Models: Social Accounting Matrix'
+    active: true
+  - id: 'E17 - General Aggregative Models: Forecasting and Simulation: Models and Applications'
+    term: 'E17 - General Aggregative Models: Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'E19 - General Aggregative Models: Other'
+    term: 'E19 - General Aggregative Models: Other'
+    active: true
+  - id: 'E20 - Consumption, Saving, Production, Investment, Labor Markets, and Informal Economy: General (includes Measurement and Data)'
+    term: 'E20 - Consumption, Saving, Production, Investment, Labor Markets, and Informal Economy: General (includes Measurement and Data)'
+    active: true
+  - id: 'E21 - Macroeconomics: Consumption; Saving; Wealth'
+    term: 'E21 - Macroeconomics: Consumption; Saving; Wealth'
+    active: true
+  - id: 'E22 - Investment; Capital; Intangible Capital; Capacity'
+    term: 'E22 - Investment; Capital; Intangible Capital; Capacity'
+    active: true
+  - id: 'E23 - Macroeconomics: Production'
+    term: 'E23 - Macroeconomics: Production'
+    active: true
+  - id: 'E24 - Employment; Unemployment; Wages; Intergenerational Income Distribution; Aggregate Human Capital; Aggregate Labor Productivity'
+    term: 'E24 - Employment; Unemployment; Wages; Intergenerational Income Distribution; Aggregate Human Capital; Aggregate Labor Productivity'
+    active: true
+  - id: 'E25 - Aggregate Factor Income Distribution'
+    term: 'E25 - Aggregate Factor Income Distribution'
+    active: true
+  - id: 'E26 - Informal Economy; Underground Economy'
+    term: 'E26 - Informal Economy; Underground Economy'
+    active: true
+  - id: 'E27 - Macroeconomics: Consumption, Saving, Production, Employment, and Investment: Forecasting and Simulation: Models and Applications'
+    term: 'E27 - Macroeconomics: Consumption, Saving, Production, Employment, and Investment: Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'E29 - Consumption, Saving, Production, Investment, Labor Markets, and Informal Economy: Other'
+    term: 'E29 - Consumption, Saving, Production, Investment, Labor Markets, and Informal Economy: Other'
+    active: true
+  - id: 'E30 - Prices, Business Fluctuations, and Cycles: General (includes Measurement and Data)'
+    term: 'E30 - Prices, Business Fluctuations, and Cycles: General (includes Measurement and Data)'
+    active: true
+  - id: 'E31 - Price Level; Inflation; Deflation'
+    term: 'E31 - Price Level; Inflation; Deflation'
+    active: true
+  - id: 'E32 - Business Fluctuations; Cycles'
+    term: 'E32 - Business Fluctuations; Cycles'
+    active: true
+  - id: 'E37 - Prices, Business Fluctuations, and Cycles: Forecasting and Simulation: Models and Applications'
+    term: 'E37 - Prices, Business Fluctuations, and Cycles: Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'E39 - Prices, Business Fluctuations, and Cycles: Other'
+    term: 'E39 - Prices, Business Fluctuations, and Cycles: Other'
+    active: true
+  - id: 'E40 - Money and Interest Rates: General'
+    term: 'E40 - Money and Interest Rates: General'
+    active: true
+  - id: 'E41 - Demand for Money'
+    term: 'E41 - Demand for Money'
+    active: true
+  - id: 'E42 - Monetary Systems; Standards; Regimes; Government and the Monetary System; Payment Systems'
+    term: 'E42 - Monetary Systems; Standards; Regimes; Government and the Monetary System; Payment Systems'
+    active: true
+  - id: 'E43 - Interest Rates: Determination, Term Structure, and Effects'
+    term: 'E43 - Interest Rates: Determination, Term Structure, and Effects'
+    active: true
+  - id: 'E44 - Financial Markets and the Macroeconomy'
+    term: 'E44 - Financial Markets and the Macroeconomy'
+    active: true
+  - id: 'E47 - Money and Interest Rates: Forecasting and Simulation: Models and Applications'
+    term: 'E47 - Money and Interest Rates: Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'E49 - Money and Interest Rates: Other'
+    term: 'E49 - Money and Interest Rates: Other'
+    active: true
+  - id: 'E50 - Monetary Policy, Central Banking, and the Supply of Money and Credit: General'
+    term: 'E50 - Monetary Policy, Central Banking, and the Supply of Money and Credit: General'
+    active: true
+  - id: 'E51 - Money Supply; Credit; Money Multipliers'
+    term: 'E51 - Money Supply; Credit; Money Multipliers'
+    active: true
+  - id: 'E52 - Monetary Policy'
+    term: 'E52 - Monetary Policy'
+    active: true
+  - id: 'E58 - Central Banks and Their Policies'
+    term: 'E58 - Central Banks and Their Policies'
+    active: true
+  - id: 'E59 - Monetary Policy, Central Banking, and the Supply of Money and Credit: Other'
+    term: 'E59 - Monetary Policy, Central Banking, and the Supply of Money and Credit: Other'
+    active: true
+  - id: 'E60 - Macroeconomic Policy, Macroeconomic Aspects of Public Finance, and General Outlook: General'
+    term: 'E60 - Macroeconomic Policy, Macroeconomic Aspects of Public Finance, and General Outlook: General'
+    active: true
+  - id: 'E61 - Policy Objectives; Policy Designs and Consistency; Policy Coordination'
+    term: 'E61 - Policy Objectives; Policy Designs and Consistency; Policy Coordination'
+    active: true
+  - id: 'E62 - Fiscal Policy'
+    term: 'E62 - Fiscal Policy'
+    active: true
+  - id: 'E63 - Comparative or Joint Analysis of Fiscal and Monetary Policy; Stabilization; Treasury Policy'
+    term: 'E63 - Comparative or Joint Analysis of Fiscal and Monetary Policy; Stabilization; Treasury Policy'
+    active: true
+  - id: 'E64 - Incomes Policy; Price Policy'
+    term: 'E64 - Incomes Policy; Price Policy'
+    active: true
+  - id: 'E65 - Studies of Particular Policy Episodes'
+    term: 'E65 - Studies of Particular Policy Episodes'
+    active: true
+  - id: 'E66 - General Outlook and Conditions'
+    term: 'E66 - General Outlook and Conditions'
+    active: true
+  - id: 'E69 - Macroeconomic Policy, Macroeconomic Aspects of Public Finance, and General Outlook: Other'
+    term: 'E69 - Macroeconomic Policy, Macroeconomic Aspects of Public Finance, and General Outlook: Other'
+    active: true
+  - id: 'E70 - Macro-Based Behavioral Economics: General'
+    term: 'E70 - Macro-Based Behavioral Economics: General'
+    active: true
+  - id: 'E71 - Macro-Based Behavioral Economics: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on the Macro Economy'
+    term: 'E71 - Macro-Based Behavioral Economics: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on the Macro Economy'
+    active: true
+  - id: 'F00 - International Economics: General'
+    term: 'F00 - International Economics: General'
+    active: true
+  - id: 'F01 - Global Outlook'
+    term: 'F01 - Global Outlook'
+    active: true
+  - id: 'F02 - International Economic Order and Integration'
+    term: 'F02 - International Economic Order and Integration'
+    active: true
+  - id: 'F10 - Trade: General'
+    term: 'F10 - Trade: General'
+    active: true
+  - id: 'F11 - Neoclassical Models of Trade'
+    term: 'F11 - Neoclassical Models of Trade'
+    active: true
+  - id: 'F12 - Models of Trade with Imperfect Competition and Scale Economies; Fragmentation'
+    term: 'F12 - Models of Trade with Imperfect Competition and Scale Economies; Fragmentation'
+    active: true
+  - id: 'F13 - Trade Policy; International Trade Organizations'
+    term: 'F13 - Trade Policy; International Trade Organizations'
+    active: true
+  - id: 'F14 - Empirical Studies of Trade'
+    term: 'F14 - Empirical Studies of Trade'
+    active: true
+  - id: 'F15 - Economic Integration'
+    term: 'F15 - Economic Integration'
+    active: true
+  - id: 'F16 - Trade and Labor Market Interactions'
+    term: 'F16 - Trade and Labor Market Interactions'
+    active: true
+  - id: 'F17 - Trade: Forecasting and Simulation'
+    term: 'F17 - Trade: Forecasting and Simulation'
+    active: true
+  - id: 'F18 - Trade and Environment'
+    term: 'F18 - Trade and Environment'
+    active: true
+  - id: 'F19 - Trade: Other'
+    term: 'F19 - Trade: Other'
+    active: true
+  - id: 'F20 - International Factor Movements and International Business: General'
+    term: 'F20 - International Factor Movements and International Business: General'
+    active: true
+  - id: 'F21 - International Investment; Long-term Capital Movements'
+    term: 'F21 - International Investment; Long-term Capital Movements'
+    active: true
+  - id: 'F22 - International Migration'
+    term: 'F22 - International Migration'
+    active: true
+  - id: 'F23 - Multinational Firms; International Business'
+    term: 'F23 - Multinational Firms; International Business'
+    active: true
+  - id: 'F24 - Remittances'
+    term: 'F24 - Remittances'
+    active: true
+  - id: 'F29 - International Factor Movements: Other'
+    term: 'F29 - International Factor Movements: Other'
+    active: true
+  - id: 'F30 - International Finance: General'
+    term: 'F30 - International Finance: General'
+    active: true
+  - id: 'F31 - Foreign Exchange'
+    term: 'F31 - Foreign Exchange'
+    active: true
+  - id: 'F32 - Current Account Adjustment; Short-term Capital Movements'
+    term: 'F32 - Current Account Adjustment; Short-term Capital Movements'
+    active: true
+  - id: 'F33 - International Monetary Arrangements and Institutions'
+    term: 'F33 - International Monetary Arrangements and Institutions'
+    active: true
+  - id: 'F34 - International Lending and Debt Problems'
+    term: 'F34 - International Lending and Debt Problems'
+    active: true
+  - id: 'F35 - Foreign Aid'
+    term: 'F35 - Foreign Aid'
+    active: true
+  - id: 'F36 - Financial Aspects of Economic Integration'
+    term: 'F36 - Financial Aspects of Economic Integration'
+    active: true
+  - id: 'F37 - International Finance Forecasting and Simulation: Models and Applications'
+    term: 'F37 - International Finance Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'F38 - International Financial Policy: Financial Transactions Tax; Capital Controls'
+    term: 'F38 - International Financial Policy: Financial Transactions Tax; Capital Controls'
+    active: true
+  - id: 'F39 - International Finance: Other'
+    term: 'F39 - International Finance: Other'
+    active: true
+  - id: 'F40 - Macroeconomic Aspects of International Trade and Finance: General'
+    term: 'F40 - Macroeconomic Aspects of International Trade and Finance: General'
+    active: true
+  - id: 'F41 - Open Economy Macroeconomics'
+    term: 'F41 - Open Economy Macroeconomics'
+    active: true
+  - id: 'F42 - International Policy Coordination and Transmission'
+    term: 'F42 - International Policy Coordination and Transmission'
+    active: true
+  - id: 'F43 - Economic Growth of Open Economies'
+    term: 'F43 - Economic Growth of Open Economies'
+    active: true
+  - id: 'F44 - International Business Cycles'
+    term: 'F44 - International Business Cycles'
+    active: true
+  - id: 'F45 - Macroeconomic Issues of Monetary Unions'
+    term: 'F45 - Macroeconomic Issues of Monetary Unions'
+    active: true
+  - id: 'F47 - Macroeconomic Aspects of International Trade and Finance: Forecasting and Simulation: Models and Applications'
+    term: 'F47 - Macroeconomic Aspects of International Trade and Finance: Forecasting and Simulation: Models and Applications'
+    active: true
+  - id: 'F49 - Macroeconomic Aspects of International Trade and Finance: Other'
+    term: 'F49 - Macroeconomic Aspects of International Trade and Finance: Other'
+    active: true
+  - id: 'F50 - International Relations, National Security, and International Political Economy: General'
+    term: 'F50 - International Relations, National Security, and International Political Economy: General'
+    active: true
+  - id: 'F51 - International Conflicts; Negotiations; Sanctions'
+    term: 'F51 - International Conflicts; Negotiations; Sanctions'
+    active: true
+  - id: 'F52 - National Security; Economic Nationalism'
+    term: 'F52 - National Security; Economic Nationalism'
+    active: true
+  - id: 'F53 - International Agreements and Observance; International Organizations'
+    term: 'F53 - International Agreements and Observance; International Organizations'
+    active: true
+  - id: 'F54 - Colonialism; Imperialism; Postcolonialism'
+    term: 'F54 - Colonialism; Imperialism; Postcolonialism'
+    active: true
+  - id: 'F55 - International Institutional Arrangements'
+    term: 'F55 - International Institutional Arrangements'
+    active: true
+  - id: 'F59 - International Relations and International Political Economy: Other'
+    term: 'F59 - International Relations and International Political Economy: Other'
+    active: true
+  - id: 'F60 - Economic Impacts of Globalization: General'
+    term: 'F60 - Economic Impacts of Globalization: General'
+    active: true
+  - id: 'F61 - Economic Impacts of Globalization: Microeconomic Impacts'
+    term: 'F61 - Economic Impacts of Globalization: Microeconomic Impacts'
+    active: true
+  - id: 'F62 - Economic Impacts of Globalization: Macroeconomic Impacts'
+    term: 'F62 - Economic Impacts of Globalization: Macroeconomic Impacts'
+    active: true
+  - id: 'F63 - Economic Impacts of Globalization: Economic Development'
+    term: 'F63 - Economic Impacts of Globalization: Economic Development'
+    active: true
+  - id: 'F64 - Economic Impacts of Globalization: Environment'
+    term: 'F64 - Economic Impacts of Globalization: Environment'
+    active: true
+  - id: 'F65 - Economic Impacts of Globalization: Finance'
+    term: 'F65 - Economic Impacts of Globalization: Finance'
+    active: true
+  - id: 'F66 - Economic Impacts of Globalization: Labor'
+    term: 'F66 - Economic Impacts of Globalization: Labor'
+    active: true
+  - id: 'F68 - Economic Impacts of Globalization: Policy'
+    term: 'F68 - Economic Impacts of Globalization: Policy'
+    active: true
+  - id: 'F69 - Economic Impacts of Globalization: Other'
+    term: 'F69 - Economic Impacts of Globalization: Other'
+    active: true
+  - id: 'G00 - Financial Economics: General'
+    term: 'G00 - Financial Economics: General'
+    active: true
+  - id: 'G01 - Financial Crises'
+    term: 'G01 - Financial Crises'
+    active: true
+  - id: 'G10 - General Financial Markets: General (includes Measurement and Data)'
+    term: 'G10 - General Financial Markets: General (includes Measurement and Data)'
+    active: true
+  - id: 'G11 - Portfolio Choice; Investment Decisions'
+    term: 'G11 - Portfolio Choice; Investment Decisions'
+    active: true
+  - id: 'G12 - Asset Pricing; Trading Volume; Bond Interest Rates'
+    term: 'G12 - Asset Pricing; Trading Volume; Bond Interest Rates'
+    active: true
+  - id: 'G13 - Contingent Pricing; Futures Pricing; option pricing'
+    term: 'G13 - Contingent Pricing; Futures Pricing; option pricing'
+    active: true
+  - id: 'G14 - Information and Market Efficiency; Event Studies; Insider Trading'
+    term: 'G14 - Information and Market Efficiency; Event Studies; Insider Trading'
+    active: true
+  - id: 'G15 - International Financial Markets'
+    term: 'G15 - International Financial Markets'
+    active: true
+  - id: 'G17 - Financial Forecasting and Simulation'
+    term: 'G17 - Financial Forecasting and Simulation'
+    active: true
+  - id: 'G18 - General Financial Markets: Government Policy and Regulation'
+    term: 'G18 - General Financial Markets: Government Policy and Regulation'
+    active: true
+  - id: 'G19 - General Financial Markets: Other'
+    term: 'G19 - General Financial Markets: Other'
+    active: true
+  - id: 'G20 - Financial Institutions and Services: General'
+    term: 'G20 - Financial Institutions and Services: General'
+    active: true
+  - id: 'G21 - Banks; Depository Institutions; Micro Finance Institutions; Mortgages'
+    term: 'G21 - Banks; Depository Institutions; Micro Finance Institutions; Mortgages'
+    active: true
+  - id: 'G22 - Insurance; Insurance Companies; Actuarial Studies'
+    term: 'G22 - Insurance; Insurance Companies; Actuarial Studies'
+    active: true
+  - id: 'G23 - Pension Funds; Non-bank Financial Institutions; Financial Instruments; Institutional Investors'
+    term: 'G23 - Pension Funds; Non-bank Financial Institutions; Financial Instruments; Institutional Investors'
+    active: true
+  - id: 'G24 - Investment Banking; Venture Capital; Brokerage; Ratings and Ratings Agencies'
+    term: 'G24 - Investment Banking; Venture Capital; Brokerage; Ratings and Ratings Agencies'
+    active: true
+  - id: 'G28 - Financial Institutions and Services: Government Policy and Regulation'
+    term: 'G28 - Financial Institutions and Services: Government Policy and Regulation'
+    active: true
+  - id: 'G29 - Financial Institutions and Services: Other'
+    term: 'G29 - Financial Institutions and Services: Other'
+    active: true
+  - id: 'G30 - Corporate Finance and Governance: General'
+    term: 'G30 - Corporate Finance and Governance: General'
+    active: true
+  - id: 'G31 - Capital Budgeting; Fixed Investment and Inventory Studies; Capacity'
+    term: 'G31 - Capital Budgeting; Fixed Investment and Inventory Studies; Capacity'
+    active: true
+  - id: 'G32 - Financing Policy; Financial Risk and Risk Management; Capital and Ownership Structure; Value of Firms; Goodwill'
+    term: 'G32 - Financing Policy; Financial Risk and Risk Management; Capital and Ownership Structure; Value of Firms; Goodwill'
+    active: true
+  - id: 'G33 - Bankruptcy; Liquidation'
+    term: 'G33 - Bankruptcy; Liquidation'
+    active: true
+  - id: 'G34 - Mergers; Acquisitions; Restructuring; Voting; Proxy Contests; Corporate Governance'
+    term: 'G34 - Mergers; Acquisitions; Restructuring; Voting; Proxy Contests; Corporate Governance'
+    active: true
+  - id: 'G35 - Payout Policy'
+    term: 'G35 - Payout Policy'
+    active: true
+  - id: 'G38 - Corporate Finance and Governance: Government Policy and Regulation'
+    term: 'G38 - Corporate Finance and Governance: Government Policy and Regulation'
+    active: true
+  - id: 'G39 - Corporate Finance and Governance: Other'
+    term: 'G39 - Corporate Finance and Governance: Other'
+    active: true
+  - id: 'G40 - Behavioral Finance: General'
+    term: 'G40 - Behavioral Finance: General'
+    active: true
+  - id: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
+    term: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
+    active: true
+  - id: 'H00 - Public Economics: General'
+    term: 'H00 - Public Economics: General'
+    active: true
+  - id: 'H10 - Structure and Scope of Government: General'
+    term: 'H10 - Structure and Scope of Government: General'
+    active: true
+  - id: 'H11 - Structure, Scope, and Performance of Government'
+    term: 'H11 - Structure, Scope, and Performance of Government'
+    active: true
+  - id: 'H12 - Crisis Management'
+    term: 'H12 - Crisis Management'
+    active: true
+  - id: 'H13 - Economics of Eminent Domain; Expropriation; Nationalization'
+    term: 'H13 - Economics of Eminent Domain; Expropriation; Nationalization'
+    active: true
+  - id: 'H19 - Structure and Scope of Government: Other'
+    term: 'H19 - Structure and Scope of Government: Other'
+    active: true
+  - id: 'H20 - Taxation, Subsidies, and Revenue: General'
+    term: 'H20 - Taxation, Subsidies, and Revenue: General'
+    active: true
+  - id: 'H21 - Taxation and Subsidies: Efficiency; Optimal Taxation'
+    term: 'H21 - Taxation and Subsidies: Efficiency; Optimal Taxation'
+    active: true
+  - id: 'H22 - Taxation and Subsidies: Incidence'
+    term: 'H22 - Taxation and Subsidies: Incidence'
+    active: true
+  - id: 'H23 - Taxation and Subsidies: Externalities; Redistributive Effects; Environmental Taxes and Subsidies'
+    term: 'H23 - Taxation and Subsidies: Externalities; Redistributive Effects; Environmental Taxes and Subsidies'
+    active: true
+  - id: 'H24 - Personal Income and Other Nonbusiness Taxes and Subsidies; includes inheritance and gift taxes'
+    term: 'H24 - Personal Income and Other Nonbusiness Taxes and Subsidies; includes inheritance and gift taxes'
+    active: true
+  - id: 'H25 - Business Taxes and Subsidies including sales and value-added (VAT)'
+    term: 'H25 - Business Taxes and Subsidies including sales and value-added (VAT)'
+    active: true
+  - id: 'H26 - Tax Evasion and Avoidance'
+    term: 'H26 - Tax Evasion and Avoidance'
+    active: true
+  - id: 'H27 - Taxation, Subsidies, and Revenues: Other Sources of Revenue'
+    term: 'H27 - Taxation, Subsidies, and Revenues: Other Sources of Revenue'
+    active: true
+  - id: 'H29 - Taxation and Subsidies: Other'
+    term: 'H29 - Taxation and Subsidies: Other'
+    active: true
+  - id: 'H30 - Fiscal Policies and Behavior of Economic Agents: General'
+    term: 'H30 - Fiscal Policies and Behavior of Economic Agents: General'
+    active: true
+  - id: 'H31 - Fiscal Policies and Behavior of Economic Agents: Household'
+    term: 'H31 - Fiscal Policies and Behavior of Economic Agents: Household'
+    active: true
+  - id: 'H32 - Fiscal Policies and Behavior of Economic Agents: Firm'
+    term: 'H32 - Fiscal Policies and Behavior of Economic Agents: Firm'
+    active: true
+  - id: 'H39 - Fiscal Policies and Behavior of Economic Agents: Other'
+    term: 'H39 - Fiscal Policies and Behavior of Economic Agents: Other'
+    active: true
+  - id: 'H40 - Publicly Provided Goods: General'
+    term: 'H40 - Publicly Provided Goods: General'
+    active: true
+  - id: 'H41 - Public Goods'
+    term: 'H41 - Public Goods'
+    active: true
+  - id: 'H42 - Publicly Provided Private Goods'
+    term: 'H42 - Publicly Provided Private Goods'
+    active: true
+  - id: 'H43 - Project Evaluation; Social Discount Rate'
+    term: 'H43 - Project Evaluation; Social Discount Rate'
+    active: true
+  - id: 'H44 - Publicly Provided Goods: Mixed Markets'
+    term: 'H44 - Publicly Provided Goods: Mixed Markets'
+    active: true
+  - id: 'H49 - Publicly Provided Goods: Other'
+    term: 'H49 - Publicly Provided Goods: Other'
+    active: true
+  - id: 'H50 - National Government Expenditures and Related Policies: General'
+    term: 'H50 - National Government Expenditures and Related Policies: General'
+    active: true
+  - id: 'H51 - National Government Expenditures and Health'
+    term: 'H51 - National Government Expenditures and Health'
+    active: true
+  - id: 'H52 - National Government Expenditures and Education'
+    term: 'H52 - National Government Expenditures and Education'
+    active: true
+  - id: 'H53 - National Government Expenditures and Welfare Programs'
+    term: 'H53 - National Government Expenditures and Welfare Programs'
+    active: true
+  - id: 'H54 - National Government Expenditures and Related Policies: Infrastructures; Other Public Investment and Capital Stock'
+    term: 'H54 - National Government Expenditures and Related Policies: Infrastructures; Other Public Investment and Capital Stock'
+    active: true
+  - id: 'H55 - Social Security and Public Pensions'
+    term: 'H55 - Social Security and Public Pensions'
+    active: true
+  - id: 'H56 - National Security and War'
+    term: 'H56 - National Security and War'
+    active: true
+  - id: 'H57 - National Government Expenditures and Related Policies: Procurement'
+    term: 'H57 - National Government Expenditures and Related Policies: Procurement'
+    active: true
+  - id: 'H59 - National Government Expenditures and Related Policies: Other'
+    term: 'H59 - National Government Expenditures and Related Policies: Other'
+    active: true
+  - id: 'H60 - National Budget, Deficit, and Debt: General'
+    term: 'H60 - National Budget, Deficit, and Debt: General'
+    active: true
+  - id: 'H61 - National Budget; Budget Systems'
+    term: 'H61 - National Budget; Budget Systems'
+    active: true
+  - id: 'H62 - National Deficit; Surplus'
+    term: 'H62 - National Deficit; Surplus'
+    active: true
+  - id: 'H63 - National Debt; Debt Management; Sovereign Debt'
+    term: 'H63 - National Debt; Debt Management; Sovereign Debt'
+    active: true
+  - id: 'H68 - Forecasts of Budgets, Deficits, and Debt'
+    term: 'H68 - Forecasts of Budgets, Deficits, and Debt'
+    active: true
+  - id: 'H69 - National Budget, Deficit, and Debt: Other'
+    term: 'H69 - National Budget, Deficit, and Debt: Other'
+    active: true
+  - id: 'H70 - State and Local Government; Intergovernmental Relations: General'
+    term: 'H70 - State and Local Government; Intergovernmental Relations: General'
+    active: true
+  - id: 'H71 - State and Local Taxation, Subsidies, and Revenue'
+    term: 'H71 - State and Local Taxation, Subsidies, and Revenue'
+    active: true
+  - id: 'H72 - State and Local Budget and Expenditures'
+    term: 'H72 - State and Local Budget and Expenditures'
+    active: true
+  - id: 'H73 - State and Local Government; Intergovernmental Relations: Interjurisdictional Differentials and Their Effects'
+    term: 'H73 - State and Local Government; Intergovernmental Relations: Interjurisdictional Differentials and Their Effects'
+    active: true
+  - id: 'H74 - State and Local Borrowing'
+    term: 'H74 - State and Local Borrowing'
+    active: true
+  - id: 'H75 - State and Local Government: Health; Education; Welfare; Public Pensions'
+    term: 'H75 - State and Local Government: Health; Education; Welfare; Public Pensions'
+    active: true
+  - id: 'H76 - State and Local Government: Other Expenditure Categories'
+    term: 'H76 - State and Local Government: Other Expenditure Categories'
+    active: true
+  - id: 'H77 - Intergovernmental Relations; Federalism; Secession'
+    term: 'H77 - Intergovernmental Relations; Federalism; Secession'
+    active: true
+  - id: 'H79 - State and Local Government; Intergovernmental Relations: Other'
+    term: 'H79 - State and Local Government; Intergovernmental Relations: Other'
+    active: true
+  - id: 'H80 - Public Economics: Miscellaneous Issues: General'
+    term: 'H80 - Public Economics: Miscellaneous Issues: General'
+    active: true
+  - id: 'H81 - Governmental Loans; Loan Guarantees; Credits; Grants; Bailouts'
+    term: 'H81 - Governmental Loans; Loan Guarantees; Credits; Grants; Bailouts'
+    active: true
+  - id: 'H82 - Governmental Property'
+    term: 'H82 - Governmental Property'
+    active: true
+  - id: 'H83 - Public Administration; Public Sector Accounting and Audits'
+    term: 'H83 - Public Administration; Public Sector Accounting and Audits'
+    active: true
+  - id: 'H84 - Disaster Aid'
+    term: 'H84 - Disaster Aid'
+    active: true
+  - id: 'H87 - International Fiscal Issues; International Public Goods'
+    term: 'H87 - International Fiscal Issues; International Public Goods'
+    active: true
+  - id: 'H89 - Public Economics: Miscellaneous Issues: Other'
+    term: 'H89 - Public Economics: Miscellaneous Issues: Other'
+    active: true
+  - id: 'I00 - Health, Education, and Welfare: General'
+    term: 'I00 - Health, Education, and Welfare: General'
+    active: true
+  - id: 'I10 - Health: General'
+    term: 'I10 - Health: General'
+    active: true
+  - id: 'I11 - Analysis of Health Care Markets'
+    term: 'I11 - Analysis of Health Care Markets'
+    active: true
+  - id: 'I12 - Health Behavior'
+    term: 'I12 - Health Behavior'
+    active: true
+  - id: 'I13 - Health Insurance, Public and Private'
+    term: 'I13 - Health Insurance, Public and Private'
+    active: true
+  - id: 'I14 - Health and Inequality'
+    term: 'I14 - Health and Inequality'
+    active: true
+  - id: 'I15 - Health and Economic Development'
+    term: 'I15 - Health and Economic Development'
+    active: true
+  - id: 'I18 - Health: Government Policy; Regulation; Public Health'
+    term: 'I18 - Health: Government Policy; Regulation; Public Health'
+    active: true
+  - id: 'I19 - Health: Other'
+    term: 'I19 - Health: Other'
+    active: true
+  - id: 'I20 - Education and Research Institutions: General'
+    term: 'I20 - Education and Research Institutions: General'
+    active: true
+  - id: 'I21 - Analysis of Education'
+    term: 'I21 - Analysis of Education'
+    active: true
+  - id: 'I22 - Educational Finance; Financial Aid'
+    term: 'I22 - Educational Finance; Financial Aid'
+    active: true
+  - id: 'I23 - Higher Education; Research Institutions'
+    term: 'I23 - Higher Education; Research Institutions'
+    active: true
+  - id: 'I24 - Education and Inequality'
+    term: 'I24 - Education and Inequality'
+    active: true
+  - id: 'I25 - Education and Economic Development'
+    term: 'I25 - Education and Economic Development'
+    active: true
+  - id: 'I26 - Returns to Education'
+    term: 'I26 - Returns to Education'
+    active: true
+  - id: 'I28 - Education: Government Policy'
+    term: 'I28 - Education: Government Policy'
+    active: true
+  - id: 'I29 - Education: Other'
+    term: 'I29 - Education: Other'
+    active: true
+  - id: 'I30 - Welfare, Well-Being, and Poverty: General'
+    term: 'I30 - Welfare, Well-Being, and Poverty: General'
+    active: true
+  - id: 'I31 - General Welfare; Well-Being'
+    term: 'I31 - General Welfare; Well-Being'
+    active: true
+  - id: 'I32 - Measurement and Analysis of Poverty'
+    term: 'I32 - Measurement and Analysis of Poverty'
+    active: true
+  - id: 'I38 - Welfare, Well-Being, and Poverty: Government Programs; Provision and Effects of Welfare Programs'
+    term: 'I38 - Welfare, Well-Being, and Poverty: Government Programs; Provision and Effects of Welfare Programs'
+    active: true
+  - id: 'I39 - Welfare, Well-Being, and Poverty: Other'
+    term: 'I39 - Welfare, Well-Being, and Poverty: Other'
+    active: true
+  - id: 'J00 - Labor and Demographic Economics: General'
+    term: 'J00 - Labor and Demographic Economics: General'
+    active: true
+  - id: 'J01 - Labor Economics: General'
+    term: 'J01 - Labor Economics: General'
+    active: true
+  - id: 'J08 - Labor Economics Policies'
+    term: 'J08 - Labor Economics Policies'
+    active: true
+  - id: 'J10 - Demographic Economics: General'
+    term: 'J10 - Demographic Economics: General'
+    active: true
+  - id: 'J11 - Demographic Trends, Macroeconomic Effects, and Forecasts'
+    term: 'J11 - Demographic Trends, Macroeconomic Effects, and Forecasts'
+    active: true
+  - id: 'J12 - Marriage; Marital Dissolution; Family Structure; Domestic Abuse'
+    term: 'J12 - Marriage; Marital Dissolution; Family Structure; Domestic Abuse'
+    active: true
+  - id: 'J13 - Fertility; Family Planning; Child Care; Children; Youth'
+    term: 'J13 - Fertility; Family Planning; Child Care; Children; Youth'
+    active: true
+  - id: 'J14 - Economics of the Elderly; Economics of the Handicapped; Non-labor Market Discrimination'
+    term: 'J14 - Economics of the Elderly; Economics of the Handicapped; Non-labor Market Discrimination'
+    active: true
+  - id: 'J15 - Economics of Minorities, Races, Indigenous Peoples, and Immigrants; Non-labor Discrimination'
+    term: 'J15 - Economics of Minorities, Races, Indigenous Peoples, and Immigrants; Non-labor Discrimination'
+    active: true
+  - id: 'J16 - Economics of Gender; Non-labor Discrimination'
+    term: 'J16 - Economics of Gender; Non-labor Discrimination'
+    active: true
+  - id: 'J17 - Value of Life; Forgone Income'
+    term: 'J17 - Value of Life; Forgone Income'
+    active: true
+  - id: 'J18 - Demographic Economics: Public Policy'
+    term: 'J18 - Demographic Economics: Public Policy'
+    active: true
+  - id: 'J19 - Demographic Economics: Other'
+    term: 'J19 - Demographic Economics: Other'
+    active: true
+  - id: 'J20 - Demand and Supply of Labor: General'
+    term: 'J20 - Demand and Supply of Labor: General'
+    active: true
+  - id: 'J21 - Labor Force and Employment, Size, and Structure'
+    term: 'J21 - Labor Force and Employment, Size, and Structure'
+    active: true
+  - id: 'J22 - Time Allocation and Labor Supply'
+    term: 'J22 - Time Allocation and Labor Supply'
+    active: true
+  - id: 'J23 - Labor Demand'
+    term: 'J23 - Labor Demand'
+    active: true
+  - id: 'J24 - Human Capital; Skills; Occupational Choice; Labor Productivity'
+    term: 'J24 - Human Capital; Skills; Occupational Choice; Labor Productivity'
+    active: true
+  - id: 'J26 - Retirement; Retirement Policies'
+    term: 'J26 - Retirement; Retirement Policies'
+    active: true
+  - id: 'J28 - Safety; Job Satisfaction; Related Public Policy'
+    term: 'J28 - Safety; Job Satisfaction; Related Public Policy'
+    active: true
+  - id: 'J29 - Time Allocation, Work Behavior, and Employment Determination: Other'
+    term: 'J29 - Time Allocation, Work Behavior, and Employment Determination: Other'
+    active: true
+  - id: 'J30 - Wages, Compensation, and Labor Costs: General'
+    term: 'J30 - Wages, Compensation, and Labor Costs: General'
+    active: true
+  - id: 'J31 - Wage Level and Structure; Wage Differentials'
+    term: 'J31 - Wage Level and Structure; Wage Differentials'
+    active: true
+  - id: 'J32 - Nonwage Labor Costs and Benefits; Retirement Plans; Private Pensions'
+    term: 'J32 - Nonwage Labor Costs and Benefits; Retirement Plans; Private Pensions'
+    active: true
+  - id: 'J33 - Compensation Packages; Payment Methods'
+    term: 'J33 - Compensation Packages; Payment Methods'
+    active: true
+  - id: 'J38 - Wages, Compensation, and Labor Costs: Public Policy'
+    term: 'J38 - Wages, Compensation, and Labor Costs: Public Policy'
+    active: true
+  - id: 'J39 - Wages, Compensation, and Labor Costs: Other'
+    term: 'J39 - Wages, Compensation, and Labor Costs: Other'
+    active: true
+  - id: 'J40 - Particular Labor Markets: General'
+    term: 'J40 - Particular Labor Markets: General'
+    active: true
+  - id: 'J41 - Labor Contracts'
+    term: 'J41 - Labor Contracts'
+    active: true
+  - id: 'J42 - Monopsony; Segmented Labor Markets'
+    term: 'J42 - Monopsony; Segmented Labor Markets'
+    active: true
+  - id: 'J43 - Agricultural Labor Markets'
+    term: 'J43 - Agricultural Labor Markets'
+    active: true
+  - id: 'J44 - Professional Labor Markets; Occupational Licensing'
+    term: 'J44 - Professional Labor Markets; Occupational Licensing'
+    active: true
+  - id: 'J45 - Public Sector Labor Markets'
+    term: 'J45 - Public Sector Labor Markets'
+    active: true
+  - id: 'J46 - Informal Labor Markets'
+    term: 'J46 - Informal Labor Markets'
+    active: true
+  - id: 'J47 - Coercive Labor Markets'
+    term: 'J47 - Coercive Labor Markets'
+    active: true
+  - id: 'J48 - Particular Labor Markets: Public Policy'
+    term: 'J48 - Particular Labor Markets: Public Policy'
+    active: true
+  - id: 'J49 - Particular Labor Markets: Other'
+    term: 'J49 - Particular Labor Markets: Other'
+    active: true
+  - id: 'J50 - Labor-Management Relations, Trade Unions, and Collective Bargaining: General'
+    term: 'J50 - Labor-Management Relations, Trade Unions, and Collective Bargaining: General'
+    active: true
+  - id: 'J51 - Trade Unions: Objectives, Structure, and Effects'
+    term: 'J51 - Trade Unions: Objectives, Structure, and Effects'
+    active: true
+  - id: 'J52 - Dispute Resolution: Strikes, Arbitration, and Mediation; Collective Bargaining'
+    term: 'J52 - Dispute Resolution: Strikes, Arbitration, and Mediation; Collective Bargaining'
+    active: true
+  - id: 'J53 - Labor-Management Relations; Industrial Jurisprudence'
+    term: 'J53 - Labor-Management Relations; Industrial Jurisprudence'
+    active: true
+  - id: 'J54 - Producer Cooperatives; Labor Managed Firms; Employee Ownership'
+    term: 'J54 - Producer Cooperatives; Labor Managed Firms; Employee Ownership'
+    active: true
+  - id: 'J58 - Labor-Management Relations, Trade Unions, and Collective Bargaining: Public Policy'
+    term: 'J58 - Labor-Management Relations, Trade Unions, and Collective Bargaining: Public Policy'
+    active: true
+  - id: 'J59 - Labor-Management Relations, Trade Unions, and Collective Bargaining: Other'
+    term: 'J59 - Labor-Management Relations, Trade Unions, and Collective Bargaining: Other'
+    active: true
+  - id: 'J60 - Mobility, Unemployment, Vacancies, and Immigrant Workers: General'
+    term: 'J60 - Mobility, Unemployment, Vacancies, and Immigrant Workers: General'
+    active: true
+  - id: 'J61 - Geographic Labor Mobility; Immigrant Workers'
+    term: 'J61 - Geographic Labor Mobility; Immigrant Workers'
+    active: true
+  - id: 'J62 - Job, Occupational, and Intergenerational Mobility; Promotion'
+    term: 'J62 - Job, Occupational, and Intergenerational Mobility; Promotion'
+    active: true
+  - id: 'J63 - Labor Turnover; Vacancies; Layoffs'
+    term: 'J63 - Labor Turnover; Vacancies; Layoffs'
+    active: true
+  - id: 'J64 - Unemployment: Models, Duration, Incidence, and Job Search'
+    term: 'J64 - Unemployment: Models, Duration, Incidence, and Job Search'
+    active: true
+  - id: 'J65 - Unemployment Insurance; Severance Pay; Plant Closings'
+    term: 'J65 - Unemployment Insurance; Severance Pay; Plant Closings'
+    active: true
+  - id: 'J68 - Mobility, Unemployment, and Vacancies: Public Policy'
+    term: 'J68 - Mobility, Unemployment, and Vacancies: Public Policy'
+    active: true
+  - id: 'J69 - Mobility, Unemployment, and Vacancies: Other'
+    term: 'J69 - Mobility, Unemployment, and Vacancies: Other'
+    active: true
+  - id: 'J70 - Labor Discrimination: General'
+    term: 'J70 - Labor Discrimination: General'
+    active: true
+  - id: 'J71 - Labor Discrimination'
+    term: 'J71 - Labor Discrimination'
+    active: true
+  - id: 'J78 - Labor Discrimination: Public Policy'
+    term: 'J78 - Labor Discrimination: Public Policy'
+    active: true
+  - id: 'J79 - Labor Discrimination: Other'
+    term: 'J79 - Labor Discrimination: Other'
+    active: true
+  - id: 'J80 - Labor Standards: General'
+    term: 'J80 - Labor Standards: General'
+    active: true
+  - id: 'J81 - Labor Standards: Working Conditions'
+    term: 'J81 - Labor Standards: Working Conditions'
+    active: true
+  - id: 'J82 - Labor Standards: Labor Force Composition'
+    term: 'J82 - Labor Standards: Labor Force Composition'
+    active: true
+  - id: 'J83 - Labor Standards: Workers Rights'
+    term: 'J83 - Labor Standards: Workers Rights'
+    active: true
+  - id: 'J88 - Labor Standards: Public Policy'
+    term: 'J88 - Labor Standards: Public Policy'
+    active: true
+  - id: 'J89 - Labor Standards: Other'
+    term: 'J89 - Labor Standards: Other'
+    active: true
+  - id: 'K00 - Law and Economics: General'
+    term: 'K00 - Law and Economics: General'
+    active: true
+  - id: 'K10 - Basic Areas of Law: General (Constitutional Law)'
+    term: 'K10 - Basic Areas of Law: General (Constitutional Law)'
+    active: true
+  - id: 'K11 - Property Law'
+    term: 'K11 - Property Law'
+    active: true
+  - id: 'K12 - Contract Law'
+    term: 'K12 - Contract Law'
+    active: true
+  - id: 'K13 - Tort Law and Product Liability; Forensic Economic'
+    term: 'K13 - Tort Law and Product Liability; Forensic Economic'
+    active: true
+  - id: 'K14 - Criminal Law'
+    term: 'K14 - Criminal Law'
+    active: true
+  - id: 'K15 - Civil Law; Common Law'
+    term: 'K15 - Civil Law; Common Law'
+    active: true
+  - id: 'K16 - Election Law'
+    term: 'K16 - Election Law'
+    active: true
+  - id: 'K19 - Basic Areas of Law: Other'
+    term: 'K19 - Basic Areas of Law: Other'
+    active: true
+  - id: 'K20 - Regulation and Business Law: General'
+    term: 'K20 - Regulation and Business Law: General'
+    active: true
+  - id: 'K21 - Antitrust Law'
+    term: 'K21 - Antitrust Law'
+    active: true
+  - id: 'K22 - Business and Securities Law'
+    term: 'K22 - Business and Securities Law'
+    active: true
+  - id: 'K23 - Regulated Industries and Administrative Law'
+    term: 'K23 - Regulated Industries and Administrative Law'
+    active: true
+  - id: 'K24 - Cyber Law'
+    term: 'K24 - Cyber Law'
+    active: true
+  - id: 'K25 - Real Estate Law'
+    term: 'K25 - Real Estate Law'
+    active: true
+  - id: 'K29 - Regulation and Business Law: Other'
+    term: 'K29 - Regulation and Business Law: Other'
+    active: true
+  - id: 'K30 - Other Substantive Areas of Law: General'
+    term: 'K30 - Other Substantive Areas of Law: General'
+    active: true
+  - id: 'K31 - Labor Law'
+    term: 'K31 - Labor Law'
+    active: true
+  - id: 'K32 - Energy, Environmental, Health, and Safety Law'
+    term: 'K32 - Energy, Environmental, Health, and Safety Law'
+    active: true
+  - id: 'K33 - International Law'
+    term: 'K33 - International Law'
+    active: true
+  - id: 'K34 - Tax Law'
+    term: 'K34 - Tax Law'
+    active: true
+  - id: 'K35 - Personal Bankruptcy Law'
+    term: 'K35 - Personal Bankruptcy Law'
+    active: true
+  - id: 'K36 - Family and Personal Law'
+    term: 'K36 - Family and Personal Law'
+    active: true
+  - id: 'K37 - Immigration Law'
+    term: 'K37 - Immigration Law'
+    active: true
+  - id: 'K38 - Human Rights Law; Gender Law'
+    term: 'K38 - Human Rights Law; Gender Law'
+    active: true
+  - id: 'K39 - Other Substantive Areas of Law: Other'
+    term: 'K39 - Other Substantive Areas of Law: Other'
+    active: true
+  - id: 'K40 - Legal Procedure, the Legal System, and Illegal Behavior: General'
+    term: 'K40 - Legal Procedure, the Legal System, and Illegal Behavior: General'
+    active: true
+  - id: 'K41 - Litigation Process'
+    term: 'K41 - Litigation Process'
+    active: true
+  - id: 'K42 - Illegal Behavior and the Enforcement of Law'
+    term: 'K42 - Illegal Behavior and the Enforcement of Law'
+    active: true
+  - id: 'K49 - Legal Procedure, the Legal System, and Illegal Behavior: Other'
+    term: 'K49 - Legal Procedure, the Legal System, and Illegal Behavior: Other'
+    active: true
+  - id: 'L00 - Industrial Organization: General'
+    term: 'L00 - Industrial Organization: General'
+    active: true
+  - id: 'L10 - Market Structure, Firm Strategy, and Market Performance: General'
+    term: 'L10 - Market Structure, Firm Strategy, and Market Performance: General'
+    active: true
+  - id: 'L11 - Production, Pricing, and Market Structure; Size Distribution of Firms'
+    term: 'L11 - Production, Pricing, and Market Structure; Size Distribution of Firms'
+    active: true
+  - id: 'L12 - Monopoly; Monopolization Strategies'
+    term: 'L12 - Monopoly; Monopolization Strategies'
+    active: true
+  - id: 'L13 - Oligopoly and Other Imperfect Markets'
+    term: 'L13 - Oligopoly and Other Imperfect Markets'
+    active: true
+  - id: 'L14 - Transactional Relationships; Contracts and Reputation; Networks'
+    term: 'L14 - Transactional Relationships; Contracts and Reputation; Networks'
+    active: true
+  - id: 'L15 - Information and Product Quality; Standardization and Compatibility'
+    term: 'L15 - Information and Product Quality; Standardization and Compatibility'
+    active: true
+  - id: 'L16 - Industrial Organization and Macroeconomics: Industrial Structure and Structural Change; Industrial Price Indices'
+    term: 'L16 - Industrial Organization and Macroeconomics: Industrial Structure and Structural Change; Industrial Price Indices'
+    active: true
+  - id: 'L17 - Open Source Products and Markets'
+    term: 'L17 - Open Source Products and Markets'
+    active: true
+  - id: 'L19 - Market Structure, Firm Strategy, and Market Performance: Other'
+    term: 'L19 - Market Structure, Firm Strategy, and Market Performance: Other'
+    active: true
+  - id: 'L20 - Firm Objectives, Organization, and Behavior: General'
+    term: 'L20 - Firm Objectives, Organization, and Behavior: General'
+    active: true
+  - id: 'L21 - Business Objectives of the Firm'
+    term: 'L21 - Business Objectives of the Firm'
+    active: true
+  - id: 'L22 - Firm Organization and Market Structure'
+    term: 'L22 - Firm Organization and Market Structure'
+    active: true
+  - id: 'L23 - Organization of Production'
+    term: 'L23 - Organization of Production'
+    active: true
+  - id: 'L24 - Contracting Out; Joint Ventures; Technology Licensing'
+    term: 'L24 - Contracting Out; Joint Ventures; Technology Licensing'
+    active: true
+  - id: 'L25 - Firm Performance: Size, Diversification, and Scope'
+    term: 'L25 - Firm Performance: Size, Diversification, and Scope'
+    active: true
+  - id: 'L26 - Entrepreneurship'
+    term: 'L26 - Entrepreneurship'
+    active: true
+  - id: 'L29 - Firm Objectives, Organization, and Behavior: Other'
+    term: 'L29 - Firm Objectives, Organization, and Behavior: Other'
+    active: true
+  - id: 'L30 - Nonprofit Organizations and Public Enterprise: General'
+    term: 'L30 - Nonprofit Organizations and Public Enterprise: General'
+    active: true
+  - id: 'L31 - Nonprofit Institutions; NGOs; Social Entrepreneurship'
+    term: 'L31 - Nonprofit Institutions; NGOs; Social Entrepreneurship'
+    active: true
+  - id: 'L32 - Public Enterprises; Public-Private Enterprises'
+    term: 'L32 - Public Enterprises; Public-Private Enterprises'
+    active: true
+  - id: 'L33 - Comparison of Public and Private Enterprises and Nonprofit Institutions; Privatization; Contracting Out'
+    term: 'L33 - Comparison of Public and Private Enterprises and Nonprofit Institutions; Privatization; Contracting Out'
+    active: true
+  - id: 'L38 - Public Policy'
+    term: 'L38 - Public Policy'
+    active: true
+  - id: 'L39 - Nonprofit Organizations and Public Enterprise: Other'
+    term: 'L39 - Nonprofit Organizations and Public Enterprise: Other'
+    active: true
+  - id: 'L40 - Antitrust Issues and Policies: General'
+    term: 'L40 - Antitrust Issues and Policies: General'
+    active: true
+  - id: 'L41 - Monopolization; Horizontal Anticompetitive Practices'
+    term: 'L41 - Monopolization; Horizontal Anticompetitive Practices'
+    active: true
+  - id: 'L42 - Vertical Restraints; Resale Price Maintenance; Quantity Discounts'
+    term: 'L42 - Vertical Restraints; Resale Price Maintenance; Quantity Discounts'
+    active: true
+  - id: 'L43 - Legal Monopolies and Regulation or Deregulation'
+    term: 'L43 - Legal Monopolies and Regulation or Deregulation'
+    active: true
+  - id: 'L44 - Antitrust Policy and Public Enterprises, Nonprofit Institutions, and Professional Organizations'
+    term: 'L44 - Antitrust Policy and Public Enterprises, Nonprofit Institutions, and Professional Organizations'
+    active: true
+  - id: 'L49 - Antitrust Policy: Other'
+    term: 'L49 - Antitrust Policy: Other'
+    active: true
+  - id: 'L50 - Regulation and Industrial Policy: General'
+    term: 'L50 - Regulation and Industrial Policy: General'
+    active: true
+  - id: 'L51 - Economics of Regulation'
+    term: 'L51 - Economics of Regulation'
+    active: true
+  - id: 'L52 - Industrial Policy; Sectoral Planning Methods'
+    term: 'L52 - Industrial Policy; Sectoral Planning Methods'
+    active: true
+  - id: 'L53 - Enterprise Policy'
+    term: 'L53 - Enterprise Policy'
+    active: true
+  - id: 'L59 - Regulation and Industrial Policy: Other'
+    term: 'L59 - Regulation and Industrial Policy: Other'
+    active: true
+  - id: 'L60 - Industry Studies: Manufacturing: General'
+    term: 'L60 - Industry Studies: Manufacturing: General'
+    active: true
+  - id: 'L61 - Metals and Metal Products; Cement; Glass; Ceramics'
+    term: 'L61 - Metals and Metal Products; Cement; Glass; Ceramics'
+    active: true
+  - id: 'L62 - Automobiles; Other Transportation Equipment; Related Parts and Equipment'
+    term: 'L62 - Automobiles; Other Transportation Equipment; Related Parts and Equipment'
+    active: true
+  - id: 'L63 - Microelectronics; Computers; Communications Equipment'
+    term: 'L63 - Microelectronics; Computers; Communications Equipment'
+    active: true
+  - id: 'L64 - Other Machinery; Business Equipment; Armaments'
+    term: 'L64 - Other Machinery; Business Equipment; Armaments'
+    active: true
+  - id: 'L65 - Chemicals; Rubber; Drugs; Biotechnology; Plastics'
+    term: 'L65 - Chemicals; Rubber; Drugs; Biotechnology; Plastics'
+    active: true
+  - id: 'L66 - Food; Beverages; Cosmetics; Tobacco; Wine and Spirits'
+    term: 'L66 - Food; Beverages; Cosmetics; Tobacco; Wine and Spirits'
+    active: true
+  - id: 'L67 - Other Consumer Nondurables: Clothing, Textiles, Shoes, and Leather Goods; Household Goods; Sports Equipment'
+    term: 'L67 - Other Consumer Nondurables: Clothing, Textiles, Shoes, and Leather Goods; Household Goods; Sports Equipment'
+    active: true
+  - id: 'L68 - Appliances; Furniture; Other Consumer Durables'
+    term: 'L68 - Appliances; Furniture; Other Consumer Durables'
+    active: true
+  - id: 'L69 - Industry Studies: Manufacturing: Other'
+    term: 'L69 - Industry Studies: Manufacturing: Other'
+    active: true
+  - id: 'L70 - Industry Studies: Primary Products and Construction: General'
+    term: 'L70 - Industry Studies: Primary Products and Construction: General'
+    active: true
+  - id: 'L71 - Mining, Extraction, and Refining: Hydrocarbon Fuels'
+    term: 'L71 - Mining, Extraction, and Refining: Hydrocarbon Fuels'
+    active: true
+  - id: 'L72 - Mining, Extraction, and Refining: Other Nonrenewable Resources'
+    term: 'L72 - Mining, Extraction, and Refining: Other Nonrenewable Resources'
+    active: true
+  - id: 'L73 - Forest Products'
+    term: 'L73 - Forest Products'
+    active: true
+  - id: 'L74 - Construction'
+    term: 'L74 - Construction'
+    active: true
+  - id: 'L78 - Industry Studies: Primary Products and Construction: Government Policy'
+    term: 'L78 - Industry Studies: Primary Products and Construction: Government Policy'
+    active: true
+  - id: 'L79 - Industry Studies: Primary Products and Construction: Other'
+    term: 'L79 - Industry Studies: Primary Products and Construction: Other'
+    active: true
+  - id: 'L80 - Industry Studies: Services: General'
+    term: 'L80 - Industry Studies: Services: General'
+    active: true
+  - id: 'L81 - Retail and Wholesale Trade; e-Commerce'
+    term: 'L81 - Retail and Wholesale Trade; e-Commerce'
+    active: true
+  - id: 'L82 - Entertainment; Media'
+    term: 'L82 - Entertainment; Media'
+    active: true
+  - id: 'L83 - Sports; Gambling; Restaurants; Recreation; Tourism'
+    term: 'L83 - Sports; Gambling; Restaurants; Recreation; Tourism'
+    active: true
+  - id: 'L84 - Personal, Professional, and Business Services'
+    term: 'L84 - Personal, Professional, and Business Services'
+    active: true
+  - id: 'L85 - Real Estate Services'
+    term: 'L85 - Real Estate Services'
+    active: true
+  - id: 'L86 - Information and Internet Services; Computer Software'
+    term: 'L86 - Information and Internet Services; Computer Software'
+    active: true
+  - id: 'L87 - Postal and Delivery Services'
+    term: 'L87 - Postal and Delivery Services'
+    active: true
+  - id: 'L88 - Industry Studies: Services: Government Policy'
+    term: 'L88 - Industry Studies: Services: Government Policy'
+    active: true
+  - id: 'L89 - Industry Studies: Services: Other'
+    term: 'L89 - Industry Studies: Services: Other'
+    active: true
+  - id: 'L90 - Industry Studies: Transportation and Utilities: General'
+    term: 'L90 - Industry Studies: Transportation and Utilities: General'
+    active: true
+  - id: 'L91 - Transportation: General'
+    term: 'L91 - Transportation: General'
+    active: true
+  - id: 'L92 - Railroads and Other Surface Transportation'
+    term: 'L92 - Railroads and Other Surface Transportation'
+    active: true
+  - id: 'L93 - Air Transportation'
+    term: 'L93 - Air Transportation'
+    active: true
+  - id: 'L94 - Electric Utilities'
+    term: 'L94 - Electric Utilities'
+    active: true
+  - id: 'L95 - Gas Utilities; Pipelines; Water Utilities'
+    term: 'L95 - Gas Utilities; Pipelines; Water Utilities'
+    active: true
+  - id: 'L96 - Telecommunications'
+    term: 'L96 - Telecommunications'
+    active: true
+  - id: 'L97 - Utilities: General'
+    term: 'L97 - Utilities: General'
+    active: true
+  - id: 'L98 - Industry Studies: Utilities and Transportation: Government Policy'
+    term: 'L98 - Industry Studies: Utilities and Transportation: Government Policy'
+    active: true
+  - id: 'L99 - Industry Studies: Utilities and Transportation: Other'
+    term: 'L99 - Industry Studies: Utilities and Transportation: Other'
+    active: true
+  - id: 'M00 - Business Administration and Business Economics; Marketing; Accounting; Personnel Economics: General'
+    term: 'M00 - Business Administration and Business Economics; Marketing; Accounting; Personnel Economics: General'
+    active: true
+  - id: 'M10 - Business Administration: General'
+    term: 'M10 - Business Administration: General'
+    active: true
+  - id: 'M11 - Production Management'
+    term: 'M11 - Production Management'
+    active: true
+  - id: 'M12 - Personnel Management; Executives; Executive Compensation'
+    term: 'M12 - Personnel Management; Executives; Executive Compensation'
+    active: true
+  - id: 'M13 - New Firms; Startups'
+    term: 'M13 - New Firms; Startups'
+    active: true
+  - id: 'M14 - Corporate Culture; Diversity; Social Responsibility'
+    term: 'M14 - Corporate Culture; Diversity; Social Responsibility'
+    active: true
+  - id: 'M15 - IT Management'
+    term: 'M15 - IT Management'
+    active: true
+  - id: 'M16 - International Business Administration'
+    term: 'M16 - International Business Administration'
+    active: true
+  - id: 'M19 - Business Administration: Other'
+    term: 'M19 - Business Administration: Other'
+    active: true
+  - id: 'M20 - Business Economics: General'
+    term: 'M20 - Business Economics: General'
+    active: true
+  - id: 'M21 - Business Economics'
+    term: 'M21 - Business Economics'
+    active: true
+  - id: 'M29 - Business Economics: Other'
+    term: 'M29 - Business Economics: Other'
+    active: true
+  - id: 'M30 - Marketing and Advertising: General'
+    term: 'M30 - Marketing and Advertising: General'
+    active: true
+  - id: 'M31 - Marketing'
+    term: 'M31 - Marketing'
+    active: true
+  - id: 'M37 - Advertising'
+    term: 'M37 - Advertising'
+    active: true
+  - id: 'M38 - Marketing and Advertising: Government Policy and Regulation'
+    term: 'M38 - Marketing and Advertising: Government Policy and Regulation'
+    active: true
+  - id: 'M39 - Marketing and Advertising: Other'
+    term: 'M39 - Marketing and Advertising: Other'
+    active: true
+  - id: 'M40 - Accounting and Auditing: General'
+    term: 'M40 - Accounting and Auditing: General'
+    active: true
+  - id: 'M41 - Accounting'
+    term: 'M41 - Accounting'
+    active: true
+  - id: 'M42 - Auditing'
+    term: 'M42 - Auditing'
+    active: true
+  - id: 'M48 - Accounting and Auditing: Government Policy and Regulation'
+    term: 'M48 - Accounting and Auditing: Government Policy and Regulation'
+    active: true
+  - id: 'M49 - Accounting: Other'
+    term: 'M49 - Accounting: Other'
+    active: true
+  - id: 'M50 - Personnel Economics: General'
+    term: 'M50 - Personnel Economics: General'
+    active: true
+  - id: 'M51 - Personnel Economics: Firm Employment Decisions; Promotions'
+    term: 'M51 - Personnel Economics: Firm Employment Decisions; Promotions'
+    active: true
+  - id: 'M52 - Personnel Economics: Compensation and Compensation Methods and Their Effects'
+    term: 'M52 - Personnel Economics: Compensation and Compensation Methods and Their Effects'
+    active: true
+  - id: 'M53 - Personnel Economics: Training'
+    term: 'M53 - Personnel Economics: Training'
+    active: true
+  - id: 'M54 - Personnel Economics: Labor Management'
+    term: 'M54 - Personnel Economics: Labor Management'
+    active: true
+  - id: 'M55 - Personnel Economics: Labor Contracting Devices'
+    term: 'M55 - Personnel Economics: Labor Contracting Devices'
+    active: true
+  - id: 'M59 - Personnel Economics: Other'
+    term: 'M59 - Personnel Economics: Other'
+    active: true
+  - id: 'N00 - Economic History: General'
+    term: 'N00 - Economic History: General'
+    active: true
+  - id: 'N01 - Development of the Discipline: Historiographical; Sources and Methods'
+    term: 'N01 - Development of the Discipline: Historiographical; Sources and Methods'
+    active: true
+  - id: 'N10 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: General, International, or Comparative'
+    term: 'N10 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: General, International, or Comparative'
+    active: true
+  - id: 'N11 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: U.S.; Canada: Pre-1913'
+    term: 'N11 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N12 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: U.S.; Canada: 1913-'
+    term: 'N12 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N13 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Europe: Pre-1913'
+    term: 'N13 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Europe: Pre-1913'
+    active: true
+  - id: 'N14 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Europe: 1913-'
+    term: 'N14 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Europe: 1913-'
+    active: true
+  - id: 'N15 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Asia including Middle East'
+    term: 'N15 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Asia including Middle East'
+    active: true
+  - id: 'N16 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Latin America; Caribbean'
+    term: 'N16 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Latin America; Caribbean'
+    active: true
+  - id: 'N17 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Africa; Oceania'
+    term: 'N17 - Economic History: Macroeconomics and Monetary Economics; Industrial Structure; Growth; Fluctuations: Africa; Oceania'
+    active: true
+  - id: 'N20 - Economic History: Financial Markets and Institutions: General, International, or Comparative'
+    term: 'N20 - Economic History: Financial Markets and Institutions: General, International, or Comparative'
+    active: true
+  - id: 'N21 - Economic History: Financial Markets and Institutions: U.S.; Canada: Pre-1913'
+    term: 'N21 - Economic History: Financial Markets and Institutions: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N22 - Economic History: Financial Markets and Institutions: U.S.; Canada: 1913-'
+    term: 'N22 - Economic History: Financial Markets and Institutions: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N23 - Economic History: Financial Markets and Institutions: Europe: Pre-1913'
+    term: 'N23 - Economic History: Financial Markets and Institutions: Europe: Pre-1913'
+    active: true
+  - id: 'N24 - Economic History: Financial Markets and Institutions: Europe: 1913-'
+    term: 'N24 - Economic History: Financial Markets and Institutions: Europe: 1913-'
+    active: true
+  - id: 'N25 - Economic History: Financial Markets and Institutions: Asia including Middle East'
+    term: 'N25 - Economic History: Financial Markets and Institutions: Asia including Middle East'
+    active: true
+  - id: 'N26 - Economic History: Financial Markets and Institutions: Latin America; Caribbean'
+    term: 'N26 - Economic History: Financial Markets and Institutions: Latin America; Caribbean'
+    active: true
+  - id: 'N27 - Economic History: Financial Markets and Institutions: Africa; Oceania'
+    term: 'N27 - Economic History: Financial Markets and Institutions: Africa; Oceania'
+    active: true
+  - id: 'N30 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: General, International, or Comparative'
+    term: 'N30 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: General, International, or Comparative'
+    active: true
+  - id: 'N31 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: U.S.; Canada: Pre-1913'
+    term: 'N31 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N32 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: U.S.; Canada: 1913-'
+    term: 'N32 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N33 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Europe: Pre-1913'
+    term: 'N33 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Europe: Pre-1913'
+    active: true
+  - id: 'N34 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Europe: 1913-'
+    term: 'N34 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Europe: 1913-'
+    active: true
+  - id: 'N35 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Asia including Middle East'
+    term: 'N35 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Asia including Middle East'
+    active: true
+  - id: 'N36 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Latin America; Caribbean'
+    term: 'N36 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Latin America; Caribbean'
+    active: true
+  - id: 'N37 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Africa; Oceania'
+    term: 'N37 - Economic History: Labor and Consumers, Demography, Education, Health, Welfare, Income, Wealth, Religion, and Philanthropy: Africa; Oceania'
+    active: true
+  - id: 'N40 - Economic History: Government, War, Law, International Relations, and Regulation: General, International, or Comparative'
+    term: 'N40 - Economic History: Government, War, Law, International Relations, and Regulation: General, International, or Comparative'
+    active: true
+  - id: 'N41 - Economic History: Government, War, Law, International Relations, and Regulation: U.S.; Canada: Pre-1913'
+    term: 'N41 - Economic History: Government, War, Law, International Relations, and Regulation: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N42 - Economic History: Government, War, Law, International Relations, and Regulation: U.S.; Canada: 1913-'
+    term: 'N42 - Economic History: Government, War, Law, International Relations, and Regulation: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N43 - Economic History: Government, War, Law, International Relations, and Regulation: Europe: Pre-1913'
+    term: 'N43 - Economic History: Government, War, Law, International Relations, and Regulation: Europe: Pre-1913'
+    active: true
+  - id: 'N44 - Economic History: Government, War, Law, International Relations, and Regulation: Europe: 1913-'
+    term: 'N44 - Economic History: Government, War, Law, International Relations, and Regulation: Europe: 1913-'
+    active: true
+  - id: 'N45 - Economic History: Government, War, Law, International Relations, and Regulation: Asia including Middle East'
+    term: 'N45 - Economic History: Government, War, Law, International Relations, and Regulation: Asia including Middle East'
+    active: true
+  - id: 'N46 - Economic History: Government, War, Law, International Relations, and Regulation: Latin America; Caribbean'
+    term: 'N46 - Economic History: Government, War, Law, International Relations, and Regulation: Latin America; Caribbean'
+    active: true
+  - id: 'N47 - Economic History: Government, War, Law, International Relations, and Regulation: Africa; Oceania'
+    term: 'N47 - Economic History: Government, War, Law, International Relations, and Regulation: Africa; Oceania'
+    active: true
+  - id: 'N50 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: General, International, or Comparative'
+    term: 'N50 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: General, International, or Comparative'
+    active: true
+  - id: 'N51 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: U.S.; Canada: Pre-1913'
+    term: 'N51 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N52 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: U.S.; Canada: 1913-'
+    term: 'N52 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N53 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Europe: Pre-1913'
+    term: 'N53 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Europe: Pre-1913'
+    active: true
+  - id: 'N54 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Europe: 1913-'
+    term: 'N54 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Europe: 1913-'
+    active: true
+  - id: 'N55 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Asia including Middle East'
+    term: 'N55 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Asia including Middle East'
+    active: true
+  - id: 'N56 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Latin America; Caribbean'
+    term: 'N56 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Latin America; Caribbean'
+    active: true
+  - id: 'N57 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Africa; Oceania'
+    term: 'N57 - Economic History: Agriculture, Natural Resources, Environment, and Extractive Industries: Africa; Oceania'
+    active: true
+  - id: 'N60 - Economic History: Manufacturing and Construction: General, International, or Comparative'
+    term: 'N60 - Economic History: Manufacturing and Construction: General, International, or Comparative'
+    active: true
+  - id: 'N61 - Economic History: Manufacturing and Construction: U.S.; Canada: Pre-1913'
+    term: 'N61 - Economic History: Manufacturing and Construction: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N62 - Economic History: Manufacturing and Construction: U.S.; Canada: 1913-'
+    term: 'N62 - Economic History: Manufacturing and Construction: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N63 - Economic History: Manufacturing and Construction: Europe: Pre-1913'
+    term: 'N63 - Economic History: Manufacturing and Construction: Europe: Pre-1913'
+    active: true
+  - id: 'N64 - Economic History: Manufacturing and Construction: Europe: 1913-'
+    term: 'N64 - Economic History: Manufacturing and Construction: Europe: 1913-'
+    active: true
+  - id: 'N65 - Economic History: Manufacturing and Construction: Asia including Middle East'
+    term: 'N65 - Economic History: Manufacturing and Construction: Asia including Middle East'
+    active: true
+  - id: 'N66 - Economic History: Manufacturing and Construction: Latin America; Caribbean'
+    term: 'N66 - Economic History: Manufacturing and Construction: Latin America; Caribbean'
+    active: true
+  - id: 'N67 - Economic History: Manufacturing and Construction: Africa; Oceania'
+    term: 'N67 - Economic History: Manufacturing and Construction: Africa; Oceania'
+    active: true
+  - id: 'N70 - Economic History: Transport, International and Domestic Trade, Energy, Technology, and Other Services: General, International, or Comparative'
+    term: 'N70 - Economic History: Transport, International and Domestic Trade, Energy, Technology, and Other Services: General, International, or Comparative'
+    active: true
+  - id: 'N71 - Economic History: Transport, Trade, Energy, Technology, and Other Services: U.S.; Canada: Pre-1913'
+    term: 'N71 - Economic History: Transport, Trade, Energy, Technology, and Other Services: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N72 - Economic History: Transport, Trade, Energy, Technology, and Other Services: U.S.; Canada: 1913-'
+    term: 'N72 - Economic History: Transport, Trade, Energy, Technology, and Other Services: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N73 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Europe: Pre-1913'
+    term: 'N73 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Europe: Pre-1913'
+    active: true
+  - id: 'N74 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Europe: 1913-'
+    term: 'N74 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Europe: 1913-'
+    active: true
+  - id: 'N75 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Asia including Middle East'
+    term: 'N75 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Asia including Middle East'
+    active: true
+  - id: 'N76 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Latin America; Caribbean'
+    term: 'N76 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Latin America; Caribbean'
+    active: true
+  - id: 'N77 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Africa; Oceania'
+    term: 'N77 - Economic History: Transport, Trade, Energy, Technology, and Other Services: Africa; Oceania'
+    active: true
+  - id: 'N80 - Micro-Business History: General, International, or Comparative'
+    term: 'N80 - Micro-Business History: General, International, or Comparative'
+    active: true
+  - id: 'N81 - Micro-Business History: U.S.; Canada: Pre-1913'
+    term: 'N81 - Micro-Business History: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N82 - Micro-Business History: U.S.; Canada: 1913-'
+    term: 'N82 - Micro-Business History: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N83 - Micro-Business History: Europe: Pre-1913'
+    term: 'N83 - Micro-Business History: Europe: Pre-1913'
+    active: true
+  - id: 'N84 - Micro-Business History: Europe: 1913-'
+    term: 'N84 - Micro-Business History: Europe: 1913-'
+    active: true
+  - id: 'N85 - Micro-Business History: Asia including Middle East'
+    term: 'N85 - Micro-Business History: Asia including Middle East'
+    active: true
+  - id: 'N86 - Micro-Business History: Latin America; Caribbean'
+    term: 'N86 - Micro-Business History: Latin America; Caribbean'
+    active: true
+  - id: 'N87 - Micro-Business History: Africa; Oceania'
+    term: 'N87 - Micro-Business History: Africa; Oceania'
+    active: true
+  - id: 'N90 - Regional and Urban History: General'
+    term: 'N90 - Regional and Urban History: General'
+    active: true
+  - id: 'N91 - Regional and Urban History: U.S.; Canada: Pre-1913'
+    term: 'N91 - Regional and Urban History: U.S.; Canada: Pre-1913'
+    active: true
+  - id: 'N92 - Regional and Urban History: U.S.; Canada: 1913-'
+    term: 'N92 - Regional and Urban History: U.S.; Canada: 1913-'
+    active: true
+  - id: 'N93 - Regional and Urban History: Europe: Pre-1913'
+    term: 'N93 - Regional and Urban History: Europe: Pre-1913'
+    active: true
+  - id: 'N94 - Regional and Urban History: Europe: 1913-'
+    term: 'N94 - Regional and Urban History: Europe: 1913-'
+    active: true
+  - id: 'N95 - Regional and Urban History: Asia including Middle East'
+    term: 'N95 - Regional and Urban History: Asia including Middle East'
+    active: true
+  - id: 'N96 - Regional and Urban History: Latin America; Caribbean'
+    term: 'N96 - Regional and Urban History: Latin America; Caribbean'
+    active: true
+  - id: 'N97 - Regional and Urban History: Africa; Oceania'
+    term: 'N97 - Regional and Urban History: Africa; Oceania'
+    active: true
+  - id: 'O00 - Economic Development, Innovation, Technological Change, and Growth'
+    term: 'O00 - Economic Development, Innovation, Technological Change, and Growth'
+    active: true
+  - id: 'O10 - Economic Development: General'
+    term: 'O10 - Economic Development: General'
+    active: true
+  - id: 'O11 - Macroeconomic Analyses of Economic Development'
+    term: 'O11 - Macroeconomic Analyses of Economic Development'
+    active: true
+  - id: 'O12 - Microeconomic Analyses of Economic Development'
+    term: 'O12 - Microeconomic Analyses of Economic Development'
+    active: true
+  - id: 'O13 - Economic Development: Agriculture; Natural Resources; Energy; Environment; Other Primary Products'
+    term: 'O13 - Economic Development: Agriculture; Natural Resources; Energy; Environment; Other Primary Products'
+    active: true
+  - id: 'O14 - Industrialization; Manufacturing and Service Industries; Choice of Technology'
+    term: 'O14 - Industrialization; Manufacturing and Service Industries; Choice of Technology'
+    active: true
+  - id: 'O15 - Economic Development: Human Resources; Human Development; Income Distribution; Migration'
+    term: 'O15 - Economic Development: Human Resources; Human Development; Income Distribution; Migration'
+    active: true
+  - id: 'O16 - Economic Development: Financial Markets; Saving and Capital Investment; Corporate Finance and Governance'
+    term: 'O16 - Economic Development: Financial Markets; Saving and Capital Investment; Corporate Finance and Governance'
+    active: true
+  - id: 'O17 - Formal and Informal Sectors; Shadow Economy; Institutional Arrangements'
+    term: 'O17 - Formal and Informal Sectors; Shadow Economy; Institutional Arrangements'
+    active: true
+  - id: 'O18 - Economic Development: Urban, Rural, Regional, and Transportation Analysis; Housing; Infrastructure'
+    term: 'O18 - Economic Development: Urban, Rural, Regional, and Transportation Analysis; Housing; Infrastructure'
+    active: true
+  - id: 'O19 - International Linkages to Development; Role of International Organizations'
+    term: 'O19 - International Linkages to Development; Role of International Organizations'
+    active: true
+  - id: 'O20 - Development Planning and Policy: General'
+    term: 'O20 - Development Planning and Policy: General'
+    active: true
+  - id: 'O21 - Planning Models; Planning Policy'
+    term: 'O21 - Planning Models; Planning Policy'
+    active: true
+  - id: 'O22 - Project Analysis'
+    term: 'O22 - Project Analysis'
+    active: true
+  - id: 'O23 - Fiscal and Monetary Policy in Development'
+    term: 'O23 - Fiscal and Monetary Policy in Development'
+    active: true
+  - id: 'O24 - Development Planning and Policy: Trade Policy; Factor Movement; Foreign Exchange Policy'
+    term: 'O24 - Development Planning and Policy: Trade Policy; Factor Movement; Foreign Exchange Policy'
+    active: true
+  - id: 'O25 - Industrial Policy'
+    term: 'O25 - Industrial Policy'
+    active: true
+  - id: 'O29 - Development Planning and Policy: Other'
+    term: 'O29 - Development Planning and Policy: Other'
+    active: true
+  - id: 'O30 - Innovation; Research and Development; Technological Change; Intellectual Property Rights: General'
+    term: 'O30 - Innovation; Research and Development; Technological Change; Intellectual Property Rights: General'
+    active: true
+  - id: 'O31 - Innovation and Invention: Processes and Incentives'
+    term: 'O31 - Innovation and Invention: Processes and Incentives'
+    active: true
+  - id: 'O32 - Management of Technological Innovation and R&D'
+    term: 'O32 - Management of Technological Innovation and R&D'
+    active: true
+  - id: 'O33 - Technological Change: Choices and Consequences; Diffusion Processes'
+    term: 'O33 - Technological Change: Choices and Consequences; Diffusion Processes'
+    active: true
+  - id: 'O34 - Intellectual Property and Intellectual Capital'
+    term: 'O34 - Intellectual Property and Intellectual Capital'
+    active: true
+  - id: 'O35 - Social Innovation'
+    term: 'O35 - Social Innovation'
+    active: true
+  - id: 'O38 - Technological Change: Government Policy'
+    term: 'O38 - Technological Change: Government Policy'
+    active: true
+  - id: 'O39 - Technological Change: Other'
+    term: 'O39 - Technological Change: Other'
+    active: true
+  - id: 'O40 - Economic Growth and Aggregate Productivity: General'
+    term: 'O40 - Economic Growth and Aggregate Productivity: General'
+    active: true
+  - id: 'O41 - One, Two, and Multisector Growth Models'
+    term: 'O41 - One, Two, and Multisector Growth Models'
+    active: true
+  - id: 'O42 - Monetary Growth Models'
+    term: 'O42 - Monetary Growth Models'
+    active: true
+  - id: 'O43 - Institutions and Growth'
+    term: 'O43 - Institutions and Growth'
+    active: true
+  - id: 'O44 - Environment and Growth'
+    term: 'O44 - Environment and Growth'
+    active: true
+  - id: 'O47 - Empirical Studies of Economic Growth; Aggregate Productivity; Cross-Country Output Convergence'
+    term: 'O47 - Empirical Studies of Economic Growth; Aggregate Productivity; Cross-Country Output Convergence'
+    active: true
+  - id: 'O49 - Economic Growth and Aggregate Productivity: Other'
+    term: 'O49 - Economic Growth and Aggregate Productivity: Other'
+    active: true
+  - id: 'O50 - Economywide Country Studies: General'
+    term: 'O50 - Economywide Country Studies: General'
+    active: true
+  - id: 'O51 - Economywide Country Studies: U.S.; Canada'
+    term: 'O51 - Economywide Country Studies: U.S.; Canada'
+    active: true
+  - id: 'O52 - Economywide Country Studies: Europe'
+    term: 'O52 - Economywide Country Studies: Europe'
+    active: true
+  - id: 'O53 - Economywide Country Studies: Asia including Middle East'
+    term: 'O53 - Economywide Country Studies: Asia including Middle East'
+    active: true
+  - id: 'O54 - Economywide Country Studies: Latin America; Caribbean'
+    term: 'O54 - Economywide Country Studies: Latin America; Caribbean'
+    active: true
+  - id: 'O55 - Economywide Country Studies: Africa'
+    term: 'O55 - Economywide Country Studies: Africa'
+    active: true
+  - id: 'O56 - Economywide Country Studies: Oceania'
+    term: 'O56 - Economywide Country Studies: Oceania'
+    active: true
+  - id: 'O57 - Comparative Studies of Countries'
+    term: 'O57 - Comparative Studies of Countries'
+    active: true
+  - id: 'P00 - Economic Systems: General'
+    term: 'P00 - Economic Systems: General'
+    active: true
+  - id: 'P10 - Capitalist Systems: General'
+    term: 'P10 - Capitalist Systems: General'
+    active: true
+  - id: 'P11 - Capitalist Systems: Planning, Coordination, and Reform'
+    term: 'P11 - Capitalist Systems: Planning, Coordination, and Reform'
+    active: true
+  - id: 'P12 - Capitalist Enterprises'
+    term: 'P12 - Capitalist Enterprises'
+    active: true
+  - id: 'P13 - Cooperative Enterprises'
+    term: 'P13 - Cooperative Enterprises'
+    active: true
+  - id: 'P14 - Capitalist Systems: Property Rights'
+    term: 'P14 - Capitalist Systems: Property Rights'
+    active: true
+  - id: 'P16 - Capitalist Systems: Political Economy'
+    term: 'P16 - Capitalist Systems: Political Economy'
+    active: true
+  - id: 'P17 - Capitalist Systems: Performance and Prospects'
+    term: 'P17 - Capitalist Systems: Performance and Prospects'
+    active: true
+  - id: 'P18 - Energy; Environment'
+    term: 'P18 - Energy; Environment'
+    active: true
+  - id: 'P19 - Capitalist Systems: Other'
+    term: 'P19 - Capitalist Systems: Other'
+    active: true
+  - id: 'P20 - Socialist Systems and Transitional Economies: General'
+    term: 'P20 - Socialist Systems and Transitional Economies: General'
+    active: true
+  - id: 'P21 - Socialist Systems and Transitional Economies: Planning, Coordination, and Reform'
+    term: 'P21 - Socialist Systems and Transitional Economies: Planning, Coordination, and Reform'
+    active: true
+  - id: 'P22 - Socialist Systems and Transitional Economies: Prices'
+    term: 'P22 - Socialist Systems and Transitional Economies: Prices'
+    active: true
+  - id: 'P23 - Socialist Systems and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+    term: 'P23 - Socialist Systems and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+    active: true
+  - id: 'P24 - Socialist Systems and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+    term: 'P24 - Socialist Systems and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+    active: true
+  - id: 'P25 - Socialist Systems and Transitional Economies: Urban, Rural, and Regional Economics'
+    term: 'P25 - Socialist Systems and Transitional Economies: Urban, Rural, and Regional Economics'
+    active: true
+  - id: 'P26 - Socialist Systems and Transitional Economies: Political Economy; Property Rights'
+    term: 'P26 - Socialist Systems and Transitional Economies: Political Economy; Property Rights'
+    active: true
+  - id: 'P27 - Socialist Systems and Transitional Economies: Performance and Prospects'
+    term: 'P27 - Socialist Systems and Transitional Economies: Performance and Prospects'
+    active: true
+  - id: 'P28 - Socialist Systems and Transitional Economies: Natural Resources; Energy; Environment'
+    term: 'P28 - Socialist Systems and Transitional Economies: Natural Resources; Energy; Environment'
+    active: true
+  - id: 'P29 - Socialist Systems and Transitional Economies: Other'
+    term: 'P29 - Socialist Systems and Transitional Economies: Other'
+    active: true
+  - id: 'P30 - Socialist Institutions and Their Transitions: General'
+    term: 'P30 - Socialist Institutions and Their Transitions: General'
+    active: true
+  - id: 'P31 - Socialist Enterprises and Their Transitions'
+    term: 'P31 - Socialist Enterprises and Their Transitions'
+    active: true
+  - id: 'P32 - Collectives; Communes; Agriculture'
+    term: 'P32 - Collectives; Communes; Agriculture'
+    active: true
+  - id: 'P33 - Socialist Institutions and Their Transitions: International Trade, Finance, Investment, Relations, and Aid'
+    term: 'P33 - Socialist Institutions and Their Transitions: International Trade, Finance, Investment, Relations, and Aid'
+    active: true
+  - id: 'P34 - Socialist Institutions and Their Transitions: Financial Economics'
+    term: 'P34 - Socialist Institutions and Their Transitions: Financial Economics'
+    active: true
+  - id: 'P35 - Socialist Institutions and Their Transitions: Public Economics'
+    term: 'P35 - Socialist Institutions and Their Transitions: Public Economics'
+    active: true
+  - id: 'P36 - Socialist Institutions and Their Transitions: Consumer Economics; Health; Education and Training: Welfare, Income, Wealth, and Poverty'
+    term: 'P36 - Socialist Institutions and Their Transitions: Consumer Economics; Health; Education and Training: Welfare, Income, Wealth, and Poverty'
+    active: true
+  - id: 'P37 - Socialist Systems and Transitional Economies: Legal Institutions; Illegal Behavior'
+    term: 'P37 - Socialist Systems and Transitional Economies: Legal Institutions; Illegal Behavior'
+    active: true
+  - id: 'P39 - Socialist Institutions and Their Transitions: Other'
+    term: 'P39 - Socialist Institutions and Their Transitions: Other'
+    active: true
+  - id: 'P40 - Other Economic Systems: General'
+    term: 'P40 - Other Economic Systems: General'
+    active: true
+  - id: 'P41 - Other Economic Systems: Planning, Coordination, and Reform'
+    term: 'P41 - Other Economic Systems: Planning, Coordination, and Reform'
+    active: true
+  - id: 'P42 - Other Economic Systems: Productive Enterprises; Factor and Product Markets; Prices; Population'
+    term: 'P42 - Other Economic Systems: Productive Enterprises; Factor and Product Markets; Prices; Population'
+    active: true
+  - id: 'P43 - Other Economic Systems: Public Economics; Financial Economics'
+    term: 'P43 - Other Economic Systems: Public Economics; Financial Economics'
+    active: true
+  - id: 'P44 - Other Economic Systems: National Income, Product, and Expenditure; Money; Inflation'
+    term: 'P44	Other Economic Systems: National Income, Product, and Expenditure; Money; Inflation'
+    active: true
+  - id: 'P45 - Other Economic Systems: International Trade, Finance, Investment and Aid'
+    term: 'P45 - Other Economic Systems: International Trade, Finance, Investment and Aid'
+    active: true
+  - id: 'P46 - Other Economic Systems: Consumer Economics; Health; Education and Training; Welfare, Income, Wealth, and Poverty'
+    term: 'P46 - Other Economic Systems: Consumer Economics; Health; Education and Training; Welfare, Income, Wealth, and Poverty'
+    active: true
+  - id: 'P47 - Other Economic Systems: Performance and Prospects'
+    term: 'P47 - Other Economic Systems: Performance and Prospects'
+    active: true
+  - id: 'P48 - Other Economic Systems: Political Economy; Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+    term: 'P48 - Other Economic Systems: Political Economy; Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+    active: true
+  - id: 'P49 - Other Economic Systems: Other'
+    term: 'P49 - Other Economic Systems: Other'
+    active: true
+  - id: 'P50 - Comparative Economic Systems: General'
+    term: 'P50 - Comparative Economic Systems: General'
+    active: true
+  - id: 'P51 - Comparative Analysis of Economic Systems'
+    term: 'P51 - Comparative Analysis of Economic Systems'
+    active: true
+  - id: 'P52 - Comparative Studies of Particular Economies'
+    term: 'P52 - Comparative Studies of Particular Economies'
+    active: true
+  - id: 'P59 - Comparative Economic Systems: Other'
+    term: 'P59 - Comparative Economic Systems: Other'
+    active: true
+  - id: 'Q00 - Agricultural and Natural Resource Economics; Environmental and Ecological Economics: General'
+    term: 'Q00 - Agricultural and Natural Resource Economics; Environmental and Ecological Economics: General'
+    active: true
+  - id: 'Q01 - Sustainable Development'
+    term: 'Q01 - Sustainable Development'
+    active: true
+  - id: 'Q02 - Commodity Markets'
+    term: 'Q02 - Commodity Markets'
+    active: true
+  - id: 'Q10 - Agriculture: General'
+    term: 'Q10 - Agriculture: General'
+    active: true
+  - id: 'Q11 - Agriculture: Aggregate Supply and Demand Analysis; Prices'
+    term: 'Q11 - Agriculture: Aggregate Supply and Demand Analysis; Prices'
+    active: true
+  - id: 'Q12 - Micro Analysis of Farm Firms, Farm Households, and Farm Input Markets'
+    term: 'Q12 - Micro Analysis of Farm Firms, Farm Households, and Farm Input Markets'
+    active: true
+  - id: 'Q13 - Agricultural Markets and Marketing; Cooperatives; Agribusiness'
+    term: 'Q13 - Agricultural Markets and Marketing; Cooperatives; Agribusiness'
+    active: true
+  - id: 'Q14 - Agricultural Finance'
+    term: 'Q15 - Land Ownership and Tenure; Land Reform; Land Use; Irrigation; Agriculture and Environment'
+    active: true
+  - id: 'Q16 - Agricultural R&D; Agricultural Technology; Biofuels; Agricultural Extension Services'
+    term: 'Q16 - Agricultural R&D; Agricultural Technology; Biofuels; Agricultural Extension Services'
+    active: true
+  - id: 'Q17 - Agriculture in International Trade'
+    term: 'Q17 - Agriculture in International Trade'
+    active: true
+  - id: 'Q18 - Agricultural Policy; Food Policy'
+    term: 'Q18 - Agricultural Policy; Food Policy'
+    active: true
+  - id: 'Q19 - Agriculture: Other'
+    term: 'Q19 - Agriculture: Other'
+    active: true
+  - id: 'Q20 - Renewable Resources and Conservation: General'
+    term: 'Q20 - Renewable Resources and Conservation: General'
+    active: true
+  - id: 'Q21 - Renewable Resources and Conservation: Demand and Supply; Prices'
+    term: 'Q21 - Renewable Resources and Conservation: Demand and Supply; Prices'
+    active: true
+  - id: 'Q22 - Renewable Resources and Conservation: Fishery; Aquaculture'
+    term: 'Q22 - Renewable Resources and Conservation: Fishery; Aquaculture'
+    active: true
+  - id: 'Q23 - Renewable Resources and Conservation: Forestry'
+    term: 'Q23 - Renewable Resources and Conservation: Forestry'
+    active: true
+  - id: 'Q24 - Renewable Resources and Conservation: Land'
+    term: 'Q24 - Renewable Resources and Conservation: Land'
+    active: true
+  - id: 'Q25 - Renewable Resources and Conservation: Water'
+    term: 'Q25 - Renewable Resources and Conservation: Water'
+    active: true
+  - id: 'Q26 - Recreational Aspects of Natural Resources'
+    term: 'Q26 - Recreational Aspects of Natural Resources'
+    active: true
+  - id: 'Q27 - Renewable Resources and Conservation: Issues in International Trade'
+    term: 'Q27 - Renewable Resources and Conservation: Issues in International Trade'
+    active: true
+  - id: 'Q28 - Renewable Resources and Conservation: Government Policy'
+    term: 'Q28 - Renewable Resources and Conservation: Government Policy'
+    active: true
+  - id: 'Q29 - Renewable Resources and Conservation: Other'
+    term: 'Q29 - Renewable Resources and Conservation: Other'
+    active: true
+  - id: 'Q30 - Nonrenewable Resources and Conservation: General'
+    term: 'Q31 - Nonrenewable Resources and Conservation: Demand and Supply; Prices'
+    active: true
+  - id: 'Q32 - Exhaustible Resources and Economic Development'
+    term: 'Q32 - Exhaustible Resources and Economic Development'
+    active: true
+  - id: 'Q33 - Resource Booms'
+    term: 'Q33 - Resource Booms'
+    active: true
+  - id: 'Q34 - Natural Resources and Domestic and International Conflicts'
+    term: 'Q34 - Natural Resources and Domestic and International Conflicts'
+    active: true
+  - id: 'Q35 - Hydrocarbon Resources'
+    term: 'Q35 - Hydrocarbon Resources'
+    active: true
+  - id: 'Q37 - Nonrenewable Resources and Conservation: Issues in International Trade'
+    term: 'Q37 - Nonrenewable Resources and Conservation: Issues in International Trade'
+    active: true
+  - id: 'Q38 - Nonrenewable Resources and Conservation: Government Policy'
+    term: 'Q38 - Nonrenewable Resources and Conservation: Government Policy'
+    active: true
+  - id: 'Q39 - Nonrenewable Resources and Conservation: Other'
+    term: 'Q39 - Nonrenewable Resources and Conservation: Other'
+    active: true
+  - id: 'Q40 - Energy: General'
+    term: 'Q40 - Energy: General'
+    active: true
+  - id: 'Q41 - Energy: Demand and Supply; Prices'
+    term: 'Q41 - Energy: Demand and Supply; Prices'
+    active: true
+  - id: 'Q42 - Alternative Energy Sources'
+    term: 'Q42 - Alternative Energy Sources'
+    active: true
+  - id: 'Q43 - Energy and the Macroeconomy'
+    term: 'Q43 - Energy and the Macroeconomy'
+    active: true
+  - id: 'Q47 - Energy Forecasting'
+    term: 'Q47 - Energy Forecasting'
+    active: true
+  - id: 'Q48 - Energy: Government Policy'
+    term: 'Q48 - Energy: Government Policy'
+    active: true
+  - id: 'Q49 - Energy: Other'
+    term: 'Q49 - Energy: Other'
+    active: true
+  - id: 'Q50 - Environmental Economics: General'
+    term: 'Q50 - Environmental Economics: General'
+    active: true
+  - id: 'Q51 - Valuation of Environmental Effects'
+    term: 'Q51 - Valuation of Environmental Effects'
+    active: true
+  - id: 'Q52 - Pollution Control Adoption and Costs; Distributional Effects; Employment Effects'
+    term: 'Q52 - Pollution Control Adoption and Costs; Distributional Effects; Employment Effects'
+    active: true
+  - id: 'Q53 - Air Pollution; Water Pollution; Noise; Hazardous Waste; Solid Waste; Recycling'
+    term: 'Q53 - Air Pollution; Water Pollution; Noise; Hazardous Waste; Solid Waste; Recycling'
+    active: true
+  - id: 'Q54 - Climate; Natural Disasters and Their Management; Global Warming'
+    term: 'Q54 - Climate; Natural Disasters and Their Management; Global Warming'
+    active: true
+  - id: 'Q55 - Environmental Economics: Technological Innovation'
+    term: 'Q55 - Environmental Economics: Technological Innovation'
+    active: true
+  - id: 'Q56 - Environment and Development; Environment and Trade; Sustainability; Environmental Accounts and Accounting; Environmental Equity; Population Growth'
+    term: 'Q56 - Environment and Development; Environment and Trade; Sustainability; Environmental Accounts and Accounting; Environmental Equity; Population Growth'
+    active: true
+  - id: 'Q57 - Ecological Economics: Ecosystem Services; Biodiversity Conservation; Bioeconomics; Industrial Ecology'
+    term: 'Q57 - Ecological Economics: Ecosystem Services; Biodiversity Conservation; Bioeconomics; Industrial Ecology'
+    active: true
+  - id: 'Q58 - Environmental Economics: Government Policy'
+    term: 'Q58 - Environmental Economics: Government Policy'
+    active: true
+  - id: 'Q59 - Environmental Economics: Other '
+    term: 'Q59 - Environmental Economics: Other '
+    active: true
+  - id: 'R00 - Urban, Rural, Regional, Real Estate, and Transportation Economics: General'
+    term: 'R00 - Urban, Rural, Regional, Real Estate, and Transportation Economics: General'
+    active: true
+  - id: 'R10 - General Regional Economics (includes Regional Data)'
+    term: 'R10 - General Regional Economics (includes Regional Data)'
+    active: true
+  - id: 'R11 - Regional Economic Activity: Growth, Development, Environmental Issues, and Changes'
+    term: 'R11 - Regional Economic Activity: Growth, Development, Environmental Issues, and Changes'
+    active: true
+  - id: 'R12 - Size and Spatial Distributions of Regional Economic Activity'
+    term: 'R12 - Size and Spatial Distributions of Regional Economic Activity'
+    active: true
+  - id: 'R13 - General Equilibrium and Welfare Economic Analysis of Regional Economies'
+    term: 'R13 - General Equilibrium and Welfare Economic Analysis of Regional Economies'
+    active: true
+  - id: 'R14 - Land Use Pattern'
+    term: 'R14 - Land Use Pattern'
+    active: true
+  - id: 'R15 - General Regional Economics: Econometric and Input-Output Models; Other Models'
+    term: 'R15 - General Regional Economics: Econometric and Input-Output Models; Other Models'
+    active: true
+  - id: 'R19 - General Regional Economics: Other'
+    term: 'R19 - General Regional Economics: Other'
+    active: true
+  - id: 'R20 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Household Analysis: General'
+    term: 'R20 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Household Analysis: General'
+    active: true
+  - id: 'R21 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Housing Demand'
+    term: 'R21 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Housing Demand'
+    active: true
+  - id: 'R22 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Other Demand'
+    term: 'R22 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Other Demand'
+    active: true
+  - id: 'R23 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Regional Migration; Regional Labor Markets; Population; Neighborhood Characteristics'
+    term: 'R23 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Regional Migration; Regional Labor Markets; Population; Neighborhood Characteristics'
+    active: true
+  - id: 'R28 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Government Policy'
+    term: 'R28 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Government Policy'
+    active: true
+  - id: 'R29 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Household Analysis: Other'
+    term: 'R29 - Urban, Rural, Regional, Real Estate, and Transportation Economics: Household Analysis: Other'
+    active: true
+  - id: 'R30 - Real Estate Markets, Spatial Production Analysis, and Firm Location: General'
+    term: 'R30 - Real Estate Markets, Spatial Production Analysis, and Firm Location: General'
+    active: true
+  - id: 'R31 - Housing Supply and Markets'
+    term: 'R31 - Housing Supply and Markets'
+    active: true
+  - id: 'R32 - Other Spatial Production and Pricing Analysis'
+    term: 'R32 - Other Spatial Production and Pricing Analysis'
+    active: true
+  - id: 'R33 - Nonagricultural and Nonresidential Real Estate Markets'
+    term: 'R33 - Nonagricultural and Nonresidential Real Estate Markets'
+    active: true
+  - id: 'R38 - Production Analysis and Firm Location: Government Policy'
+    term: 'R38 - Production Analysis and Firm Location: Government Policy'
+    active: true
+  - id: 'R39 - Real Estate Markets, Spatial Production Analysis, and Firm Location: Other'
+    term: 'R39 - Real Estate Markets, Spatial Production Analysis, and Firm Location: Other'
+    active: true
+  - id: 'R40 - Transportation Economics: General'
+    term: 'R40 - Transportation Economics: General'
+    active: true
+  - id: 'R41 - Transportation: Demand, Supply, and Congestion; Travel Time; Safety and Accidents; Transportation Noise'
+    term: 'R41 - Transportation: Demand, Supply, and Congestion; Travel Time; Safety and Accidents; Transportation Noise'
+    active: true
+  - id: 'R42 - Transportation Economics: Government and Private Investment Analysis; Road Maintenance, Transportation Planning'
+    term: 'R42 - Transportation Economics: Government and Private Investment Analysis; Road Maintenance, Transportation Planning'
+    active: true
+  - id: 'R48 - Transportation Economics: Government Pricing and Policy'
+    term: 'R48 - Transportation Economics: Government Pricing and Policy'
+    active: true
+  - id: 'R49 - Transportation Economics: Other'
+    term: 'R49 - Transportation Economics: Other'
+    active: true
+  - id: 'R50 - Regional Government Analysis: General'
+    term: 'R50 - Regional Government Analysis: General'
+    active: true
+  - id: 'R51 - Finance in Urban and Rural Economies'
+    term: 'R51 - Finance in Urban and Rural Economies'
+    active: true
+  - id: 'R52 - Regional Government Analysis: Land Use and Other Regulations'
+    term: 'R52 - Regional Government Analysis: Land Use and Other Regulations'
+    active: true
+  - id: 'R53 - Public Facility Location Analysis; Public Investment and Capital Stock'
+    term: 'R53 - Public Facility Location Analysis; Public Investment and Capital Stock'
+    active: true
+  - id: 'R58 - Regional Development Planning and Policy'
+    term: 'R58 - Regional Development Planning and Policy'
+    active: true
+  - id: 'R59 - Regional Government Analysis: Other'
+    term: 'R59 - Regional Government Analysis: Other'
+    active: true
+  - id: 'Y10 - Data: Tables and Charts'
+    term: 'Y10 - Data: Tables and Charts'
+    active: true
+  - id: 'Y20 - Introductory Material'
+    term: 'Y20 - Introductory Material'
+    active: true
+  - id: 'Y30 - Book Reviews (unclassified)'
+    term: 'Y30 - Book Reviews (unclassified)'
+    active: true
+  - id: 'Y40 - Dissertations (unclassified)'
+    term: 'Y40 - Dissertations (unclassified)'
+    active: true
+  - id: 'Y50 - Further Reading (unclassified)'
+    term: 'Y50 - Further Reading (unclassified)'
+    active: true
+  - id: 'Y60 - Excerpt'
+    term: 'Y60 - Excerpt'
+    active: true
+  - id: 'Y70 - No Author General Discussions'
+    term: 'Y80 - Related Disciplines'
+    active: true
+  - id: 'Y90 - Miscellaneous Categories: Other'
+    term: 'Y90 - Miscellaneous Categories: Other'
+    active: true
+  - id: 'Y91 - Pictures and Maps'
+    term: 'Y91 - Pictures and Maps'
+    active: true
+  - id: 'Y92 - Novels, Self-Help Books, etc.'
+    term: 'Y92 - Novels, Self-Help Books, etc.'
+    active: true
+  - id: 'Z00 - Other Special Topics: General'
+    term: 'Z00 - Other Special Topics: General'
+    active: true
+  - id: 'Z10 - Cultural Economics; Economic Sociology; Economic Anthropology: General'
+    term: 'Z10 - Cultural Economics; Economic Sociology; Economic Anthropology: General'
+    active: true
+  - id: 'Z11 - Cultural Economics: Economics of the Arts and Literature'
+    term: 'Z11 - Cultural Economics: Economics of the Arts and Literature'
+    active: true
+  - id: 'Z12 - Cultural Economics: Religion'
+    term: 'Z12 - Cultural Economics: Religion'
+    active: true
+  - id: 'Z13 - Economic Sociology; Economic Anthropology; Language; Social and Economic Stratification'
+    term: 'Z13 - Economic Sociology; Economic Anthropology; Language; Social and Economic Stratification'
+    active: true
+  - id: 'Z18 - Cultural Economics: Public Policy'
+    term: 'Z18 - Cultural Economics: Public Policy'
+    active: true
+  - id: 'Z19 - Cultural Economics: Other'
+    term: 'Z19 - Cultural Economics: Other'
+    active: true
+  - id: 'Z20 - Sports Economics: General'
+    term: 'Z20 - Sports Economics: General'
+    active: true
+  - id: 'Z21 - Sports Economics: Industry Studies'
+    term: 'Z21 - Sports Economics: Industry Studies'
+    active: true
+  - id: 'Z22 - Sports Economics: Labor Issues'
+    term: 'Z22 - Sports Economics: Labor Issues'
+    active: true
+  - id: 'Z23 - Sports Economics: Finance'
+    term: 'Z23 - Sports Economics: Finance'
+    active: true
+  - id: 'Z28 - Sports Economics: Policy'
+    term: 'Z28 - Sports Economics: Policy'
+    active: true
+  - id: 'Z29 - Sports Economics: Other'
+    term: 'Z29 - Sports Economics: Other'
+    active: true
+  - id: 'Z30 - Tourism Economics: General'
+    term: 'Z30 - Tourism Economics: General'
+    active: true
+  - id: 'Z31 - Tourism: Industry Studies'
+    term: 'Z31 - Tourism: Industry Studies'
+    active: true
+  - id: 'Z32 - Tourism and Development'
+    term: 'Z32 - Tourism and Development'
+    active: true
+  - id: 'Z33 - Tourism: Marketing and Finance'
+    term: 'Z33 - Tourism: Marketing and Finance'
+    active: true
+  - id: 'Z38 - Tourism: Policy'
+    term: 'Z38 - Tourism: Policy'
+    active: true
+  - id: 'Z39 - Tourism: Other'
+    term: 'Z39 - Tourism: Other'
+    active: true   

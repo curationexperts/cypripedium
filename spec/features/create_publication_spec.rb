@@ -58,7 +58,6 @@ RSpec.feature 'Create a Publication', js: true do
       execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
       attach_file('files[]', File.absolute_path(file_fixture('pdf-sample.pdf')))
       sleep(1)
-      find('#agreement').click
 
       # Save the form
       find('#with_files_submit').click

@@ -35,7 +35,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim^1000 description_tesim creator_tesim keyword_tesim abstract_tesim issue_number_tesim"
+      qf: "title_tesim^1000 description_tesim creator_tesim series_tesim keyword_tesim abstract_tesim subject_tesim issue_number_tesim"
     }
 
     # solr field configuration for document/show views
@@ -63,14 +63,13 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("title_tesim", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
-    config.add_index_field solr_name("series", :stored_searchable), label: "Series"
+    config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
-    config.add_index_field solr_name("abstract", :stored_searchable)
+    config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
-    config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
-
+    config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable), label: "Subject (JEL)"
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name('title', :stored_searchable)
@@ -169,6 +168,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('subject') do |field|
+      field.label = "Subject (JEL)"
       solr_name = solr_name("subject", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
