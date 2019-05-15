@@ -41,9 +41,9 @@ describe Contentdm::Importer do
       work = cdmi.process_record(@record)
       expect(work).to be_instance_of(Publication)
     end
-    it 'sets the Fedora object\'s visibility to open' do
+    it 'sets the Fedora object\'s visibility to private' do
       work = cdmi.process_record(@record)
-      expect(work.visibility).to eq('open')
+      expect(work.visibility).to eq('restricted')
     end
     it 'adds the object to the collection' do
       work = cdmi.process_record(@record)

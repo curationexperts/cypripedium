@@ -135,6 +135,27 @@ module Contentdm
       get_values(@record_hash["isPartOf"])
     end
 
+    ##
+    # @return [Array<String>]
+    # returns the resource type
+    def resource_type
+      get_values(@record_hash["resource_type"])
+    end
+
+    ##
+    # @return [Array<String>]
+    # returns the identifier
+    def identifier
+      get_values(@record_hash["identifier"])
+    end
+
+    ##
+    # @return [Array<String>]
+    # returns the license
+    def license
+      get_values(@record_hash["license"])
+    end
+
     private
 
       # @param values [String, Array] The value(s) for a single property

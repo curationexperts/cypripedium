@@ -85,5 +85,20 @@ RSpec.describe Contentdm::Record do
         expect(record.series).to eq(['Working paper (Federal Reserve Bank of Minneapolis. Research Dept.)'])
       end
     end
+    describe '#identifier' do
+      it 'returns an identifier' do
+        expect(record.identifier).to eq(['https://doi.org/10.21034/sr.XXX'])
+      end
+    end
+    describe '#license' do
+      it 'returns a license' do
+        expect(record.license).to eq(['Creative Commons BY-NC Attribution-NonCommercial 4.0 International'])
+      end
+    end
+    describe '#resource_type' do
+      it 'returns a resource type' do
+        expect(record.resource_type).to eq(['Research Paper'])
+      end
+    end
   end
 end
