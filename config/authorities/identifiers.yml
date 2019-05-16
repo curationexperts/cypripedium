@@ -1,0 +1,37 @@
+terms:
+  - id: https://doi.org/10.21034/sr.XXX
+    term: https://doi.org/10.21034/sr.XXX
+    active: true
+  - id: https://doi.org/10.21034/wp.XXX
+    term: https://doi.org/10.21034/wp.XXX
+    active: true
+  - id: https://doi.org/10.21034/qr.XXXX
+    term: https://doi.org/10.21034/qr.XXXX
+    active: true
+  - id: https://doi.org/10.21034/data.sr.XXX
+    term: https://doi.org/10.21034/data.sr.XXX
+    active: true
+  - id: https://doi.org/10.21034/dp.XXX
+    term: https://doi.org/10.21034/dp.XXX
+    active: true
+  - id: https://doi.org/10.21034/mr.YYYY.MM
+    term: https://doi.org/10.21034/mr.YYYY.MM
+    active: true
+  - id: https://doi.org/10.21034/epp.XX-XX
+    term: https://doi.org/10.21034/epp.XX-XX
+    active: true
+  - id: https://doi.org/10.21034/9dc.vX.nX
+    term: https://doi.org/10.21034/9dc.vX.nX
+    active: true
+  - id: https://doi.org/10.21034/9dq.vX.nX
+    term: https://doi.org/10.21034/9dq.vX.nX
+    active: true
+  - id: https://doi.org/10.21034/cp.YYYY.MM.DD-DD
+    term: https://doi.org/10.21034/cp.YYYY.MM.DD-DD
+    active: true
+  - id: https://doi.org/10.21034/cp.YYYY.MM.DD-DD.pX
+    term: https://doi.org/10.21034/cp.YYYY.MM.DD-DD.pX
+    active: true
+  - id: https://doi.org/10.21034/mo.ISBN
+    term: https://doi.org/10.21034/mo.ISBN
+    active: true

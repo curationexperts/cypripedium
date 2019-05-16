@@ -65,7 +65,7 @@ module Contentdm
       work = work_type.new
       work.title = cdm_record.title
       work.creator = cdm_record.creator
-      work.contributor = cdm_record.contributor
+      work.corporate_name = cdm_record.contributor
       work.subject = cdm_record.subject
       work.description = cdm_record.description
       work.requires = cdm_record.requires
@@ -75,7 +75,11 @@ module Contentdm
       work.table_of_contents = cdm_record.table_of_contents
       work.alternative_title = cdm_record.alternative_title
       work.series = cdm_record.series
-      work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      work.resource_type = cdm_record.resource_type
+      work.identifier = cdm_record.identifier
+      work.license = cdm_record.license
+      work.publisher = cdm_record.publisher
+      work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
       work.member_of_collections << @collection
       save_work(cdm_record, work)
       @collection.add_members(work.id)

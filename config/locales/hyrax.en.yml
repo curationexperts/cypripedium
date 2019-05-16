@@ -17,7 +17,7 @@ en:
           keyword_sim: Keyword
           language_sim: Language
           publisher_sim: Publisher
-          subject_sim: Subject
+          subject_sim: Subject (JEL)
           isPartOf_tesim: Series
         index:
           abstract_tesim: Abstract
@@ -39,7 +39,7 @@ en:
           language_tesim: Language
           publisher_tesim: Publisher
           rights_tesim: Rights
-          subject_tesim: Subject
+          subject_tesim: Subject (JEL)
           table_of_contents_tesim: Table of Contents
           temporal_tesim: Temporal
         show:
@@ -61,14 +61,16 @@ en:
           publisher: Publisher
           replaces: "Relation: Replaces"
           rights: Rights
-          subject: Subject
+          subject: Subject (JEL)
           table_of_contents: Table of Contents
           title: Title
   simple_form:
     hints:
       defaults:
-         related_url: Example - URL for related report. This is a markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         related_url: Enter published in or other related information here. This is a markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
          description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         abstract: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         date_created: YYYY-MM-DD
       collection:
          description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
     labels:
@@ -81,6 +83,7 @@ en:
         geographic_name: Spatial
         identifier: DOI
         isPartOf: Series
+        subject: Subject (JEL)
         is_version_of: "Relation: Is Version Of"
         is_replaced_by: "Relation: Is Replaced By"
         is_verison_of: "Relation: Is Version of"
