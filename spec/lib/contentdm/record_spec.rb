@@ -90,9 +90,9 @@ RSpec.describe Contentdm::Record do
         expect(record.identifier).to eq(['https://doi.org/10.21034/sr.XXX'])
       end
     end
-    describe '#license' do
-      it 'returns a license' do
-        expect(record.license).to eq(['Creative Commons BY-NC Attribution-NonCommercial 4.0 International'])
+    describe '#issue_number' do
+      it 'returns an issue number' do
+        expect(record.issue_number).to eq(['111'])
       end
     end
     describe '#resource_type' do

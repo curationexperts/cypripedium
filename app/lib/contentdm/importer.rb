@@ -77,7 +77,7 @@ module Contentdm
       work.series = cdm_record.series
       work.resource_type = cdm_record.resource_type
       work.identifier = cdm_record.identifier
-      work.license = cdm_record.license
+      work.issue_number = cdm_record.issue_number
       work.publisher = cdm_record.publisher
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
       work.member_of_collections << @collection

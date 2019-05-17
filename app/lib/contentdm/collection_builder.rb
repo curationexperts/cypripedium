@@ -18,7 +18,7 @@ module Contentdm
       collection = ::Collection.where(title_tesim: @title).first
       collection ||= ::Collection.new(title: @title, collection_type: Hyrax::CollectionType.find_or_create_default_collection_type)
 
-      collection.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      collection.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
       if collection.id
         Contentdm::Log.new("Found collection: #{@title[0]} with ID: #{collection.id}", 'info')
       else
