@@ -152,8 +152,8 @@ module Contentdm
     ##
     # @return [Array<String>]
     # returns the license
-    def license
-      get_values(@record_hash["license"])
+    def issue_number
+      get_values(@record_hash["issue_number"])
     end
 
     private
