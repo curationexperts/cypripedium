@@ -80,7 +80,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.4.1'
+gem 'hyrax', '2.5.1'
 gem 'redcarpet'
 gem 'rubyzip', require: 'zip'
 
