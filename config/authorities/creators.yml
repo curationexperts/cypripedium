@@ -38,8 +38,8 @@ terms:
   - id: 'Amaral, Pedro'
     term: 'Amaral, Pedro'
     active: true
-  - id: 'Anderson, Paul A'
-    term: 'Anderson, Paul A'
+  - id: 'Anderson, Paul A.'
+    term: 'Anderson, Paul A.'
     active: true
   - id: 'Ando, Albert'
     term: 'Ando, Albert'
@@ -155,8 +155,8 @@ terms:
   - id: 'Boyd, John H.'
     term: 'Boyd, John H.'
     active: true
-  - id: 'Braun, Anton R.'
-    term: 'Braun, Anton R.'
+  - id: 'Braun, R. Anton'
+    term: 'Braun, R. Anton'
     active: true
   - id: 'Braun, Steven'
     term: 'Braun, Steven'
@@ -194,8 +194,8 @@ terms:
   - id: 'Canova, Fabio.'
     term: 'Canova, Fabio.'
     active: true
-  - id: 'Carroll, Evelyn F'
-    term: 'Carroll, Evelyn F'
+  - id: 'Carroll, Evelyn F.'
+    term: 'Carroll, Evelyn F.'
     active: true
   - id: 'Caselli, Francesco, 1966-'
     term: 'Caselli, Francesco, 1966-'
@@ -401,8 +401,8 @@ terms:
   - id: 'Findeisen, Sebastian'
     term: 'Findeisen, Sebastian'
     active: true
-  - id: 'Fisher, Jonas D.'
-    term: 'Fisher, Jonas D.'
+  - id: 'Fisher, Jonas D. M.'
+    term: 'Fisher, Jonas D. M.'
     active: true
   - id: 'Fitzgerald, Doireann'
     term: 'Fitzgerald, Doireann'
@@ -707,8 +707,8 @@ terms:
   - id: 'Kashkari, Neel'
     term: 'Kashkari, Neel'
     active: true
-  - id: 'Keane, Michael'
-    term: 'Keane, Michael'
+  - id: 'Keane, Michael P.'
+    term: 'Keane, Michael P.'
     active: true
   - id: 'Kehoe, Patrick J.'
     term: 'Kehoe, Patrick J.'
@@ -1289,8 +1289,8 @@ terms:
   - id: 'Schaal, Edouard'
     term: 'Schaal, Edouard'
     active: true
-  - id: 'Schmitz, James Andrew.'
-    term: 'Schmitz, James Andrew.'
+  - id: 'Schmitz, James Andrew'
+    term: 'Schmitz, James Andrew'
     active: true
   - id: 'Schmookler, Jacob'
     term: 'Schmookler, Jacob'
@@ -1376,8 +1376,8 @@ terms:
   - id: 'Slemrod, Joel'
     term: 'Slemrod, Joel'
     active: true
-  - id: 'Smith, Bruce D.'
-    term: 'Smith, Bruce D.'
+  - id: 'Smith, Bruce D. (Bruce David), 1954-2002'
+    term: 'Smith, Bruce D. (Bruce David), 1954-2002'
     active: true
   - id: 'Smith, Harlan'
     term: 'Smith, Harlan'
@@ -1607,8 +1607,8 @@ terms:
   - id: 'Williamson, Stephen D.'
     term: 'Williamson, Stephen D.'
     active: true
-  - id: 'Wolpin, Kenneth'
-    term: 'Wolpin, Kenneth'
+  - id: 'Wolpin, Kenneth I.'
+    term: 'Wolpin, Kenneth I.'
     active: true
   - id: 'Wong, Arlene'
     term: 'Wong, Arlene'
