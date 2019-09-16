@@ -3,7 +3,10 @@ language: ruby
 cache: bundler
 sudo: required
 addons:
-  chrome: stable
+  apt:
+    packages:
+    - chromium-browser
+    - chromium-chromedriver
 services:
 - redis-server
 - postgresql
@@ -11,6 +14,8 @@ rvm:
 - 2.5.3
 before_script:
 - bundle exec rake db:create
+- ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
 - bundle exec rubocop
 - xvfb-run -a bundle exec rake ci
