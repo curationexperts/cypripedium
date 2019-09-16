@@ -34,6 +34,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'support/factory_bot'
+require 'selenium-webdriver'
 
 # Uses faster rack_test driver when JavaScript support not needed
 Capybara.default_driver = :rack_test
@@ -61,7 +62,7 @@ end
 #  Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
 # end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :selenium_chrome_headless_sandboxless
 
 # Capybara.register_driver :chrome do |app|
 #  profile = Selenium::WebDriver::Chrome::Profile.new
@@ -69,12 +70,11 @@ Capybara.javascript_driver = :chrome
 #  Capybara::Selenium::Driver.new(app, browser: :chrome, profile: profile)
 # end
 
-Capybara.register_driver :chrome do |app|
+Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.args << '--headless'
   browser_options.args << '--disable-gpu'
   browser_options.args << '--no-sandbox'
-  browser_options.args << '--enable-features=NetworkService,NetworkServiceInProcess'
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
