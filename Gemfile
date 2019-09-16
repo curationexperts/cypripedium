@@ -95,7 +95,6 @@ gem 'rsolr', '>= 1.0'
 gem 'whenever', require: false
 
 group :development, :test do
-  gem 'selenium-webdriver'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
