@@ -6,11 +6,11 @@
 class HomepageCollection
   def self.collection_titles
     [
-      'Working Papers Archive',
+      'Staff Reports',
+      'Working Papers',
       'Conference Proceedings Archive',
       'Research Data',
-      'Warren E. Weber Historical Data Archives',
-      'Antebellum U.S. State Bank Balance Sheets'
+      'Warren E. Weber Historical Data Archives'
     ]
   end
 
