@@ -257,6 +257,9 @@ terms:
   - id: 'Corrado, Carol'
     term: 'Corrado, Carol'
     active: true
+  - id: 'Corrigan, E. Gerald'
+    term: 'Corrigan, E. Gerald'
+    active: true
   - id: 'Costello, Donna M.'
     term: 'Costello, Donna M.'
     active: true
@@ -275,8 +278,8 @@ terms:
   - id: 'Cumming, Christine Maureen'
     term: 'Cumming, Christine Maureen'
     active: true
-  - id: 'Dahl, David S'
-    term: 'Dahl, David S'
+  - id: 'Dahl, David S.'
+    term: 'Dahl, David S.'
     active: true
   - id: 'Dal Santo, Matt'
     term: 'Dal Santo, Matt'
@@ -296,8 +299,8 @@ terms:
   - id: 'DeFigueiredo, Rui J.'
     term: 'DeFigueiredo, Rui J.'
     active: true
-  - id: 'Den Haan, Wouter J.'
-    term: 'Den Haan, Wouter J.'
+  - id: 'Den Haan, Wouter J., 1962-'
+    term: 'Den Haan, Wouter J., 1962-'
     active: true
   - id: 'Denley, Elinor'
     term: 'Denley, Elinor'
@@ -314,8 +317,8 @@ terms:
   - id: 'Diba, Behzad'
     term: 'Diba, Behzad'
     active: true
-  - id: 'Diebold, Francis X.'
-    term: 'Diebold, Francis X.'
+  - id: 'Diebold, Francis X., 1959-'
+    term: 'Diebold, Francis X., 1959-'
     active: true
   - id: 'Doan, Thomas'
     term: 'Doan, Thomas'
@@ -368,8 +371,8 @@ terms:
   - id: 'Engbom, Niklas'
     term: 'Engbom, Niklas'
     active: true
-  - id: 'English, William B.'
-    term: 'English, William B.'
+  - id: 'English, William B. (William Berkeley), 1960-'
+    term: 'English, William B. (William Berkeley), 1960-'
     active: true
   - id: 'Erceg, Christopher J.'
     term: 'Erceg, Christopher J.'
@@ -401,8 +404,8 @@ terms:
   - id: 'Findeisen, Sebastian'
     term: 'Findeisen, Sebastian'
     active: true
-  - id: 'Fisher, Jonas D. M.'
-    term: 'Fisher, Jonas D. M.'
+  - id: 'Fisher, Jonas D. M. (Jonas Daniel Maurice), 1965-'
+    term: 'Fisher, Jonas D. M. (Jonas Daniel Maurice), 1965-'
     active: true
   - id: 'Fitzgerald, Doireann'
     term: 'Fitzgerald, Doireann'
@@ -548,8 +551,8 @@ terms:
   - id: 'Hansen, Alvin H.'
     term: 'Hansen, Alvin H.'
     active: true
-  - id: 'Hansen, Gary D.'
-    term: 'Hansen, Gary D.'
+  - id: 'Hansen, Gary D. (Gary Duane)'
+    term: 'Hansen, Gary D. (Gary Duane)'
     active: true
   - id: 'Hansen, Lars Peter'
     term: 'Hansen, Lars Peter'
@@ -1181,8 +1184,8 @@ terms:
   - id: 'Rich, Robert W.'
     term: 'Rich, Robert W.'
     active: true
-  - id: 'Richard, Jean François.'
-    term: 'Richard, Jean François.'
+  - id: 'Richard, Jean François'
+    term: 'Richard, Jean François'
     active: true
   - id: 'Richardson, Paul'
     term: 'Richardson, Paul'
@@ -1192,9 +1195,6 @@ terms:
     active: true
   - id: 'Ríos-Rull, José-Víctor'
     term: 'Ríos-Rull, José-Víctor'
-    active: true
-  - id: 'Ríos-Rull, José-Víctor.'
-    term: 'Ríos-Rull, José-Víctor.'
     active: true
   - id: 'Rivera-Batiz, Luis'
     term: 'Rivera-Batiz, Luis'
@@ -1220,8 +1220,8 @@ terms:
   - id: 'Rogoff, Kenneth S.'
     term: 'Rogoff, Kenneth S.'
     active: true
-  - id: 'Rolnick, Arthur J.'
-    term: 'Rolnick, Arthur J.'
+  - id: 'Rolnick, Arthur J., 1944-'
+    term: 'Rolnick, Arthur J., 1944-'
     active: true
   - id: 'Romer, Paul Michael, 1955-'
     term: 'Romer, Paul Michael, 1955-'

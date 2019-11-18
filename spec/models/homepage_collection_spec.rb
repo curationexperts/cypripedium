@@ -6,34 +6,34 @@ RSpec.describe HomepageCollection, type: :model do
   let(:solr) { Blacklight.default_index.connection }
 
   # Some collection records to add to solr
-  let(:working_papers) do
+  let(:staff_reports) do
     { id: '111',
       has_model_ssim: ['Collection'],
-      title_ssim: ['Working Papers Archive'] }
+      title_ssim: ['Staff Reports'] }
+  end
+
+  let(:working_papers) do
+    { id: '222',
+      has_model_ssim: ['Collection'],
+      title_ssim: ['Working Papers'] }
   end
 
   let(:conf_proceedings) do
-    { id: '222',
+    { id: '333',
       has_model_ssim: ['Collection'],
       title_ssim: ['Conference Proceedings Archive'] }
   end
 
   let(:research_data) do
-    { id: '333',
+    { id: '444',
       has_model_ssim: ['Collection'],
       title_ssim: ['Research Data'] }
   end
 
   let(:weber) do
-    { id: '444',
-      has_model_ssim: ['Collection'],
-      title_ssim: ['Warren E. Weber Historical Data Archives'] }
-  end
-
-  let(:antebellum) do
     { id: '555',
       has_model_ssim: ['Collection'],
-      title_ssim: ['Antebellum U.S. State Bank Balance Sheets'] }
+      title_ssim: ['Warren E. Weber Historical Data Archives'] }
   end
 
   describe '::all' do
@@ -47,17 +47,17 @@ RSpec.describe HomepageCollection, type: :model do
         # Delete any existing records from solr and
         # add the collections we need for this test.
         solr.delete_by_query('*:*')
-        solr.add([antebellum, weber, research_data, conf_proceedings, working_papers])
+        solr.add([weber, research_data, conf_proceedings, working_papers, staff_reports])
         solr.commit
       end
 
       it 'returns the SolrDocuments for the collections in the right order' do
         expect(collection_titles).to eq [
-          'Working Papers Archive',
+          'Staff Reports',
+          'Working Papers',
           'Conference Proceedings Archive',
           'Research Data',
-          'Warren E. Weber Historical Data Archives',
-          'Antebellum U.S. State Bank Balance Sheets'
+          'Warren E. Weber Historical Data Archives'
         ]
 
         expect(solr_docs.map(&:class).uniq).to eq [SolrDocument]
@@ -71,14 +71,14 @@ RSpec.describe HomepageCollection, type: :model do
         # Note that we are only adding some of the
         # collections, and the others will be missing.
         solr.delete_by_query('*:*')
-        solr.add([antebellum, weber])
+        solr.add([weber, research_data])
         solr.commit
       end
 
       it 'returns the collections that it can, but doesn\'t raise an error' do
         expect(collection_titles).to eq [
-          'Warren E. Weber Historical Data Archives',
-          'Antebellum U.S. State Bank Balance Sheets'
+          'Research Data',
+          'Warren E. Weber Historical Data Archives'
         ]
       end
     end
