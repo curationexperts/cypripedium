@@ -574,7 +574,7 @@ GEM
       yard (~> 0.9.11)
     public_suffix (4.0.1)
     pul_uv_rails (2.0.1)
-    puma (3.12.1)
+    puma (3.12.2)
     qa (2.2.0)
       activerecord-import
       deprecation
@@ -899,7 +899,7 @@ DEPENDENCIES
   poltergeist
   pry
   pry-doc
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.6)
   rainbow
   redcarpet
