@@ -8,9 +8,9 @@ class HomepageCollection
     [
       'Staff Reports',
       'Working Papers',
+      'Quarterly Review',
       'Conference Proceedings Archive',
-      'Research Data',
-      'Warren E. Weber Historical Data Archives'
+      'Research Data'
     ]
   end
 

@@ -18,22 +18,22 @@ RSpec.describe HomepageCollection, type: :model do
       title_ssim: ['Working Papers'] }
   end
 
-  let(:conf_proceedings) do
+  let(:quarterly_review) do
     { id: '333',
+      has_model_ssim: ['Collection'],
+      title_ssim: ['Quarterly Review'] }
+  end
+
+  let(:conf_proceedings) do
+    { id: '444',
       has_model_ssim: ['Collection'],
       title_ssim: ['Conference Proceedings Archive'] }
   end
 
   let(:research_data) do
-    { id: '444',
-      has_model_ssim: ['Collection'],
-      title_ssim: ['Research Data'] }
-  end
-
-  let(:weber) do
     { id: '555',
       has_model_ssim: ['Collection'],
-      title_ssim: ['Warren E. Weber Historical Data Archives'] }
+      title_ssim: ['Research Data'] }
   end
 
   describe '::all' do
@@ -47,7 +47,7 @@ RSpec.describe HomepageCollection, type: :model do
         # Delete any existing records from solr and
         # add the collections we need for this test.
         solr.delete_by_query('*:*')
-        solr.add([weber, research_data, conf_proceedings, working_papers, staff_reports])
+        solr.add([research_data, conf_proceedings, quarterly_review, working_papers, staff_reports])
         solr.commit
       end
 
@@ -55,9 +55,9 @@ RSpec.describe HomepageCollection, type: :model do
         expect(collection_titles).to eq [
           'Staff Reports',
           'Working Papers',
+          'Quarterly Review',
           'Conference Proceedings Archive',
-          'Research Data',
-          'Warren E. Weber Historical Data Archives'
+          'Research Data'
         ]
 
         expect(solr_docs.map(&:class).uniq).to eq [SolrDocument]
@@ -71,14 +71,14 @@ RSpec.describe HomepageCollection, type: :model do
         # Note that we are only adding some of the
         # collections, and the others will be missing.
         solr.delete_by_query('*:*')
-        solr.add([weber, research_data])
+        solr.add([quarterly_review, research_data])
         solr.commit
       end
 
       it 'returns the collections that it can, but doesn\'t raise an error' do
         expect(collection_titles).to eq [
-          'Research Data',
-          'Warren E. Weber Historical Data Archives'
+          'Quarterly Review',
+          'Research Data'
         ]
       end
     end

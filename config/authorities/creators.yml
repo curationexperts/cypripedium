@@ -1400,8 +1400,8 @@ terms:
   - id: 'Sonnenschein, Hugo'
     term: 'Sonnenschein, Hugo'
     active: true
-  - id: 'Soto, Raimundo.'
-    term: 'Soto, Raimundo.'
+  - id: 'Soto, Raimundo'
+    term: 'Soto, Raimundo'
     active: true
   - id: 'Spear, Stephen E.'
     term: 'Spear, Stephen E.'
@@ -1411,6 +1411,9 @@ terms:
     active: true
   - id: 'Stacchetti, Ennio'
     term: 'Stacchetti, Ennio'
+    active: true
+  - id: 'Stern, Gary'
+    term: 'Stern, Gary'
     active: true
   - id: 'Stern, Steven'
     term: 'Stern, Steven'

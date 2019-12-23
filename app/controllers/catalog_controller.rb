@@ -263,6 +263,8 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
+    config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
+    config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
     config.add_sort_field "score desc, #{modified_field} asc", label: "relevance"
     config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
     config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
@@ -270,8 +272,6 @@ class CatalogController < ApplicationController
     config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
     config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
     config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
-    config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
-    config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
