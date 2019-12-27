@@ -103,4 +103,4 @@ en:
       suffix:               "@example.org"
     footer:
       copyright_html: "<strong>Copyright &copy; 2019 Federal Reserve Bank of Minneapolis</strong>"
-      service_html: A service of the <a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.
+      service_html: A service of the <a href="https://www.minneapolisfed.org/economic-research" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.

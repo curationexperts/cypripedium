@@ -35,7 +35,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim^1000 description_tesim creator_tesim series_tesim keyword_tesim abstract_tesim subject_tesim issue_number_tesim"
+      qf: "title_tesim^1000 creator_tesim series_tesim issue_number_tesim keyword_tesim abstract_tesim subject_tesim description_tesim"
     }
 
     # solr field configuration for document/show views
@@ -63,7 +63,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("title_tesim", :stored_searchable), label: "Title", itemprop: 'name', if: false
-    config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
+    config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable), label: "Creator"
     config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
@@ -74,7 +74,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name('title', :stored_searchable)
-    config.add_show_field solr_name("creator", :stored_searchable)
+    config.add_show_field solr_name("alpha_creator", :stored_searchable), link_to_search: solr_name("creator", :facetable), label: "Creator"
     config.add_show_field solr_name("series", :stored_searchable)
     config.add_show_field solr_name('issue_number', :stored_searchable)
     config.add_show_field solr_name("abstract", :stored_searchable)
@@ -263,9 +263,9 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
+    config.add_sort_field "score desc, #{modified_field} asc", label: "relevance"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
-    config.add_sort_field "score desc, #{modified_field} asc", label: "relevance"
     config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
     config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
     config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"

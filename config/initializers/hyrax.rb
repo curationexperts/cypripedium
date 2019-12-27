@@ -59,7 +59,7 @@ Hyrax.config do |config|
   # config.temp_file_base = '/home/developer1'
 
   # Hostpath to be used in Endnote exports
-  # config.persistent_hostpath = 'http://localhost/files/'
+  config.persistent_hostpath = 'https://researchdatabase.minneapolisfed.org/concern/publications/'
 
   # If you have ffmpeg installed and want to transcode audio and video set to true
   # config.enable_ffmpeg = false
