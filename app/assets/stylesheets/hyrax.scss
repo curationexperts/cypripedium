@@ -24,6 +24,10 @@ body.dashboard {
   }
 }
 
+.btn-primary {
+    background-color: #d0af21;
+    border-color: #265b89;
+}
 button.navbar-toggle {
   background: #5c5c5c;
 }
@@ -37,15 +41,68 @@ button.navbar-toggle {
   object-fit:scale-down;
 }
 
-.btn-lg {
-  border-radius: 0px;
+.navbar-header {
+    float: left;
+    padding-top: 10px;
 }
 
 #masthead.navbar { background-color: #ffffff; border: none;}
-ul#user_utility_links a {color: #333333;}
-ul#user_utility_links a:hover, a:active, a:focus {background-color: #d1d3d4;}
+ul#user_utility_links a {color: #003a5d; }
+ul#user_utility_links a:hover, a:active, a:focus {text-decoration: underline; text-decoration-color: #d0af21;}
 ul#user_utility_links.navbar-inverse.navbar-nav.open,
 a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #d1d3d4 !important;}
+
+.image-masthead .navbar {
+  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 0;
+}
+
+.image-masthead .navbar .navbar-nav a {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.image-masthead .navbar .navbar-nav a:hover, a:active, a:focus {
+    text-decoration: underline;
+    text-decoration-color: #d0af21;
+}
+
+.image-masthead .navbar .navbar-nav .active > a {
+    background-color: inherit;
+}
+
+#lower-banner-border-masthead {
+  overflow: hidden;
+  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 25px;
+  padding-right: 10px;
+}
+
+#lower-banner-border-masthead h1 a {
+  color: #fff;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 2.0rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+#lower-banner-border-masthead a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+#lower-banner-border-masthead .group-header h1 {
+  font-family: 'Work Sans', sans-serif;
+  display: inline;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: normal;
+}
 
 #recent_docs .table {
     width: 100%;
@@ -55,4 +112,23 @@ a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #
 
 .media-body {
   width: auto;
+}
+
+footer.site-footer {
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 20px 0 20px 20px;
+  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
+  border-top: 4px solid #d0af21;
+}
+
+footer.site-footer a.navbar-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer.site-footer a.navbar-link:hover {
+  color: #fff;
+  text-decoration: underline;
 }
