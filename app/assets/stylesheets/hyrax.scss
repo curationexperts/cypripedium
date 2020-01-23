@@ -84,7 +84,7 @@ a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #
 
 #lower-banner-border-masthead h1 a {
   color: #fff;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Work Sans', 'Arial', sans-serif;
   font-size: 2.0rem;
   font-weight: 900;
   text-decoration: none;
@@ -96,7 +96,7 @@ a:focus {
 }
 
 #lower-banner-border-masthead .group-header h1 {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Work Sans', 'Arial', sans-serif;
   display: inline;
   padding: 0;
   font-size: 1rem;
@@ -114,13 +114,23 @@ a:focus {
   width: auto;
 }
 
+.site-footer {
+    margin-top: 15px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+}
+
 footer.site-footer {
-  color: #fff;
-  font-size: 14px;
-  line-height: 18px;
-  padding: 20px 0 20px 20px;
-  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
-  border-top: 4px solid #d0af21;
+    color: #fff;
+    font-size: 14px;
+    background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
+    border-top: 4px solid #d0af21;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
 }
 
 footer.site-footer a.navbar-link {
