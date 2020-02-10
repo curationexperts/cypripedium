@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+        mount BrowseEverything::Engine => '/browse'
   root 'homepage#index'
   mount Blacklight::Engine => '/'
 
