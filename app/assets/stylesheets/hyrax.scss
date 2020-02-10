@@ -52,6 +52,7 @@ ul#user_utility_links a:hover, a:active, a:focus {text-decoration: underline; te
 ul#user_utility_links.navbar-inverse.navbar-nav.open,
 a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #d1d3d4 !important;}
 
+
 .image-masthead .navbar {
   background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
     color: #fff;
@@ -71,6 +72,13 @@ a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #
 
 .image-masthead .navbar .navbar-nav .active > a {
     background-color: inherit;
+    color: #fff;
+
+}
+
+.searchbar-right.navbar-right.col-sm-7.col-md-6 {
+    float: right !important;
+    margin-right: auto;
 }
 
 #lower-banner-border-masthead {
@@ -115,7 +123,7 @@ a:focus {
 }
 
 .site-footer {
-    margin-top: 15px;
+    margin-top: 35px;
     padding: 10px;
     position: absolute;
     bottom: 0;
