@@ -2,7 +2,15 @@
 
 <%= render 'shared/citations' %>
 
-<div itemscope itemtype="http://schema.org/CreativeWork" class="row">
+<% if @presenter.respond_to? :itemtype %>
+<%   unless @presenter.itemtype == "http://schema.org/Dataset" %>
+<%     itemtype = "http://schema.org/CreativeWork" %>
+<%   else %>
+<%     itemtype = "http://schema.org/Dataset"   %>
+<%   end %>
+<% end %>
+
+<div itemscope itemtype="<%= itemtype %>" class="row">
   <div class="col-xs-12">
     <header>
       <%= render 'work_title', presenter: @presenter %>
