@@ -46,7 +46,7 @@ class CatalogController < ApplicationController
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     config.add_facet_field solr_name("creator", :facetable), collapse: false, limit: 5
-    config.add_facet_field solr_name("series", :facetable), label: "Series", limit: 5
+    config.add_facet_field solr_name("series", :facetable), collapse: false, label: "Series", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
     # End Facet Fields
@@ -67,7 +67,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
-    config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
+    config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'abstract', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable), label: "Subject (JEL)"
@@ -263,7 +263,7 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
-    config.add_sort_field "score desc, date_created_ssi desc", label: "relevance"
+    config.add_sort_field "score desc, #{modified_field} desc", label: "relevance"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
     config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
