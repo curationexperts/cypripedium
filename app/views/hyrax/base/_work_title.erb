@@ -2,11 +2,11 @@
   <% presenter.title.each_with_index do |title, index| %>
     <% if index == 0 %>
       <div class="title-with-badges">
-        <h1><%= title %></h1>
+      <span itemprop="name"><h1><%= title %></h1></span>
         <%= presenter.permission_badge %>
       </div>
     <% else %>
-      <h1><%= title %></h1>
+    <span itemprop="name"><h1><%= title %></h1></span>
     <% end %>
   <% end %>
 </div>
