@@ -59,6 +59,9 @@ terms:
   - id: 'Atkeson, Andrew'
     term: 'Atkeson, Andrew'
     active: true
+  - id: 'Attanasio, Orazio P.'
+    term: 'Attanasio, Orazio P.'
+    active: true
   - id: 'Auerbach, Kay J'
     term: 'Auerbach, Kay J'
     active: true
@@ -97,6 +100,9 @@ terms:
     active: true
   - id: 'Baxter, Marianne, 1956-'
     term: 'Baxter, Marianne, 1956-'
+    active: true
+  - id: 'Bayer, Christian, 1977-'
+    term: 'Bayer, Christian, 1977-'
     active: true
   - id: 'Beauchemin, Kenneth Ronald'
     term: 'Beauchemin, Kenneth Ronald'
@@ -422,6 +428,9 @@ terms:
   - id: 'Foster, Edward, 1933-'
     term: 'Foster, Edward, 1933-'
     active: true
+  - id: 'Franck, Raphaël, 1976-'
+    term: 'Franck, Raphaël, 1976-'
+    active: true
   - id: 'Franco, April'
     term: 'Franco, April'
     active: true
@@ -580,6 +589,9 @@ terms:
     active: true
   - id: 'Henderson, James M.'
     term: 'Henderson, James M.'
+    active: true
+  - id: 'Hendricks, Lutz, 1964-'
+    term: 'Hendricks, Lutz, 1964-'
     active: true
   - id: 'Hendry, David F.'
     term: 'Hendry, David F.'
@@ -842,9 +854,6 @@ terms:
   - id: 'Luengo-Prado, Maria José, 1972-'
     term: 'Luengo-Prado, Maria José, 1972-'
     active: true
-  - id: 'Luis Pessoa de Araujo, Ana'
-    term: 'Luis Pessoa de Araujo, Ana'
-    active: true
   - id: 'Luttmer, Erzo G. J.'
     term: 'Luttmer, Erzo G. J.'
     active: true
@@ -995,8 +1004,14 @@ terms:
   - id: 'Mullins, Joseph'
     term: 'Mullins, Joseph'
     active: true
+  - id: 'Murray-Close, Marta, 1977-'
+    term: 'Murray-Close, Marta, 1977-'
+    active: true
   - id: 'Nagy, David'
     term: 'Nagy, David'
+    active: true
+  - id: 'Nakajima, Makoto (Economist)'
+    term: 'Nakajima, Makoto (Economist)'
     active: true
   - id: 'Nath, Anusha'
     term: 'Nath, Anusha'
@@ -1051,6 +1066,12 @@ terms:
     active: true
   - id: 'Ostroy, Joseph M.'
     term: 'Ostroy, Joseph M.'
+    active: true
+  - id: 'Ouimet, Paige P.'
+    term: 'Ouimet, Paige P.'
+    active: true
+  - id: 'Owens, Raymond'
+    term: 'Owens, Raymond'
     active: true
   - id: 'Ozkan, Serdar'
     term: 'Ozkan, Serdar'
@@ -1391,8 +1412,8 @@ terms:
   - id: 'Sobarzo, Horacio'
     term: 'Sobarzo, Horacio'
     active: true
-  - id: 'Sojourner, Aaron'
-    term: 'Sojourner, Aaron'
+  - id: 'Sojourner, Aaron J.'
+    term: 'Sojourner, Aaron J.'
     active: true
   - id: 'Solis-Garcia, Mario Alberto'
     term: 'Solis-Garcia, Mario Alberto'
@@ -1660,6 +1681,9 @@ terms:
     active: true
   - id: 'Zarazaga, Carlos Enrique'
     term: 'Zarazaga, Carlos Enrique'
+    active: true
+  - id: 'Zarutskie, Rebecca, 1976-'
+    term: 'Zarutskie, Rebecca, 1976-'
     active: true
   - id: 'Zellner, Arnold'
     term: 'Zellner, Arnold'
