@@ -24,17 +24,30 @@ RSpec.describe HomepageCollection, type: :model do
       title_ssim: ['Quarterly Review'] }
   end
 
-  let(:conf_proceedings) do
+  let(:institute_working_papers) do
     { id: '444',
+      has_model_ssim: ['Collection'],
+      title_ssim: ['Institute Working Papers'] }
+  end
+
+  let(:discussion_papers) do
+    { id: '555',
+      has_model_ssim: ['Collection'],
+      title_ssim: ['Discussion Papers'] }
+  end
+
+  let(:research_data) do
+    { id: '666',
+      has_model_ssim: ['Collection'],
+      title_ssim: ['Research Data'] }
+  end
+
+  let(:conf_proceedings) do
+    { id: '777',
       has_model_ssim: ['Collection'],
       title_ssim: ['Conference Proceedings Archive'] }
   end
 
-  let(:research_data) do
-    { id: '555',
-      has_model_ssim: ['Collection'],
-      title_ssim: ['Research Data'] }
-  end
 
   describe '::all' do
     subject(:solr_docs) { described_class.all }
@@ -47,7 +60,7 @@ RSpec.describe HomepageCollection, type: :model do
         # Delete any existing records from solr and
         # add the collections we need for this test.
         solr.delete_by_query('*:*')
-        solr.add([research_data, conf_proceedings, quarterly_review, working_papers, staff_reports])
+        solr.add([conf_proceedings, research_data, discussion_papers, institute_working_papers, quarterly_review, working_papers, staff_reports])
         solr.commit
       end
 
@@ -56,8 +69,10 @@ RSpec.describe HomepageCollection, type: :model do
           'Staff Reports',
           'Working Papers',
           'Quarterly Review',
-          'Conference Proceedings Archive',
-          'Research Data'
+          'Institute Working Papers',
+          'Discussion Papers',
+          'Research Data',
+          'Conference Proceedings Archive'
         ]
 
         expect(solr_docs.map(&:class).uniq).to eq [SolrDocument]
@@ -71,14 +86,14 @@ RSpec.describe HomepageCollection, type: :model do
         # Note that we are only adding some of the
         # collections, and the others will be missing.
         solr.delete_by_query('*:*')
-        solr.add([quarterly_review, research_data])
+        solr.add([research_data, conf_proceedings])
         solr.commit
       end
 
       it 'returns the collections that it can, but doesn\'t raise an error' do
         expect(collection_titles).to eq [
-          'Quarterly Review',
-          'Research Data'
+          'Research Data',
+          'Conference Proceedings Archive'
         ]
       end
     end

@@ -9,8 +9,10 @@ class HomepageCollection
       'Staff Reports',
       'Working Papers',
       'Quarterly Review',
+      'Institute Working Papers',
+      'Discussion Papers',
+      'Research Data',
       'Conference Proceedings Archive',
-      'Research Data'
     ]
   end
 
