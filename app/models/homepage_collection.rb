@@ -12,7 +12,7 @@ class HomepageCollection
       'Institute Working Papers',
       'Discussion Papers',
       'Research Data',
-      'Conference Proceedings Archive',
+      'Conference Proceedings Archive'
     ]
   end
 

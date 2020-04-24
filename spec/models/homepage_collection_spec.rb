@@ -48,7 +48,6 @@ RSpec.describe HomepageCollection, type: :model do
       title_ssim: ['Conference Proceedings Archive'] }
   end
 
-
   describe '::all' do
     subject(:solr_docs) { described_class.all }
 
