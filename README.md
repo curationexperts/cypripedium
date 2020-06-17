@@ -34,5 +34,30 @@ To download a bag that has been created you can visit the route: `/bag/mpls_fed_
 ### Running in postgres
 Because we use the postgresql database in production, we follow the rails recommendation and also use it in development. The easiest way to set up a local development instance:
 1. Install postgresql
-2. Set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
-3. Run `bundle exec rake db:setup` to create expected databases and run database migrations
+1. Set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
+1. Run `bundle exec rake db:setup` to create expected databases and run database migrations
+1. Run `solr_wrapper`; check in your browser at `localhost:8983/solr` to see it running.
+1. Run `fcrepo_wrapper`; check in your browser at `localhost:8984/rest` to see it running.
+1. Generate collection types and admin set:
+```bash
+bundle exec rails hyrax:default_collection_types:create
+bundle exec rails hyrax:default_admin_set:create
+```
+1. Run `sidekiq`.  You can see it running at localhost:3000/sidekiq
+1. Generate a new user and make them an admin on the console
+```ruby
+bundle exec rails c
+  u = User.new
+  u.display_name = "User Name"
+  u.email = "email@testdomain.com"
+  u.password = "password"
+  u.password_confirmation = "password"
+  u.save
+  admin = Role.create(name: "admin")
+  admin.users << u
+  admin.save
+  ```
+  If you then type `u.admin?` it should return `True` if the previous steps were successful.
+1. `bundle exec rails s`.  In your browser, check to see the application running at `localhost:3000`.
+
+1. In the brower session, log in as the admin user you just created.  
