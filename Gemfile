@@ -39,7 +39,7 @@ gem 'redcarpet'
 gem 'redis', '~> 3.0'
 gem 'redis-activesupport'
 gem 'rsolr', '>= 1.0'
-gem 'rubyzip', require: 'zip'
+gem 'rubyzip', '~> 1.0', require: 'zip'
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq'
@@ -70,6 +70,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
+  gem 'webdrivers'
 end
 
 group :test do
