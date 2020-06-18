@@ -68,6 +68,7 @@ group :development, :test do
   gem 'capybara'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
 end
