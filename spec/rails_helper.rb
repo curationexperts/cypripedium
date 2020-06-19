@@ -29,56 +29,10 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 require 'active_fedora/cleaner'
-require 'capybara/poltergeist'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'support/factory_bot'
-require 'selenium-webdriver'
-
-# Uses faster rack_test driver when JavaScript support not needed
-Capybara.default_driver = :rack_test
-
-# Adding the below to deal with random Capybara-related timeouts in CI.
-# Found in this thread: https://github.com/teampoltergeist/poltergeist/issues/375
-poltergeist_options = {
-  js_errors: false,
-  timeout: 30,
-  logger: false,
-  debug: false,
-  phantomjs_logger: StringIO.new,
-  phantomjs_options: [
-    '--load-images=no',
-    '--ignore-ssl-errors=yes'
-  ]
-}
-
-Capybara.register_driver(:poltergeist) do |app|
-  Capybara::Poltergeist::Driver.new(app, poltergeist_options)
-end
-
-# Capybara.register_driver :chrome do |app|
-#  profile = Selenium::WebDriver::Chrome::Profile.new
-#  Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
-# end
-
-Capybara.javascript_driver = :selenium_chrome_headless_sandboxless
-
-# Capybara.register_driver :chrome do |app|
-#  profile = Selenium::WebDriver::Chrome::Profile.new
-#  profile['extensions.password_manager_enabled'] = false
-#  Capybara::Selenium::Driver.new(app, browser: :chrome, profile: profile)
-# end
-
-Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
-  browser_options = ::Selenium::WebDriver::Chrome::Options.new
-  browser_options.args << '--headless'
-  browser_options.args << '--disable-gpu'
-  browser_options.args << '--no-sandbox'
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
-end
-
-Capybara.default_max_wait_time = 10
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
