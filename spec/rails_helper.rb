@@ -49,6 +49,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
+  config.before clean: true do
+    DatabaseCleaner.clean_with(:truncation)
+    ActiveFedora::Cleaner.clean!
+  end
+
   config.before js: true do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
