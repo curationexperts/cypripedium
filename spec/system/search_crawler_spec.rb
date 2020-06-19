@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe "Search History Page" do
+RSpec.describe "Search History Page", type: :system do
   describe "crawler search" do
     it "doesn't remember human searches" do
       visit root_path

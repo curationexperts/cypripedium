@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Recieve a notfication when creating a bag', js: true do
+RSpec.describe 'Recieve a notfication when creating a bag', type: :system, js: true do
   describe 'creating a notification when running a bag job' do
     let(:work_ids) { [publication.id, publication2.id] }
     let(:file_path) { Rails.application.config.bag_path }

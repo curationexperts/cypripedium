@@ -39,7 +39,7 @@ gem 'redcarpet'
 gem 'redis', '~> 3.0'
 gem 'redis-activesupport'
 gem 'rsolr', '>= 1.0'
-gem 'rubyzip', require: 'zip'
+gem 'rubyzip', '~> 1.0', require: 'zip'
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq'
@@ -48,6 +48,7 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
+gem 'webdrivers'
 gem 'whenever', require: false
 
 group :development do
