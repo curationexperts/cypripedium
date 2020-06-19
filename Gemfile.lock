@@ -724,6 +724,8 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.2)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (0.63.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -929,6 +931,7 @@ DEPENDENCIES
   redis-activesupport
   rsolr (>= 1.0)
   rspec-rails
+  rspec_junit_formatter
   rubyzip
   sass-rails (~> 5.0)
   sassc-rails (>= 2.1.0)
