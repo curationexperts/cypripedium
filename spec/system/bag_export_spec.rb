@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Bagit export:', js: true do
+RSpec.describe 'Bagit export:', type: :system, js: true do
   let(:admin_user) { FactoryBot.create(:admin) }
 
   before do

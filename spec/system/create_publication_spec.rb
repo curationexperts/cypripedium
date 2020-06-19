@@ -6,7 +6,7 @@ require 'rails_helper'
 
 include Warden::Test::Helpers
 
-RSpec.feature 'Create a Publication', js: true do
+RSpec.describe 'Create a Publication', type: :system, js: true do
   context 'a logged in admin user' do
     let(:user) { FactoryBot.create(:admin) }
     before do

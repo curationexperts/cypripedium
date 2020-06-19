@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Edit markdown fields:', js: true do
+RSpec.describe 'Edit markdown fields:', type: :system, js: true do
   let(:admin_user) { FactoryBot.create(:admin) }
 
   before do

@@ -9,7 +9,7 @@ include Warden::Test::Helpers
 # directory exists and there are permissions on the directory
 # this spec creates a situation where the bag directory can't be
 # created.
-RSpec.feature 'Recieve an error notfication when creating a bag', js: true do
+RSpec.describe 'Recieve an error notfication when creating a bag', type: :system, js: true do
   describe 'creating a notification when running a bag job' do
     let(:work_ids) { [1, 2] }
     let(:user) { FactoryBot.create(:admin) }
