@@ -1,8 +1,9 @@
 # Research Database
 
-![Research Database Logo](app/assets/images/rdlogo.png) | The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br>
-<br>
-[![CircleCI](https://circleci.com/gh/MPLSFedResearch/cypripedium.svg?style=svg)](https://circleci.com/gh/MPLSFedResearch/cypripedium) [![Coverage Status](https://coveralls.io/repos/github/MPLSFedResearch/cypripedium/badge.svg?branch=master)](https://coveralls.io/github/MPLSFedResearch/cypripedium?branch=master) ------------------------------------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+![Research Database Logo](app/assets/images/rdlogo.png)
+
+The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br><br>
+[![CircleCI](https://circleci.com/gh/MPLSFedResearch/cypripedium.svg?style=svg)](https://circleci.com/gh/MPLSFedResearch/cypripedium) [![Coverage Status](https://coveralls.io/repos/github/MPLSFedResearch/cypripedium/badge.svg?branch=master)](https://coveralls.io/github/MPLSFedResearch/cypripedium?branch=master)
 
 ## BagIt Functionality
 
