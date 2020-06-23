@@ -3,3 +3,7 @@ schema_org:
     property: creator
     type: "http://schema.org/Person"
     value: name
+  abstract:
+    property: abstract
+    type: "https://schema.org/Text"
+    value: abstract
