@@ -208,6 +208,10 @@ end
 
 Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
 
+# Cypripedium needs its own local schema.org config to handle microdata settings
+# for fields that are not configured in base Hyrax, e.g., "alpha_creator"
+Hyrax::Microdata.load_paths << Rails.root.join('config', 'schema_org.yml')
+
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')

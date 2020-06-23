@@ -1,0 +1,5 @@
+schema_org:
+  alpha_creator:
+    property: creator
+    type: "http://schema.org/Person"
+    value: name
