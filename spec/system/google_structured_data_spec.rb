@@ -16,5 +16,6 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
   it "marks abstract with schema.org tags" do
     visit "/concern/publications/#{work.id}"
     expect(page.find(:css, '[itemprop="abstract"]').text).to eq "This is my abstract"
+    expect(page).not_to have_selector('[itemprop="abstract"][itemtype]')
   end
 end

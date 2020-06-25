@@ -3,6 +3,8 @@
 <%= presenter.attribute_to_html(:issue_number ) %>
 <%= presenter.attribute_to_html(:date_created, label: 'Date created' ) %>
 <%= presenter.attribute_to_html(:description, render_as: :description, label: "Description" ) %>
+
+
 <%= presenter.attribute_to_html(:abstract, render_as: :abstract ) %>
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'subject_tesim', label: "Subject (JEL)" ) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :linked, search_field: 'all_fields' ) %>
