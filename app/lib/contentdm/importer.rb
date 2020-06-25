@@ -36,17 +36,15 @@ module Contentdm
     def import
       log_counts('Fedora record counts before import:')
       @records.each do |record|
-        begin
-          work = process_record(record)
-          Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name[0]}", 'info')
-        rescue => e
-          Contentdm::Log.new("Problem importing record #{record}: ERROR: #{e}", 'error')
-          Contentdm::Log.new("Records that were unable to be imported will be saved at #{@problem_record_file_name}", 'error')
-          rake_command = "rake import:contentdm -- -i #{@problem_record_file_name} -d #{data_path} -w #{default_work_model}"
-          Contentdm::Log.new("To run again: ", 'error')
-          Contentdm::Log.new(rake_command, 'error')
-          @problem_record.add_record(record)
-        end
+        work = process_record(record)
+        Contentdm::Log.new("Adding #{work.id} to collection: #{collection_name[0]}", 'info')
+      rescue => e
+        Contentdm::Log.new("Problem importing record #{record}: ERROR: #{e}", 'error')
+        Contentdm::Log.new("Records that were unable to be imported will be saved at #{@problem_record_file_name}", 'error')
+        rake_command = "rake import:contentdm -- -i #{@problem_record_file_name} -d #{data_path} -w #{default_work_model}"
+        Contentdm::Log.new("To run again: ", 'error')
+        Contentdm::Log.new(rake_command, 'error')
+        @problem_record.add_record(record)
       end
       @collection.save
       @problem_record.save_xml
@@ -111,28 +109,28 @@ module Contentdm
 
     private
 
-      def log_counts(first_msg)
-        Contentdm::Log.new(first_msg, 'info')
-        Contentdm::Log.new("   Conference Proceeding: #{ConferenceProceeding.count}", 'info')
-        Contentdm::Log.new("   Data Set: #{Dataset.count}", 'info')
-        Contentdm::Log.new("   Publication: #{Publication.count}", 'info')
-        Contentdm::Log.new("   FileSet (attached files): #{FileSet.count}", 'info')
+    def log_counts(first_msg)
+      Contentdm::Log.new(first_msg, 'info')
+      Contentdm::Log.new("   Conference Proceeding: #{ConferenceProceeding.count}", 'info')
+      Contentdm::Log.new("   Data Set: #{Dataset.count}", 'info')
+      Contentdm::Log.new("   Publication: #{Publication.count}", 'info')
+      Contentdm::Log.new("   FileSet (attached files): #{FileSet.count}", 'info')
+    end
+
+    def save_work(cdm_record, work)
+      importer_user = ::User.batch_user
+      current_ability = ::Ability.new(importer_user)
+
+      uploaded_file = Contentdm::ImportFile.new(cdm_record, data_path, importer_user).uploaded_file
+      uploaded_file_id = uploaded_file.try(:id)
+      attributes = { uploaded_files: [uploaded_file_id] }
+
+      env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
+      if Hyrax::CurationConcern.actor.create(env) != false
+        Contentdm::Log.new("Saved work with title: #{cdm_record.title[0]}", 'info')
+      else
+        Contentdm::Log.new("Problem saving #{cdm_record.legacy_file_name}", 'error')
       end
-
-      def save_work(cdm_record, work)
-        importer_user = ::User.batch_user
-        current_ability = ::Ability.new(importer_user)
-
-        uploaded_file = Contentdm::ImportFile.new(cdm_record, data_path, importer_user).uploaded_file
-        uploaded_file_id = uploaded_file.try(:id)
-        attributes = { uploaded_files: [uploaded_file_id] }
-
-        env = Hyrax::Actors::Environment.new(work, current_ability, attributes)
-        if Hyrax::CurationConcern.actor.create(env) != false
-          Contentdm::Log.new("Saved work with title: #{cdm_record.title[0]}", 'info')
-        else
-          Contentdm::Log.new("Problem saving #{cdm_record.legacy_file_name}", 'error')
-        end
-      end
+    end
   end
 end

@@ -158,35 +158,35 @@ module Contentdm
 
     private
 
-      # @param values [String, Array] The value(s) for a single property
-      # @return [Array] Returns an array of values with extra whitespace and nil values stripped out.
-      def get_values(values)
-        values = Array(values)
-        values = remove_nils(values)
-        strip_whitespace(values)
-      end
+    # @param values [String, Array] The value(s) for a single property
+    # @return [Array] Returns an array of values with extra whitespace and nil values stripped out.
+    def get_values(values)
+      values = Array(values)
+      values = remove_nils(values)
+      strip_whitespace(values)
+    end
 
-      ##
-      # @param property [Array]
-      # @return [Array]
-      # this will remove any blanks in the processed XML
-      def remove_nils(property)
-        property.select { |prop| !prop.nil? }
-      end
+    ##
+    # @param property [Array]
+    # @return [Array]
+    # this will remove any blanks in the processed XML
+    def remove_nils(property)
+      property.select { |prop| !prop.nil? }
+    end
 
-      ##
-      # @param values [Array]
-      # @return [Array]
-      def strip_whitespace(values)
-        values.map { |v| v.strip }
-      end
+    ##
+    # @param values [Array]
+    # @return [Array]
+    def strip_whitespace(values)
+      values.map { |v| v.strip }
+    end
 
-      ##
-      # @param title [String]
-      # @return [String]
-      def remove_author(title)
-        return title unless title.include?('/')
-        title.split('/')[0].strip!
-      end
+    ##
+    # @param title [String]
+    # @return [String]
+    def remove_author(title)
+      return title unless title.include?('/')
+      title.split('/')[0].strip!
+    end
   end
 end

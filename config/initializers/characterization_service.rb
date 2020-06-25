@@ -34,84 +34,84 @@ module Hydra::Works
 
     protected
 
-      # @return content of object if source is nil; otherwise, return a File or the source
-      def source_to_content
-        return object.content if source.nil?
-        # do not read the file into memory It could be huge...
-        return File.open(source) if source.is_a? String
-        source.rewind
-        source.read
-      end
+    # @return content of object if source is nil; otherwise, return a File or the source
+    def source_to_content
+      return object.content if source.nil?
+      # do not read the file into memory It could be huge...
+      return File.open(source) if source.is_a? String
+      source.rewind
+      source.read
+    end
 
-      def extract_metadata(content)
-        if ENV['FITS_SERVLET_URL']
-          Hydra::FileCharacterization.characterize(content, file_name, :fits_servlet)
-        else
-          Hydra::FileCharacterization.characterize(content, file_name, :fits) do |cfg|
-            cfg[:fits] = Hydra::Derivatives.fits_path
-          end
+    def extract_metadata(content)
+      if ENV['FITS_SERVLET_URL']
+        Hydra::FileCharacterization.characterize(content, file_name, :fits_servlet)
+      else
+        Hydra::FileCharacterization.characterize(content, file_name, :fits) do |cfg|
+          cfg[:fits] = Hydra::Derivatives.fits_path
         end
       end
+    end
 
-      # Determine the filename to send to Hydra::FileCharacterization. If no source is present,
-      # use the name of the file from the object; otherwise, use the supplied source.
-      def file_name
-        if source
-          source.is_a?(File) ? File.basename(source.path) : File.basename(source)
-        else
-          object.original_name.nil? ? "original_file" : object.original_name
+    # Determine the filename to send to Hydra::FileCharacterization. If no source is present,
+    # use the name of the file from the object; otherwise, use the supplied source.
+    def file_name
+      if source
+        source.is_a?(File) ? File.basename(source.path) : File.basename(source)
+      else
+        object.original_name.nil? ? "original_file" : object.original_name
+      end
+    end
+
+    # Use OM to parse metadata
+    def parse_metadata(metadata)
+      omdoc = parser_class.new
+      omdoc.ng_xml = Nokogiri::XML(metadata) if metadata.present?
+      omdoc.__cleanup__ if omdoc.respond_to? :__cleanup__
+      characterization_terms(omdoc)
+    end
+
+    # Get proxy terms and values from the parser
+    def characterization_terms(omdoc)
+      h = {}
+      omdoc.class.terminology.terms.each_pair do |key, target|
+        # a key is a proxy if its target responds to proxied_term
+        next unless target.respond_to? :proxied_term
+        begin
+          h[key] = omdoc.send(key)
+        rescue NoMethodError
+          next
         end
       end
+      h.delete_if { |_k, v| v.empty? }
+    end
 
-      # Use OM to parse metadata
-      def parse_metadata(metadata)
-        omdoc = parser_class.new
-        omdoc.ng_xml = Nokogiri::XML(metadata) if metadata.present?
-        omdoc.__cleanup__ if omdoc.respond_to? :__cleanup__
-        characterization_terms(omdoc)
+    # Assign values of the instance properties from the metadata mapping :prop => val
+    def store_metadata(terms)
+      terms.each_pair do |term, value|
+        property = property_for(term)
+        next if property.nil?
+        # Array-ify the value to avoid a conditional here
+        Array(value).each { |v| append_property_value(property, v) }
       end
+    end
 
-      # Get proxy terms and values from the parser
-      def characterization_terms(omdoc)
-        h = {}
-        omdoc.class.terminology.terms.each_pair do |key, target|
-          # a key is a proxy if its target responds to proxied_term
-          next unless target.respond_to? :proxied_term
-          begin
-            h[key] = omdoc.send(key)
-          rescue NoMethodError
-            next
-          end
-        end
-        h.delete_if { |_k, v| v.empty? }
+    # Check parser_config then self for matching term.
+    # Return property symbol or nil
+    def property_for(term)
+      if mapping.key?(term) && object.respond_to?(mapping[term])
+        mapping[term]
+      elsif object.respond_to?(term)
+        term
       end
+    end
 
-      # Assign values of the instance properties from the metadata mapping :prop => val
-      def store_metadata(terms)
-        terms.each_pair do |term, value|
-          property = property_for(term)
-          next if property.nil?
-          # Array-ify the value to avoid a conditional here
-          Array(value).each { |v| append_property_value(property, v) }
-        end
-      end
-
-      # Check parser_config then self for matching term.
-      # Return property symbol or nil
-      def property_for(term)
-        if mapping.key?(term) && object.respond_to?(mapping[term])
-          mapping[term]
-        elsif object.respond_to?(term)
-          term
-        end
-      end
-
-      def append_property_value(property, value)
-        # We don't want multiple mime_types; this overwrites each time to accept last value
-        value = object.send(property) + [value] unless property == :mime_type
-        # We don't want multiple heights / widths, pick the max
-        value = value.map(&:to_i).max.to_s if property == :height || property == :width
-        object.send("#{property}=", value)
-      end
+    def append_property_value(property, value)
+      # We don't want multiple mime_types; this overwrites each time to accept last value
+      value = object.send(property) + [value] unless property == :mime_type
+      # We don't want multiple heights / widths, pick the max
+      value = value.map(&:to_i).max.to_s if property == :height || property == :width
+      object.send("#{property}=", value)
+    end
   end
 end
