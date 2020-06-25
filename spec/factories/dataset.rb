@@ -10,6 +10,8 @@ FactoryBot.define do
       resource_type { ["Dataset"] }
       visibility { "open" }
       abstract { ["This is my abstract"] }
+      identifier { ["https://doi.org/10.21034/sr.600"]}
+      description { ["This is my description"] }
     end
   end
 end

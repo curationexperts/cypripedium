@@ -18,4 +18,14 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
     expect(page.find(:css, '[itemprop="abstract"]').text).to eq "This is my abstract"
     expect(page).not_to have_selector('[itemprop="abstract"][itemtype]')
   end
+  it "marks identifier with schema.org tags" do
+    visit "/concern/publications/#{work.id}"
+    expect(page.find(:css, '[itemprop="identifier"]').text.strip).to eq "https://doi.org/10.21034/sr.600"
+    expect(page).not_to have_selector('[itemprop="identifier"][itemtype]')
+  end
+  it "marks description with schema.org tags" do
+    visit "/concern/publications/#{work.id}"
+    expect(page.find(:css, '[itemprop="description"]').text.strip).to eq "This is my description"
+    expect(page).not_to have_selector('[itemprop="description"][itemtype]')
+  end
 end

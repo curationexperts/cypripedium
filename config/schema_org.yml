@@ -5,3 +5,7 @@ schema_org:
     value: name
   abstract:
     property: abstract
+  identifier:
+    property: identifier
+  description:
+    property: description
