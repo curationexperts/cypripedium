@@ -10,7 +10,7 @@ RSpec.describe BuildWorkZipJob, type: :job do
     it 'calls the method to create the zip file' do
       allow(WorkZip).to receive(:find).with(work_zip.id).and_return(work_zip)
       expect(work_zip).to receive(:create_zip)
-      BuildWorkZipJob.perform_now(work_zip.id)
+      described_class.perform_now(work_zip.id)
     end
   end
 end

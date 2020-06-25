@@ -102,9 +102,11 @@ GEM
       i18n
     bcrypt (3.1.13)
     bindex (0.8.1)
-    bixby (2.0.0.pre.beta1)
-      rubocop (= 0.63.1)
-      rubocop-rspec (= 1.31.0)
+    bixby (3.0.1)
+      rubocop (= 0.85.1)
+      rubocop-performance
+      rubocop-rails
+      rubocop-rspec
     blacklight (6.23.0)
       bootstrap-sass (~> 3.2)
       deprecation
@@ -429,7 +431,6 @@ GEM
     ice_nine (0.11.2)
     iiif_manifest (0.5.0)
       activesupport (>= 4)
-    jaro_winkler (1.5.4)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
@@ -579,7 +580,6 @@ GEM
       websocket-driver (>= 0.2.0)
     posix-spawn (0.3.14)
     power_converter (0.1.2)
-    powerpack (0.1.2)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -708,6 +708,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     retriable (3.1.2)
+    rexml (3.2.4)
     rsolr (2.3.0)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -730,16 +731,25 @@ GEM
     rspec-support (3.9.3)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.63.1)
-      jaro_winkler (~> 1.5.1)
+    rubocop (0.85.1)
       parallel (~> 1.10)
-      parser (>= 2.5, != 2.5.1.1)
-      powerpack (~> 0.1)
+      parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.0.3)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (~> 1.4.0)
-    rubocop-rspec (1.31.0)
-      rubocop (>= 0.60.0)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.0.3)
+      parser (>= 2.7.0.1)
+    rubocop-performance (1.6.1)
+      rubocop (>= 0.71.0)
+    rubocop-rails (2.6.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.82.0)
+    rubocop-rspec (1.40.0)
+      rubocop (>= 0.68.1)
     ruby-box (1.15.0)
       addressable
       json
@@ -867,7 +877,7 @@ GEM
     uber (0.1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.4.1)
+    unicode-display_width (1.7.0)
     validatable (1.6.7)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -899,7 +909,7 @@ DEPENDENCIES
   actionview (>= 5.1.6.2)
   active_job_status (~> 1.2.1)
   bagit
-  bixby (= 2.0.0.pre.beta1)
+  bixby (~> 3.0)
   bootstrap-sass (~> 3.4.1)
   browse-everything
   bummr

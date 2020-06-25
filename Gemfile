@@ -12,7 +12,7 @@ end
 gem "actionview", ">= 5.1.6.2"
 gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
-gem 'bixby', '2.0.0.pre.beta1'
+gem 'bixby', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
 gem 'capistrano'

@@ -53,7 +53,7 @@ namespace :import do
     puts "Error: Not a valid work_type: #{user_inputs[:work_type]}" if invalid_work_type
 
     # If any required options are missing or invalid, print the usage message and abort.
-    if !missing_options.blank? || invalid_work_type
+    if missing_options.present? || invalid_work_type
       puts ""
       puts opts
       exit 1

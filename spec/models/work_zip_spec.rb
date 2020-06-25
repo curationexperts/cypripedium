@@ -93,12 +93,12 @@ RSpec.describe WorkZip, type: :model do
   end
 
   describe '.latest' do
-    subject(:latest) { WorkZip.latest(work_id) }
+    subject(:latest) { described_class.latest(work_id) }
 
     let(:work_id) { '123' }
-    let(:work_zip) { WorkZip.create(work_id: work_id) }
-    let(:xmas_work_zip) { WorkZip.create(work_id: work_id, updated_at: xmas) }
-    let(:belongs_to_another_work) { WorkZip.create(work_id: 'a_different_work') }
+    let(:work_zip) { described_class.create(work_id: work_id) }
+    let(:xmas_work_zip) { described_class.create(work_id: work_id, updated_at: xmas) }
+    let(:belongs_to_another_work) { described_class.create(work_id: 'a_different_work') }
 
     context 'when there is more than one work_zip for a work' do
       before do
@@ -107,7 +107,7 @@ RSpec.describe WorkZip, type: :model do
       end
 
       it 'finds the most recent WorkZip for this work' do
-        expect(WorkZip.count).to eq 3
+        expect(described_class.count).to eq 3
         expect(latest).to eq [work_zip]
       end
     end
@@ -119,7 +119,7 @@ RSpec.describe WorkZip, type: :model do
       end
 
       it 'returns empty set' do
-        expect(WorkZip.count).to eq 1
+        expect(described_class.count).to eq 1
         expect(latest).to eq []
       end
     end

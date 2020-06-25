@@ -7,7 +7,7 @@ module WorkZipsHelper
     elsif work_zip.status == :unavailable
       button_to 'Create the Zip', main_app.create_zip_path(work_zip.work_id)
     elsif work_zip.status != :completed
-      content_tag(:p, "The job is not finished yet.  Please check back in a few minutes.  Current job status: #{work_zip.status}")
+      tag.p("The job is not finished yet.  Please check back in a few minutes.  Current job status: #{work_zip.status}")
     else
       button_to 'Create the Zip', main_app.create_zip_path(work_zip.work_id)
     end

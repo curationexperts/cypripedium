@@ -14,25 +14,25 @@ class BagController < ApplicationController
 
   private
 
-    def create_params
-      params.require(:work_ids)
-    end
+  def create_params
+    params.require(:work_ids)
+  end
 
-    def bag_params
-      File.basename(params.require(:file_name))
-    end
+  def bag_params
+    File.basename(params.require(:file_name))
+  end
 
-    def compression_params
-      return unless params[:compression]
-      allowed = ALLOWED_EXTENSIONS.map { |file_ext| params[:compression].include?(file_ext) }
-      return 'zip' unless allowed.include?(true)
-      params[:compression]
-    end
+  def compression_params
+    return unless params[:compression]
+    allowed = ALLOWED_EXTENSIONS.map { |file_ext| params[:compression].include?(file_ext) }
+    return 'zip' unless allowed.include?(true)
+    params[:compression]
+  end
 
-    def format_params
-      return unless params[:format]
-      allowed = ALLOWED_EXTENSIONS.map { |file_ext| params[:format].include?(file_ext) }
-      return 'zip' unless allowed.include?(true)
-      params[:format]
-    end
+  def format_params
+    return unless params[:format]
+    allowed = ALLOWED_EXTENSIONS.map { |file_ext| params[:format].include?(file_ext) }
+    return 'zip' unless allowed.include?(true)
+    params[:format]
+  end
 end
