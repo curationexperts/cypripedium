@@ -263,6 +263,10 @@ class CatalogController < ApplicationController
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
     # label is key, solr field is value
+    # First value in this list is the default sort order. Note that we are changing
+    # the default sort oder in app/models/search_builder.rb so that the contents
+    # of a collection will sort by issue number if there is no query string present.
+    config.add_sort_field "score desc, #{modified_field} desc", label: "relevance"
     config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"
     config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
@@ -271,7 +275,6 @@ class CatalogController < ApplicationController
     config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
     config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
     config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
-    config.add_sort_field "score desc, #{modified_field} desc", label: "relevance"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
