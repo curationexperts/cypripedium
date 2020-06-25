@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # config valid only for current version of Capistrano
-lock "3.11.2"
+lock "3.14.1"
 
 set :application, "cypripedium"
 set :repo_url, "https://github.com/MPLSFedResearch/cypripedium.git"
