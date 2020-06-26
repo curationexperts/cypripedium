@@ -22,6 +22,7 @@ FactoryBot.define do
       abstract { ["This is my abstract"] }
       identifier { ["https://doi.org/10.21034/sr.600"] }
       description { ["This is my description"] }
+      license { ["https://creativecommons.org/licenses/by-nc/4.0/"] }
     end
   end
 end

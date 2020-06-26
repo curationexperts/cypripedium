@@ -9,3 +9,5 @@ schema_org:
     property: identifier
   related_url:
     property: description
+  license:
+    property: license
