@@ -33,6 +33,16 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
       expect(page).not_to have_selector('[itemprop="license"][itemtype]')
     end
   end
+  context "dataset without description field" do
+    let(:work) { FactoryBot.create(:dataset_without_description) }
+    let(:related_url) do
+      "Data supports Staff Report 315, \"Does Neoclassical Theory Account for the Effects of Big Fiscal Shocks? Evidence From World War II.\" https://doi.org/10.21034/sr.315"
+    end
+    it "marks related_url with description schema.org tags" do
+      visit "/concern/datasets/#{work.id}"
+      expect(page.find(:css, '[itemprop="description"]').text.strip).to eq related_url
+    end
+  end
   context "publications" do
     let(:work) { FactoryBot.create(:populated_publication) }
     it "marks abstract with schema.org tags" do

@@ -7,3 +7,5 @@ schema_org:
     property: abstract
   identifier:
     property: identifier
+  related_url:
+    property: description
