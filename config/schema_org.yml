@@ -11,3 +11,5 @@ schema_org:
     property: description
   license:
     property: license
+    type: "http://schema.org/CreativeWork"
+    value: name

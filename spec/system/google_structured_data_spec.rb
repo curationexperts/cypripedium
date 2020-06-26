@@ -29,8 +29,7 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
     end
     it "marks license with schema.org tags" do
       visit "/concern/datasets/#{work.id}"
-      expect(page.find(:css, '[itemprop="license"]').text.strip).to eq "Creative Commons BY-NC Attribution-NonCommercial 4.0 International"
-      expect(page).not_to have_selector('[itemprop="license"][itemtype]')
+      expect(page.find(:css, '[itemprop="license"][itemprop][itemtype="http://schema.org/CreativeWork"]').text.strip).to eq "Creative Commons BY-NC Attribution-NonCommercial 4.0 International"
     end
   end
   context "dataset without description field" do
