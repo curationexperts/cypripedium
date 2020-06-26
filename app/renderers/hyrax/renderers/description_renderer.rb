@@ -10,7 +10,11 @@ module Hyrax
       def attribute_value_to_html(value)
         renderer = Redcarpet::Render::HTML.new(escape_html: true)
         markdown = Redcarpet::Markdown.new(renderer, autolink: true)
-        markdown.render(value)
+        if microdata_value_attributes(field).present?
+          "<span#{html_attributes(microdata_value_attributes(field))}>#{markdown.render(value)}</span>"
+        else
+          markdown.render(value)
+        end
       end
     end
   end

@@ -5,5 +5,5 @@ schema_org:
     value: name
   abstract:
     property: abstract
-    type: "https://schema.org/Text"
-    value: abstract
+  identifier:
+    property: identifier
