@@ -27,9 +27,9 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
       expect(page.find(:css, '[itemprop="description"]').text.strip).to eq "This is my description"
       expect(page).not_to have_selector('[itemprop="description"][itemtype]')
     end
-    xit "marks license with schema.org tags" do
+    it "marks license with schema.org tags" do
       visit "/concern/datasets/#{work.id}"
-      expect(page.find(:css, '[itemprop="license"]').text.strip).to eq "This is my license"
+      expect(page.find(:css, '[itemprop="license"]').text.strip).to eq "Creative Commons BY-NC Attribution-NonCommercial 4.0 International"
       expect(page).not_to have_selector('[itemprop="license"][itemtype]')
     end
   end
