@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  get 'error_404', to: 'pages#error_404'
-  # If you go somewhere without a route, show a 404 page
-  match '*path', via: :all, to: 'pages#error_404'
+
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -46,4 +44,7 @@ Rails.application.routes.draw do
   get '/bag/:file_name', to: 'bag#download'
   post '/bag/create', to: 'bag#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'error_404', to: 'pages#error_404'
+  # If you go somewhere without a route, show a 404 page
+  match '*path', via: :all, to: 'pages#error_404'
 end
