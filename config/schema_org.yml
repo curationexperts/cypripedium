@@ -7,5 +7,3 @@ schema_org:
     property: abstract
   identifier:
     property: identifier
-  description:
-    property: description
