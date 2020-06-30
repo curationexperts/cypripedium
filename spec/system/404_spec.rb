@@ -9,6 +9,7 @@ RSpec.describe 'Getting a 404 for RecordNotFound', type: :system do
     it 'has a 404 page' do
       visit('/concern/works/s7526c41m?locale=pt-BR')
       expect(page).to have_content('does not exist')
+      expect(page).to have_content('You may have mistyped the address or the page may have moved.')
     end
   end
 
@@ -16,6 +17,7 @@ RSpec.describe 'Getting a 404 for RecordNotFound', type: :system do
     it 'has a 404 page' do
       visit('/bla/bla/bla')
       expect(page).to have_content('does not exist')
+      expect(page).to have_content('You may have mistyped the address or the page may have moved.')
     end
   end
 end
