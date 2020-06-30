@@ -9,12 +9,14 @@ class SearchBuilder < Blacklight::SearchBuilder
 
   ##
   # Within a collection show page, we want items to be ordered by issue number.
-  # So, if there is no query (solr_parameters["q"]), set the sort to issue number descending.
-  # However, if there IS a query then don't change the sort order, let it stay
-  # sorting by relevance.
+  # So, if there is no query (@blacklight_params[:q]), set the sort to issue number
+  # descending.
+  # However, if there IS a query or an explicit sort parameter then don't change
+  # the sort order.
   def sort_by_issue_number_when_no_query(solr_parameters)
+    return unless @blacklight_params[:controller] == "hyrax/collections"
     issue_number_sort = "issue_number_ssi desc, system_modified_dtsi desc"
-    solr_parameters["sort"] = issue_number_sort if solr_parameters["q"].nil?
+    solr_parameters["sort"] = issue_number_sort if @blacklight_params[:q].nil? && @blacklight_params[:sort].nil?
   end
 
   ##
