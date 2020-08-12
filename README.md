@@ -2,7 +2,8 @@
 
 ![Research Database Logo](app/assets/images/rdlogo.png)
 
-The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br><br>
+The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br>
+<br>
 [![CircleCI](https://circleci.com/gh/MPLSFedResearch/cypripedium.svg?style=svg)](https://circleci.com/gh/MPLSFedResearch/cypripedium) [![Coverage Status](https://coveralls.io/repos/github/MPLSFedResearch/cypripedium/badge.svg?branch=master)](https://coveralls.io/github/MPLSFedResearch/cypripedium?branch=master)
 
 ## BagIt Functionality
@@ -17,27 +18,47 @@ The bag will be located in the directory set by the `ENV['BAG_PATH']` environmen
 
 To download a bag that has been created you can visit the route: `/bag/mpls_fed_research_<time-stamp>.tar`.
 
-## Local Development
+## Local Development with Docker
 
-### Running in postgres
+Using docker is the most straightforward way of setting up a local development environment.
 
-Because we use the postgresql database in production, we follow the rails recommendation and also use it in development. The easiest way to set up a local development instance:
+1. Install docker for your local environment
+2. Check out the cypripedium code base and navigate to that code base: `git clone git@github.com:MPLSFedResearch/cypripedium.git; cd cypripedium`
+3. Bring up the docker container: `docker-compose up` Once the container has started, you should be able to visit in your browser:
 
-1. Install postgresql
-2. Set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
-3. Run `bundle exec rake db:setup` to create expected databases and run database migrations
-4. Run `solr_wrapper`; check in your browser at `localhost:8983/solr` to see it running.
-5. Run `fcrepo_wrapper`; check in your browser at `localhost:8984/rest` to see it running.
-6. Generate collection types and admin set:
+  1. <http://localhost:8983/solr/#/hydra-development> (dev instance of solr)
+  2. <http://localhost:8983/solr/#/hydra-test> (test instance of solr)
+  3. <http://localhost:8080/rest/> (dev and test instance of fedora)
+  4. <http://localhost:3000/> (Your locally running rails application)
+
+### Running the tests
+
+The best way to know that your local development environment is running as expected is to run the automated test suite:
+
+1. In a new terminal window, navigate to your code base
+2. Connect to your running rails container: `docker-compose exec web bash`
+3. Run the test suite: `bundle exec rspec spec`
+
+## Local Development without Docker
+
+1. **Install postgresql.** Because we use the postgresql database in production, we follow the rails recommendation and also use it in development. The easiest way to set up a local development instance is to set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
+2. Run `bundle exec rake db:setup` to create expected databases and run database migrations
+3. Run `solr_wrapper`; check in your browser at `localhost:8983/solr` to see it running.
+4. Run `fcrepo_wrapper`; check in your browser at `localhost:8984/rest` to see it running.
+5. Run `sidekiq`. You can see it running at localhost:3000/sidekiq
+
+## Data setup
+
+Whether you use docker or not, there are a few steps necessary to let you interact with your local instance.
+
+1. Generate collection types and admin set:
 
   ```bash
   bundle exec rails hyrax:default_collection_types:create
   bundle exec rails hyrax:default_admin_set:create
   ```
 
-7. Run `sidekiq`. You can see it running at localhost:3000/sidekiq
-
-8. Generate a new user and make them an admin on the console
+2. Generate a new user and make them an admin on the console
 
   ```ruby
   bundle exec rails c
@@ -54,6 +75,6 @@ Because we use the postgresql database in production, we follow the rails recomm
 
   If you then type `u.admin?` it should return `True` if the previous steps were successful.
 
-9. `bundle exec rails s`. In your browser, check to see the application running at `localhost:3000`.
+3. `bundle exec rails s`. In your browser, check to see the application running at `localhost:3000`.
 
-10. In the brower session, log in as the admin user you just created.
+4. In the brower session, log in as the admin user you just created.

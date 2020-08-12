@@ -1,0 +1,69 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/data
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      POSTGRES_PORT: 5432
+      SOLR_DEVELOPMENT_URL: http://solr:8983/solr/hydra-development
+      SOLR_TEST_URL: http://solr:8983/solr/hydra-test
+      FCREPO_DEVELOPMENT_URL: http://fcrepo:8080/rest/
+      FCREPO_TEST_URL: http://fcrepo:8080/rest/
+    depends_on:
+      - db
+      - fcrepo
+      - solr
+      - redis
+    ports:
+      - 3000:3000
+
+  # NOTE: This is only used in local development. These passwords are never
+  # used in a running application available on the internet.
+  db:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: cypripedium_development,cypripedium_test
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - "db:/var/lib/postgresql/data"
+
+  fcrepo:
+    image: samvera/fcrepo4:4.7.5
+    volumes:
+      - fedora:/data
+    ports:
+      - 8080:8080
+
+  solr:
+    image: solr:7.1-alpine
+    ports:
+      - '8983:8983'
+    volumes:
+      - ./solr/config:/opt/solr/config
+      - solr:/var/solr/data
+    command: bash -c 'precreate-core hydra-development /opt/solr/config; precreate-core hydra-test /opt/solr/config; exec solr -f'
+
+  redis:
+    image: redis:6-alpine
+    sysctls:
+      - net.core.somaxconn=511
+    volumes:
+      - redis:/data
+    ports:
+      - 6379:6379
+
+
+volumes:
+  db:
+  fedora:
+  solr:
+  redis:
