@@ -6,7 +6,7 @@ jobs:
         parameters:
             ruby_version:
                 type: string
-                default: 2.6.3
+                default: 2.6.6
             bundler_version:
                 type: string
                 default: 2.0.1
@@ -19,6 +19,8 @@ jobs:
           WORKING_PATH: /tmp
           UPLOAD_PATH: /tmp
           CACHE_PATH: /tmp/cache
+          FCREPO_TEST_URL: http://127.0.0.1:8080/fcrepo/rest/
+          SOLR_TEST_URL: http://127.0.0.1:8985/solr/hydra-test
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
             ruby_version: << parameters.ruby_version >>
@@ -57,4 +59,4 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2-6-3
+                name: ruby2-6-6
