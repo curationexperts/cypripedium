@@ -13,6 +13,7 @@ services:
       SOLR_TEST_URL: http://solr:8983/solr/hydra-test
       FCREPO_DEVELOPMENT_URL: http://fcrepo:8080/rest/
       FCREPO_TEST_URL: http://fcrepo:8080/rest/
+      REDIS_URL: redis://redis:6379/0
     stdin_open: true
     tty: true
     depends_on:
