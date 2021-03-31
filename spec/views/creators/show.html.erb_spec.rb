@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "creators/show", type: :view do
-  before(:each) do
+  before do
     @creator = assign(:creator, Creator.create!(
       display_name: "Display Name",
       alternate_names: "Alternate Names",

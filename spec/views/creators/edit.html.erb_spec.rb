@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "creators/edit", type: :view do
-  before(:each) do
+  before do
     @creator = assign(:creator, Creator.create!(
       display_name: "MyString",
       alternate_names: "MyString",
@@ -14,7 +15,6 @@ RSpec.describe "creators/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", creator_path(@creator), "post" do
-
       assert_select "input[name=?]", "creator[display_name]"
 
       assert_select "input[name=?]", "creator[alternate_names]"

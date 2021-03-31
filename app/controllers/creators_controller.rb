@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreatorsController < ApplicationController
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
 
@@ -9,8 +10,7 @@ class CreatorsController < ApplicationController
 
   # GET /creators/1
   # GET /creators/1.json
-  def show
-  end
+  def show; end
 
   # GET /creators/new
   def new
@@ -18,8 +18,7 @@ class CreatorsController < ApplicationController
   end
 
   # GET /creators/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /creators
   # POST /creators.json
@@ -62,13 +61,14 @@ class CreatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_creator
-      @creator = Creator.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def creator_params
-      params.require(:creator).permit(:display_name, :alternate_names, :repec, :viaf)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_creator
+    @creator = Creator.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def creator_params
+    params.require(:creator).permit(:display_name, :alternate_names, :repec, :viaf)
+  end
 end

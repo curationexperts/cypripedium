@@ -1,5 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Creator, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a ID" do
+    creator = described_class.create
+    expect(creator.id).not_to be nil
+  end
 end
