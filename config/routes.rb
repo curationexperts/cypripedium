@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'
-
-  mount Qa::Engine => '/authorities'
+  mount Qa::Engine => '/qa'
+  # mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
   resources :welcome, only: 'index'
   curation_concerns_basic_routes

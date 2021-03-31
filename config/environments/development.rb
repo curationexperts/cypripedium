@@ -61,4 +61,5 @@ Rails.application.configure do
   config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
 
   config.bag_prefix = 'mpls_fed_research'
+  config.web_console.whitelisted_ips = ["127.0.0.1", "::1", "127.0.0.0/8", "::1", "10.160.0.0/16", "::1"]
 end
