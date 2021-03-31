@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120170924) do
+ActiveRecord::Schema.define(version: 20210331201100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20181120170924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "external_key"
+  end
+
+  create_table "creators", force: :cascade do |t|
+    t.string "display_name"
+    t.string "alternate_names"
+    t.string "repec"
+    t.string "viaf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repec"], name: "index_creators_on_repec", unique: true
+    t.index ["viaf"], name: "index_creators_on_viaf", unique: true
   end
 
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|
