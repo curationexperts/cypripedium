@@ -1,14 +1,12 @@
 class CreateCreators < ActiveRecord::Migration[5.1]
   def change
     create_table :creators do |t|
-      t.string :display_name
-      t.string :alternate_names
+      t.string :display_name, null: false
+      t.text :alternate_names, array: true, default: []
       t.string :repec
       t.string :viaf
-
+      t.references :qa_local_authority_entries
       t.timestamps
     end
-    add_index :creators, :repec, unique: true
-    add_index :creators, :viaf, unique: true
   end
 end

@@ -71,14 +71,14 @@ ActiveRecord::Schema.define(version: 20210331201100) do
   end
 
   create_table "creators", force: :cascade do |t|
-    t.string "display_name"
-    t.string "alternate_names"
+    t.string "display_name", null: false
+    t.text "alternate_names", default: [], array: true
     t.string "repec"
     t.string "viaf"
+    t.bigint "qa_local_authority_entries_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["repec"], name: "index_creators_on_repec", unique: true
-    t.index ["viaf"], name: "index_creators_on_viaf", unique: true
+    t.index ["qa_local_authority_entries_id"], name: "index_creators_on_qa_local_authority_entries_id"
   end
 
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|
