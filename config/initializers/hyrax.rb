@@ -212,6 +212,7 @@ Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
 # for fields that are not configured in base Hyrax, e.g., "alpha_creator"
 Hyrax::Microdata.load_paths << Rails.root.join('config', 'schema_org.yml')
 
+Qa::Authorities::Local.register_subauthority('creators', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
