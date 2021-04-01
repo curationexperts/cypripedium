@@ -15,6 +15,6 @@ namespace :vocab do
       end
     end
 
-    puts "#{Qa::LocalAuthorityEntry.count}"
+    puts Qa::LocalAuthorityEntry.count.to_s
   end
 end
