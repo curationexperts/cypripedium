@@ -61,4 +61,6 @@ Rails.application.configure do
   config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
 
   config.bag_prefix = 'mpls_fed_research'
+  # Whitelist default Docker IP and Docker IP used by project developers
+  config.web_console.whitelisted_ips = ["127.0.0.1", "::1", "127.0.0.0/8", "::1", "10.160.0.0/16", "::1", "172.17. 0.0/16", "::1"]
 end
