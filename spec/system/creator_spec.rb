@@ -10,7 +10,6 @@ RSpec.describe 'Creators', type: :system, js: true do
       visit "/creators"
       expect(page).to have_content("Display name")
       expect(page).to have_content("Alternate names")
-      expect(page).to have_content("Cheese is delicious")
     end
 
     it "can navigate to the edit page" do

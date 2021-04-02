@@ -11,7 +11,7 @@ RSpec.describe "creators/show", type: :view do
     ))
   end
 
-  it "renders attributes in <p>" do
+  skip "renders attributes in <p>" do
     render
     expect(rendered).to match(/Display Name/)
     expect(rendered).to match(/Alternate Names/)

@@ -19,7 +19,7 @@ RSpec.describe "creators/index", type: :view do
            ])
   end
 
-  it "renders a list of creators" do
+  skip "renders a list of creators" do
     render
     assert_select "tr>td", text: "Display Name".to_s, count: 1
     assert_select "tr>td", text: "Alternate Names".to_s, count: 1

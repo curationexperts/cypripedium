@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 20210331201100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "alternate_names", force: :cascade do |t|
-    t.bigint "creator_id"
-    t.string "display_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["creator_id"], name: "index_alternate_names_on_creator_id"
-  end
-
   create_table "bookmarks", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
@@ -83,6 +75,7 @@ ActiveRecord::Schema.define(version: 20210331201100) do
     t.string "repec"
     t.string "viaf"
     t.bigint "qa_local_authority_entries_id"
+    t.text "alternate_names", default: "--- []\n"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["qa_local_authority_entries_id"], name: "index_creators_on_qa_local_authority_entries_id"
@@ -593,7 +586,6 @@ ActiveRecord::Schema.define(version: 20210331201100) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "alternate_names", "creators"
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
