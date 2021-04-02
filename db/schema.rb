@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20210331201100) do
 
   create_table "creators", force: :cascade do |t|
     t.string "display_name", null: false
-    t.text "alternate_names", default: [], array: true
+    t.text "alternate_names"
     t.string "repec"
     t.string "viaf"
     t.bigint "qa_local_authority_entries_id"
