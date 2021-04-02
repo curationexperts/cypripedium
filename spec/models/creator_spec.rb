@@ -9,8 +9,8 @@ RSpec.describe Creator, type: :model do
   end
   it "doesn't allow an empty display_name" do
     expect do
-      described_class.create
-    end.to raise_error(ActiveRecord::NotNullViolation, /ERROR:  null value in column \"display_name\"/)
+      described_class.create!
+    end.to raise_error(ActiveRecord::RecordInvalid, /Validation failed: Display name can't be blank/)
   end
   it "doesn't allow a blank display_name" do
     expect do
@@ -28,5 +28,13 @@ RSpec.describe Creator, type: :model do
     expect do
       described_class.create!(display_name: "Allen, Stephen Gomes", viaf: "789875")
     end.to raise_error(ActiveRecord::RecordInvalid, /Validation failed: Viaf id already in the system/)
+  end
+  it "has multiple alternate names" do
+    creator = described_class.create(display_name: "Allen, Stephen G.")
+    creator.alternate_names << AlternateName.create(display_name: "Allen, Stephen Gomes")
+    creator.alternate_names << AlternateName.create(display_name: "Allen, S.G.")
+    creator.save!
+    expect(creator.alternate_names.count).to eq 2
+    expect(creator.alternate_names.first.display_name).to eq "Allen, Stephen Gomes"
   end
 end
