@@ -25,6 +25,7 @@ RSpec.describe 'Creators', type: :system, js: true do
     end
     it "can show the index page" do
       visit "/creators"
+      expect(page).to have_content("ID")
       expect(page).to have_content("Display name")
       expect(page).to have_content("Alternate names")
     end
