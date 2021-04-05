@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class CreatorsController < ApplicationController
+  include Hydra::Controller::ControllerBehavior
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /creators
   # GET /creators.json
@@ -50,15 +52,7 @@ class CreatorsController < ApplicationController
     end
   end
 
-  # DELETE /creators/1
-  # DELETE /creators/1.json
-  def destroy
-    @creator.destroy
-    respond_to do |format|
-      format.html { redirect_to creators_url, notice: 'Creator was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # TODO: implement disable/inactivate.
 
   private
 

@@ -14,10 +14,15 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/creators", type: :request do
+  let(:user) { FactoryBot.create(:admin) }
+  before do
+    login_as user
+  end
   # Creator. As you add validations to Creator, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { display_name: "A display name", alternate_names: ["Another name", "a third name"],
+      repec: "Stuff", viaf: "Things" }
   }
 
   let(:invalid_attributes) {
@@ -65,7 +70,7 @@ RSpec.describe "/creators", type: :request do
 
       it "redirects to the created creator" do
         post creators_url, params: { creator: valid_attributes }
-        expect(response).to redirect_to(creator_url(Creator.last))
+        expect(response).to redirect_to(creator_url(Creator.last) + "?locale=en")
       end
     end
 
@@ -110,21 +115,6 @@ RSpec.describe "/creators", type: :request do
         patch creator_url(creator), params: { creator: invalid_attributes }
         expect(response).to be_successful
       end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested creator" do
-      creator = Creator.create! valid_attributes
-      expect {
-        delete creator_url(creator)
-      }.to change(Creator, :count).by(-1)
-    end
-
-    it "redirects to the creators list" do
-      creator = Creator.create! valid_attributes
-      delete creator_url(creator)
-      expect(response).to redirect_to(creators_url)
     end
   end
 end

@@ -13,7 +13,7 @@ class Ability
     # if current_user.admin?
     #   can [:destroy], ActiveFedora::Base
     # end
-
+    can [:edit, :update, :create, :index, :show], Creator if current_user.admin?
     # Limits creating new objects to a specific group
     #
     # if user_groups.include? 'special_group'
