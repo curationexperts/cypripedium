@@ -27,6 +27,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       find('#publication_series').click
       fill_in 'Series', with: 'Staff Reports (Federal Reserve Bank of Minneapolis. Research Division.)'
       fill_in 'Issue number', with: '111'
+      fill_in 'Creator', with: 'Caselli, Francesco, 1966-'
       fill_in 'Date Created', with: '2019-05-01'
       fill_in 'Keyword', with: 'Keyword'
       fill_in 'Subject (JEL)', with: 'A10 - General Economics: General'
