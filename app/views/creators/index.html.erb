@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Display name</th>
       <th>Alternate names</th>
       <th>Repec</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @creators.each do |creator| %>
       <tr>
+        <td><%= creator.id %></td>
         <td><%= creator.display_name %></td>
         <td><%= creator.alternate_names %></td>
         <td><%= creator.repec %></td>

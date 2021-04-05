@@ -74,11 +74,9 @@ ActiveRecord::Schema.define(version: 20210331201100) do
     t.string "display_name", null: false
     t.string "repec"
     t.string "viaf"
-    t.bigint "qa_local_authority_entries_id"
     t.text "alternate_names", default: "--- []\n"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["qa_local_authority_entries_id"], name: "index_creators_on_qa_local_authority_entries_id"
   end
 
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|
