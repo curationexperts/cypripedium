@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Display name:</strong>
+  <%= @creator.display_name %>
+</p>
+
+<p>
+  <strong>Alternate names:</strong>
+  <%= @creator.alternate_names %>
+</p>
+
+<p>
+  <strong>Repec:</strong>
+  <%= @creator.repec %>
+</p>
+
+<p>
+  <strong>Viaf:</strong>
+  <%= @creator.viaf %>
+</p>
+
+<%= link_to 'Edit', edit_creator_path(@creator) %> |
+<%= link_to 'Back', creators_path %>

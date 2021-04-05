@@ -49,6 +49,10 @@ Rails/Date:
 Rails/FindBy:
   Enabled: false
 
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/creator.rb'
+
 RSpec/DescribeClass:
   Enabled: false
 
