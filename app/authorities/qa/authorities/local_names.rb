@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Qa::Authorities
   class LocalNames < Qa::Authorities::Base
-    attr_reader :subauthority
     # sanitize?
     def search(q)
       results = Creator.where('lower(display_name) like ?', "#{q.downcase}%").limit(25)
@@ -15,7 +14,7 @@ module Qa::Authorities
 
     # sanitize?
     def find(id)
-      record = Creator.find(id)
+      record = Creator.find_by(id: id)
       return nil unless record
       {
         id: record.id,
