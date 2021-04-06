@@ -12,7 +12,7 @@
 <% end %>
 
 <% if can? :read, :admin_dashboard %>
-  <%= menu.nav_link("/creators") do %>
+  <%= menu.nav_link("/creators?locale=en") do %>
     <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('creators.index.manage_creators') %></span>
   <% end %>
 
