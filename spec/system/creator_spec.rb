@@ -39,5 +39,14 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content('["Allen, S. Gomes", "Aliens, Steve"]')
       expect(Creator.first.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
     end
+    it "has a dashboard link to manage creators" do
+      visit "/dashboard"
+      expect(page).to have_link("Manage Embargoes")
+      expect(page).to have_link("Manage Creators")
+      click_on "Manage Creators"
+      expect(page).to have_content("ID")
+      expect(page).to have_content("Display name")
+      expect(page).to have_content("Alternate names")
+    end
   end
 end
