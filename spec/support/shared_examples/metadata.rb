@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 RSpec.shared_examples 'a work with additional metadata' do
   let(:multivalued) { ['A string for testing multivalued values.'] }
+  it 'has a creator' do
+    work.creator = multivalued
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/creator/)
+    expect(work.creator).to eq(multivalued)
+  end
   it 'has an abstract' do
     work.abstract = multivalued
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/abstract/)
