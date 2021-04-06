@@ -44,7 +44,7 @@ services:
     volumes:
       - fedora:/data
     ports:
-      - 8080:8080
+      - 8984:8080
 
   solr:
     image: solr:7.1-alpine
