@@ -7,11 +7,9 @@ module Qa::Authorities
     end
     # sanitize?
     def find(id)
-      begin
-        Creator.find(id)
-      rescue ActiveRecord::RecordNotFound
-        {"add a json response here saying the record can't be found"}
-      end
+      record = Creator.find_by(id: id)
+      return nil unless record
+      record
     end
   end
 end

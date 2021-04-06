@@ -42,7 +42,9 @@ describe 'Creator authority', type: :request do
       expect(json_body.count).to eq 2
       expect(json_body.first["display_name"]).to eq "Camargo, Braz"
     end
+  end
 
+  describe "GET /authorities/show/local_names/creators" do
     it "can return an authority entry based on identifier" do
       # uri_identifier = Qa::LocalAuthorityEntry.first.uri
       # expect(uri_identifier).to eq "http://id.loc.gov/authorities/names/no2003126550"
@@ -59,7 +61,8 @@ describe 'Creator authority', type: :request do
 
     it "can fail gracefully when an id doesn't exist" do
       get "/authorities/show/local_names/creators/9999"
-      expect(response).to have_http_status(:missing)
+      expect(response).to have_http_status(:success)
+      expect(response.body).to eq "null"
     end
   end
 end
