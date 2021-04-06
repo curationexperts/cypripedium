@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Qa::Authorities
   class LocalNames < Qa::Authorities::Base
-    # sanitize?
     def search(q)
       results = Creator.where('lower(display_name) like ?', "#{q.downcase}%").limit(25)
       results.map do |result|
@@ -12,7 +11,6 @@ module Qa::Authorities
       end
     end
 
-    # sanitize?
     def find(id)
       record = Creator.find_by(id: id)
       return nil unless record
