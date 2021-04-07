@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Qa::Authorities
-  class LocalNames < Qa::Authorities::Base
+  class CreatorAuthority < Qa::Authorities::Base
     def search(q)
       results = Creator.where('lower(display_name) like ?', "#{q.downcase}%").limit(25)
       results.map do |result|

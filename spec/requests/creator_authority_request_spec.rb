@@ -26,9 +26,9 @@ describe 'Creator authority', type: :request do
     end
   end
 
-  describe "GET /authorities/search/local_names/creators" do
+  describe "GET /authorities/search/creator_authority" do
     it "returns http success" do
-      get "/authorities/search/local_names/creators?q=Ca"
+      get "/authorities/search/creator_authority?q=Ca"
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq "application/json"
       json_body = JSON.parse(response.body)
@@ -36,7 +36,7 @@ describe 'Creator authority', type: :request do
       expect(json_body.first["label"]).to eq "Cagetti, Marco"
     end
     it "returns fewer responses for a longer string" do
-      get "/authorities/search/local_names/creators?q=Cam"
+      get "/authorities/search/creator_authority?q=Cam"
       expect(response).to have_http_status(:success)
       json_body = JSON.parse(response.body)
       expect(json_body.count).to eq 2
@@ -44,14 +44,14 @@ describe 'Creator authority', type: :request do
     end
   end
 
-  describe "GET /authorities/show/local_names/creators" do
+  describe "GET /authorities/show/creator_authority" do
     it "can return an authority entry based on identifier" do
       # uri_identifier = Qa::LocalAuthorityEntry.first.uri
       # expect(uri_identifier).to eq "http://id.loc.gov/authorities/names/no2003126550"
       # uri_escaped = CGI.escape(uri_identifier)
       # puts uri_escaped
 
-      get "/authorities/show/local_names/creators/#{Creator.first.id}"
+      get "/authorities/show/creator_authority/#{Creator.first.id}"
       expect(response).to have_http_status(:success)
       expect(response.body).not_to be_empty
       expect(response.content_length).to be > 3
@@ -60,7 +60,7 @@ describe 'Creator authority', type: :request do
     end
 
     it "can fail gracefully when an id doesn't exist" do
-      get "/authorities/show/local_names/creators/9999"
+      get "/authorities/show/creator_authority/9999"
       expect(response).to have_http_status(:success)
       expect(response.body).to eq "null"
     end
