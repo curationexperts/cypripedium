@@ -1,0 +1,21 @@
+<table class="creators table">
+  <thead>
+    <tr>
+      <%= render partial: 'table_headers' %>
+    </tr>
+  </thead>
+  <tbody>
+      <% @creators.each do |creator| %>
+        <tr>
+          <td class="id"><%= creator.id %></td>
+          <td class="display_name"><%= creator.display_name %></td>
+          <td class="alternate_names"><%= creator.alternate_names %></td>
+          <td class="repec"><%= creator.repec %></td>
+          <td class="viaf"><%= creator.viaf %></td>
+          <td><%= link_to 'Show', creator %></td>
+          <td><%= link_to 'Edit', edit_creator_path(creator) %></td>
+          <td><%= link_to 'Destroy', creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
