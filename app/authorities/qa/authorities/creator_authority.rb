@@ -3,12 +3,7 @@ module Qa::Authorities
   class CreatorAuthority < Qa::Authorities::Base
     def search(q)
       results = Creator.where('lower(display_name) like ?', "#{q.downcase}%").limit(25)
-      results.map do |result|
-        {
-          id: result.id,
-          label: result.display_name
-        }
-      end
+      map_results(results)
     end
 
     def find(id)
@@ -18,6 +13,20 @@ module Qa::Authorities
         id: record.id,
         label: record.display_name
       }
+    end
+
+    def all
+      results = Creator.all.limit(1000)
+      map_results(results)
+    end
+
+    def map_results(results)
+      results.map do |result|
+        {
+          id: result.id,
+          label: result.display_name
+        }
+      end
     end
   end
 end

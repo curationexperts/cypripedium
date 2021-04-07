@@ -46,11 +46,6 @@ describe 'Creator authority', type: :request do
 
   describe "GET /authorities/show/creator_authority" do
     it "can return an authority entry based on identifier" do
-      # uri_identifier = Qa::LocalAuthorityEntry.first.uri
-      # expect(uri_identifier).to eq "http://id.loc.gov/authorities/names/no2003126550"
-      # uri_escaped = CGI.escape(uri_identifier)
-      # puts uri_escaped
-
       get "/authorities/show/creator_authority/#{Creator.first.id}"
       expect(response).to have_http_status(:success)
       expect(response.body).not_to be_empty
@@ -63,6 +58,16 @@ describe 'Creator authority', type: :request do
       get "/authorities/show/creator_authority/9999"
       expect(response).to have_http_status(:success)
       expect(response.body).to eq "null"
+    end
+  end
+
+  describe "GET /authorities/terms/creator_authority" do
+    it "can show all the creators in a list" do
+      get "/authorities/terms/creator_authority"
+      expect(response).to have_http_status(:success)
+      json_body = JSON.parse(response.body)
+      expect(json_body.count).to eq 13
+      expect(json_body.first["label"]).to eq "Cagetti, Marco"
     end
   end
 end
