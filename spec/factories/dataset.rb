@@ -6,6 +6,7 @@ FactoryBot.define do
     factory :dataset_without_description do
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
       creator { ["McGrattan, Ellen R.", "Prescott, Edward C."] }
+      creator_id { ['1', '2'] }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
       resource_type { ["Dataset"] }
       visibility { "open" }
@@ -16,6 +17,7 @@ FactoryBot.define do
     factory :populated_dataset do
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
       creator { ["McGrattan, Ellen R.", "Prescott, Edward C."] }
+      creator_id { ['1', '2'] }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
       resource_type { ["Dataset"] }
       visibility { "open" }

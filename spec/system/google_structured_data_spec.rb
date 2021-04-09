@@ -5,7 +5,11 @@ include Warden::Test::Helpers
 RSpec.describe 'Use structured data that Google can parse', type: :system, clean: true, js: true do
   context "datasets" do
     let(:work) { FactoryBot.create(:populated_dataset) }
+    let(:creator_one) { FactoryBot.create(:creator, display_name: 'McGrattan, Ellen R.') }
+    let(:creator_two) { FactoryBot.create(:creator, display_name: 'Prescott, Edward C.') }
     it "marks up with schema.org tags", :aggregate_failures do
+      Creator.create(display_name: 'McGrattan, Ellen R.')
+      Creator.create(display_name: 'Prescott, Edward C.')
       visit "/concern/datasets/#{work.id}"
       creators = page.all(:css, "[itemprop='creator']")
       expect(creators.first.text).to eq "McGrattan, Ellen R."
@@ -25,6 +29,8 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
       "Data supports Staff Report 315, \"Does Neoclassical Theory Account for the Effects of Big Fiscal Shocks? Evidence From World War II.\" https://doi.org/10.21034/sr.315"
     end
     it "marks related_url with description schema.org tags" do
+      Creator.create(display_name: 'McGrattan, Ellen R.')
+      Creator.create(display_name: 'Prescott, Edward C.')
       visit "/concern/datasets/#{work.id}"
       expect(page.find(:css, '[itemprop="description"]').text.strip).to eq related_url
     end
