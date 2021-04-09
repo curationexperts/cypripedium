@@ -6,6 +6,11 @@ RSpec.shared_examples 'a work with additional metadata' do
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/creator/)
     expect(work.creator).to eq(multivalued)
   end
+  it 'has a creator id' do
+    work.creator_id = multivalued
+    expect(work.resource.dump(:ttl)).to match(/schema.org\/identifier/)
+    expect(work.creator_id).to eq(multivalued)
+  end
   it 'has an abstract' do
     work.abstract = multivalued
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/abstract/)
