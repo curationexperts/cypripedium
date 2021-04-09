@@ -17,8 +17,10 @@ RSpec.describe PublicationIndexer do
       expect(solr_doc['title_ssi']).to eq 'My Title'
       expect(solr_doc['date_created_ssi']).to eq '1970-04'
       # The problem with storing them separately in Fedora is that it looks like they get re-ordered in Solr
-      # expect(solr_doc['creator_tesim']).to eq ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.']
-      # expect(solr_doc['creator_id_isim']).to eq [1234, 567, 8910]
+      # Wait! But with Fedora we have to totally write over the whole array anyway, so if we find the ID in 
+      # the creator_id array we can replace the whole set of creator names
+      expect(solr_doc['creator_tesim']).to eq ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.']
+      expect(solr_doc['creator_id_isim']).to eq [1234, 567, 8910]
     end
     it 'indexes the creator names in alphabetical order' do
       expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'Kehoe, Patrick J.', 'Kehoe, Timothy J.']
