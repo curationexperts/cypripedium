@@ -5,7 +5,7 @@ RSpec.describe PublicationIndexer do
   let(:indexer) { described_class.new(publication) }
   let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
   let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David') }
-  let(:creator_three)  { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
+  let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
   let(:publication) { Publication.new(attrs) }
   let(:attrs) {
     { title: ['My Title'],
