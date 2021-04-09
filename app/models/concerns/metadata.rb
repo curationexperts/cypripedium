@@ -4,7 +4,6 @@ module Metadata
   extend ActiveSupport::Concern
 
   included do
-
     property :creator_id, predicate: RDF::Vocab::SCHEMA.identifier do |index|
       index.as :stored_searchable, :facetable
     end

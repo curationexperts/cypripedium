@@ -7,7 +7,7 @@ RSpec.describe Publication do
 
   it_behaves_like 'a work with additional metadata'
   it "can set and retrieve a creator value" do
-    publication = Publication.new
+    publication = described_class.new
     publication.title = ["Some title, cuz it's required"]
     publication.creator = [creator.display_name]
     publication.creator_id = [creator.id]
