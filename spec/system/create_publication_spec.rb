@@ -36,6 +36,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         # so no work show page appears. Save the form
         find('#agreement').click
         find('#with_files_submit').click
+        sleep(1)
         expect(page).to have_selector 'h1', text: 'Title for controller vocab test'
       end
     end
