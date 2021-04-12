@@ -22,9 +22,8 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         fill_in 'Creator', with: 'Alvarez, Fernando, 1964-'
         find('body').click
         click_link 'Files'
-        within('#addfiles') do
-          attach_file("files[]", "spec/fixtures/files/pdf-sample.pdf", visible: false)
-        end
+        execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
+        attach_file('files[]', File.absolute_path(file_fixture('pdf-sample.pdf')))
         sleep(1)
         choose('publication_visibility_open')
         # puts "Required metadata: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').requiredFields.areComplete})}"
@@ -36,7 +35,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         # so no work show page appears. Save the form
         find('#agreement').click
         find('#with_files_submit').click
-        sleep(1)
+        sleep(5)
         expect(page).to have_selector 'h1', text: 'Title for controller vocab test'
       end
     end
