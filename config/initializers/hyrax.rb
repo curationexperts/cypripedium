@@ -107,7 +107,8 @@ Hyrax.config do |config|
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active
   # The default is true.
-  config.active_deposit_agreement_acceptance = false
+  # TODO: Turn off checkbox - will likely break javascript that enables the Save button in spec/system/create_publication_spec.rb
+  config.active_deposit_agreement_acceptance = ENV["RAILS_ENV"] == "production" ? false : true
 
   # Should work creation require file upload, or can a work be created first
   # and a file added at a later time?
