@@ -26,19 +26,17 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
           attach_file("files[]", "spec/fixtures/files/pdf-sample.pdf", visible: false)
         end
         sleep(1)
-        find('#agreement').click
         choose('publication_visibility_open')
-        puts "Required metadata: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').requiredFields.areComplete})}"
-        puts "Required files: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').uploads.hasFiles})}"
-        puts "Agreement : #{page.evaluate_script(%{$('#form-progress').data('save_work_control').depositAgreement.isAccepted})}"
-
-        save_button = %{$('#form-progress').data('save_work_control').isSaveButtonEnabled}
-        puts "saveButtonEnabled: #{page.evaluate_script(save_button)}"
-        expect(find('#with_files_submit').disabled?).to eq false
+        # puts "Required metadata: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').requiredFields.areComplete})}"
+        # puts "Required files: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').uploads.hasFiles})}"
+        # puts "Agreement : #{page.evaluate_script(%{$('#form-progress').data('save_work_control').depositAgreement.isAccepted})}"
+        # save_button = %{$('#form-progress').data('save_work_control').isSaveButtonEnabled}
+        # puts "saveButtonEnabled: #{page.evaluate_script(save_button)}"
         # TODO: Capybara / Selenium not re-enabling submit button when agreement initializer set to false
         # so no work show page appears. Save the form
+        find('#agreement').click
         find('#with_files_submit').click
-        expect(page).to have_selector 'h1', text: 'Title'
+        expect(page).to have_selector 'h1', text: 'Title for controller vocab test'
       end
     end
 
