@@ -13,32 +13,6 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       login_as user
       AdminSet.find_or_create_default_admin_set_id
     end
-    describe 'limited entries' do
-      let(:creator) { FactoryBot.create(:creator) }
-      scenario 'fill in and submit limited form' do
-        visit '/concern/publications/new'
-        fill_in 'Title', with: 'Title for controller vocab test'
-        find('#publication_creator').click
-        fill_in 'Creator', with: 'Alvarez, Fernando, 1964-'
-        find('body').click
-        click_link 'Files'
-        execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
-        attach_file('files[]', File.absolute_path(file_fixture('pdf-sample.pdf')))
-        sleep(1)
-        choose('publication_visibility_open')
-        # puts "Required metadata: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').requiredFields.areComplete})}"
-        # puts "Required files: #{page.evaluate_script(%{$('#form-progress').data('save_work_control').uploads.hasFiles})}"
-        # puts "Agreement : #{page.evaluate_script(%{$('#form-progress').data('save_work_control').depositAgreement.isAccepted})}"
-        # save_button = %{$('#form-progress').data('save_work_control').isSaveButtonEnabled}
-        # puts "saveButtonEnabled: #{page.evaluate_script(save_button)}"
-        # TODO: Capybara / Selenium not re-enabling submit button when agreement initializer set to false
-        # so no work show page appears. Save the form
-        find('#agreement').click
-        find('#with_files_submit').click
-        sleep(5)
-        expect(page).to have_selector 'h1', text: 'Title for controller vocab test'
-      end
-    end
 
     scenario 'fill in and submit the form' do
       visit '/concern/publications/new'
