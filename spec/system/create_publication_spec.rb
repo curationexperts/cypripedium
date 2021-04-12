@@ -42,7 +42,6 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       end
     end
 
-
     scenario 'fill in and submit the form' do
       visit '/concern/publications/new'
       expect(page).to have_content "Add New Publication"
@@ -85,7 +84,6 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       fill_in 'Spatial', with: 'Spatial'
       fill_in 'Temporal', with: 'Temporal'
       fill_in 'Table of Contents', with: 'Table of Contents'
-
 
       click_link 'Files'
 
