@@ -12,27 +12,9 @@
 <div class="panel-body">
   <div class="tab-content">
     <div class="tab-pane active" id="active">
+      <%= link_to 'New Creator', new_creator_path %>
+      <br>
       <%= render "list_active_creators" %>
-<table>
-  <tbody>
-    <% @creators.each do |creator| %>
-      <tr>
-        <td><%= creator.id %></td>
-        <td><%= creator.display_name %></td>
-        <td><%= creator.alternate_names %></td>
-        <td><%= creator.repec %></td>
-        <td><%= creator.viaf %></td>
-        <td><%= link_to 'Show', creator %></td>
-        <td><%= link_to 'Edit', edit_creator_path(creator) %></td>
-        <td><%= link_to 'Destroy', creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Creator', new_creator_path %>
     </div>
   </div>
 </div>
