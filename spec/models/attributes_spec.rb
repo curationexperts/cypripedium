@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Attributes do
   let(:attributes) { described_class.to_a }
   let(:defined_attributes) do
-    ["series", "issue_number", "abstract", "alternative_title",
+    ["creator_id", "series", "issue_number", "abstract", "alternative_title",
      "bibliographic_citation", "corporate_name",
      "date_available", "extent", "has_part",
      "is_version_of", "has_version", "is_replaced_by",
