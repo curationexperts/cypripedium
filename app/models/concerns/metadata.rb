@@ -5,7 +5,7 @@ module Metadata
 
   included do
     property :creator_id, predicate: RDF::Vocab::SCHEMA.identifier do |index|
-      index.as :stored_searchable, :facetable
+      index.as :symbol
     end
     property :series, predicate: RDF::Vocab::SCHEMA.isPartOf do |index|
       index.as :stored_searchable, :facetable

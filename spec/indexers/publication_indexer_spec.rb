@@ -25,7 +25,7 @@ RSpec.describe PublicationIndexer do
         # The problem with storing them separately in Fedora is that it looks like they get re-ordered in Solr
         # Wait! But with Fedora we have to totally write over the whole array anyway, so if we find the ID in
         # the creator_id array we can replace the whole set of creator names
-        creator_id_array = solr_doc['creator_id_isim']
+        creator_id_array = solr_doc['creator_id_ssim']
         expect(creator_id_array).to include creator_one.id.to_s
         expect(creator_id_array).to include creator_two.id.to_s
         expect(creator_id_array).to include creator_three.id.to_s
