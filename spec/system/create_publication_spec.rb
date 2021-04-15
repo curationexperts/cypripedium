@@ -14,6 +14,56 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       AdminSet.find_or_create_default_admin_set_id
     end
 
+    context "with a creator from a controlled vocabulary" do
+      before do
+        creator_array = [
+          { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, Marco" },
+          { "id": "https://ideas.repec.org/f/pca1299.html", "label": "Cai, Zhifeng" },
+          { "id": "https://ideas.repec.org/e/pca150.html", "label": "Calsamiglia, Caterina" },
+          { "id": "https://ideas.repec.org/f/pca694.html", "label": "Calvo, Guillermo A." },
+          { "id": "https://ideas.repec.org/f/pca371.html", "label": "Camargo, Braz" },
+          { "id": "https://ideas.repec.org/e/pca89.html", "label": "Campbell, Jeffrey R." },
+          { "id": "https://ideas.repec.org/e/pca50.html", "label": "Canova, Fabio" },
+          { "id": "https://ideas.repec.org/e/pca77.html", "label": "Caplin, Andrew" },
+          { "id": "https://ideas.repec.org/f/pca1029.html", "label": "Carapella, Francesca" },
+          { "id": "https://ideas.repec.org/e/pca42.html", "label": "Carlstrom, Charles T., 1960-" },
+          { "id": "https://ideas.repec.org/f/pca205.html", "label": "Caselli, Francesco, 1966-" },
+          { "id": "https://ideas.repec.org/e/pca73.html", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
+          { "id": "https://ideas.repec.org/f/pca963.html", "label": "Cavalcanti, Ricardo de Oliveira" }
+        ]
+        creator_array.each do |creator|
+          Creator.create!(
+            display_name: creator[:label]
+          )
+        end
+      end
+      scenario 'fill in and submit the title and creator' do
+        visit '/concern/publications/new'
+        fill_in 'Title', with: 'My Title'
+        fill_in('Creator', with: 'Cag')
+        expect(page).to have_content('Cagetti, Marco')
+        expect(page).not_to have_content('Cai, Zhifeng')
+        # Select the first item in the autocomplete list
+        find('.ui-menu-item-wrapper').click
+        creator_identifier = Creator.find_by(display_name: "Cagetti, Marco").id
+        fill_in('Creator identifier', with: creator_identifier)
+        click_link 'Files'
+
+        execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
+        attach_file('files[]', File.absolute_path(file_fixture('pdf-sample.pdf')))
+        sleep(1)
+        find('#agreement').click
+        find('#with_files_submit').click
+        sleep(5)
+        expect(page).to have_selector 'h1', text: 'My Title'
+        expect(page).to have_content('Cagetti, Marco')
+        pub = Publication.first
+        expect(pub.creator).to eq ['Cagetti, Marco']
+        expect(pub.creator_id).to eq [creator_identifier.to_s]
+        # expect(pub.creator).to be_an_instance_of ActiveTriples::Relation
+      end
+    end
+
     scenario 'fill in and submit the form' do
       visit '/concern/publications/new'
       expect(page).to have_content "Add New Publication"
