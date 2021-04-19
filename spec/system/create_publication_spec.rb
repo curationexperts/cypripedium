@@ -44,9 +44,8 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         fill_in('Creator', with: 'Cag')
         expect(page).to have_content('Cagetti, Marco')
         expect(page).not_to have_content('Cai, Zhifeng')
-        # Select the first item in the autocomplete list
-        find('.ui-menu-item-wrapper').click
-        # fill_in('Creator identifier', with: 27)
+        find('.ui-menu-item-wrapper').click # Select the first item in the autocomplete list
+        expect(page).to have_content('Cagetti, Marco') # Once we select from the dropdown we still want to diplay the name
         click_link 'Files'
 
         execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
