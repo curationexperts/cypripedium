@@ -17,22 +17,23 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
     context "with a creator from a controlled vocabulary" do
       before do
         creator_array = [
-          { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, Marco" },
-          { "id": "https://ideas.repec.org/f/pca1299.html", "label": "Cai, Zhifeng" },
-          { "id": "https://ideas.repec.org/e/pca150.html", "label": "Calsamiglia, Caterina" },
-          { "id": "https://ideas.repec.org/f/pca694.html", "label": "Calvo, Guillermo A." },
-          { "id": "https://ideas.repec.org/f/pca371.html", "label": "Camargo, Braz" },
-          { "id": "https://ideas.repec.org/e/pca89.html", "label": "Campbell, Jeffrey R." },
-          { "id": "https://ideas.repec.org/e/pca50.html", "label": "Canova, Fabio" },
-          { "id": "https://ideas.repec.org/e/pca77.html", "label": "Caplin, Andrew" },
-          { "id": "https://ideas.repec.org/f/pca1029.html", "label": "Carapella, Francesca" },
-          { "id": "https://ideas.repec.org/e/pca42.html", "label": "Carlstrom, Charles T., 1960-" },
-          { "id": "https://ideas.repec.org/f/pca205.html", "label": "Caselli, Francesco, 1966-" },
-          { "id": "https://ideas.repec.org/e/pca73.html", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
-          { "id": "https://ideas.repec.org/f/pca963.html", "label": "Cavalcanti, Ricardo de Oliveira" }
+          { "value": "27", "label": "Cagetti, Marco" },
+          { "value": "28", "label": "Cai, Zhifeng" },
+          { "value": "29", "label": "Calsamiglia, Caterina" },
+          { "value": "30", "label": "Calvo, Guillermo A." },
+          { "value": "31", "label": "Camargo, Braz" },
+          { "value": "32", "label": "Campbell, Jeffrey R." },
+          { "value": "33", "label": "Canova, Fabio" },
+          { "value": "34", "label": "Caplin, Andrew" },
+          { "value": "35", "label": "Carapella, Francesca" },
+          { "value": "36", "label": "Carlstrom, Charles T., 1960-" },
+          { "value": "37", "label": "Caselli, Francesco, 1966-" },
+          { "value": "38", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
+          { "value": "39", "label": "Cavalcanti, Ricardo de Oliveira" }
         ]
         creator_array.each do |creator|
           Creator.create!(
+            id: creator[:value],
             display_name: creator[:label]
           )
         end
@@ -45,8 +46,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         expect(page).not_to have_content('Cai, Zhifeng')
         # Select the first item in the autocomplete list
         find('.ui-menu-item-wrapper').click
-        creator_identifier = Creator.find_by(display_name: "Cagetti, Marco").id
-        fill_in('Creator identifier', with: creator_identifier)
+        # fill_in('Creator identifier', with: 27)
         click_link 'Files'
 
         execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
@@ -56,11 +56,8 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
         find('#with_files_submit').click
         sleep(5)
         expect(page).to have_selector 'h1', text: 'My Title'
+        expect(Publication.first.creator_id).to eq ["27"]
         expect(page).to have_content('Cagetti, Marco')
-        pub = Publication.first
-        expect(pub.creator).to eq ['Cagetti, Marco']
-        expect(pub.creator_id).to eq [creator_identifier.to_s]
-        # expect(pub.creator).to be_an_instance_of ActiveTriples::Relation
       end
     end
 
