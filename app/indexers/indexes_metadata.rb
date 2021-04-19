@@ -7,6 +7,7 @@ module IndexesMetadata
       solr_doc['date_created_ssi'] = object.date_created.first
       solr_doc['creator_tesim'] = creator_names(object)
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
+      solr_doc['creator_sim'] = creator_names(object)
     end
   end
 
