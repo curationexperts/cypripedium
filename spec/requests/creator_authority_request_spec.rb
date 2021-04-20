@@ -45,12 +45,20 @@ describe 'Creator authority', type: :request do
   end
 
   describe "GET /authorities/show/creator_authority" do
+    around do |example|
+      orig_rdf_uri = ENV['RDF_URI']
+      ENV['RDF_URI'] = 'http://localhost:3000'
+      example.run
+      ENV['RDF_URI'] = orig_rdf_uri
+    end
     it "can return an authority entry based on identifier" do
-      get "/authorities/show/creator_authority/#{Creator.first.id}"
+      creator_id = Creator.first.id
+      get "/authorities/show/creator_authority/#{creator_id}"
       expect(response).to have_http_status(:success)
       expect(response.body).not_to be_empty
       expect(response.content_length).to be > 3
       json_body = JSON.parse(response.body)
+      expect(json_body["id"]).to eq "http://localhost:3000/authorities/show/creator_authority/#{creator_id}"
       expect(json_body["label"]).to eq "Cagetti, Marco"
     end
 

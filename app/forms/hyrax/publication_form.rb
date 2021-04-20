@@ -27,5 +27,21 @@ module Hyrax
       result[:abstract].map! { |abstract| RDF::Markdown::Literal.new(abstract) }
       result
     end
+
+    # This describes the parameters we are expecting to receive from the client
+    # @return [Array] a list of parameters used by sanitize_params
+    def self.build_permitted_params
+      super + [
+        :on_behalf_of,
+        :version,
+        :add_works_to_collection,
+        {
+          creator_attributes: [:id, :_destroy],
+          based_near_attributes: [:id, :_destroy],
+          member_of_collections_attributes: [:id, :_destroy],
+          work_members_attributes: [:id, :_destroy]
+        }
+      ]
+    end
   end
 end

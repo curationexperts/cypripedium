@@ -6,7 +6,7 @@ require 'rails_helper'
 
 include Warden::Test::Helpers
 
-RSpec.describe 'Create a Publication', type: :system, js: true do
+RSpec.describe 'Create a Publication', type: :system, js: true, clean: true do
   context 'a logged in admin user' do
     let(:user) { FactoryBot.create(:admin) }
     before do
@@ -15,6 +15,12 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
     end
 
     context "with a creator from a controlled vocabulary" do
+      around do |example|
+        orig_rdf_uri = ENV['RDF_URI']
+        ENV['RDF_URI'] = 'http://localhost:3000'
+        example.run
+        ENV['RDF_URI'] = orig_rdf_uri
+      end
       before do
         creator_array = [
           { "value": "27", "label": "Cagetti, Marco" },
