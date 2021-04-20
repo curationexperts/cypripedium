@@ -41,10 +41,12 @@ RSpec.describe 'Create a Publication', type: :system, js: true do
       scenario 'fill in and submit the title and creator' do
         visit '/concern/publications/new'
         fill_in 'Title', with: 'My Title'
-        fill_in('Creator', with: 'Cag')
+        click_button('Add another Creator')
+        page.find('#s2id_publication_creator_attributes_0_hidden_label').click
+        fill_in('s2id_autogen3_search', with: 'Cag')
         expect(page).to have_content('Cagetti, Marco')
         expect(page).not_to have_content('Cai, Zhifeng')
-        find('.ui-menu-item-wrapper').click # Select the first item in the autocomplete list
+        find('#select2-result-label-4').click # Select the first item in the autocomplete list
         # expect(page).to have_content('Cagetti, Marco') # Once we select from the dropdown we still want to diplay the name
         click_link 'Files'
 

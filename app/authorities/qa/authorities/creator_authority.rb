@@ -10,7 +10,7 @@ module Qa::Authorities
       record = Creator.find_by(id: id)
       return nil unless record
       {
-        value: record.id,
+        id: record.id,
         label: record.display_name
       }
     end
@@ -23,7 +23,7 @@ module Qa::Authorities
     def map_results(results)
       results.map do |result|
         {
-          value: result.id,
+          id: result.id,
           label: result.display_name
         }
       end
