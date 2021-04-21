@@ -10,7 +10,7 @@ module Hyrax
     self.required_fields = [:title]
 
     def primary_terms
-      [:title, :series, :issue_number, :creator, :date_created, :keyword, :subject,
+      [:title, :series, :issue_number, :creator_id, :date_created, :keyword, :subject,
        :abstract, :description, :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license]
     end
 
@@ -36,7 +36,7 @@ module Hyrax
         :version,
         :add_works_to_collection,
         {
-          creator_attributes: [:id, :_destroy],
+          creator_id_attributes: [:id, :_destroy],
           based_near_attributes: [:id, :_destroy],
           member_of_collections_attributes: [:id, :_destroy],
           work_members_attributes: [:id, :_destroy]

@@ -45,13 +45,13 @@ describe 'Creator authority', type: :request do
   end
 
   describe "GET /authorities/show/creator_authority" do
-    around do |example|
-      orig_rdf_uri = ENV['RDF_URI']
-      ENV['RDF_URI'] = 'http://localhost:3000'
-      example.run
-      ENV['RDF_URI'] = orig_rdf_uri
+    before do
+      allow(Rails.application.config)
+        .to receive(:rdf_uri)
+        .and_return('http://localhost:3000')
     end
     it "can return an authority entry based on identifier" do
+      expect(Rails.application.config.rdf_uri).to eq 'http://localhost:3000'
       creator_id = Creator.first.id
       get "/authorities/show/creator_authority/#{creator_id}"
       expect(response).to have_http_status(:success)

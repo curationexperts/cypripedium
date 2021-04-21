@@ -43,9 +43,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.bag_path = config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
 
-  config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
+  config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
 
-  config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
+  config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 
   config.bag_prefix = 'mpls_fed_research'
 end

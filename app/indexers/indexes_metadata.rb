@@ -12,13 +12,14 @@ module IndexesMetadata
   end
 
   def creator_names(object)
-    @creator_names ||= object.creator.map do |triple_creator|
-      if triple_creator.uri?
-        creator_id = URI(triple_creator.id).path.split('/').last
-        Creator.find(creator_id).display_name
+    @creator_names ||=
+      if object.creator_id.present?
+        object.creator_id.map do |creator_triple|
+          creator_id = URI(creator_triple.id).path.split('/').last
+          Creator.find(creator_id).display_name
+        end
       else
-        triple_creator.id
+        object.creator
       end
-    end
   end
 end

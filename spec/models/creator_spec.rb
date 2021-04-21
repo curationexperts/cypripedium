@@ -34,4 +34,17 @@ RSpec.describe Creator, type: :model do
     expect(creator.alternate_names.count).to eq 2
     expect(creator.alternate_names.first).to eq "Allen, S. Gomes"
   end
+
+  it "can return its identifier as a uri" do
+    allow(Rails.application.config)
+      .to receive(:rdf_uri)
+      .and_return('http://localhost:3000')
+    creator = described_class.create(id: 27, display_name: "Allen, Stephen G.")
+    expect(creator.authority_uri).to eq "http://localhost:3000/authorities/show/creator_authority/27"
+  end
+
+  it "can create the authority as an rdf triple" do
+    creator = described_class.create(id: 27, display_name: "Allen, Stephen G.")
+    expect(creator.authority_rdf).to be_an_instance_of ActiveTriples::Resource
+  end
 end
