@@ -6,12 +6,58 @@ require 'rails_helper'
 
 include Warden::Test::Helpers
 
-RSpec.describe 'Create a Publication', type: :system, js: true do
+RSpec.describe 'Create a Publication', type: :system, js: true, clean: true do
   context 'a logged in admin user' do
     let(:user) { FactoryBot.create(:admin) }
     before do
       login_as user
       AdminSet.find_or_create_default_admin_set_id
+    end
+
+    context "with a creator from a controlled vocabulary" do
+      before do
+        creator_array = [
+          { "value": "27", "label": "Cagetti, Marco" },
+          { "value": "28", "label": "Cai, Zhifeng" },
+          { "value": "29", "label": "Calsamiglia, Caterina" },
+          { "value": "30", "label": "Calvo, Guillermo A." },
+          { "value": "31", "label": "Camargo, Braz" },
+          { "value": "32", "label": "Campbell, Jeffrey R." },
+          { "value": "33", "label": "Canova, Fabio" },
+          { "value": "34", "label": "Caplin, Andrew" },
+          { "value": "35", "label": "Carapella, Francesca" },
+          { "value": "36", "label": "Carlstrom, Charles T., 1960-" },
+          { "value": "37", "label": "Caselli, Francesco, 1966-" },
+          { "value": "38", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
+          { "value": "39", "label": "Cavalcanti, Ricardo de Oliveira" }
+        ]
+        creator_array.each do |creator|
+          Creator.create!(
+            id: creator[:value],
+            display_name: creator[:label]
+          )
+        end
+      end
+      scenario 'fill in and submit the title and creator' do
+        visit '/concern/publications/new'
+        fill_in 'Title', with: 'My Title'
+        fill_in('publication_creator_id', with: 'Cag')
+        expect(page).to have_content('Cagetti, Marco')
+        expect(page).not_to have_content('Cai, Zhifeng')
+        find('.ui-menu-item-wrapper').click # Select the first item in the autocomplete list
+        # expect(page).to have_content('Cagetti, Marco') # Once we select from the dropdown we still want to diplay the name
+        click_link 'Files'
+
+        execute_script("$('.fileinput-button input:first').css({'opacity':'1', 'display':'block', 'position':'relative'})")
+        attach_file('files[]', File.absolute_path(file_fixture('pdf-sample.pdf')))
+        sleep(1)
+        find('#agreement').click
+        find('#with_files_submit').click
+        sleep(5)
+        expect(page).to have_selector 'h1', text: 'My Title'
+        expect(Publication.first.creator_id).to eq ["27"]
+        expect(page).to have_content('Cagetti, Marco')
+      end
     end
 
     scenario 'fill in and submit the form' do
