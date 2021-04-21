@@ -1,2 +1,4 @@
 DATABASE_USERNAME=cypripedium
 DATABASE_PASSWORD=
+
+RDF_URI="http://localhost:3000"
