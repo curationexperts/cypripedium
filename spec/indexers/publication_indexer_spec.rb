@@ -10,7 +10,7 @@ RSpec.describe PublicationIndexer do
       let(:solr_doc) { indexer.generate_solr_document }
 
       let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
-      let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David') }
+      let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
       let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
 
       let(:attrs) {
@@ -32,10 +32,15 @@ RSpec.describe PublicationIndexer do
         creator_array = solr_doc['creator_tesim']
         expect(creator_array).to include 'Kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
+        expect(creator_array).to include 'Backus, Davey'
+        expect(creator_array).to include 'Backus-Up, David'
         expect(creator_array).to include 'Kehoe, Timothy J.'
       end
       it 'indexes the creator names in alphabetical order' do
         expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'Kehoe, Patrick J.', 'Kehoe, Timothy J.']
+      end
+      it 'indexes for the facet' do
+        expect(solr_doc['creator_sim']).to match_array(["Kehoe, Timothy J.", "Backus, David", "Kehoe, Patrick J."])
       end
     end
 
