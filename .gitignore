@@ -23,3 +23,5 @@ fits.log
 /yarn-error.log
 
 .byebug_history
+.env*
+.idea/*
