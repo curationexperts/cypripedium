@@ -5,8 +5,9 @@ module IndexesMetadata
     super.tap do |solr_doc|
       solr_doc['title_ssi'] = object.title.first
       solr_doc['date_created_ssi'] = object.date_created.first
-      solr_doc['creator_tesim'] = creator_names(object)
+      solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
+      solr_doc['creator_sim'] = creator_names(object)
     end
   end
 
@@ -14,9 +15,22 @@ module IndexesMetadata
     @creator_names ||= if object.creator_id.present?
                          object.creator_id.map do |id|
                            Creator.find(id).display_name
+                           # Creator.find_by(display_name: object.creator_id)
                          end
                        else
                          object.creator
                        end
+  end
+
+  def creator_alternate_names(object)
+    @creator_alternate_names ||= if object.creator_id.present?
+                                   object.creator_id.flat_map do |id|
+                                     Creator.find(id).alternate_names
+                                   end
+                                 else
+                                   object.creator.flat_map do |name|
+                                     Creator.find_by(display_name: name)&.alternate_names
+                                   end
+                                 end
   end
 end
