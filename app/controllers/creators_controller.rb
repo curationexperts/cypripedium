@@ -7,7 +7,7 @@ class CreatorsController < ApplicationController
   # GET /creators
   # GET /creators.json
   def index
-    @creators = Creator.all
+    @creators = Creator.all.order(:display_name)
   end
 
   # GET /creators/1

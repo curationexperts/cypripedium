@@ -1,37 +1,8 @@
-<%= form_with(model: creator, local: true) do |form| %>
-  <% if creator.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(creator.errors.count, "error") %> prohibited this creator from being saved:</h2>
-
-      <ul>
-      <% creator.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :display_name %>
-    <%= form.text_field :display_name, id: :creator_display_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :alternate_names %>
-    <%= form.text_field :alternate_names, id: :creator_alternate_names %>
-  </div>
-
-  <div class="field">
-    <%= form.label :repec %>
-    <%= form.text_field :repec, id: :creator_repec %>
-  </div>
-
-  <div class="field">
-    <%= form.label :viaf %>
-    <%= form.text_field :viaf, id: :creator_viaf %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= simple_form_for @creator do |f| %>
+  <%= f.input :display_name %>
+  <%= f.input :alternate_names,
+        hint: "Use delimeter \" ; \" to separate alternate names., e.g. \"Smith, E.A. ; Smith, Edgar Allen\"" %>
+  <%= f.input :repec %>
+  <%= f.input :viaf %>
+  <%= f.button :submit %>
 <% end %>
