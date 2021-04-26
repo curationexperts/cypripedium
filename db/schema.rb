@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210331201100) do
+ActiveRecord::Schema.define(version: 20210426173022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20210331201100) do
     t.text "alternate_names", default: "--- []\n"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
   end
 
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|

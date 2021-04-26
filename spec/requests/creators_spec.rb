@@ -22,7 +22,7 @@ RSpec.describe "/creators", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     { display_name: "A display name", alternate_names: ["Another name", "a third name"],
-      repec: "Stuff", viaf: "Things" }
+      repec: "Stuff", viaf: "Things", active:true }
   }
 
   let(:invalid_attributes) {
@@ -102,21 +102,22 @@ RSpec.describe "/creators", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { display_name: "A new display name", alternate_names: ["Additional naming", "So many names"],
+          repec: "12345", viaf: "6789", active:false }
       }
 
       it "updates the requested creator" do
         creator = Creator.create! valid_attributes
         patch creator_url(creator), params: { creator: new_attributes }
         creator.reload
-        skip("Add assertions for updated state")
+        expect(creator.active).to be false
       end
 
       it "redirects to the creator" do
         creator = Creator.create! valid_attributes
         patch creator_url(creator), params: { creator: new_attributes }
         creator.reload
-        expect(response).to redirect_to(creator_url(creator))
+        expect(response).to redirect_to(creator_url(creator) + "?locale=en")
       end
     end
 

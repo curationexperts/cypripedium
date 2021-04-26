@@ -21,16 +21,19 @@ RSpec.describe 'Creators', type: :system, js: true do
   context "as an admin" do
     let(:admin_user) { FactoryBot.create(:admin) }
     let(:creator) { Creator.create(display_name: "Cheese, The Big") }
+    let(:inactive_creator) { Creator.create(display_name: "Milk, The Small", active: false)}
     before do
       login_as admin_user
     end
     it "can show the index page" do
       creator
+      inactive_creator
       visit "/creators"
       expect(page).to have_content(/ID/i)
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
+      expect(page).to have_content("Milk, The Small", count: 1)
     end
     it "can create a new creator record" do
       visit "/creators/new"
