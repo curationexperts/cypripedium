@@ -21,7 +21,7 @@ RSpec.describe 'Creators', type: :system, js: true do
   context "as an admin" do
     let(:admin_user) { FactoryBot.create(:admin) }
     let(:creator) { Creator.create(display_name: "Cheese, The Big") }
-    let(:inactive_creator) { Creator.create(display_name: "Milk, The Small", active: false)}
+    let(:inactive_creator) { Creator.create(display_name: "Milk, The Small", active: false) }
     before do
       login_as admin_user
     end
