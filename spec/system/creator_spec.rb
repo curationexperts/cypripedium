@@ -5,12 +5,16 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Creators', type: :system, js: true do
-  let(:admin_user) { FactoryBot.create(:admin) }
+  let(:creator) { Creator.create(display_name: "Cheese, The Big") }
+
   context "as an unauthenticated user" do
     it "can show the index page" do
+      creator
       visit "/creators"
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
+      expect(page).to have_content("Cheese, The Big", count: 1)
+      expect(page).not_to have_link("Edit")
     end
 
     it "cannot navigate to the new page" do
@@ -20,7 +24,6 @@ RSpec.describe 'Creators', type: :system, js: true do
   end
   context "as an admin" do
     let(:admin_user) { FactoryBot.create(:admin) }
-    let(:creator) { Creator.create(display_name: "Cheese, The Big") }
     before do
       login_as admin_user
     end
@@ -31,6 +34,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
+      expect(page).to have_link("Edit")
     end
     it "can create a new creator record" do
       visit "/creators/new"
