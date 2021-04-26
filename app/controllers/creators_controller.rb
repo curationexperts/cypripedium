@@ -11,8 +11,7 @@ class CreatorsController < ApplicationController
   end
 
   def active_creators
-    @active_creators = Creator.where {active != false}
-
+    @active_creators = Creator.where { active != false }
   end
 
   # GET /creators/1
