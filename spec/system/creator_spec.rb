@@ -50,7 +50,9 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_field("Display name")
       expect(page).to have_field("Alternate names")
       fill_in "Display name", with: "Allen, Stephen G."
-      fill_in "Alternate names", with: "Allen, S. Gomes ; Aliens, Steve"
+      fill_in "Alternate names", with: "Allen, S. Gomes"
+      click_button("Add another Alternate names")
+      find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").set("Aliens, Steve")
       click_on "Save"
       expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
       expect(Creator.first.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
@@ -71,9 +73,20 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_field("Alternate names")
       expect(page).to have_field("Repec")
       expect(page).to have_field("Viaf")
-      fill_in("Alternate names", with: "Cheese, Delicious ; Cheese, Delectable", fill_options: { clear: :backspace })
+      fill_in "Alternate names", with: "Cheese, Delicious"
+      click_button("Add another Alternate names")
+      find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").set("Cheese, Delectable")
       click_on "Save"
       expect(creator.reload.alternate_names).to eq ["Cheese, Delicious", "Cheese, Delectable"]
+    end
+    it "does not do weird things to the Alternate names array" do
+      creator_with_alternates
+      visit "/creators/#{creator_with_alternates.id}/edit"
+      expect(page.find(:xpath, "//div[3]/form/div[2]/ul/li[1]/input").value).to eq "Allen, S. Gomes"
+      expect(page.find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").value).to eq "Aliens, Steve"
+      
+      click_on "Save"
+      expect(creator_with_alternates.reload.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
     end
   end
 end

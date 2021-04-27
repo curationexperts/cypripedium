@@ -1,7 +1,6 @@
 <%= simple_form_for @creator do |f| %>
   <%= f.input :display_name %>
-  <%= f.input :alternate_names,
-        hint: "Use delimeter \" ; \" to separate alternate names., e.g. \"Smith, E.A. ; Smith, Edgar Allen\"" %>
+  <%= f.input :alternate_names, as: :multi_value %>
   <%= f.input :repec %>
   <%= f.input :viaf %>
   <%= f.button :submit %>
