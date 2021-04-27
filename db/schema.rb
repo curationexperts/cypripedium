@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20210426173022) do
     t.text "alternate_names", default: "--- []\n"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active"
+    t.boolean "active_creator", default: true, null: false
   end
 
   create_table "curation_concerns_operations", id: :serial, force: :cascade do |t|

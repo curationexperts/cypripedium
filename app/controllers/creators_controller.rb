@@ -78,6 +78,6 @@ class CreatorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def safe_params
-    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf, :active)
+    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf, :active_creator)
   end
 end
