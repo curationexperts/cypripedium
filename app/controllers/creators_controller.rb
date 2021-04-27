@@ -7,7 +7,7 @@ class CreatorsController < ApplicationController
   # GET /creators
   # GET /creators.json
   def index
-    @creators = Creator.all
+    @creators = Creator.all.order(:display_name)
   end
 
   # GET /creators/1
@@ -61,8 +61,15 @@ class CreatorsController < ApplicationController
     @creator = Creator.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  # remove empty strings from alternate_names array
   def creator_params
-    params.require(:creator).permit(:display_name, :alternate_names, :repec, :viaf)
+    new_params = safe_params
+    new_params["alternate_names"].reject!(&:blank?)
+    new_params
+  end
+
+  # Only allow a list of trusted parameters through.
+  def safe_params
+    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf)
   end
 end
