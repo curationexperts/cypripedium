@@ -14,6 +14,10 @@ class CreatorsController < ApplicationController
     @active_creators = Creator.where { active != false }
   end
 
+  def active_creators
+    @active_creators = Creator.where { active != false }
+  end
+
   # GET /creators/1
   # GET /creators/1.json
   def show; end
@@ -74,6 +78,6 @@ class CreatorsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def safe_params
-    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf)
+    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf, :active)
   end
 end
