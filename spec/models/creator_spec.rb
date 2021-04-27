@@ -35,7 +35,7 @@ RSpec.describe Creator, type: :model do
     expect(creator.alternate_names.first).to eq "Allen, S. Gomes"
   end
   it "accepts an active field" do
-    creator = described_class.create(display_name: "Allen, Stephen G.", active: false)
-    expect(creator.active).to eq false
+    creator = described_class.create(display_name: "Allen, Stephen G.", active_creator: false)
+    expect(creator.active_creator).to eq false
   end
 end
