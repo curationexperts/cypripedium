@@ -84,7 +84,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       visit "/creators/#{creator_with_alternates.id}/edit"
       expect(page.find(:xpath, "//div[3]/form/div[2]/ul/li[1]/input").value).to eq "Allen, S. Gomes"
       expect(page.find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").value).to eq "Aliens, Steve"
-      
+
       click_on "Save"
       expect(creator_with_alternates.reload.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
     end

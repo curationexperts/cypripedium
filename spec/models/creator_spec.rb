@@ -30,7 +30,7 @@ RSpec.describe Creator, type: :model do
     end.to raise_error(ActiveRecord::RecordInvalid, /Validation failed: Viaf id already in the system/)
   end
   it "has multiple alternate names" do
-    creator = described_class.create(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes",  "Aliens, Steve"])
+    creator = described_class.create(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes", "Aliens, Steve"])
     expect(creator.alternate_names.count).to eq 2
     expect(creator.alternate_names.first).to eq "Allen, S. Gomes"
   end
