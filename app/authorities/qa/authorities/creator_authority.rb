@@ -15,7 +15,8 @@ module Qa::Authorities
       return nil unless record
       {
         id: record.id,
-        label: record.display_name
+        label: record.display_name,
+        active: record.active_creator
       }
     end
 
@@ -29,7 +30,8 @@ module Qa::Authorities
       results.map do |result|
         {
           id: result.id,
-          label: result.display_name
+          label: result.display_name,
+          active: result.active_creator
         }
       end
     end
