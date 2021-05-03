@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe PublicationIndexer do
+RSpec.describe CypripediumIndexer do
   let(:indexer) { described_class.new(publication) }
   let(:publication) { Publication.new(attrs) }
 
