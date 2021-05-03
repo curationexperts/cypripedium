@@ -1,0 +1,5 @@
+What am I trying to do?
+
+When changes are made to a Creator through the edit form, I want to find all the
+works (Publications, ConferenceProceedings, Datasets) that include that creator_id
+and reindex them.

@@ -7,6 +7,7 @@ include Warden::Test::Helpers
 RSpec.describe 'Creators', type: :system, js: true do
   let(:creator) { Creator.create(display_name: "Cheese, The Big") }
   let(:creator_with_alternates) { Creator.create(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes", "Aliens, Steve"]) }
+  let(:work) { FactoryBot.create(:populated_dataset) }
 
   context "as an unauthenticated user" do
     it "can show the index page" do
@@ -68,6 +69,9 @@ RSpec.describe 'Creators', type: :system, js: true do
     end
     it "can edit an existing creator" do
       creator
+      creator_with_alternates
+      # have a work associated with the creator_id
+      work
       visit "/creators/#{creator.id}/edit"
       expect(page).to have_field("Display name")
       expect(page).to have_field("Alternate names")
@@ -78,6 +82,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").set("Cheese, Delectable")
       click_on "Save"
       expect(creator.reload.alternate_names).to eq ["Cheese, Delicious", "Cheese, Delectable"]
+      #expect(work.reload.creator).to eq "stuff"
     end
     it "does not do weird things to the Alternate names array" do
       creator_with_alternates

@@ -34,4 +34,20 @@ RSpec.describe Creator, type: :model do
     expect(creator.alternate_names.count).to eq 2
     expect(creator.alternate_names.first).to eq "Allen, S. Gomes"
   end
+  context "describe updating a hyrax work after a creator has been edited" do
+    let(:work) { FactoryBot.build(:publication, creator_id: [1234]) }
+    let(:creator) { FactoryBot.create(:creator, id: 1234) }
+    let(:solr) { Blacklight.default_index.connection }
+    it "reindexes on save" do
+      creator
+      expect(work.creator_id).to eq([1234])
+      work.save!
+      response = solr.get 'select', params: { q: 'has_model_ssim:Publication'}
+      expect(response['response']['docs'].first['creator_tesim'].first).to eq ("Alvarez, Fernando, 1964-")
+      creator.display_name = "Name, Some New"
+      creator.save!
+      response = solr.get 'select', params: { q: 'has_model_ssim:Publication'}
+      expect(response['response']['docs'].first['creator_tesim'].first).to eq ("Name, Some New")
+    end
+  end
 end
