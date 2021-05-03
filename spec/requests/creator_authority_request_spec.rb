@@ -34,6 +34,7 @@ describe 'Creator authority', type: :request do
       json_body = JSON.parse(response.body)
       expect(json_body.count).to eq 13
       expect(json_body.first["label"]).to eq "Cagetti, Marco"
+      expect(json_body.first["active"]).to eq true
     end
     it "returns fewer responses for a longer string" do
       get "/authorities/search/creator_authority?q=Cam"

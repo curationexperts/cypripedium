@@ -27,28 +27,33 @@ RSpec.describe 'Creators', type: :system, js: true do
   end
   context "as an admin" do
     let(:admin_user) { FactoryBot.create(:admin) }
+    let(:creator) { Creator.create(display_name: "Cheese, The Big") }
+    let(:inactive_creator) { Creator.create(display_name: "Milk, The Small", active_creator: false) }
     before do
       login_as admin_user
     end
     it "can show the index page" do
       creator
+      expect(creator.active_creator).to eq true
+      inactive_creator
       visit "/creators"
       expect(page).to have_content(/ID/i)
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
-      within(".display_name") do
-        expect(page).to have_content("Cheese, The Big")
-      end
-      within(".alternate_names") do
-        expect(page).not_to have_content("[]")
-      end
+      altnames = find(:xpath, "//div[3]/div/div/table/tbody/tr[1]/td[3]").text
+      expect(altnames).to eq ""
       expect(page).to have_link("Edit")
+      expect(page).to have_content("Milk, The Small", count: 1)
+      expect(page).to have_content(/active/i, count: 2)
+      expect(page).to have_content("true")
+      expect(page).to have_content("false")
     end
     it "can create a new creator record" do
       visit "/creators/new"
       expect(page).to have_field("Display name")
       expect(page).to have_field("Alternate names")
+      page.check "Active creator"
       fill_in "Display name", with: "Allen, Stephen G."
       fill_in "Alternate names", with: "Allen, S. Gomes"
       click_button("Add another Alternate names")
@@ -56,6 +61,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       click_on "Save"
       expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
       expect(Creator.first.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
+      expect(page).to have_content('true')
     end
     it "has a dashboard link to manage creators" do
       visit "/dashboard"
@@ -73,11 +79,13 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_field("Alternate names")
       expect(page).to have_field("Repec")
       expect(page).to have_field("Viaf")
+      page.uncheck "Active creator"
       fill_in "Alternate names", with: "Cheese, Delicious"
       click_button("Add another Alternate names")
       find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").set("Cheese, Delectable")
       click_on "Save"
       expect(creator.reload.alternate_names).to eq ["Cheese, Delicious", "Cheese, Delectable"]
+      expect(creator.active_creator).to eq false
     end
     it "does not do weird things to the Alternate names array" do
       creator_with_alternates

@@ -19,6 +19,10 @@
   <strong>Viaf:</strong>
   <%= @creator.viaf %>
 </p>
+<p>
+  <strong>Active:</strong>
+  <%= @creator.active_creator.to_s %>
+</p>
 
 <%= link_to 'Edit', edit_creator_path(@creator) %> |
 <%= link_to 'Back', creators_path %>
