@@ -75,9 +75,6 @@ RSpec.describe 'Creators', type: :system, js: true do
     end
     it "can edit an existing creator" do
       creator
-      creator_with_alternates
-      # have a work associated with the creator_id
-      work
       visit "/creators/#{creator.id}/edit"
       expect(page).to have_field("Display name")
       expect(page).to have_field("Alternate names")
