@@ -12,6 +12,7 @@
           <td class="alternate_names"><%= creator.alternate_names.join(" ; ") %></td>
           <td class="repec"><%= creator.repec %></td>
           <td class="viaf"><%= creator.viaf %></td>
+          <td class="active-creator"><%= creator.active_creator.to_s %></td>
           <td><%= link_to 'Show', creator %></td>
           <% if current_or_guest_user.can?(:edit, Creator) %>
             <td><%= link_to 'Edit', edit_creator_path(creator) %></td>

@@ -49,5 +49,8 @@ RSpec.describe Creator, type: :model do
       response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
       expect(response['response']['docs'].first['creator_tesim'].first).to eq "Name, Some New"
     end
+  it "accepts an active field" do
+    creator = described_class.create(display_name: "Allen, Stephen G.", active_creator: false)
+    expect(creator.active_creator).to eq false
   end
 end
