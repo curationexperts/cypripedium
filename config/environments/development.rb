@@ -58,7 +58,7 @@ Rails.application.configure do
 
   config.action_view.sanitized_allowed_attributes = ['href', 'title', 'data-turbolinks']
 
-  config.rdf_uri = 'https://researchdatabase.minneapolisfed.org'
+  config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
 
   config.bag_prefix = 'mpls_fed_research'
   # Whitelist default Docker IP and Docker IP used by project developers

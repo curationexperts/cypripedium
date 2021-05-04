@@ -17,7 +17,7 @@ RSpec.describe PublicationIndexer do
         { title: ['My Title'],
           date_created: ['1970-04'],
           # creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
-          creator_id: [creator_one.id, creator_two.id, creator_three.id] }
+          creator_id: [creator_one.authority_rdf, creator_two.authority_rdf, creator_three.authority_rdf] }
       }
       it 'indexes a sortable title and date created' do
         expect(solr_doc['title_ssi']).to eq 'My Title'
@@ -26,9 +26,9 @@ RSpec.describe PublicationIndexer do
         # Wait! But with Fedora we have to totally write over the whole array anyway, so if we find the ID in
         # the creator_id array we can replace the whole set of creator names
         creator_id_array = solr_doc['creator_id_ssim']
-        expect(creator_id_array).to include creator_one.id.to_s
-        expect(creator_id_array).to include creator_two.id.to_s
-        expect(creator_id_array).to include creator_three.id.to_s
+        expect(creator_id_array).to include creator_one.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_two.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_three.authority_rdf.id.to_s
         creator_array = solr_doc['creator_tesim']
         expect(creator_array).to include 'Kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
