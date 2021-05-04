@@ -6,6 +6,14 @@ class Creator < ApplicationRecord
   after_save :reindex_associated_works
 
   def reindex_associated_works
-
+    Publication.where(creator_id_ssim: id.to_s).find_each do |record|
+      record.update_index
+    end
+    Dataset.where(creator_id_ssim: id.to_s).find_each do |record|
+      record.update_index
+    end
+    ConferenceProceeding.where(creator_id_ssim: id.to_s).find_each do |record|
+      record.update_index
+    end
   end
 end

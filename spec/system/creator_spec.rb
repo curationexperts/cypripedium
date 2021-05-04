@@ -82,7 +82,6 @@ RSpec.describe 'Creators', type: :system, js: true do
       find(:xpath, "//div[3]/form/div[2]/ul/li[2]/input").set("Cheese, Delectable")
       click_on "Save"
       expect(creator.reload.alternate_names).to eq ["Cheese, Delicious", "Cheese, Delectable"]
-      #expect(work.reload.creator).to eq "stuff"
     end
     it "does not do weird things to the Alternate names array" do
       creator_with_alternates

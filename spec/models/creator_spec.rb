@@ -39,15 +39,15 @@ RSpec.describe Creator, type: :model do
     let(:creator) { FactoryBot.create(:creator, id: 1234) }
     let(:solr) { Blacklight.default_index.connection }
     it "reindexes on save" do
-      creator
+      creator.save!
       expect(work.creator_id).to eq([1234])
       work.save!
-      response = solr.get 'select', params: { q: 'has_model_ssim:Publication'}
-#      expect(response['response']['docs'].first['creator_tesim'].first).to eq ("Alvarez, Fernando, 1964-")
+      response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
+      expect(response['response']['docs'].first['creator_tesim'].first).to eq "Alvarez, Fernando, 1964-"
       creator.display_name = "Name, Some New"
       creator.save!
-      response = solr.get 'select', params: { q: 'has_model_ssim:Publication'}
-#      expect(response['response']['docs'].first['creator_tesim'].first).to eq ("Name, Some New")
+      response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
+      expect(response['response']['docs'].first['creator_tesim'].first).to eq "Name, Some New"
     end
   end
 end
