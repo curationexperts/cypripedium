@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Creator authority', type: :request do
+describe 'Creator authority', type: :request, clean: true do
   before do
     creator_array = [
       { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, Marco" },

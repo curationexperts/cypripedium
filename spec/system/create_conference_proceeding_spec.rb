@@ -5,7 +5,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Create a ConferenceProceeding', type: :system, js: true do
+RSpec.describe 'Create a ConferenceProceeding', type: :system, js: true, clean: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }

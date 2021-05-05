@@ -32,8 +32,9 @@ RSpec.describe 'When displaying a collection, sort by issue number', type: :syst
   end
 
   before do
-    collection_members
     AdminSet.find_or_create_default_admin_set_id
+    Hyrax::CollectionType.find_or_create_default_collection_type
+    collection_members
     login_as admin_user
   end
 
