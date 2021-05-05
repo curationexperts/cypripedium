@@ -26,9 +26,10 @@ RSpec.describe 'Recieve a notfication when creating a bag', type: :system, js: t
     end
 
     before do
+      AdminSet.find_or_create_default_admin_set_id
+      Hyrax::CollectionType.find_or_create_default_collection_type
       publication
       publication2
-      AdminSet.find_or_create_default_admin_set_id
       login_as user
       FileUtils.rm_rf(file_path)
       FileUtils.mkdir(Rails.application.config.bag_path)
