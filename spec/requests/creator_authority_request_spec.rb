@@ -34,7 +34,6 @@ describe 'Creator authority', type: :request, clean: true do
       json_body = JSON.parse(response.body)
       expect(json_body.count).to eq 13
       expect(json_body.first["label"]).to eq "Cagetti, Marco"
-      expect(json_body.first["active"]).to eq true
     end
     it "returns fewer responses for a longer string" do
       get "/authorities/search/creator_authority?q=Cam"
@@ -46,12 +45,20 @@ describe 'Creator authority', type: :request, clean: true do
   end
 
   describe "GET /authorities/show/creator_authority" do
+    before do
+      allow(Rails.application.config)
+        .to receive(:rdf_uri)
+              .and_return('http://localhost:3000')
+    end
     it "can return an authority entry based on identifier" do
-      get "/authorities/show/creator_authority/#{Creator.first.id}"
+      expect(Rails.application.config.rdf_uri).to eq 'http://localhost:3000'
+      creator_id = Creator.first.id
+      get "/authorities/show/creator_authority/#{creator_id}"
       expect(response).to have_http_status(:success)
       expect(response.body).not_to be_empty
       expect(response.content_length).to be > 3
       json_body = JSON.parse(response.body)
+      expect(json_body["id"]).to eq "http://localhost:3000/authorities/show/creator_authority/#{creator_id}"
       expect(json_body["label"]).to eq "Cagetti, Marco"
     end
 

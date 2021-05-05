@@ -13,8 +13,9 @@ module IndexesMetadata
 
   def creator_names(object)
     @creator_names ||= if object.creator_id.present?
-                         object.creator_id.map do |id|
-                           Creator.find(id).display_name
+                         object.creator_id.map do |creator_triple|
+                           creator_id = URI(creator_triple.id).path.split('/').last
+                           Creator.find(creator_id).display_name
                            # Creator.find_by(display_name: object.creator_id)
                          end
                        else
@@ -24,8 +25,9 @@ module IndexesMetadata
 
   def creator_alternate_names(object)
     @creator_alternate_names ||= if object.creator_id.present?
-                                   object.creator_id.flat_map do |id|
-                                     Creator.find(id).alternate_names
+                                   object.creator_id.flat_map do |creator_triple|
+                                     creator_id = URI(creator_triple.id).path.split('/').last
+                                     Creator.find(creator_id).alternate_names
                                    end
                                  else
                                    object.creator.flat_map do |name|

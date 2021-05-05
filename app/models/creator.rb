@@ -16,4 +16,13 @@ class Creator < ApplicationRecord
       record.update_index
     end
   end
+
+  def authority_uri
+    "#{Rails.application.config.rdf_uri}/authorities/show/creator_authority/#{id}"
+  end
+
+  def authority_rdf
+    ActiveTriples::Resource.new authority_uri
+  end
+
 end

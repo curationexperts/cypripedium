@@ -14,7 +14,7 @@ module Qa::Authorities
       record = Creator.find_by(id: id)
       return nil unless record
       {
-        id: record.id,
+        id: record_uri(record),
         label: record.display_name,
         active: record.active_creator
       }
@@ -27,13 +27,17 @@ module Qa::Authorities
     end
 
     def map_results(results)
-      results.map do |result|
+      results.map do |record|
         {
-          id: result.id,
-          label: result.display_name,
-          active: result.active_creator
+          id: record_uri(record),
+          label: record.display_name,
+          active: record.active_creator
         }
       end
+    end
+
+    def record_uri(record)
+      "#{Rails.application.config.rdf_uri}/authorities/show/creator_authority/#{record.id}"
     end
   end
 end
