@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe CypripediumIndexer do
+RSpec.describe CypripediumIndexer, clean: true do
   let(:pub_indexer) { described_class.new(publication) }
   let(:data_indexer) { described_class.new(dataset) }
   let(:conf_indexer) { described_class.new(conference_proceeding) }
@@ -52,9 +52,9 @@ RSpec.describe CypripediumIndexer do
         expect(data_doc['title_ssi']).to eq 'My Title'
         expect(data_doc['date_created_ssi']).to eq '1970-04'
         creator_id_array = data_doc['creator_id_ssim']
-        expect(creator_id_array).to include creator_one.id.to_s
-        expect(creator_id_array).to include creator_two.id.to_s
-        expect(creator_id_array).to include creator_three.id.to_s
+        expect(creator_id_array).to include creator_one.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_two.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_three.authority_rdf.id.to_s
         creator_array = data_doc['creator_tesim']
         expect(creator_array).to include 'Kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
@@ -66,9 +66,9 @@ RSpec.describe CypripediumIndexer do
         expect(conf_doc['title_ssi']).to eq 'My Title'
         expect(conf_doc['date_created_ssi']).to eq '1970-04'
         creator_id_array = conf_doc['creator_id_ssim']
-        expect(creator_id_array).to include creator_one.id.to_s
-        expect(creator_id_array).to include creator_two.id.to_s
-        expect(creator_id_array).to include creator_three.id.to_s
+        expect(creator_id_array).to include creator_one.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_two.authority_rdf.id.to_s
+        expect(creator_id_array).to include creator_three.authority_rdf.id.to_s
         creator_array = conf_doc['creator_tesim']
         expect(creator_array).to include 'Kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'

@@ -24,5 +24,4 @@ class Creator < ApplicationRecord
   def authority_rdf
     ActiveTriples::Resource.new authority_uri
   end
-
 end
