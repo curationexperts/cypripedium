@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe Contentdm::Importer, clean:true do
+describe Contentdm::Importer, clean: true do
   let(:cdmi) { described_class.new(input_file, data_path, default_model) }
   let(:cdmi_invalid) { described_class.new(input_file_with_no_title, data_path, default_model) }
   let(:input_file) { file_fixture('ContentDM_XML_Full_Fields.xml') }
