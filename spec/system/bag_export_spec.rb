@@ -9,6 +9,7 @@ RSpec.describe 'Bagit export:', type: :system, js: true do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
     AdminSet.find_or_create_default_admin_set_id
+    Hyrax::CollectionType.find_or_create_default_collection_type
 
     login_as admin_user
   end

@@ -7,6 +7,7 @@ include Warden::Test::Helpers
 RSpec.describe 'Creators', type: :system, js: true do
   let(:creator) { Creator.create(display_name: "Cheese, The Big") }
   let(:creator_with_alternates) { Creator.create(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes", "Aliens, Steve"]) }
+  let(:work) { FactoryBot.create(:populated_dataset) }
 
   context "as an unauthenticated user" do
     it "can show the index page" do
