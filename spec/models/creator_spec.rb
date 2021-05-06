@@ -50,6 +50,25 @@ RSpec.describe Creator, type: :model do
       expect(response['response']['docs'].first['creator_tesim']).not_to include "McGrattan, Ellen R."
     end
   end
+  context 'with an accidentally-deleted creator' do
+    let(:work) {
+      FactoryBot.build(:populated_publication,
+      creator_id: [creator_one.authority_rdf, creator_two.authority_rdf, creator_three.authority_rdf])
+    }
+    let(:solr) { Blacklight.default_index.connection }
+    let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
+    let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
+    let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
+
+    it "fails gracefully" do
+      creator_one
+      creator_two
+      work.save!
+      creator_one.delete
+      creator_two.display_name = 'Else, Somebody'
+      creator_two.save!
+    end
+  end
   it "accepts an active field" do
     creator = described_class.create(display_name: "Allen, Stephen G.", active_creator: false)
     expect(creator.active_creator).to eq false
