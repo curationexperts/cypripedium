@@ -8,6 +8,7 @@ module IndexesMetadata
       solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
       solr_doc['creator_sim'] = creator_names(object)
+      solr_doc['creator_id_ssim'] = creator_numerical_ids(object) if creator_numerical_ids(object)
     end
   end
 
@@ -34,5 +35,13 @@ module IndexesMetadata
                                      Creator.find_by(display_name: name)&.alternate_names
                                    end
                                  end
+  end
+
+  def creator_numerical_ids(object)
+    @creator_numerical_ids ||= if object.creator_id.present?
+                                 object.creator_id.map do |creator_triple|
+                                   URI(creator_triple.id).path.split('/').last
+                                 end
+                               end
   end
 end
