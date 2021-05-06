@@ -10,5 +10,4 @@ class CypripediumWork < ActiveFedora::Base
 
   validates :title, presence: { message: 'Your work must have a title.' }
   self.indexer = CypripediumIndexer
-  include ::Hyrax::BasicMetadata
 end

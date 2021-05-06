@@ -6,7 +6,7 @@ module Hyrax
     self.required_fields = [:title]
 
     def primary_terms
-      [:title, :series, :issue_number, :creator, :date_created, :keyword, :subject,
+      [:title, :series, :issue_number, :creator, :creator_id, :date_created, :keyword, :subject,
        :abstract, :description, :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license]
     end
 
@@ -27,18 +27,17 @@ module Hyrax
     # This describes the parameters we are expecting to receive from the client
     # @return [Array] a list of parameters used by sanitize_params
     def self.build_permitted_params
-      super
-      # super + [
-      #   :on_behalf_of,
-      #   :version,
-      #   :add_works_to_collection,
-      #   {
-      #     creator_id_attributes: [:id, :_destroy],
-      #     based_near_attributes: [:id, :_destroy],
-      #     member_of_collections_attributes: [:id, :_destroy],
-      #     work_members_attributes: [:id, :_destroy]
-      #   }
-      # ]
+      super + [
+        :on_behalf_of,
+        :version,
+        :add_works_to_collection,
+        {
+          creator_id_attributes: [:id, :_destroy],
+          based_near_attributes: [:id, :_destroy],
+          member_of_collections_attributes: [:id, :_destroy],
+          work_members_attributes: [:id, :_destroy]
+        }
+      ]
     end
   end
 end

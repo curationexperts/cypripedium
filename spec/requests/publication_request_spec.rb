@@ -5,8 +5,12 @@ include Warden::Test::Helpers
 RSpec.describe "/concern/publications", type: :request, clean: true do
   let(:user) { FactoryBot.create(:admin) }
   let(:admin_set) { AdminSet.find_or_create_default_admin_set_id }
+  let(:creator_one) { FactoryBot.create(:creator, display_name: 'Calsamiglia, Caterina', id: 113) }
+  let(:creator_two) { FactoryBot.create(:creator, display_name: 'Prescott, Edward C.', id: 2) }
   before do
     admin_set
+    creator_one
+    creator_two
     login_as user
   end
 
@@ -14,7 +18,8 @@ RSpec.describe "/concern/publications", type: :request, clean: true do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      title: ["A test title"]
+      title: ["A test title"],
+      creator_id: [creator_one.authority_rdf]
     }
   }
 
@@ -56,15 +61,28 @@ RSpec.describe "/concern/publications", type: :request, clean: true do
   end
 
   describe "POST /create" do
+    let(:valid_attributes_for_post) {
+      {
+        title: ["A test title"],
+        creator_id_attributes: {
+          "0" => {
+            "hidden_label" => "Calsamiglia, Caterina",
+            "id" => "http://localhost:3000/authorities/show/creator_authority/113",
+            "_destroy" => ""
+          }
+        }
+      }
+    }
     context "with valid parameters" do
       it "creates a new Publication" do
         expect {
-          post hyrax_publications_url, params: { publication: valid_attributes }
+          post hyrax_publications_url, params: { publication: valid_attributes_for_post }
         }.to change(Publication, :count).by(1)
+        expect(Publication.first.creator_id.first.id).to eq "http://localhost:3000/authorities/show/creator_authority/113"
       end
 
       it "redirects to the created publication" do
-        post hyrax_publications_url, params: { publication: valid_attributes }
+        post hyrax_publications_url, params: { publication: valid_attributes_for_post }
         expect(response).to redirect_to(hyrax_publication_url(Publication.last) + "?locale=en")
       end
     end
