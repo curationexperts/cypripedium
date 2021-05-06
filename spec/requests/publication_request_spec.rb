@@ -2,15 +2,20 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe "/concern/publications", type: :request do
+RSpec.describe "/concern/publications", type: :request, clean: true do
   let(:user) { FactoryBot.create(:admin) }
+  let(:admin_set) { AdminSet.find_or_create_default_admin_set_id }
   before do
+    admin_set
     login_as user
   end
+
   # As you add validations to Publication, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { title: ["A test title"] }
+    {
+      title: ["A test title"]
+    }
   }
 
   let(:invalid_attributes) {
@@ -63,14 +68,6 @@ RSpec.describe "/concern/publications", type: :request do
         expect(response).to redirect_to(hyrax_publication_url(Publication.last) + "?locale=en")
       end
     end
-
-    context "with invalid parameters" do
-      it "does not create a new Publication" do
-        expect {
-          post hyrax_publications_url, params: { publication: invalid_attributes }
-        }.to change(Publication, :count).by(0)
-      end
-    end
   end
 
   describe "PATCH /update" do
@@ -86,19 +83,11 @@ RSpec.describe "/concern/publications", type: :request do
         expect(publication.title).to eq ["A brand new title"]
       end
 
-      it "redirects to the creator" do
-        creator = Creator.create! valid_attributes
-        patch creator_url(creator), params: { creator: new_attributes }
-        creator.reload
-        expect(response).to redirect_to(creator_url(creator) + "?locale=en")
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        creator = Creator.create! valid_attributes
-        patch creator_url(creator), params: { creator: invalid_attributes }
-        expect(response).to be_successful
+      it "redirects to the publication" do
+        publication = Publication.create! valid_attributes
+        patch hyrax_publication_url(publication), params: { publication: new_attributes }
+        publication.reload
+        expect(response).to redirect_to(hyrax_publication_url(publication) + "?locale=en")
       end
     end
   end
