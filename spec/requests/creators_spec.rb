@@ -13,7 +13,7 @@ include Warden::Test::Helpers
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/creators", type: :request do
+RSpec.describe "/creators", type: :request, clean: true do
   let(:user) { FactoryBot.create(:admin) }
   before do
     login_as user
