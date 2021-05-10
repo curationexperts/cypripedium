@@ -9,7 +9,7 @@ class Creator < ApplicationRecord
     solr = Blacklight.default_index.connection
     response = solr.get 'select', params: { q: "creator_id_ssim:#{id}" }
     response['response']['docs'].each do |doc|
-      doc['has_model_ssim'].first.constantize.find(doc['id']).update_index
+      CypripediumWork.find(doc['id']).update_index
     end
   end
 

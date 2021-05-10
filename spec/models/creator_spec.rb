@@ -61,12 +61,10 @@ RSpec.describe Creator, type: :model do
     let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
 
     it "fails gracefully" do
-      creator_one
-      creator_two
       work.save!
       creator_one.delete
       creator_two.display_name = 'Else, Somebody'
-      creator_two.save!
+      expect { creator_two.save! }.not_to raise_error
     end
   end
   it "accepts an active field" do
