@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Publication do
+RSpec.describe Publication, clean: true do
   let(:work) { FactoryBot.build(:publication) }
   let(:creator) { FactoryBot.create(:creator, id: 1234) }
   let(:creator_id) { creator.id }
