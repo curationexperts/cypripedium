@@ -37,17 +37,15 @@ RSpec.describe Creator, type: :model do
   context "describe updating a hyrax work after a creator has been edited", clean: true do
     let(:work) { FactoryBot.build(:populated_publication) }
     let(:solr) { Blacklight.default_index.connection }
-    it "reindexes on save" do
+    it "kicks off the delayed job" do
       creator1 = described_class.create(id: 1, display_name: "McGrattan, Ellen R.")
       described_class.create(id: 2, display_name: "Prescott, Edward C.")
       work.save!
       response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
       expect(response['response']['docs'].first['creator_tesim']).to include "McGrattan, Ellen R."
       creator1.display_name = "Name, Some New"
+      expect_any_instance_of(CreatorReindexJob).to receive(:perform).with(creator1.id)
       creator1.save!
-      response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
-      expect(response['response']['docs'].first['creator_tesim']).to include "Name, Some New"
-      expect(response['response']['docs'].first['creator_tesim']).not_to include "McGrattan, Ellen R."
     end
   end
   context 'with an accidentally-deleted creator' do
