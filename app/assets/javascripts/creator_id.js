@@ -10,6 +10,7 @@ Blacklight.onLoad(function () {
 function addCreatorListener(elem) {
   elem.on( "autocompleteselect", function( event, ui ) {
     let creator_label = ui.item.label
-    $("<p>" + creator_label + "</p>").appendTo(event.currentTarget);
+    console.log("CYP with creator_label: " + creator_label)
+    $("<input class=\"form-control\" value=\"" + creator_label + "\" readonly>").appendTo(event.currentTarget);
   } );
 }
