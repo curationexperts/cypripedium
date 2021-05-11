@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Publication do
+RSpec.describe Publication, clean: true do
   let(:work) { FactoryBot.build(:publication) }
   let(:creator) { FactoryBot.create(:creator, id: 1234) }
-  let(:creator_id) { creator.authority_rdf }
+  let(:creator_id) { creator.id }
 
   it_behaves_like 'a work with additional metadata'
   it "can set and retrieve a creator value" do

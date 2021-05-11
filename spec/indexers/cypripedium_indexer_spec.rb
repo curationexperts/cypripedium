@@ -22,7 +22,8 @@ RSpec.describe CypripediumIndexer, clean: true do
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04'],
-          creator_id: [creator_one.authority_rdf, creator_two.authority_rdf, creator_three.authority_rdf] }
+          # creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
+          creator_id: [creator_one.id, creator_two.id, creator_three.id] }
       }
       it 'indexes a sortable title and date created' do
         expect(solr_doc['title_ssi']).to eq 'My Title'

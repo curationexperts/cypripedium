@@ -36,8 +36,9 @@ module IndexesMetadata
 
   def creator_numerical_ids(object)
     @creator_numerical_ids ||= if object.creator_id.present?
-                                 object.creator_id.map do |creator_triple|
-                                   URI(creator_triple.id).path.split('/').last
+                                 object.creator_id.map do |identifier|
+                                   identifier.to_s
+                                   # URI(creator_triple.id).path.split('/').last
                                  end
                                end
   end
