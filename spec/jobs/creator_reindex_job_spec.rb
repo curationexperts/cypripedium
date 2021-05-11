@@ -23,6 +23,7 @@ RSpec.describe CreatorReindexJob, type: :job do
       response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
       expect(response['response']['docs'].first['creator_tesim']).to include "McGrattan, Ellen R."
       creator1.display_name = "Name, Some New"
+      expect(creator1).to receive(:reindex_setup)
       creator1.save
       described_class.perform_now(creator1.id)
       response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
