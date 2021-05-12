@@ -33,9 +33,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true, clean: true do
           { "value": "40", "label": "Cagetti, Notthisone", "active": "false" }
         ]
         creator_array.each do |creator|
-          if creator[:active].nil?
-            creator[:active] = true
-          end
+          creator[:active] = true if creator[:active].nil?
           Creator.create!(
             id: creator[:value],
             display_name: creator[:label],
