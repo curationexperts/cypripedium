@@ -29,12 +29,17 @@ RSpec.describe 'Create a Publication', type: :system, js: true, clean: true do
           { "value": "36", "label": "Carlstrom, Charles T., 1960-" },
           { "value": "37", "label": "Caselli, Francesco, 1966-" },
           { "value": "38", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
-          { "value": "39", "label": "Cavalcanti, Ricardo de Oliveira" }
+          { "value": "39", "label": "Cavalcanti, Ricardo de Oliveira" },
+          { "value": "40", "label": "Cagetti, Notthisone", "active": "false" }
         ]
         creator_array.each do |creator|
+          if creator[:active].nil?
+            creator[:active] = true
+          end
           Creator.create!(
             id: creator[:value],
-            display_name: creator[:label]
+            display_name: creator[:label],
+            active_creator: creator[:active]
           )
         end
       end
@@ -44,6 +49,7 @@ RSpec.describe 'Create a Publication', type: :system, js: true, clean: true do
         fill_in('Creator', with: 'Cag')
         expect(page).to have_content('Cagetti, Marco')
         expect(page).not_to have_content('Cai, Zhifeng')
+        expect(page).not_to have_content('Cagetti, Notthisone')
         find('.ui-menu-item-wrapper').click # Select the first item in the autocomplete list
         # expect(page).to have_content('Cagetti, Marco') # Once we select from the dropdown we still want to diplay the name
         click_link 'Files'
