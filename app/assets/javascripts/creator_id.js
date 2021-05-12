@@ -13,11 +13,13 @@ Blacklight.onLoad(function () {
       if (elem.data('autocomplete') === "creator_id") {
         console.log("hit CYP conditional with parent index: " + elem.parent().index())
         var creator_identifier = elem[0].value
-        console.log("creator_identifier_" + creator_identifier)
-
-        elem.addClass("creator_identifier_" + creator_identifier)
-        let test_url = "http://localhost:3000/authorities/show/creator_authority/" + creator_identifier
-        getCreatorLabel(test_url)
+        if (creator_identifier) {
+          console.log("creator_identifier_" + creator_identifier);
+          elem.addClass("creator_identifier_" + creator_identifier);
+          elem.attr("readonly", "readonly")
+          let test_url = "http://localhost:3000/authorities/show/creator_authority/" + creator_identifier
+          getCreatorLabel(test_url)
+        }
       }
   }))
 })
@@ -26,6 +28,7 @@ function addCreatorListener(grandparent, elem) {
   grandparent.on( "autocompleteselect", function( event, ui ) {
     let creator_label = ui.item.label
     $("<input class=\"form-control\" value=\"" + creator_label + "\" readonly>").insertAfter(event.target);
+    $(event.target).attr("readonly", "readonly")
   } );
 }
 
