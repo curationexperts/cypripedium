@@ -1,9 +1,13 @@
 Blacklight.onLoad(function () {
+  var listeners_added = false
   $('[data-autocomplete]').each((function() {
       var elem = $(this)
-      if (elem.data('autocomplete') === "creator_id") {
+
+      if (elem.data('autocomplete') === "creator_id" && listeners_added === false) {
+        console.log("hit CYP conditional with parent index: " + elem.parent().index())
         addCreatorListener(elem.parent().parent());
         addRemoveListener(elem.parent().parent());
+        listeners_added = true
       }
   }))
 })
