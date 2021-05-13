@@ -5,23 +5,25 @@ require 'rails_helper'
 describe 'Creator authority', type: :request, clean: true do
   before do
     creator_array = [
-      { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, Marco" },
-      { "id": "https://ideas.repec.org/f/pca1299.html", "label": "Cai, Zhifeng" },
-      { "id": "https://ideas.repec.org/e/pca150.html", "label": "Calsamiglia, Caterina" },
-      { "id": "https://ideas.repec.org/f/pca694.html", "label": "Calvo, Guillermo A." },
-      { "id": "https://ideas.repec.org/f/pca371.html", "label": "Camargo, Braz" },
-      { "id": "https://ideas.repec.org/e/pca89.html", "label": "Campbell, Jeffrey R." },
-      { "id": "https://ideas.repec.org/e/pca50.html", "label": "Canova, Fabio" },
-      { "id": "https://ideas.repec.org/e/pca77.html", "label": "Caplin, Andrew" },
-      { "id": "https://ideas.repec.org/f/pca1029.html", "label": "Carapella, Francesca" },
-      { "id": "https://ideas.repec.org/e/pca42.html", "label": "Carlstrom, Charles T., 1960-" },
-      { "id": "https://ideas.repec.org/f/pca205.html", "label": "Caselli, Francesco, 1966-" },
-      { "id": "https://ideas.repec.org/e/pca73.html", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)" },
-      { "id": "https://ideas.repec.org/f/pca963.html", "label": "Cavalcanti, Ricardo de Oliveira" }
+      { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, Marco", "active": true },
+      { "id": "http://id.loc.gov/authorities/names/no2003126550", "label": "Cagetti, NotThisOne", "active": false },
+      { "id": "https://ideas.repec.org/f/pca1299.html", "label": "Cai, Zhifeng", "active": true },
+      { "id": "https://ideas.repec.org/e/pca150.html", "label": "Calsamiglia, Caterina", "active": true },
+      { "id": "https://ideas.repec.org/f/pca694.html", "label": "Calvo, Guillermo A.", "active": true },
+      { "id": "https://ideas.repec.org/f/pca371.html", "label": "Camargo, Braz", "active": true },
+      { "id": "https://ideas.repec.org/e/pca89.html", "label": "Campbell, Jeffrey R.", "active": true },
+      { "id": "https://ideas.repec.org/e/pca50.html", "label": "Canova, Fabio", "active": true },
+      { "id": "https://ideas.repec.org/e/pca77.html", "label": "Caplin, Andrew", "active": true },
+      { "id": "https://ideas.repec.org/f/pca1029.html", "label": "Carapella, Francesca", "active": true },
+      { "id": "https://ideas.repec.org/e/pca42.html", "label": "Carlstrom, Charles T., 1960-", "active": true },
+      { "id": "https://ideas.repec.org/f/pca205.html", "label": "Caselli, Francesco, 1966-", "active": true },
+      { "id": "https://ideas.repec.org/e/pca73.html", "label": "Caucutt, Elizabeth M. (Elizabeth Miriam)", "active": true },
+      { "id": "https://ideas.repec.org/f/pca963.html", "label": "Cavalcanti, Ricardo de Oliveira", "active": true }
     ]
     creator_array.each do |creator|
       Creator.create!(
-        display_name: creator[:label]
+        display_name: creator[:label],
+        active_creator: creator[:active]
       )
     end
   end
@@ -74,7 +76,7 @@ describe 'Creator authority', type: :request, clean: true do
       get "/authorities/terms/creator_authority"
       expect(response).to have_http_status(:success)
       json_body = JSON.parse(response.body)
-      expect(json_body.count).to eq 13
+      expect(json_body.count).to eq 14
       expect(json_body.first["label"]).to eq "Cagetti, Marco"
     end
   end
