@@ -6,8 +6,10 @@ Blacklight.onLoad(function () {
       var creator_label = null;
 
       if (elem.data('autocomplete') === "creator_id" && listeners_added === false) {
-        addCreatorListener(elem.parent().parent(), elem);
-        addRemoveListener(elem.parent().parent());
+        var div = elem.parent().parent();
+        addCreatorListener(div, elem);
+        addRemoveListener(div);
+        addControlListener(div);
         listeners_added = true
       }
 
@@ -28,16 +30,29 @@ Blacklight.onLoad(function () {
 function addCreatorListener(grandparent, elem) {
   grandparent.on( "autocompleteselect", function( event, ui ) {
     let creator_label = ui.item.label
-    $("<input class=\"form-control\" value=\"" + creator_label + "\" readonly>").appendTo(event.currentTarget);
+    $("<p class=\"form-control\" readonly>" + creator_label + "</p>").insertAfter(event.target);
     $(event.target).attr("readonly", "readonly")
   } );
 }
 
-function addRemoveListener(elem) {
-  elem.on("click", ".remove", event => {
-    let creator_label = $(event.currentTarget).parent().parent().next();
-    creator_label.remove();
+// document.querySelector("#metadata > div > div.base-terms > div.form-group.multi_value.optional.publication_creator_id.managed > ul > li:nth-child(2) > p:nth-child(3)")
+// document.querySelector("#metadata > div > div.base-terms > div.form-group.multi_value.optional.publication_creator_id.managed > button")
+// #metadata > div > div.base-terms > div.form-group.multi_value.optional.publication_creator_id.managed > button
+// document.querySelector("#metadata > div > div.base-terms > div.form-group.multi_value.optional.publication_creator_id.managed > ul")
+function addControlListener(div) {
+  list = $(".publication_creator_id ul")
+  list.on("change", function(event) {
+    console.log("hit CYP control listener")
+    event.currentTarget
   })
+
+}
+
+function addRemoveListener(elem) {
+  // elem.on("click", ".remove", event => {
+  //   let creator_label = $(event.currentTarget).parent().parent().next();
+  //   creator_label.remove();
+  // })
 }
 
 function getCreatorLabel(url) {
