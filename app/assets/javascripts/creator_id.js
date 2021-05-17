@@ -7,6 +7,7 @@ Blacklight.onLoad(function () {
 
       if (elem.data('autocomplete') === "creator_id" && listeners_added === false) {
         addCreatorListener(elem.parent().parent(), elem);
+        addRemoveListener(elem.parent().parent());
         listeners_added = true
       }
 
@@ -27,9 +28,16 @@ Blacklight.onLoad(function () {
 function addCreatorListener(grandparent, elem) {
   grandparent.on( "autocompleteselect", function( event, ui ) {
     let creator_label = ui.item.label
-    $("<input class=\"form-control\" value=\"" + creator_label + "\" readonly>").insertAfter(event.target);
+    $("<input class=\"form-control\" value=\"" + creator_label + "\" readonly>").appendTo(event.currentTarget);
     $(event.target).attr("readonly", "readonly")
   } );
+}
+
+function addRemoveListener(elem) {
+  elem.on("click", ".remove", event => {
+    let creator_label = $(event.currentTarget).parent().parent().next();
+    creator_label.remove();
+  })
 }
 
 function getCreatorLabel(url) {
