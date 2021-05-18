@@ -23,7 +23,6 @@ export class FieldManager {
     }
 
     init() {
-        console.log("hit CYP FieldManager init")
         this._addInitialClasses();
         this._addAriaLiveRegions()
         this._appendControls();
@@ -89,7 +88,6 @@ export class FieldManager {
     }
 
     addToList( event ) {
-        console.log("hit CYP addToList");
         event.preventDefault();
         let $listing = $(event.target).closest(this.inputTypeClass).find(this.listClass)
 
