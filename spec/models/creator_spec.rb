@@ -2,6 +2,10 @@
 require 'rails_helper'
 
 RSpec.describe Creator, type: :model do
+  before do
+    I18n.locale = 'en'
+  end
+
   it "has a ID" do
     creator = described_class.create(display_name: "Allen, Stephen G.")
     expect(creator.id).not_to be nil
