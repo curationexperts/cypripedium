@@ -17,8 +17,8 @@ Blacklight.onLoad(function () {
         if (creator_identifier) {
           elem.addClass("creator_identifier_" + creator_identifier);
           elem.attr("readonly", "readonly")
-          let test_url = "http://localhost:3000/authorities/show/creator_authority/" + creator_identifier
-          getCreatorLabel(test_url)
+          let creator_authority_url = "/authorities/show/creator_authority/" + creator_identifier
+          getCreatorLabel(creator_authority_url)
         }
       }
   }))
