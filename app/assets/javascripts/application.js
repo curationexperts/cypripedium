@@ -31,6 +31,7 @@
 //= require hyrax
 //= require almond
 //= require creator_id
+//= require hydra-editor/field_manager
 
 bagButton.bindClick({'compression': 'zip'})
 bagButton.bindClick({'compression': 'tar'})
