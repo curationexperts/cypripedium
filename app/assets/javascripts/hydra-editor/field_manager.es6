@@ -115,7 +115,6 @@ export class FieldManager {
     }
 
     createNewField($activeField) {
-        console.log("hit CYP field_manager createNewField with childNodes.length: " + $activeField[0].childNodes.length)
         let $newField = $activeField.clone();
         let $newChildren = this.createNewChildren($newField);
         this.element.trigger("managed_field:add", $newChildren);
