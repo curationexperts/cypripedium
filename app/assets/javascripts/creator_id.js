@@ -33,7 +33,7 @@ function addCreatorListener(grandparent, elem) {
 }
 
 function addControlListener(div) {
-  list = $(".publication_creator_id ul")
+  list = $("ul")
   list.on("change", function(event) {
     event.currentTarget
   })

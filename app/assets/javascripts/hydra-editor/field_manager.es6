@@ -13,7 +13,6 @@ export class FieldManager {
         this.remover  = this.createRemoveHtml(this.options)
 
         this.controls = $(options.controlsHtml);
-
         this.inputTypeClass = options.inputTypeClass;
         this.fieldWrapperClass = options.fieldWrapperClass;
         this.warningClass = options.warningClass;
