@@ -27,7 +27,7 @@ Blacklight.onLoad(function () {
 function addCreatorListener(grandparent, elem) {
   grandparent.on( "autocompleteselect", function( event, ui ) {
     let creator_label = ui.item.label
-    $("<p class=\"form-control\" readonly>" + creator_label + "</p>").insertAfter(event.target);
+    $("<p class=\"form-control creator_id_label\" readonly>" + creator_label + "</p>").insertAfter(event.target);
     $(event.target).attr("readonly", "readonly")
   } );
 }

@@ -116,7 +116,7 @@ export class FieldManager {
         let $newField = $activeField.clone();
         let $newChildren = this.createNewChildren($newField);
         this.element.trigger("managed_field:add", $newChildren);
-        $newField.children("p").remove();
+        $newField.children(".creator_id_label").remove();
         return $newField;
     }
 
