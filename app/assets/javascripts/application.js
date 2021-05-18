@@ -21,8 +21,17 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
 //= require bootstrap-sprockets
-//= require_tree .
+//= require jquery-ui/widgets/autocomplete
+//= require_tree "./bag/"
+//= require_tree "./channels/"
+//= require blacklight_gallery
+//= require cable
+//= require notification-sort
+//= require openseadragon
 //= require hyrax
+//= require almond
+//= require creator_id
+//= require hydra-editor/field_manager
 
 bagButton.bindClick({'compression': 'zip'})
 bagButton.bindClick({'compression': 'tar'})

@@ -16,7 +16,8 @@ module Qa::Authorities
       {
         id: record_uri(record),
         label: record.display_name,
-        active: record.active_creator
+        active: record.active_creator,
+        value: record.id
       }
     end
 

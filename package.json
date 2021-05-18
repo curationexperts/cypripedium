@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "cypripedium",
   "private": true,
   "dependencies": {}
