@@ -4,6 +4,7 @@ class CreatorsController < ApplicationController
   load_and_authorize_resource
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
   before_action :pick_theme
+  before_action :set_locale
 
   def pick_theme
     if current_user&.admin?

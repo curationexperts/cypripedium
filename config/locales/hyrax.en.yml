@@ -97,6 +97,7 @@ en:
     creators:
       index:
         manage_creators: Manage Creators
+        creators: Creators
     base:
       citations:
           citations: Citations

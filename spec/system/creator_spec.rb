@@ -46,7 +46,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(altnames).to eq ""
       expect(page).to have_link("Edit")
       expect(page).to have_content("Milk, The Small", count: 1)
-      expect(page).to have_content(/active/i, count: 2)
+      expect(page).to have_content(/active/i, count: 1)
       expect(page).to have_content("true")
       expect(page).to have_content("false")
     end
