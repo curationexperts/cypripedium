@@ -1,12 +1,25 @@
 # frozen_string_literal: true
 class CreatorsController < ApplicationController
   include Hydra::Controller::ControllerBehavior
-  before_action :set_creator, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  before_action :set_creator, only: [:show, :edit, :update, :destroy]
+  before_action :pick_theme
+  before_action :set_locale
+
+  def pick_theme
+    if current_user&.admin?
+      CreatorsController.with_themed_layout 'dashboard'
+    else
+      CreatorsController.with_themed_layout '1_column'
+    end
+  end
 
   # GET /creators
   # GET /creators.json
   def index
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
+    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), '#'
     @creators = Creator.all.order(:display_name)
   end
 
@@ -24,7 +37,12 @@ class CreatorsController < ApplicationController
   end
 
   # GET /creators/1/edit
-  def edit; end
+  def edit
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
+    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), creators_path
+    add_breadcrumb "Edit Creator", '#'
+  end
 
   # POST /creators
   # POST /creators.json
