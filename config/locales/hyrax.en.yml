@@ -94,6 +94,9 @@ en:
         table_of_contents: Table of Contents
 
   hyrax:
+    creators:
+      index:
+        manage_creators: Manage Creators
     base:
       citations:
           citations: Citations
