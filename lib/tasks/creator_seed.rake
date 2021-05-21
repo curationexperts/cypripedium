@@ -35,12 +35,15 @@ namespace :creators do
 
   desc "Go through all Fedora records and add creator_ids associated with creators"
   task migrate: :environment do
+    $stdout.sync = true # Flush output immediately
+
+    start_time = Time.zone.now.localtime
     creators_array = Creator.pluck(:id, :display_name).map { |id, name| { id: id, name: name } }
 
     models_to_reindex = Hyrax.config.curation_concerns
     models_to_reindex.each do |klass|
       rows = klass.count
-      puts "Re-indexing #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
+      puts "Migrating #{klass.count} creators for #{klass} records: #{Time.zone.now.localtime}"
 
       id_list(klass, rows).each do |id|
         next unless ActiveFedora::Base.exists?(id)
@@ -54,10 +57,9 @@ namespace :creators do
         end
         record.save
       end
-
-      end_time = Time.zone.now.localtime
-      puts "Re-index finished at: #{end_time}"
-      printf "Re-index finished in: %0.1f minutes \n", time_in_minutes(start_time, end_time)
     end
+    end_time = Time.zone.now.localtime
+    puts "Creator migration finished at: #{end_time}"
+    printf "Creator migration finished in: %0.1f minutes \n", time_in_minutes(start_time, end_time)
   end
 end
