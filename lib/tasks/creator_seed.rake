@@ -7,7 +7,7 @@ namespace :creators do
 
     solr = Blacklight.default_index.connection
 
-    response = solr.get 'select', params: { "facet.field": ["creator_sim"] }
+    response = solr.get 'select', params: { "facet.field": ["creator_sim"], "facet.limit":-1 }
     creators_array = response["facet_counts"]["facet_fields"]["creator_sim"]
 
     CSV.open(creators_path, 'w', write_headers: true, headers: ["display_name", "result_count"]) do |row|
@@ -37,7 +37,7 @@ namespace :creators do
   task migrate: :environment do
     creators_array = Creator.pluck(:id, :display_name).map { |id, name| { id: id, name: name } }
 
-    models_to_reindex = [::Collection] + Hyrax.config.curation_concerns
+    models_to_reindex = Hyrax.config.curation_concerns
     models_to_reindex.each do |klass|
       rows = klass.count
       puts "Re-indexing #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
@@ -46,13 +46,18 @@ namespace :creators do
         next unless ActiveFedora::Base.exists?(id)
         record = ActiveFedora::Base.find(id)
         next if record.creator.empty?
+        puts "Record id: #{id}"
         record.creator.each do |creator|
+          puts "Creator name: #{creator}"
           creator_identifier = creators_array.find { |ca| ca[:name] == creator }[:id]
           record.creator_id = record.creator_id + [creator_identifier.to_s]
-          record.save
         end
-        record.update_index
+        record.save
       end
+
+      end_time = Time.zone.now.localtime
+      puts "Re-index finished at: #{end_time}"
+      printf "Re-index finished in: %0.1f minutes \n", time_in_minutes(start_time, end_time)
     end
   end
 end
