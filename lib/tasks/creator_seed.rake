@@ -10,16 +10,13 @@ namespace :creators do
     response = solr.get 'select', params: { "facet.field": ["creator_sim"] }
     creators_array = response["facet_counts"]["facet_fields"]["creator_sim"]
 
-    # Option one - just returns the creator names in an array, taking out the number of records
-    # creators_array.map { |a| a if a.is_a? String }.compact
-    CSV.open(creators_path,'w',
-        :write_headers=> true,
-        :headers => ["display_name", "result_count"] #< column header
-      ) do|row|
-        creators_array.each_slice(2) do |pair|
-          row << pair
-        end
+    CSV.open(creators_path, 'w', write_headers: true, headers: ["display_name", "result_count"]) do |row|
+      creators_array.each_slice(2) do |pair|
+        row << pair
+      end
     end
+    # Same as above, one-line syntax
+    # CSV.open(creators_path,'w', :write_headers=> true, :headers => ["display_name", "result_count"]) { |row| creators_array.each_slice(2) { |pair| row << pair } }
   end
 
   desc "Create database-based local authorities"
@@ -39,7 +36,6 @@ namespace :creators do
   desc "Go through all Fedora records and add creator_ids associated with creators"
   task migrate: :environment do
     creators_array = Creator.pluck(:id, :display_name).map { |id, name| { id: id, name: name } }
-    solr = Blacklight.default_index.connection
 
     models_to_reindex = [::Collection] + Hyrax.config.curation_concerns
     models_to_reindex.each do |klass|
@@ -51,7 +47,7 @@ namespace :creators do
         record = ActiveFedora::Base.find(id)
         next if record.creator.empty?
         record.creator.each do |creator|
-          creator_identifier = creators_array.select {|ca| ca[:name] == creator }.first[:id]
+          creator_identifier = creators_array.find { |ca| ca[:name] == creator }[:id]
           record.creator_id = record.creator_id + [creator_identifier.to_s]
           record.save
         end
