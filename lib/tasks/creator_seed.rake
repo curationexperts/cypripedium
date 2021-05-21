@@ -45,7 +45,7 @@ namespace :creators do
       rows = klass.count
       puts "Migrating #{klass.count} creators for #{klass} records: #{Time.zone.now.localtime}"
 
-      id_list(klass, rows).each do |id|
+      ids_list(klass, rows).each do |id|
         next unless ActiveFedora::Base.exists?(id)
         record = ActiveFedora::Base.find(id)
         next if record.creator.empty?
@@ -62,4 +62,11 @@ namespace :creators do
     puts "Creator migration finished at: #{end_time}"
     printf "Creator migration finished in: %0.1f minutes \n", time_in_minutes(start_time, end_time)
   end
+end
+
+# Have to override reindex id_list method to filter out Private works, which are creating errors
+def ids_list(model, rows)
+  query = { params: { q: "has_model_ssim:#{model}", fq: "visibility_ssi:open", fl: "id", rows: rows } }
+  results = solr.select(query)
+  results['response']['docs'].flat_map(&:values)
 end
