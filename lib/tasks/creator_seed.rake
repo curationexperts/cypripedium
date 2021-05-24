@@ -25,7 +25,7 @@ namespace :creators do
     creators = CSV.read(creators_path, headers: true)
     creators.each do |row|
       Creator.where(display_name: row["display_name"]).first_or_create do |creator|
-        creator.display_name = row["display_name"]
+        creator.display_name = row["display_name"].strip
         puts "Authority entry created #{creator.display_name}"
       end
     end
@@ -49,10 +49,11 @@ namespace :creators do
         next unless ActiveFedora::Base.exists?(id)
         record = ActiveFedora::Base.find(id)
         next if record.creator.empty?
+        next unless record.creator_id.empty?
         puts "Record id: #{id}"
         record.creator.each do |creator|
           puts "Creator name: #{creator}"
-          creator_identifier = creators_array.find { |ca| ca[:name] == creator }[:id]
+          creator_identifier = creators_array.find { |ca| ca[:name] == creator.strip }[:id]
           record.creator_id = record.creator_id + [creator_identifier.to_s]
         end
         record.save
@@ -70,3 +71,6 @@ def ids_list(model, rows)
   results = solr.select(query)
   results['response']['docs'].flat_map(&:values)
 end
+
+# Record id: 12579s34s
+# Creator name: McCandless Jr., George T.
