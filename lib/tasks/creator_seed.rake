@@ -7,7 +7,7 @@ namespace :creators do
 
     solr = Blacklight.default_index.connection
 
-    response = solr.get 'select', params: { "facet.field": ["creator_sim"], "facet.limit":-1 }
+    response = solr.get 'select', params: { "facet.field": ["creator_sim"], "facet.limit": -1 }
     creators_array = response["facet_counts"]["facet_fields"]["creator_sim"]
 
     CSV.open(creators_path, 'w', write_headers: true, headers: ["display_name", "result_count"]) do |row|
@@ -43,7 +43,6 @@ namespace :creators do
     models_to_reindex = Hyrax.config.curation_concerns
     models_to_reindex.each do |klass|
       rows = klass.count
-
 
       records = ids_list(klass, rows).map { |id| ActiveFedora::Base.find(id) }
       puts "Migrating creators for #{records.count} out of #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
