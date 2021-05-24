@@ -43,16 +43,12 @@ namespace :creators do
     models_to_reindex = Hyrax.config.curation_concerns
     models_to_reindex.each do |klass|
       rows = klass.count
-      puts "Migrating #{klass.count} creators for #{klass} records: #{Time.zone.now.localtime}"
 
-      ids_list(klass, rows).each do |id|
-        next unless ActiveFedora::Base.exists?(id)
-        record = ActiveFedora::Base.find(id)
-        next if record.creator.empty?
-        next unless record.creator_id.empty?
-        puts "Record id: #{id}"
-        record.creator.each do |creator|
-          puts "Creator name: #{creator}"
+
+      records = ids_list(klass, rows).map { |id| ActiveFedora::Base.find(id) }
+      puts "Migrating creators for #{records.count} out of #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
+      records.map do |record|
+        record.creator.map do |creator|
           creator_identifier = creators_array.find { |ca| ca[:name] == creator.strip }[:id]
           record.creator_id = record.creator_id + [creator_identifier.to_s]
         end
@@ -66,11 +62,9 @@ namespace :creators do
 end
 
 # Have to override reindex id_list method to filter out Private works, which are creating errors
+# Search for works that are open visibility, do have a creator, and do not already have a creator_id
 def ids_list(model, rows)
-  query = { params: { q: "has_model_ssim:#{model}", fq: "visibility_ssi:open", fl: "id", rows: rows } }
+  query = { params: { q: "has_model_ssim:#{model}", fq: ["visibility_ssi:open", "creator_sim:*", "-creator_id_ssim:*"], fl: "id", rows: rows } }
   results = solr.select(query)
   results['response']['docs'].flat_map(&:values)
 end
-
-# Record id: 12579s34s
-# Creator name: McCandless Jr., George T.
