@@ -18,6 +18,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
       expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
+      expect(page).to have_no_link("New Creator")
       expect(page).to have_no_link("Edit")
     end
 
@@ -55,6 +56,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       altnames = find(:xpath, "//*[@id=\"active\"]/table/tbody/tr[1]/td[3]").text
       expect(altnames).to eq ""
       expect(page).to have_link("Edit")
+      expect(page).to have_link("New Creator")
       expect(page).to have_content("Milk, The Small", count: 1)
       expect(page).to have_content(/active/i, count: 1)
       expect(page).to have_content("true")
