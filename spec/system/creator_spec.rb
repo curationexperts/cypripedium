@@ -30,8 +30,8 @@ RSpec.describe 'Creators', type: :system, js: true do
       visit "/creators/#{creator.id}"
       expect(page).to have_content("Display name")
       expect(page).to have_content("Alternate names")
-      expect(page).to have_content("Repec")
-      expect(page).to have_content("Viaf")
+      expect(page).to have_content("RePEc")
+      expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
       expect(page).to have_no_link("Edit")
     end
@@ -88,8 +88,8 @@ RSpec.describe 'Creators', type: :system, js: true do
       visit "/creators/#{creator.id}"
       expect(page).to have_content("Display name")
       expect(page).to have_content("Alternate names")
-      expect(page).to have_content("Repec")
-      expect(page).to have_content("Viaf")
+      expect(page).to have_content("RePEc")
+      expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
       expect(page).to have_link("Edit")
     end
