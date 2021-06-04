@@ -16,7 +16,6 @@
           <td><%= link_to 'Show', creator %></td>
           <% if current_or_guest_user.can?(:edit, Creator) %>
             <td><%= link_to 'Edit', edit_creator_path(creator) %></td>
-            <td><%= link_to 'Destroy', creator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
       <% end %>

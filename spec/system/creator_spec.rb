@@ -59,6 +59,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/active/i, count: 1)
       expect(page).to have_content("true")
       expect(page).to have_content("false")
+      expect(page).not_to have_link("Destroy")
     end
     it "can create a new creator record" do
       visit "/creators/new"
