@@ -29,7 +29,11 @@ class CreatorsController < ApplicationController
 
   # GET /creators/1
   # GET /creators/1.json
-  def show; end
+  def show
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
+    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), '#'
+  end
 
   # GET /creators/new
   def new
