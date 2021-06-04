@@ -1,28 +1,36 @@
 <p id="notice"><%= notice %></p>
+<div class="col-xd-12">
+  <h1>Show Creator</h1>
+</div>
+<div class="col-sm-8">
+  <label class="control-label string" for="creator_display_name">Display name</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @creator.display_name %>
+    </li>
+  </ul>
 
-<p>
-  <strong>Display name:</strong>
-  <%= @creator.display_name %>
-</p>
+  <label class="control-label string" for="creator_alternate_names">Alternate names</label>
+  <ul class="tabular">
+    <% @creator.alternate_names.each do |name| %>
+        <li class="attribute"><%= name %></li>
+    <% end %>
+  </ul>
 
-<p>
-  <strong>Alternate names:</strong>
-  <%= @creator.alternate_names.join(" ; ") %>
-</p>
+  <label class="control-label string" for="creator_repec">RePEc</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @creator.repec %></li>
+  </ul>
 
-<p>
-  <strong>Repec:</strong>
-  <%= @creator.repec %>
-</p>
+  <label class="control-label string" for="creator_viaf">VIAF</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @creator.viaf %></li>
+  </ul>
 
-<p>
-  <strong>Viaf:</strong>
-  <%= @creator.viaf %>
-</p>
-<p>
-  <strong>Active:</strong>
-  <%= @creator.active_creator.to_s %>
-</p>
+  <label class="control-label string" for="creator_active">Active</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @creator.active_creator.to_s %></li>
+  </ul>
 
-<%= link_to 'Edit', edit_creator_path(@creator) %> |
-<%= link_to 'Back', creators_path %>
+  <%= link_to 'Edit', edit_creator_path(@creator) %> |
+  <%= link_to 'Back', creators_path %>
+</div>
