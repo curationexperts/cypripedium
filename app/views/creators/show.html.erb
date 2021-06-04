@@ -31,6 +31,7 @@
     <li class="attribute"><%= @creator.active_creator.to_s %></li>
   </ul>
 
+<% if current_or_guest_user.can?(:edit, Creator) %>
   <%= link_to 'Edit', edit_creator_path(@creator) %> |
-  <%= link_to 'Back', creators_path %>
-</div>
+<% end %>
+<%= link_to 'Back', creators_path %>

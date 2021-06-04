@@ -18,12 +18,22 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
       expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
-      expect(page).not_to have_link("Edit")
+      expect(page).to have_no_link("Edit")
     end
 
     it "cannot navigate to the new page" do
       visit "/creators/new"
       expect(page).to have_content("You are not authorized to access this page")
+    end
+    it "does not link to edit an existing creator" do
+      creator
+      visit "/creators/#{creator.id}"
+      expect(page).to have_content("Display name")
+      expect(page).to have_content("Alternate names")
+      expect(page).to have_content("RePEc")
+      expect(page).to have_content("VIAF")
+      expect(page).to have_link("Back")
+      expect(page).to have_no_link("Edit")
     end
   end
   context "as an admin" do
@@ -72,6 +82,16 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/ID/i)
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
+    end
+    it "can show an existing creator" do
+      creator
+      visit "/creators/#{creator.id}"
+      expect(page).to have_content("Display name")
+      expect(page).to have_content("Alternate names")
+      expect(page).to have_content("RePEc")
+      expect(page).to have_content("VIAF")
+      expect(page).to have_link("Back")
+      expect(page).to have_link("Edit")
     end
     it "can edit an existing creator" do
       creator
