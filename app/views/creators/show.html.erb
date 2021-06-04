@@ -24,5 +24,7 @@
   <%= @creator.active_creator.to_s %>
 </p>
 
-<%= link_to 'Edit', edit_creator_path(@creator) %> |
+<% if current_or_guest_user.can?(:edit, Creator) %>
+  <%= link_to 'Edit', edit_creator_path(@creator) %> |
+<% end %>
 <%= link_to 'Back', creators_path %>
