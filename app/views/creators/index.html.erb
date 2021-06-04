@@ -8,8 +8,10 @@
   <div class="panel-body">
     <div class="tab-content">
       <div class="tab-pane active" id="active">
-        <%= link_to 'New Creator', new_creator_path %>
-        <br>
+        <% if current_or_guest_user.can?(:edit, Creator) %>
+          <%= link_to 'New Creator', new_creator_path %>
+          <br>
+        <% end %>
         <%= render "list_active_creators" %>
       </div>
     </div>
