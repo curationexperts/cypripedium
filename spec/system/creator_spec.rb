@@ -70,7 +70,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       click_button("Add another Alternate names")
       page.find(:xpath, "/html/body/div[3]/div[2]/form/div[2]/ul/li[2]/input").set("Aliens, Steve")
       click_on "Save"
-      expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
+      expect(page).to have_content("Allen, S. Gomes\nAliens, Steve")
       expect(Creator.first.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
       expect(page).to have_content('true')
     end
