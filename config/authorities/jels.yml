@@ -938,6 +938,21 @@ terms:
   - id: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
     term: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
     active: true
+  - id: 'G50 - Household Finance: General'
+    term: 'G50 - Household Finance: General'
+    active: true
+  - id: 'G51 - Household Finance: Household Saving, Borrowing, Debt, and Wealth'
+    term: 'G51 - Household Finance: Household Saving, Borrowing, Debt, and Wealth'
+    active: true
+  - id: 'G52 - Household Finance: Insurance'
+    term: 'G52 - Household Finance: Insurance'
+    active: true
+  - id: 'G53 - Household Finance: Financial Literacy'
+    term: 'G53 - Household Finance: Financial Literacy'
+    active: true
+  - id: 'G59 - Household Finance: Other'
+    term: 'G59 - Household Finance: Other'
+    active: true
   - id: 'H00 - Public Economics: General'
     term: 'H00 - Public Economics: General'
     active: true
@@ -2548,4 +2563,4 @@ terms:
     active: true
   - id: 'Z39 - Tourism: Other'
     term: 'Z39 - Tourism: Other'
-    active: true   
+    active: true

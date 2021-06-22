@@ -3,25 +3,22 @@
 <%= presenter.attribute_to_html(:issue_number ) %>
 <%= presenter.attribute_to_html(:date_created, label: 'Date created' ) %>
 <%= presenter.attribute_to_html(:description, render_as: :description, label: "Description" ) %>
-
-
 <%= presenter.attribute_to_html(:abstract, render_as: :abstract ) %>
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'subject_tesim', label: "Subject (JEL)" ) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:table_of_contents ) %>
-<%= presenter.attribute_to_html(:related_url, render_as: :related_url, label: 'Related information' ) %>
 <%= presenter.attribute_to_html(:alternative_title ) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :linked, search_field: 'all_fields' ) %>
-<%= presenter.attribute_to_html(:date_available, label: 'Date available' ) %>
-<%= presenter.attribute_to_html(:date_modified, label: 'Date modified' )%>
-<%= presenter.attribute_to_html(:language ) %>
-<%= presenter.attribute_to_html(:corporate_name) %>
-<%= presenter.attribute_to_html(:publisher ) %>
-<%= presenter.attribute_to_html(:resource_type, render_as: :linked, search_field: 'resource_type' ) %>
 <%= presenter.attribute_to_html(:source, render_as: :linked, search_field: 'source' ) %>
 <%= presenter.attribute_to_html(:temporal ) %>
 <%= presenter.attribute_to_html(:extent ) %>
 <%= presenter.attribute_to_html(:geographic_name ) %>
+<%= presenter.attribute_to_html(:related_url, render_as: :related_url, label: 'Related information' ) %>
+<%= presenter.attribute_to_html(:resource_type, render_as: :linked, search_field: 'resource_type' ) %>
+<%= presenter.attribute_to_html(:corporate_name) %>
+<%= presenter.attribute_to_html(:publisher ) %>
+<%= presenter.attribute_to_html(:date_available, label: 'Date available' ) %>
+<%= presenter.attribute_to_html(:date_modified, label: 'Date modified' )%>
+<%= presenter.attribute_to_html(:language ) %>
 <%= presenter.attribute_to_html(:bibliographic_citation, label: 'Bibliographic citation' ) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :external_link ) %>
-<%= presenter.attribute_to_html(:rights ) %>
