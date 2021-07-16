@@ -12,6 +12,7 @@ end
 gem "actionview", ">= 5.1.6.2"
 gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
+gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
@@ -23,6 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails'
+gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'honeybadger', '~> 4.4.0'
 gem 'hydra-file_characterization', '~> 1.1'
 gem 'hydra-role-management'

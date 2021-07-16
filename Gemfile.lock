@@ -104,6 +104,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bixby (3.0.1)
       rubocop (= 0.85.1)
@@ -299,6 +300,7 @@ GEM
       rdf (~> 3.1)
       scanf (~> 1.0)
       sxp (~> 1.1)
+    ed25519 (1.2.4)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.10.0)
@@ -940,6 +942,7 @@ DEPENDENCIES
   actionview (>= 5.1.6.2)
   active_job_status (~> 1.2.1)
   bagit
+  bcrypt_pbkdf (~> 1.1)
   bixby (~> 3.0)
   bootstrap-sass (~> 3.4.1)
   browse-everything
@@ -958,6 +961,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   dotenv-rails
+  ed25519 (~> 1.2, >= 1.2.4)
   factory_bot
   fcrepo_wrapper
   honeybadger (~> 4.4.0)
