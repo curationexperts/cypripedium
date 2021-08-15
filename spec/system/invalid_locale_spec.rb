@@ -3,6 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Getting a friendly error for Invalid Locales', type: :system do
+  # The empty before block allows these tests to pass in CI
   before do
   end
   context 'visiting a locale that does not exist' do
