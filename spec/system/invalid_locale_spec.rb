@@ -3,6 +3,8 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Getting a friendly error for Invalid Locales', type: :system do
+  before do
+  end
   context 'visiting a locale that does not exist' do
     it 'has a 406 page' do
       visit('/?locale=pluto')
