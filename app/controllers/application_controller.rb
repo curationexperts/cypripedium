@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   skip_after_action :discard_flash_if_xhr
+
+  rescue_from I18n::InvalidLocale, with: :render_406
+
+  def render_406
+    render file: Rails.root.join('app', 'views', 'static', 'not_acceptable.html.erb'), status: :not_acceptable, layout: true
+  end
 end
