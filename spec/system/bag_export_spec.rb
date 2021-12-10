@@ -27,6 +27,7 @@ RSpec.describe 'Bagit export:', type: :system, js: true do
     before do
       ActiveJob::Base.queue_adapter = :test
       [publication, data_set] # Create the records
+      I18n.locale = 'en'
     end
 
     it 'queues the bagit job' do
