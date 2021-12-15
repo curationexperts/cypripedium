@@ -20,3 +20,5 @@ fits.log
 .byebug_history
 .env*
 .idea/*
+.ruby-version
+dump.rdb
