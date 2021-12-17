@@ -46,7 +46,7 @@ The best way to know that your local development environment is running as expec
 3. Run `solr_wrapper`; check in your browser at `localhost:8983/solr` to see it running.
 4. Run `fcrepo_wrapper`; check in your browser at `localhost:8984/rest` to see it running.
 5. Run `sidekiq`. You can see it running at localhost:3000/sidekiq
-6. Run `redis-server`; Reids will run, you can check redis running by running `redis-cli ping` in a new window
+6. Run `redis-server`; Redis will run, you can check redis running by running `redis-cli ping` in a new window
 
 ## Data setup
 
