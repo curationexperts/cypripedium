@@ -1,0 +1,14 @@
+<h4>Citation Formats</h4>
+
+<% if params[:output].nil? || params[:output].eql?("mla") %>
+  <h4>MLA</h4>
+  <span class="mla-citation"><%= export_as_mla_citation(@presenter) %></span>
+  <br /><br />
+<% end %>
+
+<% if params[:output].nil? || params[:output].eql?("chicago") %>
+  <h4>Chicago</h4>
+  <span class="chicago-citation"><%= export_as_chicago_citation(@presenter) %></span>
+  <br /><br />
+<% end %>
+
