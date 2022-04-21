@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
+
+  include BlacklightRangeLimit::ControllerOverride
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
@@ -25,7 +27,7 @@ class CatalogController < ApplicationController
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
-    config.search_builder_class = Hyrax::CatalogSearchBuilder
+    config.search_builder_class = SearchBuilder
 
     # Show gallery view
     config.view.gallery.partials = [:index_header, :index]
@@ -49,6 +51,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("series", :facetable), collapse: false, label: "Series", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
+    config.add_facet_field 'date_created_iti', label: 'Publication Year', range: true
     # End Facet Fields
 
     # The generic_type isn't displayed on the facet list
@@ -66,7 +69,7 @@ class CatalogController < ApplicationController
     config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable), label: "Creator"
     config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
-    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
+    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', link_to_search: solr_name("creator", :facetable), helper_method: :human_readable_date
     config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'abstract', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
