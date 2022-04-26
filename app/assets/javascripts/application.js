@@ -37,7 +37,6 @@
 //= require 'blacklight_range_limit'
 
 bagButton.bindClick({'compression': 'zip'})
-bagButton.bindClick({'compression': 'tar'})
 
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
