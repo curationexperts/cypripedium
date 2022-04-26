@@ -67,7 +67,7 @@ class CatalogController < ApplicationController
     config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable), label: "Creator"
     config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
     config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
-    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', link_to_search: solr_name("creator", :facetable), helper_method: :human_readable_date
+    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
     config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'abstract', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
