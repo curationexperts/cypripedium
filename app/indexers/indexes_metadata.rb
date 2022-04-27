@@ -5,7 +5,7 @@ module IndexesMetadata
     super.tap do |solr_doc|
       solr_doc['title_ssi'] = object.title.first
       solr_doc['date_created_ssi'] = object.date_created.first
-      solr_doc['date_created_iti'] = object.date_created &.first ? Date.parse(object.date_created.first).year : 1980
+      solr_doc['date_created_iti'] = object.date_created &.first ? Date.parse(object.date_created.first).year : nil
       solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
       solr_doc['creator_sim'] = creator_names(object)
