@@ -28,6 +28,7 @@ RSpec.describe CypripediumIndexer, clean: true do
       it 'indexes a sortable title and date created' do
         expect(solr_doc['title_ssi']).to eq 'My Title'
         expect(solr_doc['date_created_ssi']).to eq '1970-04-30'
+        expect(solr_doc['date_created_iti']).to eq '1970'
         # The problem with storing them separately in Fedora is that it looks like they get re-ordered in Solr
         # Wait! But with Fedora we have to totally write over the whole array anyway, so if we find the ID in
         # the creator_id array we can replace the whole set of creator names
