@@ -130,6 +130,11 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
+    blacklight_range_limit (7.0.0)
+      blacklight
+      jquery-rails
+      rails (>= 3.0)
+      tether-rails
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -889,6 +894,8 @@ GEM
     temple (0.8.2)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
+    tether-rails (1.4.0)
+      rails (>= 3.1)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -944,6 +951,7 @@ DEPENDENCIES
   bagit
   bcrypt_pbkdf (~> 1.1)
   bixby (~> 3.0)
+  blacklight_range_limit
   bootstrap-sass (~> 3.4.1)
   browse-everything
   bummr
@@ -1007,7 +1015,7 @@ DEPENDENCIES
   yard
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.6.3p62
 
 BUNDLED WITH
    2.2.33

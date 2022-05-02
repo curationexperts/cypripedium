@@ -13,6 +13,8 @@
 //=
 //= require turbolinks
 //
+
+//= require tether
 // Required by Blacklight
 //= require jquery
 //= require browse_everything
@@ -32,6 +34,19 @@
 //= require almond
 //= require creator_id
 //= require hydra-editor/field_manager
+//= require 'blacklight_range_limit'
 
 bagButton.bindClick({'compression': 'zip'})
-bagButton.bindClick({'compression': 'tar'})
+
+
+// For blacklight_range_limit built-in JS, if you don't want it you don't need
+// this:
+//
+//= require 'blacklight_range_limit'
+
+
+
+// For blacklight_range_limit built-in JS, if you don't want it you don't need
+// this:
+//= require 'blacklight_range_limit'
+

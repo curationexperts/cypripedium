@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
+  include BlacklightRangeLimit::ControllerOverride
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
-
   # This filter applies the hydra access controls
   before_action :enforce_show_permissions, only: :show
 
@@ -25,7 +25,7 @@ class CatalogController < ApplicationController
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
-    config.search_builder_class = Hyrax::CatalogSearchBuilder
+    config.search_builder_class = SearchBuilder
 
     # Show gallery view
     config.view.gallery.partials = [:index_header, :index]
@@ -49,6 +49,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("series", :facetable), collapse: false, label: "Series", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
+    config.add_facet_field 'date_created_iti', label: 'Publication Year', range: true
     # End Facet Fields
 
     # The generic_type isn't displayed on the facet list

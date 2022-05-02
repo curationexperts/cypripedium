@@ -21,13 +21,14 @@ RSpec.describe CypripediumIndexer, clean: true do
 
       let(:attrs) {
         { title: ['My Title'],
-          date_created: ['1970-04'],
+          date_created: ['1970-04-30'],
           # creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
           creator_id: [creator_one.id, creator_two.id, creator_three.id] }
       }
       it 'indexes a sortable title and date created' do
         expect(solr_doc['title_ssi']).to eq 'My Title'
-        expect(solr_doc['date_created_ssi']).to eq '1970-04'
+        expect(solr_doc['date_created_ssi']).to eq '1970-04-30'
+        expect(solr_doc['date_created_iti']).to eq 1970
         # The problem with storing them separately in Fedora is that it looks like they get re-ordered in Solr
         # Wait! But with Fedora we have to totally write over the whole array anyway, so if we find the ID in
         # the creator_id array we can replace the whole set of creator names
@@ -50,7 +51,7 @@ RSpec.describe CypripediumIndexer, clean: true do
       end
       it 'indexes a dataset' do
         expect(data_doc['title_ssi']).to eq 'My Title'
-        expect(data_doc['date_created_ssi']).to eq '1970-04'
+        expect(data_doc['date_created_ssi']).to eq '1970-04-30'
         creator_id_array = data_doc['creator_id_ssim']
         expect(creator_id_array).to include creator_one.id.to_s
         expect(creator_id_array).to include creator_two.id.to_s
@@ -64,7 +65,7 @@ RSpec.describe CypripediumIndexer, clean: true do
       end
       it 'indexes a conference proceeding' do
         expect(conf_doc['title_ssi']).to eq 'My Title'
-        expect(conf_doc['date_created_ssi']).to eq '1970-04'
+        expect(conf_doc['date_created_ssi']).to eq '1970-04-30'
         creator_id_array = conf_doc['creator_id_ssim']
         expect(creator_id_array).to include creator_one.id.to_s
         expect(creator_id_array).to include creator_two.id.to_s
@@ -83,7 +84,7 @@ RSpec.describe CypripediumIndexer, clean: true do
 
       let(:attrs) {
         { title: ['My Title'],
-          date_created: ['1970-04'],
+          date_created: ['1970-04-30'],
           creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'] }
       }
       it 'indexes the creator names in alphabetical order' do

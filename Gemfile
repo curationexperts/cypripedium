@@ -14,6 +14,7 @@ gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
+gem "blacklight_range_limit"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
 gem 'capistrano'
