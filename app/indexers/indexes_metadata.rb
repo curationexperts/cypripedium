@@ -3,11 +3,7 @@
 module IndexesMetadata
   def generate_solr_document
     super.tap do |solr_doc|
-      begin
-        parsed_year = object.date_created &.first ? Date.parse(object.date_created.first).year : nil
-      rescue
-        parsed_year = object.date_created.first.match(/\d{4}/).to_s.to_i
-      end
+      parsed_year = object.date_created &.first ? object.date_created.first.match(/\d{4}/).to_s.to_i : nil
       solr_doc['title_ssi'] = object.title.first
       solr_doc['date_created_ssi'] = object.date_created.first
       solr_doc['date_created_iti'] = parsed_year
