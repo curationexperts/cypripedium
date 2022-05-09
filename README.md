@@ -112,6 +112,6 @@ The system defaults host_env to "prod"
 
 
 ## Ansible
-When building a new system via Ansible, the "localdeploy.rb" configuration will be used, and requires
+When building a new system via Ansible, the "localhost.rb" configuration will be used, and requires
 no further steps (other than having frbm-ssm profile set up)
 
