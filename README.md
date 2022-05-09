@@ -79,3 +79,39 @@ Whether you use docker or not, there are a few steps necessary to let you intera
 3. `bundle exec rails s`. In your browser, check to see the application running at `localhost:3000`.
 
 4. In the brower session, log in as the admin user you just created.
+
+## Capistrano deployment
+
+There are currently 2 environments for cypripedium: the legacy ec2 installation & and the future SSM environment.
+
+
+To deploy to the legacy environment, the following command will continue to work
+
+```
+cap <environmentname> deploy
+```
+
+To deploy to the new SSM environment, you must have a configured .aws/credentials file, with a profile named "frbm-ssm".
+
+After this is in place, 
+
+```
+bundle exec cap ssm deploy
+```
+
+Will deploy to the SSM environment.  The deployment system uses tags to determine the instance ids of the relevant target
+hosts (SSM does not use ip addresses or the like), based on the value of the ```host_env``` environment variable
+
+For instance, a host with the tags Environment=stage and Project=rdb will be the target of 
+
+```
+host_env=stage bundle exec cap ssm deploy
+```
+
+The system defaults host_env to "prod"
+
+
+## Ansible
+When building a new system via Ansible, the "localdeploy.rb" configuration will be used, and requires
+no further steps (other than having frbm-ssm profile set up)
+
