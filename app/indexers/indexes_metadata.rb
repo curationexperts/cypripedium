@@ -3,10 +3,9 @@
 module IndexesMetadata
   def generate_solr_document
     super.tap do |solr_doc|
-      parsed_year = object.date_created &.first ? object.date_created.first.match(/\d{4}/).to_s.to_i : nil
       solr_doc['title_ssi'] = object.title.first
       solr_doc['date_created_ssi'] = object.date_created.first
-      solr_doc['date_created_iti'] = parsed_year
+      solr_doc['date_created_iti'] = extract_year_from_date_created
       solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
       solr_doc['creator_sim'] = creator_names(object)
@@ -43,5 +42,12 @@ module IndexesMetadata
                                    # URI(creator_triple.id).path.split('/').last
                                  end
                                end
+  end
+
+  # Looks for the first sequence of four digits in a row in date_created
+  # and returns them as an integer
+  def extract_year_from_date_created
+    year = object.date_created.first&.match(/\d{4}/)
+    year.to_s.to_i if year
   end
 end

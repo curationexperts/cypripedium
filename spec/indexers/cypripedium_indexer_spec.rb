@@ -92,4 +92,75 @@ RSpec.describe CypripediumIndexer, clean: true do
       end
     end
   end
+
+  describe "#extract_year" do
+    let(:extracted_year) { pub_indexer.extract_year_from_date_created }
+    let(:attrs) { { date_created: date_created } }
+    context "returns a 4 digit extracted_year" do
+      context "for strings with only a extracted_year" do
+        let(:date_created) { ['2013'] }
+        example { expect(extracted_year).to eq 2013 }
+      end
+      context "for strings with extra text" do
+        let(:date_created) { ['Winter 1980'] }
+        example { expect(extracted_year).to eq 1980 }
+      end
+      context "and ignores era" do
+        let(:date_created) { ['1500 BCE'] }
+        example { expect(extracted_year).to eq 1500 }
+      end
+      context "for ISO extracted_year and month" do
+        let(:date_created) { ['1913-05'] }
+        example { expect(extracted_year).to eq 1913 }
+      end
+      context "for ISO date & times" do
+        let(:date_created) { ['2022-05-10T15:29:41Z'] }
+        example { expect(extracted_year).to eq 2022 }
+      end
+      context "from the first extracted_year if there are multiple years" do
+        let(:date_created) { ['1370 1371 1372'] }
+        example { expect(extracted_year).to eq 1370 }
+      end
+      context "requires leading zero padding" do
+        let(:date_created) { ["0590 A.D."] }
+        example { expect(extracted_year).to eq 590 }
+      end
+    end
+
+    # NOTE: hyrax does not guarantee ordering, so .first might return any value in the array
+    context "from multiple values" do
+      let(:date_created) { ['2005-12-04', '2001-05-10'] }
+      years = [2001, 2005]
+      example { expect(years).to include(extracted_year) }
+    end
+
+    # NOTE: the current method does not properly handle long numbers
+    context "for non-date numbers" do
+      let(:date_created) { ['0987654321'] }
+      example { expect(extracted_year).to eq 987 }
+    end
+
+    context "returns nil if a year can't be detected" do
+      context "because date_created is not present" do
+        let(:attrs) { {} }
+        example { expect(extracted_year).to eq nil }
+      end
+      context "because date_created is nil" do
+        let(:date_created) { nil }
+        example { expect(extracted_year).to eq nil }
+      end
+      context "because date_created is an empty string" do
+        let(:date_created) { [""] }
+        example { expect(extracted_year).to eq nil }
+      end
+      context "in strings with no numeric data" do
+        let(:date_created) { ["Ninteen-Hundred Twenty-One"] }
+        example { expect(extracted_year).to eq nil }
+      end
+      context "it ignores 3-digit years" do
+        let(:date_created) { ["590 A.D."] }
+        example { expect(extracted_year).to eq nil }
+      end
+    end
+  end
 end
