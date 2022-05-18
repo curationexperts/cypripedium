@@ -1,0 +1,7 @@
+en:
+  blacklight:
+    range_limit:
+      range_begin: "%{field_label} range begin"
+      range_end: "%{field_label} range end"
+      submit_limit: 'Apply'
+      remove_limit: 'remove'
