@@ -98,6 +98,10 @@ en:
       index:
         manage_creators: Manage Creators
         creators: Creators
+    corporates:
+      index:
+        manage_corporates: Manage Corporates
+        corporates: Corporates
     base:
       citations:
           citations: Citations

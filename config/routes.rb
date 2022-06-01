@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   resources :creators
+  resources :corporates
   mount BrowseEverything::Engine => '/browse'
   root 'homepage#index'
   mount Blacklight::Engine => '/'

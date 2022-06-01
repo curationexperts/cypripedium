@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<div class="col-xd-12">
+  <h1>Show Corporate Information</h1>
+</div>
+<div class="col-sm-8">
+  <label class="control-label string" for="corporate_corporate_name">Corporate name</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @corporate.corporate_name %>
+    </li>
+  </ul>
+
+  <label class="control-label string" for="corporate_corporate_state">Corporate State</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @corporate.corporate_state %>
+    </li>
+  </ul>
+
+  <label class="control-label string" for="corporate_corporate_city">Corporate City</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @corporate.corporate_city %>
+    </li>
+  </ul>
+
+  <% if current_or_guest_user.can?(:edit, Corporate) %>
+    <%= link_to 'Edit', edit_corporate_path(@corporate) %> |
+  <% end %>
+  <%= link_to 'Back', corporates_path %>
+</div>

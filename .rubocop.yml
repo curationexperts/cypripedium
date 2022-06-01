@@ -52,6 +52,7 @@ Rails/FindBy:
 Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/creator.rb'
+    - 'app/models/corporate.rb'
 
 RSpec/DescribeClass:
   Enabled: false

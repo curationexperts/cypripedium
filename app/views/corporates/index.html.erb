@@ -1,0 +1,42 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-sitemap" aria-hidden="true"></span><%= t(:'hyrax.corporates.index.corporates') %></h1>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default tabs">
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="active">
+        <% if current_or_guest_user.can?(:edit, Creator) %>
+          <%= link_to 'New Corporate', new_corporate_path %>
+          <br>
+        <% end %>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Corporate Name</th>
+              <th>Corporate State</th>
+              <th>Corporate City</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @corporates.each do |corporate| %>
+              <tr>
+                <td><%= corporate.corporate_name %></td>
+                <td><%= corporate.corporate_state %></td>
+                <td><%= corporate.corporate_city %></td>
+                <td><%= link_to 'Show', corporate %></td>
+                <td><%= link_to 'Edit', edit_corporate_path(corporate) %></td>
+                <td><%= link_to 'Delete', corporate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

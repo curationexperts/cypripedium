@@ -16,6 +16,10 @@
     <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('creators.index.manage_creators') %></span>
   <% end %>
 
+  <%= menu.nav_link("/corporates?locale=en") do %>
+    <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('corporates.index.manage_corporates') %></span>
+  <% end %>
+
   <%= menu.nav_link(hyrax.embargoes_path) do %>
     <span class="fa fa-flag" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.embargoes.index.manage_embargoes') %></span>
   <% end %>
