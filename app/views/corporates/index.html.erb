@@ -16,6 +16,7 @@
         <table class="table">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Corporate Name</th>
               <th>Corporate State</th>
               <th>Corporate City</th>
@@ -26,6 +27,7 @@
           <tbody>
             <% @corporates.each do |corporate| %>
               <tr>
+                <td><%= corporate.id %></td>
                 <td><%= corporate.corporate_name %></td>
                 <td><%= corporate.corporate_state %></td>
                 <td><%= corporate.corporate_city %></td>

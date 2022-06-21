@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Corporate < ApplicationRecord
-  validates :corporate_name, uniqueness: { message: "id already in the system", allow_blank: :true }
+  validates :corporate_name, uniqueness: { message: "id already in the system", allow_blank: :false }
   validates :corporate_name, :corporate_state, :corporate_city, presence: :true
   after_save :reindex_setup
 

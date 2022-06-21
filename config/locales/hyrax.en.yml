@@ -78,7 +78,9 @@ en:
         description: Description
         alternative_title: Alternative Title
         bibliographic_citation: Bibliographic Citation
-        corporate_name: Corporate Author
+        corporate_name: Corporate Name
+        corporate_state: Corporate State
+        corporate_city: Corporate City
         date_available: Date Available
         geographic_name: Spatial
         identifier: DOI
