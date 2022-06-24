@@ -45,8 +45,8 @@ RSpec.describe Corporate, type: :model do
   it "doesn't allow duplicate corporate names" do
     described_class.create(corporate_name: "Federal Reserve Bank: Research Division", corporate_state: "OK", corporate_city: "Dallas")
     expect do
-      described_class.create(corporate_name: "Federal Reserve Bank: Research Division", corporate_state: "MN", corporate_city: "San Fransisco")
-    end.to raise_error(ActiveRecord::RecordInvalid, /Validation failed: Corporate name already in the system/)
+      described_class.create!(corporate_name: "Federal Reserve Bank: Research Division", corporate_state: "MN", corporate_city: "San Fransisco")
+    end.to raise_error(ActiveRecord::RecordInvalid, /Validation failed: Corporate name id already in the system/)
   end
   # context 'with an accidentally-deleted corporate' do
   #   let(:work) {

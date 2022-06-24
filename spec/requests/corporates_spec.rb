@@ -110,7 +110,7 @@ RSpec.describe "/corporates", type: :request, clean: true do
         corporate = Corporate.create! valid_attributes
         patch corporate_url(corporate), params: { corporate: new_attributes }
         corporate.reload
-        expect(corporate.corporate_name).to be "A new corporate name"
+        expect(corporate.corporate_name).to eq "A new corporate name"
       end
 
       it "redirects to the corporate" do

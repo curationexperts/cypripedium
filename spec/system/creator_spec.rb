@@ -18,7 +18,7 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)
       expect(page).to have_content('Allen, S. Gomes ; Aliens, Steve')
-      expect(page).to have_no_link("New Creator")
+      expect(page).to have_no_link(/New Creator/i)
       expect(page).to have_no_link("Edit")
     end
 
@@ -29,8 +29,8 @@ RSpec.describe 'Creators', type: :system, js: true do
     it "does not link to edit an existing creator" do
       creator
       visit "/creators/#{creator.id}"
-      expect(page).to have_content("Display name")
-      expect(page).to have_content("Alternate names")
+      expect(page).to have_content(/Display name/i)
+      expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("RePEc")
       expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
