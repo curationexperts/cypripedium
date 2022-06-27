@@ -1,6 +1,14 @@
 <%= simple_form_for @corporate do |f| %>
   <%= f.input :corporate_name %>
-  <%= f.input :corporate_state %>
+  <br><br>
+  <div class="form-group">
+    <%= f.label :corporate_state, t('hyrax.simple_form.label.corporate_state') %>
+    <span class="label label-info required-tag">required</span>
+    <div >
+      <%= f.select :corporate_state, us_states, { include_blank:  'Select a state'}, {class: 'form-control', required: true } %>
+      <br><br>
+    </div>
+  </div>
   <%= f.input :corporate_city %>
   <%= f.button :submit %>
 <% end %>
