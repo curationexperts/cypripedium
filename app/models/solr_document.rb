@@ -30,6 +30,26 @@ class SolrDocument
     self['alpha_creator_tesim']
   end
 
+  def creator
+    self['alpha_creator_tesim']
+  end
+
+  def series
+    self['series_tesim']
+  end
+
+  def parent_collection
+    self['member_of_collections_ssim']
+  end
+
+  def issue
+    self['issue_number_tesim']
+  end
+
+  def doi
+    self['identifier_tesim']
+  end
+
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
