@@ -62,18 +62,30 @@ module Hyrax
           when 'Software or Program Code'
             text += author_info
             text += " #{whitewash(work.to_s)}. "
-            text += related_url
+            related_url_array = process_related_url(related_url)
+            if related_url_array.present?
+              text += if related_url_array.is_a?(Array) && related_url_array.length == 2
+                        "In \"#{related_url_array.at(1)}.\" " + related_url_array.at(0) +", "
+                      else
+                        "In \"#{related_url_array}.\" "
+                      end
+            end
+            if pub_info.present?
+              pub_info[": "] = '';
+              text += " #{whitewash(pub_info)},"
+            end
+            text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Journal'
             text += author_info
             text += title_quoted
             collection = work.parent_collection
             text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
             issue = parse_issue work.issue
-            if issue.kind_of?(Array)
-              text += whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
-            else
-              text += whitewash(issue)
-            end
+            text += if issue.is_a?(Array)
+                      whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
+                    else
+                      whitewash(issue)
+                    end
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           when 'Journal (without author)'
@@ -141,10 +153,9 @@ module Hyrax
             city_text = " <span class=\"citation-author\">#{city_text}</span>"
             text += city_text
           end
-          if state.present?
+          return unless state.present?
             state_text = whitewash(state)
             state_text = " <span class=\"citation-author\">#{state_text}</span>"
-            text += state_text
           end
         end
 
@@ -156,6 +167,18 @@ module Hyrax
           issue['Vol. '] = ''
           issue[' No. '] = ''
           issue.strip.split(',')
+        end
+
+        def process_related_url(related_url)
+          # sample related_url: "Staff Report 620: Star Wars at Central Banks, 
+          # https://doi.org/10.21034/sr.620\r\nStaff Report 621: Online Appendix: Star Wars at Central Banks, 
+          # https://doi.org/10.21034/sr.621"
+          # need to split it to get the first element and then get the report name and doi
+          # In the future, each related_url will contain one piece of info
+          related_url_array = related_url.split(/(\r|\n|\r\n)+/)
+          related_url = related_url_array.at(0) if related_url_array.present?
+          related_url_array = related_url.split(",")
+          related_url_array.at(0).split(": ")
         end
       end
     end
