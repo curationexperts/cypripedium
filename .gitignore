@@ -22,3 +22,4 @@ fits.log
 .idea/*
 .ruby-version
 dump.rdb
+vendor

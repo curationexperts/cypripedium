@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.3'
+ruby '2.7.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -29,14 +29,14 @@ gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'honeybadger', '~> 4.4.0'
 gem 'hydra-file_characterization', '~> 1.1'
 gem 'hydra-role-management'
-gem 'hyrax', '~> 2.9'
+gem 'hyrax', '~> 3.4'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'nokogiri', '>=1.8.2'
 gem 'parser'
 gem 'pg'
 gem 'puma', '~> 3.12'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5'
 gem 'rainbow'
 gem 'redcarpet'
 gem 'redis', '~> 3.0'
