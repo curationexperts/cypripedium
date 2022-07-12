@@ -14,10 +14,11 @@
 //= require turbolinks
 //
 
-//= require tether
 // Required by Blacklight
 //= require jquery
-//= require browse_everything
+//= require tether
+/* removed b/c it currently breaks modals */
+// require browse_everything
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
@@ -49,4 +50,4 @@ bagButton.bindClick({'compression': 'zip'})
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
 //= require 'blacklight_range_limit'
-
+//

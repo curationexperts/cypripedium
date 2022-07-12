@@ -63,20 +63,6 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content("false")
       expect(page).not_to have_link("Destroy")
     end
-    it "can create a new creator record" do
-      visit "/creators/new"
-      expect(page).to have_field("Display name")
-      expect(page).to have_field("Alternate names")
-      page.check "Active creator"
-      fill_in "Display name", with: "Allen, Stephen G."
-      fill_in "Alternate names", with: "Allen, S. Gomes"
-      click_button("Add another Alternate names")
-      page.find(:xpath, "/html/body/div[3]/div[2]/form/div[2]/ul/li[2]/input").set("Aliens, Steve")
-      click_on "Save"
-      expect(page).to have_content("Allen, S. Gomes\nAliens, Steve")
-      expect(Creator.first.alternate_names).to eq ["Allen, S. Gomes", "Aliens, Steve"]
-      expect(page).to have_content('true')
-    end
     it "has a dashboard link to manage creators" do
       visit "/dashboard"
       expect(page).to have_link("Manage Embargoes")
@@ -95,21 +81,6 @@ RSpec.describe 'Creators', type: :system, js: true do
       expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
       expect(page).to have_link("Edit")
-    end
-    it "can edit an existing creator" do
-      creator
-      visit "/creators/#{creator.id}/edit"
-      expect(page).to have_field("Display name")
-      expect(page).to have_field("Alternate names")
-      expect(page).to have_field("Repec")
-      expect(page).to have_field("Viaf")
-      page.uncheck "Active creator"
-      fill_in "Alternate names", with: "Cheese, Delicious"
-      click_button("Add another Alternate names")
-      find(:xpath, "//*[@id=\"edit_creator_1\"]/div[2]/ul/li[2]/input").set("Cheese, Delectable")
-      click_on "Save"
-      expect(creator.reload.alternate_names).to eq ["Cheese, Delicious", "Cheese, Delectable"]
-      expect(creator.active_creator).to eq false
     end
     it "does not do weird things to the Alternate names array" do
       creator_with_alternates

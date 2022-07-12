@@ -30,7 +30,7 @@ RSpec.describe 'Bagit export:', type: :system, js: true do
       I18n.locale = 'en'
     end
 
-    it 'queues the bagit job' do
+    xit 'queues the bagit job' do
       visit Hyrax::Engine.routes.url_helpers.my_works_path
 
       # Click 'All Works' tab to trigger turbolinks
