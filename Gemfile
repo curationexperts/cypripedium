@@ -47,6 +47,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq'
 gem 'simple_form', ">= 5.0.0"
+gem 'solrizer'
 gem 'sqlite3', '~> 1.3.6'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
