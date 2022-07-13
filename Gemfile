@@ -49,9 +49,9 @@ gem 'sidekiq'
 gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
 gem 'sqlite3', '~> 1.3.6'
+gem 'terser'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'terser'
 gem 'webdrivers'
 gem 'whenever', require: false
 
