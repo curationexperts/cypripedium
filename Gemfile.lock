@@ -931,6 +931,8 @@ GEM
       tins (~> 1.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
+    terser (1.1.11)
+      execjs (>= 0.3.0, < 3)
     tether-rails (1.4.0)
       rails (>= 3.1)
     thor (1.2.1)
@@ -952,8 +954,6 @@ GEM
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
     unicode-types (1.7.0)
     validatable (1.6.7)
@@ -1058,9 +1058,9 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.3.6)
+  terser
   turbolinks (~> 5)
   tzinfo-data
-  uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   webdrivers
   whenever
