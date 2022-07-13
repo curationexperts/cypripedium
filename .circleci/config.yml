@@ -6,10 +6,10 @@ jobs:
         parameters:
             ruby_version:
                 type: string
-                default: 2.6.3
+                default: 2.7.4
             bundler_version:
                 type: string
-                default: 2.0.1
+                default: 2.3.14
         environment:
           DATABASE_NAME: circle_test
           DATABASE_USERNAME: postgres
