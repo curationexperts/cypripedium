@@ -65,7 +65,7 @@ module Hyrax
             related_url_array = process_related_url(related_url)
             if related_url_array.present?
               text += if related_url_array.is_a?(Array) && related_url_array.length == 2
-                        "In \"#{related_url_array.at(1)}.\" " + related_url_array.at(0) +", "
+                        "In \"#{related_url_array.at(1)}.\" " + related_url_array.at(0) + ", "
                       else
                         "In \"#{related_url_array}.\" "
                       end
@@ -153,10 +153,10 @@ module Hyrax
             city_text = " <span class=\"citation-author\">#{city_text}</span>"
             text += city_text
           end
-          return unless state.present?
-            state_text = whitewash(state)
-            state_text = " <span class=\"citation-author\">#{state_text}</span>"
-          end
+          return if state.blank?
+          state_text = whitewash(state)
+          state_text = " <span class=\"citation-author\">#{state_text}</span>"
+          text + state_text
         end
 
         def parse_issue(issue)
@@ -170,8 +170,8 @@ module Hyrax
         end
 
         def process_related_url(related_url)
-          # sample related_url: "Staff Report 620: Star Wars at Central Banks, 
-          # https://doi.org/10.21034/sr.620\r\nStaff Report 621: Online Appendix: Star Wars at Central Banks, 
+          # sample related_url: "Staff Report 620: Star Wars at Central Banks,
+          # https://doi.org/10.21034/sr.620\r\nStaff Report 621: Online Appendix: Star Wars at Central Banks,
           # https://doi.org/10.21034/sr.621"
           # need to split it to get the first element and then get the report name and doi
           # In the future, each related_url will contain one piece of info
