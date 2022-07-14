@@ -161,7 +161,7 @@ module Hyrax
 
         def parse_issue(issue)
           return "" if issue.blank?
-          issue = issue.at(0) if issue.at(0).present?
+          issue = issue.at(0).dup if issue.at(0).present?
           # An example of 'issue_number_tesim': "Vol. 1, No. 1", OR 'issue_number_tesim' can be just a number
           return issue if issue.match?(/\A\d+\z/)
           issue['Vol. '] = ''
