@@ -1,0 +1,106 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
+  CITATION_TYPE_DATASET = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank of Minneapolis, 1970. ' \
+  'https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  CITATION_TYPE_JOURNAL = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span> <i class="citation-title">Collection 1 </i>1, no.1 (1970). https://doi.org/10.21034/xxxx.'
+
+  CITATION_TYPE_BOOK = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<i class="citation-title">My Title.</i> <span class="citation-author">Minneapolis,</span> <span class="citation-author">' \
+  'MN</span>: Federal Reserve Bank of Minneapolis, 1970.'
+
+  CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
+  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
+  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  CITATION_TYPE_CONFERENCE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Monthly review (Federal Reserve Bank of Minneapolis. ' \
+  'Research Department), Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
+
+  CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
+  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
+  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
+  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
+  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
+  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
+  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  subject(:formatter) { described_class.new(:no_context) }
+  let(:admin_user) { FactoryBot.create(:admin) }
+  let(:data_indexer) { CypripediumIndexer.new(dataset) }
+  let(:dataset) { Dataset.new(attrs) }
+  let(:data_doc) { data_indexer.generate_solr_document }
+
+  describe '#generate_solr_document' do
+    context "with Creators from the authority records" do
+      let(:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(work.to_solr), :no_ability) }
+      let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
+      let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
+      let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
+      let(:collection) do
+        coll = Collection.new(
+          title: ['Collection 1'],
+          collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
+          description: ['Minneapolis city is amazing']
+        )
+        coll.apply_depositor_metadata(admin_user.user_key)
+        coll.save!
+        coll
+      end
+
+      let(:attrs) {
+        { title: ['My Title'],
+          date_created: ['1970-04-30'],
+          creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
+          related_url: ["Staff Report 620: Star Wars at Central Banks, https://doi.org/10.21034/sr.620\r\n\r\nStaff Report 621: Online Appendix: " \
+                       "Star Wars at Central Banks, https://doi.org/10.21034/sr.621"],
+          resource_type: [''],
+          issue_number: ['Vol. 1, No. 1'],
+          identifier: ['https://doi.org/10.21034/xxxx'],
+          series: ['Monthly review (Federal Reserve Bank of Minneapolis. Research Department)'],
+          member_of_collections: [collection],
+          corporate_name: ['Federal Reserve Bank of Minneapolis. Research Department'],
+          publisher: ['Federal Reserve Bank of Minneapolis'],
+          id: 'ThisIsTest123' }
+      }
+
+      it 'test citation of dataset resource type' do
+        attrs['resource_type'] = ['Dataset']
+        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_DATASET
+      end
+
+      it 'test citation of journal resource type' do
+        attrs['resource_type'] = ['Journal']
+        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_JOURNAL
+      end
+
+      it 'test citation of book resource type' do
+        attrs['resource_type'] = ['Book']
+        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_BOOK
+      end
+
+      it 'test citation of conference proceeding resource type' do
+        attrs['resource_type'] = ['Conference Proceeding']
+        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
+        citation = formatter.format(presenter)
+        puts citation
+        expect(citation).to eq CITATION_TYPE_CONFERENCE
+      end
+    end
+  end
+end
