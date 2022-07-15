@@ -49,4 +49,8 @@ bagButton.bindClick({'compression': 'zip'})
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
 //= require 'blacklight_range_limit'
-
+//
+// This activates dropdown menus
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
