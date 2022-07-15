@@ -80,7 +80,8 @@ module Contentdm
       work.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
       work.member_of_collections << @collection
       save_work(cdm_record, work)
-      @collection.add_members(work.id)
+      @collection.members << work
+      @collection.save!
       work
     end
 
