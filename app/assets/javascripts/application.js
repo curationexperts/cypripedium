@@ -17,7 +17,8 @@
 //= require tether
 // Required by Blacklight
 //= require jquery
-//= require browse_everything
+/* removed b/c it currently breaks modals */
+// require browse_everything
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
