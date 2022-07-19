@@ -51,7 +51,3 @@ bagButton.bindClick({'compression': 'zip'})
 // this:
 //= require 'blacklight_range_limit'
 //
-// This activates dropdown menus
-$(document).on('turbolinks:load', function(){
-  $(".dropdown-toggle").dropdown();
-});
