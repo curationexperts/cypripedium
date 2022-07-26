@@ -6,11 +6,14 @@ default: &default
   encoding: unicode
   pool:     <%= ENV['DATABASE_POOL'] || 5 %>
   timeout:  5000
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
   min_messages: <%= ENV['DATABASE_MIN_MESSAGES'] || 'warning' %>
 
 development:
   <<: *default
   database: <%= ENV['DATABASE_NAME'] || 'cypripedium_development' %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
   # Warning: The database defined as "test" will be erased and
   # re-generated from your development database when you run "rake".
@@ -26,3 +29,5 @@ production:
   adapter:  'postgresql'
   pool:     <%= ENV['DATABASE_POOL'] || 25 %>
   database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

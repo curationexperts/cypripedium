@@ -49,6 +49,9 @@ jobs:
                 key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
                 paths:
                     - ~/project/node_modules
+            - run: 
+                name: Run migrations
+                command: bundle exec rails db:migrate RAILS_ENV=test
 
             - samvera/install_solr_core
 
@@ -59,4 +62,4 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2-6-3
+                name: ruby2-7-4
