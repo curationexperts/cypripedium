@@ -59,4 +59,4 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2-6-3
+                name: ruby2-7-4
