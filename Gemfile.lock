@@ -660,6 +660,7 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.8.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-tether (1.1.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -1043,6 +1044,7 @@ DEPENDENCIES
   pry-doc
   puma (~> 3.12)
   rails (~> 5)
+  rails-assets-tether
   rainbow
   redcarpet
   redis (~> 3.0)

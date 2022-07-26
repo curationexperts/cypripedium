@@ -14,9 +14,9 @@
 //= require turbolinks
 //
 
-//= require tether
 // Required by Blacklight
 //= require jquery
+//= require tether
 /* removed b/c it currently breaks modals */
 // require browse_everything
 //= require jquery_ujs
