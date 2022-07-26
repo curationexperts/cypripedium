@@ -14,7 +14,7 @@ gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
-gem "blacklight_range_limit"
+gem "blacklight_range_limit", '~>6'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
 gem 'capistrano'
@@ -63,7 +63,7 @@ group :development do
   gem 'pry-doc'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '~> 3.7'
   gem 'xray-rails'
   gem 'yard'
 end
