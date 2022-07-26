@@ -32,8 +32,7 @@
     <% end %>
   <% end %>
 
-  <% if Flipflop.sidebar_analytics? %>
-  <% if current_ability.can_create_any_work? %>
+  <% if current_ability.can_create_any_work? && Hyrax.config.analytics? %>
     <li>
       <%= menu.collapsable_section t('hyrax.admin.sidebar.analytics'),
                                         icon_class: "fa fa-pie-chart",
@@ -54,6 +53,6 @@
       <% end %>
     </li>
   <% end %>
-  <% end %>
+
   
   <%= render 'hyrax/dashboard/sidebar/menu_partials', menu: menu, section: :activity %>
