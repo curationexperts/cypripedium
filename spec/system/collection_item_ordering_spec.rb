@@ -45,7 +45,7 @@ RSpec.describe 'When displaying a collection, sort by issue number', type: :syst
       expect(page.find(:xpath, '/HTML/BODY[1]/DIV[3]/DIV[1]/DIV[7]/TABLE[1]/TBODY[1]/TR[5]/TD[3]').text). to eq "1"
     end
 
-    it 'can reorder by title' do
+    xit 'can reorder by title' do
       visit Hyrax::Engine.routes.url_helpers.collection_path(collection.id)
       page.find(:css, '#sort').find(:xpath, 'option[6]').select_option
       page.find_all(:xpath, '//button')[2].click

@@ -2,5 +2,7 @@
   "type": "module",
   "name": "cypripedium",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "tether": "^2.0.0"
+  }
 }

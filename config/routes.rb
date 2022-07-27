@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/users/signup', to: 'pages#error_404'
+  post '/users', to: 'pages#error_404'
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   resources :creators
   mount BrowseEverything::Engine => '/browse'
