@@ -14,25 +14,30 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
   '<i class="citation-title">My Title.</i> <span class="citation-author">Minneapolis,</span> <span class="citation-author">' \
   'MN</span>: Federal Reserve Bank of Minneapolis, 1970.'
 
-  CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
-  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
-  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+  CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
+  'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
   CITATION_TYPE_CONFERENCE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
-  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Monthly review (Federal Reserve Bank of Minneapolis. ' \
-  'Research Department), Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
+  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Conference on Finance, Fluctuations, and Development, ' \
+  'Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
 
-  CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
-  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
-  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+  CITATION_TYPE_CONFERENCE_WITHOUT_CONFERENCE_WORD = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Research and Training in Computational Economics Conference, ' \
+  'Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
 
-  CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
-  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
-  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+  CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span> In  <i class="citation-title">Great Depressions of the Twentieth Century</i>, ' \
+  'edited by Timothy J. Kehoe and Edward C. Prescott.  <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>: ' \
+  'Federal Reserve Bank of Minneapolis, 1970.'
 
-  CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> \
-  <span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank \
-  of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+  CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
+  'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+
+  CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
+  'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
   subject(:formatter) { described_class.new(:no_context) }
   let(:admin_user) { FactoryBot.create(:admin) }
@@ -66,40 +71,52 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
           resource_type: [''],
           issue_number: ['Vol. 1, No. 1'],
           identifier: ['https://doi.org/10.21034/xxxx'],
-          series: ['Monthly review (Federal Reserve Bank of Minneapolis. Research Department)'],
+          series: ['Conference on Finance, Fluctuations, and Development'],
           member_of_collections: [collection],
           corporate_name: ['Federal Reserve Bank of Minneapolis. Research Department'],
           publisher: ['Federal Reserve Bank of Minneapolis'],
+          description: ['Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006), Timothy J. Kehoe and Edward C. Prescott, eds.'],
           id: 'ThisIsTest123' }
       }
 
+      let (:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability) }
+
       it 'test citation of dataset resource type' do
         attrs['resource_type'] = ['Dataset']
-        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
         citation = formatter.format(presenter)
         expect(citation).to eq CITATION_TYPE_DATASET
       end
 
       it 'test citation of journal resource type' do
         attrs['resource_type'] = ['Journal']
-        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
         citation = formatter.format(presenter)
         expect(citation).to eq CITATION_TYPE_JOURNAL
       end
 
       it 'test citation of book resource type' do
         attrs['resource_type'] = ['Book']
-        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
         citation = formatter.format(presenter)
         expect(citation).to eq CITATION_TYPE_BOOK
       end
 
       it 'test citation of conference proceeding resource type' do
         attrs['resource_type'] = ['Conference Proceeding']
-        presenter = Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability)
         citation = formatter.format(presenter)
-        puts citation
         expect(citation).to eq CITATION_TYPE_CONFERENCE
+      end
+
+      # This is to test the conference info in series field does not contain the word "Conference"
+      it 'test citation of conference proceeding resource type without word conference in description' do
+        attrs['resource_type'] = ['Conference Proceeding']
+        attrs['series'] = ['Research and Training in Computational Economics']
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_CONFERENCE_WITHOUT_CONFERENCE_WORD
+      end
+
+      it 'test citation of part of book resource type' do
+        attrs['resource_type'] = ['Part of Book']
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_BOOK_PART
       end
     end
   end

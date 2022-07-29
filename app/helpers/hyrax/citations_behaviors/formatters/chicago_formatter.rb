@@ -10,6 +10,9 @@ module Hyrax
         DEFAULT_DATASET_DB_NAME = 'Research Database'
         DEFAULT_URL_PREFIX = 'https://researchdatabase.minneapolisfed.org/concern/datasets/'
 
+        class_attribute :default_logger
+        self.default_logger = Rails.logger
+
         def format(work)
           text = ""
           resource_type = work.resource_type.at(0)
@@ -46,9 +49,12 @@ module Hyrax
             text += author_info
             text += title_quoted
             series = ''
-            if work.present?
+            if work.series.present?
               series = work.series.at(0)
-              series = "Paper presented at the #{whitewash(series)}," if series.present?
+              if series.present?
+                series += " Conference" unless series.downcase.include?('conference')
+                series = "Paper presented at the #{whitewash(series)},"
+              end
             end
             text += series if series.present?
             if pub_info.present?
@@ -58,7 +64,17 @@ module Hyrax
             text += corporate_address(city, state) + ','
             text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Part of Book'
-            text += 'part of book'
+            text += author_info
+            text += title_quoted
+            description = work.description
+            info = process_part_of_book_description(description)
+            text += " In " + info["title"] + ", "
+            text += "edited by " + info["authors"] + ". "
+            # Page number info is skipped here
+            text += corporate_address(city, state)
+            pub_info[pub_info.length - 1] = ',' if pub_info.at(pub_info.length - 1) == '.'
+            text += "#{whitewash(pub_info)}," if pub_info.present?
+            text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Software or Program Code'
             text += author_info
             text += " #{whitewash(work.to_s)}. "
@@ -91,7 +107,18 @@ module Hyrax
           when 'Journal (without author)'
             text += 'Journal (without author)'
           when 'Article'
-            text += 'article'
+            text += author_info
+            text += title_quoted
+            collection = work.parent_collection
+            text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
+            issue = parse_issue work.issue
+            text += if issue.is_a?(Array)
+                      whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
+                    else
+                      whitewash(issue)
+                    end
+            text += " (#{whitewash(pub_date)})." unless pub_date.nil?
+            text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           else
             text += ""
           end
@@ -179,6 +206,26 @@ module Hyrax
           related_url = related_url_array.at(0) if related_url_array.present?
           related_url_array = related_url.split(",")
           related_url_array.at(0).split(": ")
+        end
+
+        # The description assumes the format by: Chapter number, interized title, doi, authors. This might change in the future
+        def process_part_of_book_description(description)
+          return nil if description.nil? || description.at(0).blank?
+          '["Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006), Timothy J. Kehoe and Edward C. Prescott, eds."]'
+          description_text = description.at(0)
+          pattern = /\(https:\/\/doi.org\/\d+\.\d+\/(\w+\.)+\d+\),\s/
+          begin
+            description_array = description_text.split("[_").at(1).split("_]")
+            raise 'Error in parsing description - part of book' if description_array.nil? || !description_array.is_a?(Array) || description_array.length != 2
+            title = description_array.at(0)
+            doi = description_array.at(1).match(pattern)
+            authors = description_array.at(1).gsub(pattern, '') if doi.present?
+            raise 'Error in parsing title and authors from description - part of book' if title.blank? || authors.blank?
+            authors[', eds.'] = ''
+            { "title" => " <i class=\"citation-title\">#{whitewash(title)}</i>", "authors" => whitewash(authors) }
+          rescue => e
+            default_logger.warn(e.message)
+          end
         end
       end
     end
