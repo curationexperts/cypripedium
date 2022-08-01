@@ -49,12 +49,10 @@ module Hyrax
             text += author_info
             text += title_quoted
             series = ''
-            if work.series.present?
+            if work.series.present? && work.series.at(0).present?
               series = work.series.at(0)
-              if series.present?
-                series += " Conference" unless series.downcase.include?('conference')
-                series = "Paper presented at the #{whitewash(series)},"
-              end
+              series += " Conference" unless series.downcase.include?('conference')
+              series = "Paper presented at the #{whitewash(series)},"
             end
             text += series if series.present?
             if pub_info.present?
@@ -68,8 +66,10 @@ module Hyrax
             text += title_quoted
             description = work.description
             info = process_part_of_book_description(description)
-            text += " In " + info["title"] + ", "
-            text += "edited by " + info["authors"] + ". "
+            if !info.nil? && info.is_a?(Hash) && info.key?('title') && info.key?('authors')
+              text += " In " + info["title"] + ", "
+              text += "edited by " + info["authors"] + ". "
+            end
             # Page number info is skipped here
             text += corporate_address(city, state)
             pub_info[pub_info.length - 1] = ',' if pub_info.at(pub_info.length - 1) == '.'
@@ -78,13 +78,13 @@ module Hyrax
           when 'Software or Program Code'
             text += author_info
             text += " #{whitewash(work.to_s)}. "
-            related_url_array = process_related_url(related_url)
-            if related_url_array.present?
-              text += if related_url_array.is_a?(Array) && related_url_array.length == 2
-                        "In \"#{related_url_array.at(1)}.\" " + related_url_array.at(0) + ", "
-                      else
-                        "In \"#{related_url_array}.\" "
-                      end
+            related_url_info = process_related_url(related_url)
+            if !related_url_info.nil? && related_url_info.is_a?(Array) && related_url_info.length == 2
+              text += "In \"#{related_url_info.at(1)}.\" " + related_url_info.at(0) + ", "
+            elsif !related_url_info.nil?
+              text += "In \"#{related_url_array}.\" "
+            else
+              logger.warn('Cannot parse the related URL info - Software or Program Code')
             end
             if pub_info.present?
               pub_info[": "] = '';
@@ -97,11 +97,13 @@ module Hyrax
             collection = work.parent_collection
             text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
             issue = parse_issue work.issue
-            text += if issue.is_a?(Array)
-                      whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
-                    else
-                      whitewash(issue)
-                    end
+            if issue.is_a?(Array)
+              text += whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
+            elsif !issue.nil? && issue.is_a?(String)
+              text += whitewash(issue)
+            else
+              logger.warn('Error in paring issue information - Journal type')
+            end
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           when 'Journal (without author)'
@@ -112,11 +114,13 @@ module Hyrax
             collection = work.parent_collection
             text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
             issue = parse_issue work.issue
-            text += if issue.is_a?(Array)
-                      whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
-                    else
-                      whitewash(issue)
-                    end
+            if issue.is_a?(Array)
+              text += whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
+            elsif !issue.nil? && issue.is_a?(String)
+              text += whitewash(issue)
+            else
+              logger.warn('Error in paring issue information - Article type')
+            end
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           else
@@ -206,6 +210,9 @@ module Hyrax
           related_url = related_url_array.at(0) if related_url_array.present?
           related_url_array = related_url.split(",")
           related_url_array.at(0).split(": ")
+        rescue => e
+          logger.warn('Cannot parse related_url - Software or Program Code')
+          logger.warn(e)
         end
 
         # The description assumes the format by: Chapter number, interized title, doi, authors. This might change in the future
