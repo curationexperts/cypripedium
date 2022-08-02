@@ -47,7 +47,6 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
 
   describe '#generate_solr_document' do
     context "with Creators from the authority records" do
-      let(:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(work.to_solr), :no_ability) }
       let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
       let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
       let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
@@ -79,7 +78,7 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
           id: 'ThisIsTest123' }
       }
 
-      let (:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability) }
+      let(:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability) }
 
       it 'test citation of dataset resource type' do
         attrs['resource_type'] = ['Dataset']
