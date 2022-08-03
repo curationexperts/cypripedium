@@ -66,7 +66,7 @@ module Hyrax
             text += title_quoted
             description = work.description
             info = process_part_of_book_description(description)
-            if !info.nil? && info.is_a?(Hash) && info.key?('title') && info.key?('authors')
+            if info.present?
               text += " In " + info["title"] + ", "
               text += "edited by " + info["authors"] + ". "
             end
@@ -97,13 +97,7 @@ module Hyrax
             collection = work.parent_collection
             text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
             issue = parse_issue work.issue
-            if issue.is_a?(Array)
-              text += whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
-            elsif !issue.nil? && issue.is_a?(String)
-              text += whitewash(issue)
-            else
-              logger.warn('Error in paring issue information - Journal type')
-            end
+            text += issue
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           when 'Journal (without author)'
@@ -114,20 +108,15 @@ module Hyrax
             collection = work.parent_collection
             text += " <i class=\"citation-title\">#{whitewash(collection.at(0))} </i>" if collection.present?
             issue = parse_issue work.issue
-            if issue.is_a?(Array)
-              text += whitewash(issue.at(0)) + ', no.' + whitewash(issue.at(1))
-            elsif !issue.nil? && issue.is_a?(String)
-              text += whitewash(issue)
-            else
-              logger.warn('Error in paring issue information - Article type')
-            end
+            text += issue
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           else
             text += ""
           end
+          # rubocop:disable Rails/OutputSafety
           text.html_safe
-          # raw text
+          # rubocop:enable Rails/OutputSafety
         end
 
         def format_authors(authors_list = [])
@@ -190,14 +179,16 @@ module Hyrax
           text + state_text
         end
 
-        def parse_issue(issue)
-          return "" if issue.blank?
-          issue = issue.at(0).dup if issue.at(0).present?
+        def parse_issue(issue_info)
+          return "" if issue_info.blank?
+          issue = issue_info.at(0).dup if issue_info.at(0).present?
           # An example of 'issue_number_tesim': "Vol. 1, No. 1", OR 'issue_number_tesim' can be just a number
-          return issue if issue.match?(/\A\d+\z/)
+          return whitewash(issue) if issue.match?(/\A\d+\z/)
           issue['Vol. '] = ''
           issue[' No. '] = ''
-          issue.strip.split(',')
+          issue_array = issue.strip.split(',')
+          return whitewash(issue_array.at(0)) + ', no.' + whitewash(issue_array.at(1)) if !issue_array.nil? && issue_array.length == 2
+          whitewash(issue)
         end
 
         def process_related_url(related_url)
@@ -216,9 +207,11 @@ module Hyrax
         end
 
         # The description assumes the format by: Chapter number, interized title, doi, authors. This might change in the future
+        # Sample description: "Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006), 
+        # Timothy J. Kehoe and Edward C. Prescott, eds."
+
         def process_part_of_book_description(description)
           return nil if description.nil? || description.at(0).blank?
-          '["Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006), Timothy J. Kehoe and Edward C. Prescott, eds."]'
           description_text = description.at(0)
           pattern = /\(https:\/\/doi.org\/\d+\.\d+\/(\w+\.)+\d+\),\s/
           begin
