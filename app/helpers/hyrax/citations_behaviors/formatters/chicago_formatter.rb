@@ -207,7 +207,7 @@ module Hyrax
         end
 
         # The description assumes the format by: Chapter number, interized title, doi, authors. This might change in the future
-        # Sample description: "Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006), 
+        # Sample description: "Chapter 6 of [_Great Depressions of the Twentieth Century_](https://doi.org/10.21034/mo.9780978936006),
         # Timothy J. Kehoe and Edward C. Prescott, eds."
 
         def process_part_of_book_description(description)
