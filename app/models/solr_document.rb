@@ -31,7 +31,7 @@ class SolrDocument
   end
 
   def creator
-    self['alpha_creator_tesim']
+    self['alpha_creator_tesim'] ? self['alpha_creator_tesim'] : []
   end
 
   def series
