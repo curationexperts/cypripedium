@@ -13,10 +13,10 @@ task migrate_keywords: :environment do
   start_time = Time.zone.now.localtime
   puts "Migration started at: #{start_time}"
 
-  models_to_reindex = [::Collection] + Hyrax.config.curation_concerns
+  models_to_reindex = Hyrax.config.curation_concerns
   models_to_reindex.each do |klass|
     rows = klass.count
-    puts "Migrating #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
+    puts "\nMigrating #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
 
     id_list(klass, rows).each do |id|
       next unless ActiveFedora::Base.exists?(id)
@@ -32,7 +32,7 @@ task migrate_keywords: :environment do
   end
 
   end_time = Time.zone.now.localtime
-  puts "Migration finished at: #{end_time}"
+  puts "\nMigration finished at: #{end_time}"
   printf "Migration finished in: %0.1f minutes \n", time_in_minutes(start_time, end_time)
 end
 
