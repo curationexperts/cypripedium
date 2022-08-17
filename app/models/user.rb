@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # Include default devise modules.  For more info, see:
   # https://github.com/plataformatec/devise/blob/master/README.md
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
