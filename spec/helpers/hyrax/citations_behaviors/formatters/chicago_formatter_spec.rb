@@ -78,7 +78,7 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
           id: 'ThisIsTest123' }
       }
 
-      let(:presenter) { Hyrax::WorkShowPresenter.new(SolrDocument.new(data_doc), :no_ability) }
+      let(:presenter) { Hyrax::CitationPresenter.new(SolrDocument.new(data_doc), :no_ability) }
 
       it 'test citation of dataset resource type' do
         attrs['resource_type'] = ['Dataset']
