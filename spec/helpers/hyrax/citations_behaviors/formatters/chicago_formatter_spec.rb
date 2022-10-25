@@ -32,8 +32,8 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
   'Federal Reserve Bank of Minneapolis, 1970.'
 
   CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
-  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
-  'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
+  '<span class="citation-title">"My Title."&nbsp;</span> <i class="citation-title">Collection 1 </i>1, no.1 (1970). ' \
+  'https://doi.org/10.21034/xxxx.'
 
   CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
@@ -116,6 +116,31 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
         attrs['resource_type'] = ['Part of Book']
         citation = formatter.format(presenter)
         expect(citation).to eq CITATION_TYPE_BOOK_PART
+      end
+
+      it 'test citation of research paper resource type' do
+        attrs['resource_type'] = ['Research Paper']
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_ARTICLE
+      end
+
+      it 'test citation of article resource type' do
+        attrs['resource_type'] = ['Article']
+        citation = formatter.format(presenter)
+        puts citation
+        expect(citation).to eq CITATION_TYPE_ARTICLE
+      end
+
+      it 'test citation of dissertation resource type' do
+        attrs['resource_type'] = ['Dissertation']
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_ARTICLE
+      end
+
+      it 'test citation of poster resource type' do
+        attrs['resource_type'] = ['Journal']
+        citation = formatter.format(presenter)
+        expect(citation).to eq CITATION_TYPE_ARTICLE
       end
     end
   end
