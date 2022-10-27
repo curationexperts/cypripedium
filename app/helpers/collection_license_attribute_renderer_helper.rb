@@ -3,7 +3,7 @@
 module CollectionLicenseAttributeRendererHelper
   include Hyrax::Renderers::ConfiguredMicrodata
   include Hyrax::CollectionsHelper
-  
+
   def render_collection_license_attribute(presenter)
     label = collection_metadata_label(presenter, :license)
     text = ""
