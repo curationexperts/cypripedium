@@ -2,6 +2,8 @@
 
 module CollectionLicenseAttributeRendererHelper
   include Hyrax::Renderers::ConfiguredMicrodata
+  include Hyrax::CollectionsHelper
+  
   def render_collection_license_attribute(presenter)
     label = collection_metadata_label(presenter, :license)
     text = ""
@@ -13,7 +15,9 @@ module CollectionLicenseAttributeRendererHelper
                    else
                      %(<a href=#{ERB::Util.h(value)} target="_blank">#{Hyrax.config.license_service_class.new.label(value)}</a>)
                    end
-    license_html = "<span#{license_attributes(microdata_value_attributes(:license))}>#{license_html}</span>" if microdata_value_attributes(:license).present?
+    if microdata_value_attributes(:license).present?
+      license_html = "<span#{license_attributes(microdata_value_attributes(:license))}>#{license_html}</span>" if microdata_value_attributes(:license).present?
+    end
     text += "<dd>#{license_html}</dd>"
     # rubocop:disable Rails/OutputSafety
     text.html_safe
