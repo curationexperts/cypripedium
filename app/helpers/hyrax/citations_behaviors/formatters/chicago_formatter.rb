@@ -179,14 +179,11 @@ module Hyrax
 
         def parse_issue(issue_info)
           return "" if issue_info.blank?
-          issue = issue_info.at(0).dup if issue_info.at(0).present?
+          issue = issue_info.at(0).dup.strip if issue_info.at(0).present?
           # An example of 'issue_number_tesim': "Vol. 1, No. 1", OR 'issue_number_tesim' can be just a number
           return whitewash(issue) if issue.match?(/\A\d+\z/)
-          issue['Vol. '] = ''
-          issue[' No. '] = ''
-          issue_array = issue.strip.split(',')
-          return whitewash(issue_array.at(0)) + ', no.' + whitewash(issue_array.at(1)) if !issue_array.nil? && issue_array.length == 2
-          whitewash(issue)
+          vol, no = issue.match(/\A[vV]ol\.?\s*(\d+),?\s*[nN]o\.?\s*(\d+)\z/).captures
+          whitewash(vol) + ', no.' + whitewash(no)
         end
 
         def process_related_url(related_url)
