@@ -110,6 +110,10 @@ en:
     institution_name:       "Federal Reserve Bank of Minneapolis"
     institution_name_full:  "Federal Reserve Bank of Minneapolis Research Division"
     account_name:           "My Institution Account Id"
+    dashboard:
+      my:
+        heading:
+          date_published:  "Date Published"
     directory:
       suffix:               "@example.org"
     footer:
