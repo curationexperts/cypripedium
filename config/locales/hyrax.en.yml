@@ -114,6 +114,7 @@ en:
       my:
         heading:
           date_published:  "Date Published"
+          date_modified: "Date Modified"
     directory:
       suffix:               "@example.org"
     footer:
