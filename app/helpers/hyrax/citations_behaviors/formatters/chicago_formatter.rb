@@ -39,7 +39,7 @@ module Hyrax
             text += author_info
             text += title_quoted
             text += DEFAULT_DATASET_DB_NAME + ','
-            if pub_info.present?
+            if pub_info.present? && pub_info.start_with?(": ")
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
@@ -55,7 +55,7 @@ module Hyrax
               series = "Paper presented at the #{whitewash(series)},"
             end
             text += series if series.present?
-            if pub_info.present?
+            if pub_info.present? && pub_info.start_with?(": ")
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
@@ -89,7 +89,7 @@ module Hyrax
             else
               default_logger.warn('Cannot parse the related URL info - Software or Program Code')
             end
-            if pub_info.present?
+            if pub_info.present? && pub_info.start_with?(": ")
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
