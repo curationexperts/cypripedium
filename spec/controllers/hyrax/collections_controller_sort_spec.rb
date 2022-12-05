@@ -3,11 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::CollectionsController, clean_repo: true do
-
   DATE_PUBLISHED_ARRAY = [['2015-10-15'], ['2018-11'], ['2020-02-28']].freeze
   DATE_MODIFIED_ARRAY  = ['2020-10-25', '2021-10-25', '2022-10-25'].freeze
-  TITLE_ARRAY         = [['publication1'], ['publication2'], ['publication3']].freeze
-  ISSUE_NUMBER_ARRAY   = [['20'], ['30'], ['40']].freeze
+  TITLE_ARRAY = [['publication1'], ['publication2'], ['publication3']].freeze
+  ISSUE_NUMBER_ARRAY = [['20'], ['30'], ['40']].freeze
 
   routes { Hyrax::Engine.routes }
   let(:user) { FactoryBot.create(:admin) }
