@@ -72,6 +72,7 @@ RSpec.describe Hyrax::CollectionsController, clean_repo: true do
           [asset1, asset2, asset3].each do |asset|
             asset.member_of_collections << collection
             asset.save
+            sleep(5)
           end
         end
       end
