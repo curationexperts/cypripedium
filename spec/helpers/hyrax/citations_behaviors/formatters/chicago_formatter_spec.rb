@@ -3,39 +3,47 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
-  CITATION_TYPE_DATASET = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_DATASET = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
+  'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank of Minneapolis, 1970. ' \
   'https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
-  CITATION_TYPE_JOURNAL = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_JOURNAL = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
+  'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span> <i class="citation-title">Collection 1 </i>1, no.1 (1970). https://doi.org/10.21034/xxxx.'
 
-  CITATION_TYPE_BOOK = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_BOOK = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<i class="citation-title">My Title.</i> <span class="citation-author">Minneapolis,</span> <span class="citation-author">' \
   'MN</span>: Federal Reserve Bank of Minneapolis, 1970.'
 
-  CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
+  'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
   'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
-  CITATION_TYPE_CONFERENCE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_CONFERENCE = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
+  'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Conference on Finance, Fluctuations, and Development, ' \
   'Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
 
-  CITATION_TYPE_CONFERENCE_WITHOUT_CONFERENCE_WORD = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_CONFERENCE_WITHOUT_CONFERENCE_WORD = '<span class="citation-author">Backus, David, Truman F. Bewley, ' \
+  'Arnoud W. A. Boot, Charles T. Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Research and Training in Computational Economics Conference, ' \
   'Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
 
-  CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, ' \
+  'Charles T. Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span> In  <i class="citation-title">Great Depressions of the Twentieth Century</i>, ' \
   'edited by Timothy J. Kehoe and Edward C. Prescott.  <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>: ' \
   'Federal Reserve Bank of Minneapolis, 1970.'
 
-  CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_ARTICLE = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
+  'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span> <i class="citation-title">Collection 1 </i>1, no.1 (1970). ' \
   'https://doi.org/10.21034/xxxx.'
 
-  CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Patrick J Kehoe, and Timothy J Kehoe.</span> ' \
+  CITATION_TYPE_JOURNAL_NO_AUTHOR = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, ' \
+  'Charles T. Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
   '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
   'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
@@ -64,7 +72,9 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04-30'],
-          creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
+          creator: ['Kehoe, Patrick J.', 'Backus, David', 'Bewley, Truman F. (Truman Fassett), 1941-', \
+                    'Boot, Arnoud W. A. (Willem Alexander), 1960-', 'Carlstrom, Charles T., 1960-', \
+                    'Woodward, G. Thomas, 1953-'],
           related_url: ["Staff Report 620: Star Wars at Central Banks, https://doi.org/10.21034/sr.620\r\n\r\nStaff Report 621: Online Appendix: " \
                        "Star Wars at Central Banks, https://doi.org/10.21034/sr.621"],
           resource_type: [''],
