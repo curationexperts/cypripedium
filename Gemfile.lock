@@ -214,6 +214,9 @@ GEM
       tins (~> 1.6)
     crass (1.0.6)
     database_cleaner (1.8.5)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.17)
     declarative (0.0.20)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
@@ -600,7 +603,7 @@ GEM
     noid-rails (3.0.3)
       actionpack (>= 5.0.0, < 7)
       noid (~> 0.9)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth (0.5.10)
@@ -643,7 +646,7 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 5.0, < 6.2)
       rdf
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-protection (2.0.8.1)
       rack
@@ -663,6 +666,10 @@ GEM
       railties (= 5.2.8.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-tether (1.1.1)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -822,6 +829,8 @@ GEM
       json
       multipart-post
       oauth2
+    ruby-debug-ide (0.7.3)
+      rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
@@ -1027,6 +1036,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   coveralls
   database_cleaner
+  debase (~> 0.2.4.1)
   devise
   devise-guests (~> 0.6)
   dotenv-rails
@@ -1049,6 +1059,7 @@ DEPENDENCIES
   puma
   rails (~> 5)
   rails-assets-tether
+  rails-controller-testing
   rainbow
   redcarpet
   redis (~> 4.1)
@@ -1056,6 +1067,7 @@ DEPENDENCIES
   rsolr (>= 1.0)
   rspec-rails
   rspec_junit_formatter
+  ruby-debug-ide
   rubyzip (~> 1.0)
   sass-rails (~> 5.0)
   sassc-rails (>= 2.1.0)
