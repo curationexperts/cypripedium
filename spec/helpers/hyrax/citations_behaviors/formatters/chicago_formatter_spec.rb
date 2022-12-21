@@ -28,7 +28,7 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
 
   CITATION_TYPE_CONFERENCE_WITHOUT_CONFERENCE_WORD = '<span class="citation-author">Backus, David, Truman F. Bewley, ' \
   'Arnoud W. A. Boot, Charles T. Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
-  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Research and Training in Computational Economics Conference, ' \
+  '<span class="citation-title">"My Title."&nbsp;</span>Paper presented at the Research and Training in Computational Economics conference, ' \
   'Federal Reserve Bank of Minneapolis, <span class="citation-author">Minneapolis,</span> <span class="citation-author">MN</span>, 1970.'
 
   CITATION_TYPE_BOOK_PART = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, ' \
