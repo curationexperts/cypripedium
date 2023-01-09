@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   end
 
   def self.modified_field
-    solr_name('system_modified', :stored_sortable, type: :date)
+    solr_name('date_modified', :stored_sortable, type: :date)
   end
 
   configure_blacklight do |config|
