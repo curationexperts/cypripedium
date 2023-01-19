@@ -83,7 +83,7 @@ module Hyrax
             text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Software or Program Code'
             text += author_info
-            text += " #{whitewash(work.to_s)}. "
+            text += title_quoted + " Supporting data. "
             related_url_info = process_related_url(related_url)
             if !related_url_info.nil? && related_url_info.is_a?(Array) && related_url_info.length == 2
               text += "In \"#{related_url_info.at(1)}.\" " + related_url_info.at(0) + ", "
