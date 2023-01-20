@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @work[:username] %>, a new work has been published at Reseaerch Database</h1>
+    <p>
+      Title: <%= @work[:title] %>
+    </p>
+    <p>
+      Link to the publication: http://<%= @work[:uri] %>/concerns/publications/<%= @work[:id] %>
+    </p>
+  </body>
+</html>
