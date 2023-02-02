@@ -15,7 +15,7 @@
 @import 'hyrax/hyrax';
 
 body.dashboard {
-  padding-top: 73px;
+  padding-top: 0px;
 }
 
 @media (max-width: 979px) {
@@ -149,4 +149,8 @@ footer.site-footer a.navbar-link {
 footer.site-footer a.navbar-link:hover {
   color: #fff;
   text-decoration: underline;
+}
+
+.navbar {
+  position: static !important;
 }
