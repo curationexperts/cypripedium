@@ -1,0 +1,21 @@
+<%= link_to 'javascript:void(0)', id:"btnUserCollections" do %>
+  <span><%= t("hyrax.toolbar.profile.updates") %> </span>
+  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+<% end %>
+
+<!-- Modal confirm -->
+<div class="modal" id="confirmModal" style="display: none; z-index: 1050;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body user_collection_list_heading" id="confirmMessage">
+      </div>
+      <%# <form id="user_collections_form" action="/user_collections" method="post"> %>
+        <span class="chicago-citation"><%= render_user_collection_list %></span>
+        <div class="modal-footer user_collection_list_footer">
+          <button type="button" class="btn btn-default" id="confirmOk">Subscribe</button>
+          <button type="button" class="btn btn-default" id="confirmCancel">Cancel</button>
+        </div>
+      <%# </form> %>
+    </div>
+  </div>
+</div>

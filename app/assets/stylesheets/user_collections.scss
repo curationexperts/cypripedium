@@ -1,0 +1,23 @@
+// Place all the styles related to the user_collections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.user_collections_list {
+    margin-left: 10% !important;
+  }
+  
+  .user_collections_list_label {
+    padding-left: 5%;
+  }
+  
+  .user_collections_list_heading {
+    background-color: #71b9ec;
+    color: white;
+    margin-bottom: 3%;
+    font-weight: bolder;
+    font-size: 16px;
+  }
+  
+  .user_collections_list_footer {
+    margin-top: 3%;
+  }

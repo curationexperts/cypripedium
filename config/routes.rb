@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :user_collections
+
   get  '/zip/:work_id', to: 'work_zips#download', as: 'download_zip'
   post '/zip/:work_id', to: 'work_zips#create', as: 'create_zip'
   get '/bag/:file_name', to: 'bag#download'
