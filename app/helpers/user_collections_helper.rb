@@ -7,7 +7,13 @@ module UserCollectionsHelper
   def render_user_collection_list
     text = ""
     text += '<label class="user_collections_list" for="email" >Please type your email:</label><br>'
-    text += '<input class="user_collections_list" type="text" name="email" id="email"><br><br>'
+    text += '<input class="user_collections_list" type="text" name="email" id="email" size="40">&nbsp;&nbsp;&nbsp;<br><br>'
+    text += '<button class="user_collections_list" id="user_subscriptions_search">'
+    text += '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'
+    text += '</button>&nbsp;&nbsp;'
+    text += '<label for="user_subscriptions_search">Find your current subscriptions:</label><br><br>'
+    text += '<div class="user_collections_list" id="subscription_list_div"><ul id="subscription_list" style="list-style-type:square"></ul></div>'
+    text += '<br>'
 
     text += '<label class="user_collections_list" for="email" >Please select from the list of collections:</label><br>'
     user_collections = load_user_collections

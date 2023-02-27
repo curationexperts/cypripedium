@@ -7,15 +7,16 @@
 <div class="modal" id="confirmModal" style="display: none; z-index: 1050;">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body user_collection_list_heading" id="confirmMessage">
+      <div class="modal-body user_collection_list_heading" id="confirmMessage"></div>
+      <span class="chicago-citation"><%= render_user_collection_list %></span>
+      <br>
+      <div class="modal-footer user_collection_list_footer">
+        <button type="button" class="btn btn-default" id="btnSubscribe">Subscribe</button>
+        <button type="button" class="btn btn-default" id="btnUnsubscribe" style="display: none;">Unsubscribe</button>
+        <button type="button" class="btn btn-default" id="confirmCancel">Cancel</button>
       </div>
-      <%# <form id="user_collections_form" action="/user_collections" method="post"> %>
-        <span class="chicago-citation"><%= render_user_collection_list %></span>
-        <div class="modal-footer user_collection_list_footer">
-          <button type="button" class="btn btn-default" id="confirmOk">Subscribe</button>
-          <button type="button" class="btn btn-default" id="confirmCancel">Cancel</button>
-        </div>
-      <%# </form> %>
     </div>
   </div>
 </div>
+
+<%= render '/user_email_registration_alert_box' %>
