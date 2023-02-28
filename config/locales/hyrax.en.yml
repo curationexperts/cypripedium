@@ -123,3 +123,13 @@ en:
     toolbar:
       profile:
         updates: "Sign up for Updates"
+    user_collections:
+      dashboard:
+        list: "Manage User Email Notification"
+      index:
+        user_collections: User Collections
+        manage_user_collections: Manage User Collections
+    creators:
+      index:
+        manage_creators: Manage Creators
+        creators: Creators

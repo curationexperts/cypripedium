@@ -1,0 +1,15 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-sitemap" aria-hidden="true"></span><%= t(:'hyrax.user_collections.index.user_collections') %></h1>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default tabs">
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="active">
+        <%= render "list_user_collections" %>
+      </div>
+    </div>
+  </div>
+</div>

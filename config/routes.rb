@@ -43,7 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user_collections
+  resource :user_collection
+  resources :user_collections, only: 'index'
 
   get  '/zip/:work_id', to: 'work_zips#download', as: 'download_zip'
   post '/zip/:work_id', to: 'work_zips#create', as: 'create_zip'

@@ -9,11 +9,16 @@ $(document).on('turbolinks:load', function(){
 				});
 				$.ajax({
 					type: 'post',
-					url: '/user_collections',
+					url: '/user_collection',
 					data: { email: $('input#email').val(), collections: user_collections }
 				}).done(function(response) {
 					clearDialog()
-					alertBox(response.message, 'user_collections', response.user_collections)
+					if(response.status == '200') {
+						alertBox(response.message, 'user_collections', response.user_collections)
+					}
+					else {
+						alertBox("Error", 'string', response.message)
+					}
 				}).fail(function(err) {
 					alert('not ok')
 				});
@@ -46,7 +51,7 @@ $(document).on('turbolinks:load', function(){
 			e.preventDefault();
 			$.ajax({
 				type: 'get',
-				url: '/user_collections',
+				url: '/user_collection',
 				data: { email: $('input#email').val() }
 			}).done(function(response) {
 				let status = response.status
@@ -90,18 +95,41 @@ $(document).on('turbolinks:load', function(){
 			e.preventDefault();
 			$.ajax({
 				type: 'delete',
-				url: '/user_collections',
+				url: '/user_collection',
 				data: { email: $('input#email').val() }
 			}).done(function(response) {
-				alertBox(response.message, 'user_collections', response.user_collections)
-				$('#btnUnsubscribe').hide()
-				$('button#btnSubscribe').html('Subscribe')
-				clearDialog()
-				hideDialog()
+				try{
+					alertBox(response.message, 'user_collections', response.user_collections)
+					$('#btnUnsubscribe').hide()
+					$('button#btnSubscribe').html('Subscribe')
+					clearDialog()
+					hideDialog()
+				}
+				catch(err){
+					alertBox('Cannot unsubscribe user:', 'string', err.message)
+				}
 			}).fail(function(err) {
 				alertBox('Error', 'string', err.responseText)
 			});
 		});
+
+		$('a[id^=btnUnsubscribe_' + ']').on('ajax:success', function(e, data) {
+			try{
+				let user_collections_obj = jQuery.parseJSON(data.user_collections)
+				let user_collections = user_collections_obj.collections
+				if(user_collections && $.isArray(user_collections)){
+					$(this).css('color', 'red');
+					$(this).text('Unsubscribed')
+				}
+			}
+			catch(err){
+				alertBox(err.status + ': ' + err.statusText)
+			}
+		})
+
+		$('a[id^=btnUnsubscribe_' + ']').on('ajax:error', function(err, data) {
+			alertBox(data.status + ': ' + data.statusText)
+		})
 
 		function emptyUserCollections () {
 			$('div#subscription_list_div').find('span').remove()
