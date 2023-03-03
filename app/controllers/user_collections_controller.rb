@@ -9,7 +9,7 @@ class UserCollectionsController < ApplicationController
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
     add_breadcrumb t(:'hyrax.user_collections.index.manage_user_collections'), '#' if current_user&.admin?
-    @creators = Creator.all.order(:email)
+    @user_collections = UserCollection.all.order(:email)
   end
 
   def create
