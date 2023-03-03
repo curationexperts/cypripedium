@@ -118,8 +118,8 @@ $(document).on('turbolinks:load', function(){
 				let user_collections_obj = jQuery.parseJSON(data.user_collections)
 				let user_collections = user_collections_obj.collections
 				if(user_collections && $.isArray(user_collections)){
-					$(this).css('color', 'red');
-					$(this).text('Unsubscribed')
+					$(this).text('')
+					$(this).parent().text('Unsubscribed').css('color', 'red');
 				}
 			}
 			catch(err){
