@@ -9,11 +9,16 @@ Hyrax::WorksControllerBehavior.module_eval do
       all_collection_records = UserCollection.all
       all_collections = all_collection_records.to_a if all_collection_records.present?
       emails = []
-      if all_collections.present? && all_collections.length.positive?
+      collection_id = collection_id_from_params
+      collection = Collection.find(collection_id) if collection_id.present?
+      collection_title = collection.title.first if collection.present?
+      user_collection_id = get_user_collection_id(collection_title)
+      if all_collections.present? && user_collection_id.present?
         all_collections.each do |user_collection|
-          emails.push(user_collection.email)
+          emails.push(user_collection.email) if user_collection.collections.include? user_collection_id
         end
       end
+
       WorkMailer.new_work_email(work, emails).deliver if emails.length.positive?
 
       wants.html do
@@ -22,6 +27,26 @@ Hyrax::WorksControllerBehavior.module_eval do
         redirect_to [main_app, curation_concern]
       end
       wants.json { render :show, status: :created, location: polymorphic_path([main_app, curation_concern]) }
+    end
+  end
+
+  private
+
+  def collection_id_from_params
+    params_curation_concern = params[hash_key_for_curation_concern]
+    collection_id = params_curation_concern[:member_of_collection_ids][0]
+    params_curation_concern[:member_of_collections_attributes]['0']['id'] if collection_id.blank?
+  end
+
+  def collection_id_array(user_collection)
+    collection_string = user_collection.collections
+    collection_string.split(" ; ") if collection_string.present?
+  end
+
+  def get_user_collection_id(collection_name)
+    config_user_collections = Qa::Authorities::Local.subauthority_for('user_collections').all
+    config_user_collections.each do |config_user_collection|
+      return config_user_collection.fetch('id') if config_user_collection.fetch('term') == collection_name
     end
   end
 end
