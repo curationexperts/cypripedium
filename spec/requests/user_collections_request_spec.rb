@@ -33,7 +33,8 @@ RSpec.describe "/user_collection", type: :request, clean: true do
       UserCollection.create! valid_attributes
       get user_collections_url, params: valid_attributes
       expect(response.body).to include('<td class="display_name">test@test.com</td>'), count: 1
-      expect(response.body).to include('<td><a id="btnUnsubscribe_1" data-remote="true" rel="nofollow" data-method="delete" href="/user_collection?email=test%40test.com&amp;locale=en">Unsubscribe</a>')
+      expect(response.body).to include('<td><a id="btnUnsubscribe_1" data-remote="true" rel="nofollow" data-method="delete"' \
+        'href="/user_collection?email=test%40test.com&amp;locale=en">Unsubscribe</a>')
     end
   end
 

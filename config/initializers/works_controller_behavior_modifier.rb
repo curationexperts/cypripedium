@@ -10,12 +10,14 @@ Hyrax::WorksControllerBehavior.module_eval do
       all_collections = all_collection_records.to_a if all_collection_records.present?
       emails = []
       collection_id = collection_id_from_params
-      collection = Collection.find(collection_id) if collection_id.present?
-      collection_title = collection.title.first if collection.present?
-      user_collection_id = get_user_collection_id(collection_title)
-      if all_collections.present? && user_collection_id.present?
-        all_collections.each do |user_collection|
-          emails.push(user_collection.email) if user_collection.collections.include? user_collection_id
+      if collection_id.present?
+        collection = Collection.find(collection_id)
+        collection_title = collection.title.first if collection.present?
+        user_collection_id = get_user_collection_id(collection_title)
+        if all_collections.present? && user_collection_id.present?
+          all_collections.each do |user_collection|
+            emails.push(user_collection.email) if user_collection.collections.include? user_collection_id
+          end
         end
       end
 
@@ -34,8 +36,11 @@ Hyrax::WorksControllerBehavior.module_eval do
 
   def collection_id_from_params
     params_curation_concern = params[hash_key_for_curation_concern]
-    collection_id = params_curation_concern[:member_of_collection_ids][0]
-    params_curation_concern[:member_of_collections_attributes]['0']['id'] if collection_id.blank?
+    collection_id = params_curation_concern[:member_of_collection_ids][0] if params_curation_concern[:member_of_collection_ids].present?
+    return if collection_id.present?
+    attributes = params_curation_concern[:member_of_collections_attributes]
+    collection_ids = attributes['0'] if attributes.present?
+    return collection_ids['id'] if collection_ids.present?
   end
 
   def collection_id_array(user_collection)
