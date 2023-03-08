@@ -21,6 +21,7 @@ Hyrax::WorksControllerBehavior.module_eval do
         end
       end
 
+      Hyrax.logger.info("Emails are sent to the users: " + emails.to_s + " for publication of \"" + work[:title] + "\"")
       WorkMailer.new_work_email(work, emails).deliver if emails.length.positive?
 
       wants.html do
