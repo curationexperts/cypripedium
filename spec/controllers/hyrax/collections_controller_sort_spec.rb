@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::CollectionsController, clean_repo: true do
   DATE_PUBLISHED_ARRAY = [['2015-10-15'], ['2018-11'], ['2020-02-28']].freeze
-  DATE_MODIFIED_ARRAY  = ['2020-10-25', '2021-10-25', '2022-10-25'].freeze
+  DATE_MODIFIED_ARRAY  = ['2020-10-25'.to_time, '2021-10-25'.to_time, '2022-10-25'.to_time].freeze
   TITLE_ARRAY = [['publication1'], ['publication2'], ['publication3']].freeze
   ISSUE_NUMBER_ARRAY = [['20'], ['30'], ['40']].freeze
 
@@ -121,13 +121,13 @@ RSpec.describe Hyrax::CollectionsController, clean_repo: true do
       end
 
       it "sort the collection members by date_modified asc" do
-        get :show, params: { id: collection, sort: 'system_modified_dtsi asc' }
+        get :show, params: { id: collection, sort: 'date_modified_dtsi asc' }
         expect(response).to be_successful
         expect(assigns[:member_docs].map(&:title)).to eq TITLE_ARRAY
       end
 
       it "sort the collection members by date_modified desc" do
-        get :show, params: { id: collection, sort: 'system_modified_dtsi desc' }
+        get :show, params: { id: collection, sort: 'date_modified_dtsi desc' }
         expect(response).to be_successful
         expect(assigns[:member_docs].map(&:title)).to eq TITLE_ARRAY.reverse
       end
