@@ -154,6 +154,9 @@ $(document).on('turbolinks:load', function(){
 		function emptyUserCollections () {
 			$('div#subscription_list_div').find('span').remove()
 			$('div#subscription_list_div').find('ul').empty()
+			$("input:checkbox[name=user_collection_checkbox]").each(function(){
+				$(this).prop('checked', false);
+			});
 			$('div#subscription_list_div').append(("<span id='emptySpan'><label>You don't have any subscriptions now.</label></span>"))
 		}
 
