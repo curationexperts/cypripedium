@@ -7,7 +7,7 @@ include Warden::Test::Helpers
 RSpec.describe "/user_collection", type: :request, clean: true do
   SUCCESS_MESSAGE = 'You have successfully registered to receive email notifications of new publications in the following collections:'
   ERROR_MESSAGE = "Validation failed: Email is invalid"
-  DELETE_MESSAGE = "You (test@test.com) have unsubscribed to the follow collections:"
+  DELETE_MESSAGE = "You (test@test.com) have unsubscribed to the following collections:"
   REDIRECT_MESSASGE = "<html><body>You are being <a href=\"http://www.example.com/users/sign_in?locale=en\">redirected</a>.</body></html>"
 
   let(:user) { FactoryBot.create(:admin) }
