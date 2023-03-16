@@ -1,0 +1,12 @@
+<%= simple_form_for @user_collection do |f| %>
+  <%= f.input :email %>
+  
+  <label class="control-label string" for="user_collections">Collections</label><br>
+  <% load_user_collections.each do |collection| %>
+    <input type="checkbox" class="collection_list_checkbox" name="collections" id=<%= collection[:id] %> <%= @user_collection.collections.include?(collection['id']) ? "checked" : "" %> />
+    <label class="form-check-input collection_list_checkbox" for=<%= collection['id'] %>> 
+    <%= collection['term'] %> </label><br>
+  <% end %>
+  <br>
+  <button type="button" class="btn btn-default" id="btnSubscribe">Update Subscriptions</button>
+<% end %>

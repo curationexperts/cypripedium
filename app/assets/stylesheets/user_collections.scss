@@ -6,8 +6,13 @@
     margin-left: 10% !important;
   }
   
-  .user_collections_list_label {
+  .user_collections_list_label, .user_collections_list {
     padding-left: 5%;
+    color: black;
+  }
+
+  .btn_user_subscriptions_search {
+    color: black;
   }
   
   .user_collections_list_heading {
@@ -21,3 +26,8 @@
   .user_collections_list_footer {
     margin-top: 3%;
   }
+
+  .collection_list_checkbox {
+    margin-left: 2%;
+  }
+  

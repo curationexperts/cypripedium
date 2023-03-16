@@ -11,14 +11,14 @@ module UserCollectionsHelper
     text += '<button class="user_collections_list" id="user_subscriptions_search">'
     text += '<span class="glyphicon glyphicon-search" aria-hidden="true"></span>'
     text += '</button>&nbsp;&nbsp;'
-    text += '<label for="user_subscriptions_search">Find your current subscriptions:</label><br><br>'
+    text += '<label class="btn_user_subscriptions_search" for="user_subscriptions_search">Find your current subscriptions:</label><br><br>'
     text += '<div class="user_collections_list" id="subscription_list_div"><ul id="subscription_list" style="list-style-type:square"></ul></div>'
     text += '<br>'
 
     text += '<label class="user_collections_list" for="email" >Please select from the list of collections:</label><br>'
     user_collections = load_user_collections
     user_collections.each do |collection|
-      text += '<input type="checkbox" name="user_collections" class="form-check-input user_collections_list" id="' + collection['id'] + '" >'
+      text += '<input type="checkbox" name="user_collection_checkbox" class="form-check-input user_collections_list" id="' + collection['id'] + '" >'
       text += '<label class="form-check-input user_collections_list_label" for="' + collection['id'] + '">' + collection['term'] + '</label><br>'
     end
     # rubocop:disable Rails/OutputSafety
@@ -27,8 +27,6 @@ module UserCollectionsHelper
   rescue => e
     Rails.logger.error "An error came up while rendering collection license field: " + e.message
   end
-
-  private
 
   def load_user_collections
     Qa::Authorities::Local.subauthority_for('user_collections').all

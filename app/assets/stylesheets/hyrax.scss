@@ -153,4 +153,8 @@ footer.site-footer a.navbar-link:hover {
 
 .navbar {
   position: static !important;
+  li.user_collection_li {
+    color: black !important;
+    background-color: transparent !important;
+  }
 }

@@ -1,29 +1,50 @@
 $(document).on('turbolinks:load', function(){
 	var YOUR_MESSAGE_STRING_CONST = "Do you want to receive email nofitications when new articles are published?";
-      $('#btnUserCollections').on('click', function(e){
+        $('#btnUserCollections').on('click', function(e){
 			e.preventDefault();
-    		confirmDialog(YOUR_MESSAGE_STRING_CONST, function(){
-				var user_collections = new Array();
-				$.each($("input[name='user_collections']:checked"), function() {
+    		confirmDialog(YOUR_MESSAGE_STRING_CONST, subscribe);
+    	});
+
+		$('#btnSubscribe').on('click', subscribe);
+
+		function subscribe(event) {
+			event.preventDefault();
+			let user_collections = new Array();
+			let email = $('input#email').val()
+			if(!email) {
+				email = $('input#user_collection_email').val()
+				$.each($("input[name='collections']:checked"), function() {
 					user_collections.push($(this).attr('id'));
 				});
-				$.ajax({
-					type: 'post',
-					url: '/user_collection',
-					data: { email: $('input#email').val(), collections: user_collections }
-				}).done(function(response) {
-					clearDialog()
-					if(response.status == '200') {
-						alertBox(response.message, 'user_collections', response.user_collections)
-					}
-					else {
-						alertBox("Error", 'string', response.message)
-					}
-				}).fail(function(err) {
-					alert('not ok')
+			}
+			else {
+				$.each($("input[name='user_collection_checkbox']:checked"), function() {
+					user_collections.push($(this).attr('id'));
 				});
-    		});
-    	});
+			}
+			if(!email || user_collections.length == 0){
+				alert('Email and Collections cannot be empty!')
+			}
+			$.ajax({
+				type: 'post',
+				url: '/user_collection',
+				data: { email: email, collections: user_collections }
+			}).done(function(response) {
+				clearDialog()
+				if($('input#user_collection_email').val()) {
+					window.location.href = '/user_collections?locale=en';
+					return
+				}
+				if(response.status == '200') {
+					alertBox(response.message, 'user_collections', response.user_collections)
+				}
+				else {
+					alertBox("Error", 'string', response.message)
+				}
+			}).fail(function(err) {
+				alert('not ok')
+			});
+		}
 
         function confirmDialog(message, onConfirm){
     	    var fClose = function(){
@@ -67,15 +88,14 @@ $(document).on('turbolinks:load', function(){
 					user_collections = jQuery.parseJSON(user_collections_obj)
 					collections = user_collections.collections
 					if($.isArray(collections) && collections.length > 0) {
-						let subscription_list = $('ul#subscription_list')
-						subscription_list.empty()
+						$('div#subscription_list_div').find('span').remove()
 						collection_map = {}
-						$("input:checkbox[name=user_collections]").each(function(){
-							collection_map[$(this).attr('id')] = $(this).next('label').text()
+						$("input:checkbox[name=user_collection_checkbox]").each(function(){
+							$(this).prop('checked', false);
+							if(jQuery.inArray($(this).attr('id'), collections) >= 0) {
+								$(this).prop('checked', true);
+							}
 						});
-						$.each(collections, function(index, collection){
-							subscription_list.append($("<li>").text(collection_map[collection.toString()]))
-						})
 						$('button#btnSubscribe').html('Update Subscription')
 						$('button#btnUnsubscribe').show()
 					}
@@ -155,14 +175,14 @@ $(document).on('turbolinks:load', function(){
 			collections = user_collections.collections
 			if($.isArray(collections) && collections.length > 0) {
 				collection_map = {}
-				$("input:checkbox[name=user_collections]").each(function(){
+				$("input:checkbox[name=user_collection_checkbox]").each(function(){
 					collection_map[$(this).attr('id')] = $(this).next('label').text()
 				});
 				let alertBody = $('div#alertBody').empty();
 				let subscription_list = $('<ul>').css("list-style-type", "square")
 				alertBody.append(subscription_list)
 				$.each(collections, function(index, collection){
-					subscription_list.append($("<li>").text(collection_map[collection.toString()]))
+					subscription_list.append($("<li class='user_collection_li'>").text(collection_map[collection.toString()]))
 				})
 			}
 		}
@@ -176,7 +196,7 @@ $(document).on('turbolinks:load', function(){
 			if(user_collections_list_ul) {
 				user_collections_list_ul.empty()
 			}
-			$.each($("input[name='user_collections']:checked"), function() {
+			$.each($("input[name='user_collection_checkbox']:checked"), function() {
 				$(this).prop('checked', false)
 			});
 		}
