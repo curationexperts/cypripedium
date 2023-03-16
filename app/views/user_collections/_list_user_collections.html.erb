@@ -1,0 +1,20 @@
+<table class="creators table">
+  <thead>
+    <tr>
+      <%= render partial: 'table_headers' %>
+    </tr>
+  </thead>
+  <tbody>
+      <% @user_collections.map do |user_collection| %>
+        <tr>
+          <td class="id"><%= user_collection.id %></td>
+          <td class="display_name"><%= user_collection.email %></td>
+          <td class="alternate_names"><%= user_collection.collections.join(" ; ") %></td>
+          <% if current_or_guest_user.can?(:edit, UserCollection) %>
+            <td><%= link_to 'Edit', edit_user_collection_path(user_collection) %></td>
+          <% end %>
+          <td><%= link_to 'Unsubscribe', user_collection_path(:email => user_collection.email), id: "btnUnsubscribe_"+user_collection.id.to_s, method: "delete", remote: true %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

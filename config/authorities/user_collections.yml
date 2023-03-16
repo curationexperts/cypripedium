@@ -1,0 +1,9 @@
+terms:
+  - id: 'working_papers'
+    term: 'Working Papers'
+  - id: 'staff_reports'
+    term: 'Staff Reports'
+  - id: 'quarterly_review'
+    term: 'Quarterly Review'
+  - id: 'institute_working_papers'
+    term: 'Institute Working Papers'

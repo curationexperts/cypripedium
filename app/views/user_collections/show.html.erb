@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<div class="col-xd-12">
+  <h1>Show User Email Registration</h1>
+</div>
+<div class="col-sm-8">
+  <label class="control-label string" for="user_email">Email</label>
+  <ul class="tabular">
+    <li class="attribute"><%= @user_collection.email %>
+    </li>
+  </ul>
+
+  <label class="control-label string" for="user_collections">Collections</label>
+  <ul class="tabular" style="list-style-type:none;">
+    <% @user_collection.collections.each do |collection| %>
+        <li class="attribute"><%= collection %></li>
+    <% end %>
+  </ul>
+
+  <% if current_or_guest_user.can?(:edit, UserCollection) %>
+    <%= link_to 'Edit', edit_creator_path(@user_collection) %> |
+  <% end %>
+  <%= link_to 'Back', user_collections_path %>
+</div>

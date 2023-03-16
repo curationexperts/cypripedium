@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210426173022) do
+ActiveRecord::Schema.define(version: 2023_02_08_230723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,12 @@ ActiveRecord::Schema.define(version: 20210426173022) do
     t.boolean "brandable", default: true, null: false
     t.string "badge_color", default: "#663333"
     t.index ["machine_id"], name: "index_hyrax_collection_types_on_machine_id", unique: true
+  end
+
+  create_table "hyrax_default_administrative_set", force: :cascade do |t|
+    t.string "default_admin_set_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hyrax_features", id: :serial, force: :cascade do |t|
@@ -316,9 +322,9 @@ ActiveRecord::Schema.define(version: 20210426173022) do
   end
 
   create_table "single_use_links", id: :serial, force: :cascade do |t|
-    t.string "downloadKey"
+    t.string "download_key"
     t.string "path"
-    t.string "itemId"
+    t.string "item_id"
     t.datetime "expires"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -356,7 +362,7 @@ ActiveRecord::Schema.define(version: 20210426173022) do
 
   create_table "sipity_entity_specific_responsibilities", id: :serial, force: :cascade do |t|
     t.integer "workflow_role_id", null: false
-    t.string "entity_id", null: false
+    t.integer "entity_id", null: false
     t.integer "agent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -502,6 +508,14 @@ ActiveRecord::Schema.define(version: 20210426173022) do
     t.datetime "updated_at", null: false
     t.index ["file_set_uri"], name: "index_uploaded_files_on_file_set_uri"
     t.index ["user_id"], name: "index_uploaded_files_on_user_id"
+  end
+
+  create_table "user_collections", force: :cascade do |t|
+    t.string "email", null: false
+    t.text "collections", default: "--- []\n"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_user_collections_on_email"
   end
 
   create_table "user_stats", id: :serial, force: :cascade do |t|
