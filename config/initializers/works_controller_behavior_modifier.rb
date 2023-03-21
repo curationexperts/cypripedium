@@ -10,7 +10,11 @@ Hyrax::WorksControllerBehavior.module_eval do
       all_collections = all_collection_records.to_a if all_collection_records.present?
       emails = []
       collection_id = collection_id_from_params
+<<<<<<< HEAD
       if collection_id.present? && params['publication']['visibility'] == 'open'
+=======
+      if collection_id.present?
+>>>>>>> 574d282604aee68a7ebf4e320ac988ac6075ca40
         collection = Collection.find(collection_id)
         collection_title = collection.title.first if collection.present?
         user_collection_id = get_user_collection_id(collection_title)
