@@ -10,7 +10,7 @@ Hyrax::WorksControllerBehavior.module_eval do
       all_collections = all_collection_records.to_a if all_collection_records.present?
       emails = []
       collection_id = collection_id_from_params
-      if collection_id.present?
+      if collection_id.present? && params['publication']['visibility'] == 'open'
         collection = Collection.find(collection_id)
         collection_title = collection.title.first if collection.present?
         user_collection_id = get_user_collection_id(collection_title)
@@ -21,8 +21,15 @@ Hyrax::WorksControllerBehavior.module_eval do
         end
       end
 
-      Hyrax.logger.info("Emails are sent to the users: " + emails.to_s + " for publication of \"" + work[:title] + "\"")
-      WorkMailer.new_work_email(work, emails).deliver if emails.length.positive?
+      if emails.length.positive?
+        begin
+          WorkMailer.new_work_email(work, emails).deliver
+          Hyrax.logger.info("Emails are sent to the users: " + emails.to_s + " for publication of \"" + work[:title] + "\"")
+        rescue => exc
+          message = exc.message
+          Hyrax.logger.error "Error in sending emails to " + emails.to_s + ": error -- " + message
+        end
+      end
 
       wants.html do
         # Calling `#t` in a controller context does not mark _html keys as html_safe
