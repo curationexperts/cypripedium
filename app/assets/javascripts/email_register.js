@@ -22,9 +22,6 @@ $(document).on('turbolinks:load', function(){
 					user_collections.push($(this).attr('id'));
 				});
 			}
-			if(!email || user_collections.length == 0){
-				alert('Email and Collections cannot be empty!')
-			}
 			$.ajax({
 				type: 'post',
 				url: '/user_collection',
