@@ -1,17 +1,25 @@
 $(document).on('turbolinks:load', function(){
-    $("[id^=stat_collapse_]").on("hide.bs.collapse", function(){
+    $("[id^=stat_collapse_]").on("hide.bs.collapse", function(event){
+        event.stopPropagation()
         let id = $(this).attr('id')
         let collection_name = id.replace('stat_collapse_', '')
-        let html = $("#stat_btn_"+collection_name).html()
-        let num = html.match(/[0-9]+/g)
-        $("#stat_btn_"+collection_name).html('<span class="glyphicon glyphicon-plus"></span> ' + num);
+        let html = $("#stat_collapse_btn_"+collection_name).html().trimEnd()
+        let num = html.match(/[0-9]+$/g)
+        if (!num) {
+            num = ''
+        }
+        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-plus"></span> ' + num);
     });
 
-    $("[id^=stat_collapse_]").on("show.bs.collapse", function(){
+    $("[id^=stat_collapse_]").on("show.bs.collapse", function(event){
+        event.stopPropagation()
         let id = $(this).attr('id')
         let collection_name = id.replace('stat_collapse_', '')
-        let html = $("#stat_btn_"+collection_name).html()
-        let num = html.match(/[0-9]+/g)
-        $("#stat_btn_"+collection_name).html('<span class="glyphicon glyphicon-minus"></span> ' + num);
+        let html = $("#stat_collapse_btn_"+collection_name).html().trimEnd()
+        let num = html.match(/[0-9]+$/g)
+        if (!num) {
+            num = ''
+        }
+        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-minus"></span> ' + num);
     });
 });

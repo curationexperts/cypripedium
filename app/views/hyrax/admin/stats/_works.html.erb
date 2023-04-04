@@ -2,10 +2,11 @@
 <h4><%= t('hyrax.admin.stats.works.headers.total') %> <%= @presenter.works_count[:total] %> </h4>
 <div style="margin-left: 20px; margin-bottom: 10px;">
   <% @presenter.works_count[:collections].each do |collection_name, works| %>
-  <div style="font-size: 12px; margin-bottom: 6px;">
-    <span><%=  collection_name %>&nbsp;&nbsp;&nbsp;
-      <button type="button" id="stat_btn_<%= works[0][:member_of_collection_ids_ssim][0] %>" class="btn-success" data-toggle="collapse" 
-        data-target="#stat_collapse_<%= works[0][:member_of_collection_ids_ssim][0] %>">
+  <div style="margin-bottom: 6px;">
+    <span style="font-size:13px;"><%=  collection_name %>&nbsp;&nbsp;&nbsp;
+      <button type="button" id="stat_collapse_btn_<%= works[0][:member_of_collection_ids_ssim][0] %>" class="btn-success" data-toggle="collapse" 
+        data-target="#stat_collapse_<%= works[0][:member_of_collection_ids_ssim][0] %>"
+        style="font-size: 11px;">
         <span class="glyphicon glyphicon-plus"></span> <%= works.length() %>
       </button>
     </span>
@@ -13,7 +14,28 @@
     <ul id="stat_collapse_<%= works[0][:member_of_collection_ids_ssim][0] %>" class="collapse">
       <% works.each do |work| %>
         <% link = work[:identifier_tesim][0] if work[:identifier_tesim].present? %>
-        <li><a href="//<%= link %>" ><%= work[:title_ssi] %></a></li>
+        <li>
+          <a href="//<%= link %>" target="_blank" rel="noopener noreferrer" style="font-size:14px; font-weight:bold; "><%= work[:title_ssi] %></a>
+          <button type="button" id="stat_collapse_btn_<%= work[:id] %>" class="btn-link" 
+            data-toggle="collapse" data-target="#stat_collapse_<%= work[:id] %>">
+            <span style="font-size: 10px;" class="glyphicon glyphicon-plus"></span>
+          </button>
+          <div class="m-4 collapse" style="font-weight:normal; font-size:12px;" id="stat_collapse_<%= work[:id] %>">
+            <dl class="row">
+                <dt class="col-md-1">Authors</dt>
+                <dd class="col-md-11"><%= get_formated_author_names(work) %>&nbsp;</dd>
+                <dt class="col-md-1">Series</dt>
+                <dd class="col-md-11"><%= get_series_from_work(work) %>&nbsp;</dd>
+                <dt class="col-md-1">Publication Date</dt>
+                <dd class="col-md-11"><%= get_date_created_from_work(work) %>&nbsp;</dd>
+            </dl>
+          </div>
+          <!--
+          <ul id="stat_work_collapse_<%= work[:identifier_tesim] %>" class="collapse">
+            get_author_name_list(work)
+          </ul>
+          -->
+        </li>
       <% end %>
     </ul>
     </div>
