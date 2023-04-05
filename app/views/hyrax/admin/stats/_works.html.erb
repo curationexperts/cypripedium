@@ -22,19 +22,14 @@
           </button>
           <div class="m-4 collapse" style="font-weight:normal; font-size:12px;" id="stat_collapse_<%= work[:id] %>">
             <dl class="row">
-                <dt class="col-md-1">Authors</dt>
+                <dt class="col-md-1">Authors:</dt>
                 <dd class="col-md-11"><%= get_formated_author_names(work) %>&nbsp;</dd>
-                <dt class="col-md-1">Series</dt>
+                <dt class="col-md-1">Series:</dt>
                 <dd class="col-md-11"><%= get_series_from_work(work) %>&nbsp;</dd>
-                <dt class="col-md-1">Publication Date</dt>
+                <dt class="col-md-1">Publication Date:</dt>
                 <dd class="col-md-11"><%= get_date_created_from_work(work) %>&nbsp;</dd>
             </dl>
           </div>
-          <!--
-          <ul id="stat_work_collapse_<%= work[:identifier_tesim] %>" class="collapse">
-            get_author_name_list(work)
-          </ul>
-          -->
         </li>
       <% end %>
     </ul>

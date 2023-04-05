@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function(){
         if (!num) {
             num = ''
         }
-        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-plus"></span> ' + num);
+        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-plus" style="font-weight:normal; font-size:10px;"></span> ' + num);
     });
 
     $("[id^=stat_collapse_]").on("show.bs.collapse", function(event){
@@ -20,6 +20,6 @@ $(document).on('turbolinks:load', function(){
         if (!num) {
             num = ''
         }
-        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-minus"></span> ' + num);
+        $("#stat_collapse_btn_"+collection_name).html('<span class="glyphicon glyphicon-minus" style="font-weight:normal; font-size:10px;"></span> ' + num);
     });
 });
