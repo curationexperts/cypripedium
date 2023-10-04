@@ -1,6 +1,9 @@
 version: 2.1
 orbs:
-    samvera: samvera/circleci-orb@0.3.1
+    samvera: samvera/circleci-orb@1.0.3
+    browser-tools: circleci/browser-tools@1.2.4
+    coveralls: coveralls/coveralls@1.0.6
+
 jobs:
     build:
         parameters:
@@ -19,15 +22,20 @@ jobs:
           WORKING_PATH: /tmp
           UPLOAD_PATH: /tmp
           CACHE_PATH: /tmp/cache
-          FCREPO_TEST_URL: http://127.0.0.1:8080/fcrepo/rest/
+          FCREPO_TEST_URL: http://127.0.0.1:8080/rest/
           SOLR_TEST_URL: http://127.0.0.1:8985/solr/hydra-test
         executor:
             name: samvera/ruby_fcrepo_solr_redis_postgres
             ruby_version: << parameters.ruby_version >>
+            solr_version: 8.11.1
         working_directory: ~/project
         parallelism: 4
         steps:
             - checkout
+
+            - browser-tools/install-chrome:
+                  chrome-version: 114.0.5735.198
+            - browser-tools/install-chromedriver
 
             - samvera/bundle:
                 ruby_version: << parameters.ruby_version >>

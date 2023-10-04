@@ -49,11 +49,9 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq'
 gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
-gem 'sqlite3', '~> 1.3.6'
 gem 'terser'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'webdrivers'
 gem 'whenever', require: false
 
 group :development do
@@ -78,7 +76,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'ruby-debug-ide'
-  gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
   gem 'spring-commands-rspec'
 end
@@ -89,4 +86,6 @@ group :test do
   gem 'factory_bot'
   gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
