@@ -19,14 +19,13 @@ class Hyrax::CharacterizeJob < Hyrax::ApplicationJob
     file_set.parent&.in_collections&.each(&:update_index)
 
     # Check that MiniMagick agrees that this is a valid file
-    if Cypripedium::ImageValidator.new(image: filepath).valid?
+    if MiniMagick::Image.new(filepath).valid?
       # Continue to create derivatives
       CreateDerivativesJob.perform_later(file_set, file_id, filepath)
     else
       # If there is a MiniMagick error, record an error and don't continue to
       # create derivatives for that file
-      error = Cypripedium::CorruptFileError.new(file_set_id: file_set.id, mime_type: file_set.characterization_proxy.mime_type)
-      Rails.logger.error error.message
+      Rails.logger.error "MiniMagick::Error: Could not process file_set_id: #{file_set.id}, mime_type: #{file_set.characterization_proxy.mime_type}"
     end
   end
 end
