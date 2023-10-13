@@ -9,19 +9,24 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 gem "actionview", ">= 5.1.6.2"
 gem 'active_job_status', '~> 1.2.1'
+gem 'active-fedora', '~> 14.0'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
 gem "blacklight_range_limit", '~>7.0.0'
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap', '~> 4.0'
+# gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
 gem 'capistrano'
 gem 'capistrano-bundler', '~> 1.3'
 gem 'capistrano-ext'
 gem 'capistrano-rails'
 gem 'coffee-rails', '~> 4.2'
+gem 'dalli'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails'
@@ -29,14 +34,15 @@ gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'honeybadger', '~> 4.4.0'
 gem 'hydra-file_characterization', '~> 1.1'
 gem 'hydra-role-management'
-gem 'hyrax', '~> 3.4'
+gem 'hyrax', '~> 4.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 6.0'
 gem 'nokogiri', '>=1.8.2'
 gem 'parser'
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 5'
+gem 'rails', '~> 6.0.5'
 gem 'rails-assets-tether'
 gem 'rainbow'
 gem 'redcarpet'
@@ -44,14 +50,16 @@ gem 'redis', '~> 4.1'
 gem 'redis-activesupport'
 gem 'rsolr', '>= 1.0'
 gem 'rubyzip', '~> 1.0', require: 'zip'
-gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails', '>= 2.1.0'
+gem 'sass-rails', '~> 6.0'
+# gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq'
 gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
 gem 'terser'
 gem 'turbolinks', '~> 5'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
 group :development do

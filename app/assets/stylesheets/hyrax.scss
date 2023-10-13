@@ -4,7 +4,6 @@
  *= require_self
 */
 
-@import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'blacklight/blacklight';
 @import "font-awesome";
@@ -12,6 +11,7 @@
 @import "blacklight_gallery/masonry";
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
+@import "hyrax/blacklight_gallery";
 @import 'hyrax/hyrax';
 
 body.dashboard {

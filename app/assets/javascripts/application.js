@@ -15,19 +15,20 @@
 //
 
 // Required by Blacklight
-//= require jquery
+//= require jquery3
+//= require rails-ujs
+//= require turbolinks
+//= require popper
+//= require twitter/typeahead
+//= require bootstrap
 //= require tether
-/* removed b/c it currently breaks modals */
-// require browse_everything
-//= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require jquery.dataTables
+//= require dataTables.bootstrap4
 //= require blacklight/blacklight
-//= require bootstrap-sprockets
+//= require blacklight_gallery
 //= require jquery-ui/widgets/autocomplete
 //= require_tree "./bag/"
 //= require_tree "./channels/"
-//= require blacklight_gallery
 //= require cable
 //= require notification-sort
 //= require openseadragon
