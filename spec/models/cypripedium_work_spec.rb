@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 require 'rails_helper'
-RSpec.describe Attributes do
-  let(:attributes) { described_class.to_a }
-  let(:defined_attributes) do
+
+RSpec.describe CypripediumWork do
+  let(:expected_attributes) do
     ["creator_id", "series", "issue_number", "abstract", "alternative_title",
      "bibliographic_citation", "corporate_name",
      "date_available", "extent", "has_part",
@@ -10,9 +10,8 @@ RSpec.describe Attributes do
      "replaces", "requires", "geographic_name",
      "table_of_contents", "temporal"]
   end
-  describe '#to_a' do
-    it 'returns the correct attributes' do
-      expect(attributes).to eq(defined_attributes)
-    end
+
+  it 'provides a list of locally added metadata' do
+    expect(described_class.added_attributes).to match_array expected_attributes
   end
 end
