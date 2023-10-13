@@ -2,7 +2,7 @@
 # This class returns an array of symbols
 # that contains all of the properties that
 # are defined in the `Metadata` concern
-class Attributes < ActiveFedora::Base
+class AdditionalAttributes < ActiveFedora::Base
   include Metadata
   ##
   # @return [Array<Symbol>]
