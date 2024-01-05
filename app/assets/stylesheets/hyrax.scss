@@ -158,3 +158,19 @@ footer.site-footer a.navbar-link:hover {
     background-color: transparent !important;
   }
 }
+
+.form-tab-content .multi_value li.field-wrapper {
+  width: 100%;
+
+  .field-controls {
+    width: 10rem;
+  }
+
+  .remove {
+    display: inline-block;
+  }
+}
+
+.form-tab-content .multi_value li.field-wrapper:last-of-type .remove {
+  display: none;
+}
