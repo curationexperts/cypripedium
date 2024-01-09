@@ -170,3 +170,13 @@ SimpleForm.setup do |config|
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
 end
+
+# Rails lazy-loads custom inputs classes (like in hyrax and hydra-editor), so we need
+# to explicitly reference them in order for simple_form to find them (as of v5.3.0)
+# see https://github.com/heartcombo/simple_form/blob/8f77f598b32ed11b0d56c44481607a6e911bcecb/lib/simple_form/form_builder.rb#L676
+# issue reported on https://github.com/heartcombo/simple_form/commit/ff3903fe9346199e39538a39ea4e5a5694e31541
+# Temporary work-around: explicitly reference class names for any custom input classes here:
+MultiValueInput
+ControlledVocabularyInput
+MultiValueSelectInput
+MultifileInput
