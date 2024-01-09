@@ -11,4 +11,14 @@ class CypripediumWork < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
   self.indexer = CypripediumIndexer
   include ::Hyrax::BasicMetadata
+
+  def load_creators_from_ids
+    return unless creator_id
+
+    ids = JSON.parse(creator_id.first)
+
+    self.creator = ids.map do |creator_id|
+      Creator.find_by(id: creator_id)&.display_name
+    end.compact
+  end
 end
