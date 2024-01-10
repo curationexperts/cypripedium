@@ -10,8 +10,13 @@ require "capistrano/deploy"
 require 'capistrano/bundler'
 
 require 'capistrano/rails'
-require 'capistrano/sidekiq'
 require 'capistrano/passenger'
+
+# Sidekiq integration - https://github.com/seuros/capistrano-sidekiq
+require 'capistrano/sidekiq'
+install_plugin Capistrano::Sidekiq # Default sidekiq tasks
+install_plugin Capistrano::Sidekiq::Systemd
+set :sidekiq_service_unit_user, :system # Run Sidekiq as a system service
 
 # Load the SCM plugin appropriate to your project:
 #

@@ -56,7 +56,7 @@ gem 'whenever', require: false
 
 group :development do
   gem 'capistrano-passenger'
-  gem 'capistrano-sidekiq', '~> 0.20.0'
+  gem 'capistrano-sidekiq'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'pry-doc'
