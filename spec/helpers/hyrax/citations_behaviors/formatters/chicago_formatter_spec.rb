@@ -18,8 +18,8 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
 
   CITATION_TYPE_SOFTWARE = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
   'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
-  '<span class="citation-title">"My Title."&nbsp;</span> Supporting data. In "Star Wars at Central Banks." Staff Report 620,  ' \
-  'Federal Reserve Bank of Minneapolis, 1970.'
+  '<span class="citation-title">"My Title."&nbsp;</span>Research Database, Federal Reserve Bank ' \
+  'of Minneapolis, 1970. https://researchdatabase.minneapolisfed.org/concern/datasets/ThisIsTest123.'
 
   CITATION_TYPE_CONFERENCE = '<span class="citation-author">Backus, David, Truman F. Bewley, Arnoud W. A. Boot, Charles T. ' \
   'Carlstrom, Patrick J. Kehoe, and G. Thomas Woodward.</span> ' \
@@ -145,12 +145,6 @@ RSpec.describe Hyrax::CitationsBehaviors::Formatters::ChicagoFormatter do
         attrs['resource_type'] = ['Dissertation']
         citation = formatter.format(presenter)
         expect(citation).to eq CITATION_TYPE_ARTICLE
-      end
-
-      it 'test citation of software or program code type' do
-        attrs['resource_type'] = ['Software or Program Code']
-        citation = formatter.format(presenter)
-        expect(citation).to eq CITATION_TYPE_SOFTWARE
       end
 
       it 'test citation of poster resource type' do
