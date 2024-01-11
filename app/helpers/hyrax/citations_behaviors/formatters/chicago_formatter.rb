@@ -39,7 +39,7 @@ module Hyrax
             text += author_info
             text += title_quoted
             text += DEFAULT_DATASET_DB_NAME + ','
-            if pub_info.present? && pub_info.start_with?(": ")
+            if pub_info.present?
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
@@ -55,7 +55,7 @@ module Hyrax
               series = "Paper presented at the #{whitewash(series)},"
             end
             text += series if series.present?
-            if pub_info.present? && pub_info.start_with?(": ")
+            if pub_info.present?
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
@@ -84,12 +84,12 @@ module Hyrax
             related_url_info = process_related_url(related_url)
             if !related_url_info.nil? && related_url_info.is_a?(Array) && related_url_info.length == 2
               text += "In \"#{related_url_info.at(1)}.\" " + related_url_info.at(0) + ", "
-            elsif related_url_info.present?
+            elsif !related_url_info.nil?
               text += "In \"#{related_url_array}.\" "
             else
-              default_logger.warn('Cannot parse the related URL info - Software or Program Code')
+              logger.warn('Cannot parse the related URL info - Software or Program Code')
             end
-            if pub_info.present? && pub_info.start_with?(": ")
+            if pub_info.present?
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
@@ -196,7 +196,6 @@ module Hyrax
         end
 
         def process_related_url(related_url)
-          return '' if related_url.blank?
           # sample related_url: "Staff Report 620: Star Wars at Central Banks,
           # https://doi.org/10.21034/sr.620\r\nStaff Report 621: Online Appendix: Star Wars at Central Banks,
           # https://doi.org/10.21034/sr.621"
@@ -207,8 +206,8 @@ module Hyrax
           related_url_array = related_url.split(",")
           related_url_array.at(0).split(": ")
         rescue => e
-          default_logger.warn('Cannot parse related_url - Software or Program Code')
-          default_logger.warn(e)
+          logger.warn('Cannot parse related_url - Software or Program Code')
+          logger.warn(e)
         end
 
         # The description assumes the format by: Chapter number, interized title, doi, authors. This might change in the future
