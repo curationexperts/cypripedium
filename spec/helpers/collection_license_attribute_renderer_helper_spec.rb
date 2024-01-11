@@ -24,11 +24,9 @@ RSpec.describe 'Edit markdown fields:', type: :system, js: true do
     let(:presenter) { Hyrax::CollectionPresenter.new(solr_document, ability) }
 
     it 'veryfy the html output of a collection with display_microdata == false' do
-      saved_display_microdata = Hyrax.config.display_microdata?
       Hyrax.config.display_microdata = false
       text = render_collection_license_attribute(presenter)
       expect(text).to eq COLLECTION_LICENSE_ATTRIBUTE_HTML
-      Hyrax.config.display_microdata = saved_display_microdata
     end
 
     it 'veryfy the html output of a collection with a display_microdata == true' do

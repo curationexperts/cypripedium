@@ -20,6 +20,8 @@ module Hyrax
           pub_date = setup_pub_date(work)
           title = format_title(work.to_s)
           title_quoted = format_title_quoted(work.to_s);
+          state = corporate_info work.corporate_name.at(0), 'state'
+          city = corporate_info work.corporate_name.at(0), 'city'
           pub_info = setup_pub_info(work, false)
           author_info = format_authors(authors_list)
           author_info = "<span class=\"citation-author\">#{author_info}</span>" if author_info.present?
@@ -29,10 +31,8 @@ module Hyrax
           when 'Book'
             text += author_info
             text += title
-            address_info = corporate_address(work)
-            text += address_info
-            pub_info = pub_info[1..-1] if address_info.blank? && pub_info.at(0) == ':'
-            pub_info[-1] = ',' if pub_info.at(-1) == '.'
+            text += corporate_address(city, state)
+            pub_info[pub_info.length - 1] = ',' if pub_info.at(pub_info.length - 1) == '.'
             text += "#{whitewash(pub_info)}," if pub_info.present?
             text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Dataset'
@@ -59,8 +59,7 @@ module Hyrax
               pub_info[": "] = '';
               text += " #{whitewash(pub_info)},"
             end
-            address_info = corporate_address(work)
-            text += address_info + ',' if address_info.present?
+            text += corporate_address(city, state) + ','
             text += " #{whitewash(pub_date)}." unless pub_date.nil?
           when 'Part of Book'
             text += author_info
@@ -72,9 +71,7 @@ module Hyrax
               text += "edited by " + info["authors"] + ". "
             end
             # Page number info is skipped here
-            address_info = corporate_address(work)
-            text += address_info
-            pub_info = pub_info[1..-1] if address_info.blank? && pub_info.at(0) == ':'
+            text += corporate_address(city, state)
             pub_info[pub_info.length - 1] = ',' if pub_info.at(pub_info.length - 1) == '.'
             text += "#{whitewash(pub_info)}," if pub_info.present?
             text += " #{whitewash(pub_date)}." unless pub_date.nil?
@@ -164,16 +161,10 @@ module Hyrax
         end
 
         def corporate_info(id, entry)
-          return '' if id.blank?
-          id = id[0..-2] if id[-1] == '.'
           Qa::Authorities::Local.subauthority_for('corporate_names').find(id).fetch(entry)
         end
 
-        def corporate_address(work)
-          return '' if work.corporate_name.blank? || work.corporate_name.at(0).blank?
-          corporate_name = work.corporate_name.at(0)
-          state = corporate_info corporate_name, 'state'
-          city = corporate_info corporate_name, 'city'
+        def corporate_address(city, state)
           text = ''
           if city.present?
             city_text = whitewash(city + ',')
@@ -188,11 +179,14 @@ module Hyrax
 
         def parse_issue(issue_info)
           return "" if issue_info.blank?
-          issue = issue_info.at(0).dup.strip if issue_info.at(0).present?
+          issue = issue_info.at(0).dup if issue_info.at(0).present?
           # An example of 'issue_number_tesim': "Vol. 1, No. 1", OR 'issue_number_tesim' can be just a number
           return whitewash(issue) if issue.match?(/\A\d+\z/)
-          vol, no = issue.match(/\A[vV]ol\.?\s*(\d+),?\s*[nN]o\.?\s*(\d+)\z/).captures
-          whitewash(vol) + ', no.' + whitewash(no)
+          issue['Vol. '] = ''
+          issue[' No. '] = ''
+          issue_array = issue.strip.split(',')
+          return whitewash(issue_array.at(0)) + ', no.' + whitewash(issue_array.at(1)) if !issue_array.nil? && issue_array.length == 2
+          whitewash(issue)
         end
 
         def process_related_url(related_url)
