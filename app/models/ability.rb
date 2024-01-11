@@ -15,8 +15,6 @@ class Ability
     # end
     can [:edit, :update, :create, :index, :show], Creator if current_user.admin?
     can [:index, :show], Creator if current_user
-    can [:index, :edit], UserCollection if current_user.admin?
-    can [:create, :show, :destroy], UserCollection if current_user
     # Limits creating new objects to a specific group
     #
     # if user_groups.include? 'special_group'

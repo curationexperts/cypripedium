@@ -36,7 +36,6 @@
 //= require creator_id
 //= require hydra-editor/field_manager
 //= require 'blacklight_range_limit'
-//= require email_register
 
 bagButton.bindClick({'compression': 'zip'})
 

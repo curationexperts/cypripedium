@@ -15,12 +15,12 @@
 @import 'hyrax/hyrax';
 
 body.dashboard {
-  padding-top: 0px;
+  padding-top: 73px;
 }
 
 @media (max-width: 979px) {
   body.dashboard {
-    padding-top: 0px;
+    padding-top: 0;
   }
 }
 
@@ -115,7 +115,7 @@ a:focus {
 #recent_docs .table {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .media-body {
@@ -149,14 +149,6 @@ footer.site-footer a.navbar-link {
 footer.site-footer a.navbar-link:hover {
   color: #fff;
   text-decoration: underline;
-}
-
-.navbar {
-  position: static !important;
-  li.user_collection_li {
-    color: black !important;
-    background-color: transparent !important;
-  }
 }
 
 .form-tab-content .multi_value li.field-wrapper {
