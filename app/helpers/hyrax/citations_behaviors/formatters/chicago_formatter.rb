@@ -54,7 +54,7 @@ module Hyrax
             series = ''
             if work.series.present? && work.series.at(0).present?
               series = work.series.at(0)
-              series += " conference" unless series.downcase.include?('conference')
+              series += " Conference" unless series.downcase.include?('conference')
               series = "Paper presented at the #{whitewash(series)},"
             end
             text += series if series.present?
