@@ -17,9 +17,6 @@ module Hyrax
           text = ""
           resource_type = work.resource_type.at(0)
           authors_list = all_authors(work)
-          authors_list.map! do |author|
-            parse_author(author)
-          end
           pub_date = setup_pub_date(work)
           title = format_title(work.to_s)
           title_quoted = format_title_quoted(work.to_s);
@@ -129,9 +126,9 @@ module Hyrax
           text += surname_first(authors_list.first) if authors_list.first
           authors_list[1..6].each_with_index do |author, index|
             text += if index + 2 == authors_list.length # we've skipped the first author
-                      ", and #{chicago_citation_given_name_first(author)}."
+                      ", and #{given_name_first(author)}."
                     else
-                      ", #{chicago_citation_given_name_first(author)}"
+                      ", #{given_name_first(author)}"
                     end
           end
           text += " et al." if authors_list.length > 7
@@ -234,21 +231,6 @@ module Hyrax
           rescue => e
             default_logger.warn(e.message)
           end
-        end
-
-        # This is to handle names like 'Boot, Arnoud W. A. (Willem Alexander), 1960-'
-        def parse_author(author)
-          author = author.sub(/,\s*\d{4}-$/, '')
-          author.sub(/\s*\(.+\)/, '')
-        end
-
-        # Rewrite the code to avoid the method clean_end_punctuation to remove the last '.' at the end of name abbreviation:
-        # e.g. Daivds, John W. will be shown as John W Davids, with the '.' after 'W' removed.
-        def chicago_citation_given_name_first(name)
-          name = name[0, name.length - 1] if name && ([",", ":", ";", "/"].include? name[-1, 1])
-          return name unless name.include?(',')
-          temp_name = name.split(/,\s*/)
-          temp_name.last + " " + temp_name.first
         end
       end
     end
