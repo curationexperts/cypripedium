@@ -102,7 +102,7 @@ module Hyrax
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
           when 'Journal (without author)'
             text += 'Journal (without author)'
-          else
+          when 'Article'
             text += author_info
             text += title_quoted
             collection = work.parent_collection
@@ -111,6 +111,8 @@ module Hyrax
             text += issue
             text += " (#{whitewash(pub_date)})." unless pub_date.nil?
             text += " #{whitewash(work.doi.at(0))}." if work.doi.present?
+          else
+            text += ""
           end
           # rubocop:disable Rails/OutputSafety
           text.html_safe
