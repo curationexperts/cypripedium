@@ -1,30 +1,18 @@
 terms:
   - id: 'Federal Reserve Bank of Minneapolis. Research Department'
     term: 'Federal Reserve Bank of Minneapolis. Research Department'
-    state: 'MN'
-    city: 'Minneapolis'
     active: true
   - id: 'Federal Reserve Bank of Minneapolis. Research Division'
     term: 'Federal Reserve Bank of Minneapolis. Research Division'
-    state: 'MN'
-    city: 'Minneapolis'
     active: true
   - id: 'Federal Reserve Bank of Minneapolis. Institute for Empirical Macroeconomics'
     term: 'Federal Reserve Bank of Minneapolis. Institute for Empirical Macroeconomics'
-    state: 'MN'
-    city: 'Minneapolis'
     active: true
   - id: 'Federal Reserve Bank of Minneapolis. Opportunity and Inclusive Growth Institute'
     term: 'Federal Reserve Bank of Minneapolis. Opportunity and Inclusive Growth Institute'
-    state: 'MN'
-    city: 'Minneapolis'
     active: true
   - id: 'Federal Reserve Bank of Minneapolis. Economic Analysis'
     term: 'Federal Reserve Bank of Minneapolis. Economic Analysis'
-    state: 'MN'
-    city: 'Minneapolis'
     active: true
   - id: 'Federal Reserve Bank of Minneapolis. Community Development'
     term: 'Federal Reserve Bank of Minneapolis. Community Development'
-    state: 'MN'
-    city: 'Minneapolis'
