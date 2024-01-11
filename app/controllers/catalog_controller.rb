@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   end
 
   def self.modified_field
-    solr_name('date_modified', :stored_sortable, type: :date)
+    solr_name('system_modified', :stored_sortable, type: :date)
   end
 
   configure_blacklight do |config|
@@ -268,14 +268,14 @@ class CatalogController < ApplicationController
     # First value in this list is the default sort order. Note that we are changing
     # the default sort oder in app/models/search_builder.rb so that the contents
     # of a collection will sort by issue number if there is no query string present.
-    config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
-    config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
     config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"
     config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
-    config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
-    config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
+    config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
+    config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
+    config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.

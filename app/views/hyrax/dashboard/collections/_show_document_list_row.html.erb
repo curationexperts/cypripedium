@@ -1,6 +1,6 @@
 <% id = document.id %>
 <tr id="document_<%= id %>">
-  <td class="col-md-1">&nbsp;
+  <td>&nbsp;
     <% if current_user and document.depositor != current_user.user_key %>
       <i class="glyphicon glyphicon-share-alt" />
     <% end %>
@@ -18,10 +18,10 @@
       </div>
     </div>
   </td>
-  <td class="text-center col-md-1"><%= document.issue_number.to_a.to_sentence %> </td>
-  <td class="text-center col-md-1"><%= document.date_created.to_a.to_sentence %> </td>
-  <td class="text-center col-md-1"><%= document.date_modified %> </td>
-  <td class="text-center col-md-1">
+  <td class="text-center"><%= document.issue_number.to_a.to_sentence %> </td>
+  <td class="text-center"><%= document.date_created.to_a.to_sentence %> </td>
+  <td class="text-center"><%= document.modified_date %> </td>
+  <td class="text-center">
     <%= render_visibility_link(document) %>
   </td>
 </tr>
