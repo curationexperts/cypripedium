@@ -133,11 +133,10 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    blacklight_range_limit (7.0.1)
-      blacklight
+    blacklight_range_limit (6.5.0)
+      blacklight (~> 6.10)
       jquery-rails
-      rails (>= 3.0)
-      tether-rails
+      rails (>= 4.2, < 6)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -156,9 +155,6 @@ GEM
       signet (~> 0.8)
       typhoeus
     builder (3.2.4)
-    bummr (0.5.0)
-      rainbow
-      thor
     byebug (11.1.3)
     cancancan (1.17.0)
     capistrano (3.18.0)
@@ -196,7 +192,6 @@ GEM
     chronic (0.10.2)
     clipboard-rails (1.7.1)
     cliver (0.3.2)
-    coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -215,9 +210,6 @@ GEM
     crass (1.0.6)
     database_cleaner (1.8.5)
     date (3.3.4)
-    debase (0.2.4.1)
-      debase-ruby_core_source (>= 0.10.2)
-    debase-ruby_core_source (0.10.17)
     declarative (0.0.20)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
@@ -575,10 +567,9 @@ GEM
       shex (~> 0.6, >= 0.6.4)
       sparql (~> 3.1, >= 3.1.8)
       sparql-client (~> 3.1, >= 3.1.2)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    listen (3.8.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.6.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -658,12 +649,6 @@ GEM
       websocket-driver (>= 0.2.0)
     posix-spawn (0.3.15)
     power_converter (0.1.2)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry-doc (1.1.0)
-      pry (~> 0.11)
-      yard (~> 0.9.11)
     psych (3.3.4)
     public_suffix (5.0.4)
     puma (6.4.2)
@@ -695,10 +680,6 @@ GEM
       railties (= 5.2.8.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-tether (1.1.1)
-    rails-controller-testing (1.0.5)
-      actionpack (>= 5.0.1.rc1)
-      actionview (>= 5.0.1.rc1)
-      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -861,11 +842,8 @@ GEM
       json
       multipart-post
       oauth2
-    ruby-debug-ide (0.7.3)
-      rake (>= 0.8.1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    ruby_dep (1.5.0)
     rubyzip (1.3.0)
     samvera-nesting_indexer (2.0.0)
       dry-equalizer
@@ -951,12 +929,6 @@ GEM
     sparql-client (3.2.2)
       net-http-persistent (~> 4.0, >= 4.0.2)
       rdf (~> 3.2, >= 3.2.11)
-    spring (2.1.0)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -985,8 +957,6 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     terser (1.1.11)
       execjs (>= 0.3.0, < 3)
-    tether-rails (1.4.0)
-      rails (>= 3.1)
     thor (1.3.0)
     thread_safe (0.3.6)
     tilt (2.3.0)
@@ -1062,10 +1032,9 @@ DEPENDENCIES
   bagit
   bcrypt_pbkdf (~> 1.1)
   bixby (~> 3.0)
-  blacklight_range_limit (~> 7.0.0)
+  blacklight_range_limit (~> 6)
   bootstrap-sass (~> 3.4.1)
   browse-everything
-  bummr
   byebug
   capistrano
   capistrano-bundler (~> 1.3)
@@ -1077,7 +1046,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   coveralls
   database_cleaner
-  debase (~> 0.2.4.1)
   devise
   devise-guests (~> 0.6)
   dotenv-rails
@@ -1090,17 +1058,14 @@ DEPENDENCIES
   hyrax (~> 3.6)
   jbuilder (~> 2.5)
   jquery-rails
-  listen (>= 3.0.5, < 3.2)
+  listen
   nokogiri (>= 1.8.2)
   parser
   pg
   poltergeist
-  pry
-  pry-doc
   puma
   rails (~> 5)
   rails-assets-tether
-  rails-controller-testing
   rainbow
   redcarpet
   redis (~> 4.1)
@@ -1108,18 +1073,14 @@ DEPENDENCIES
   rsolr (>= 1.0)
   rspec-rails
   rspec_junit_formatter
-  ruby-debug-ide
   rubyzip (~> 1.0)
   sass-rails (~> 5.0)
   sassc-rails (>= 2.1.0)
   selenium-webdriver
   sidekiq
   simple_form (>= 5.0.0)
-  solr_wrapper (>= 0.3)
+  solr_wrapper
   solrizer
-  spring
-  spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
   terser
   turbolinks (~> 5)
   tzinfo-data

@@ -64,10 +64,6 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.before :suite do
-    I18n.locale = I18n.default_locale = :en
-  end
-
   config.append_after do
     DatabaseCleaner.clean
   end
@@ -90,6 +86,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  config.include Devise::Test::ControllerHelpers, type: :controller
 end

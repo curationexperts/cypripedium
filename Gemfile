@@ -14,7 +14,7 @@ gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
-gem "blacklight_range_limit", '~>7.0.0'
+gem "blacklight_range_limit", '~>6'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browse-everything'
 gem 'capistrano'
@@ -57,27 +57,19 @@ gem 'whenever', require: false
 group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen'
   gem 'web-console', '~> 3.7'
   gem 'xray-rails'
   gem 'yard'
 end
 
 group :development, :test do
-  gem 'bummr'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
-  gem 'debase', '~> 0.2.4.1'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
-  gem 'ruby-debug-ide'
-  gem 'solr_wrapper', '>= 0.3'
-  gem 'spring-commands-rspec'
+  gem 'solr_wrapper'
 end
 
 group :test do
@@ -85,7 +77,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'poltergeist'
-  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end

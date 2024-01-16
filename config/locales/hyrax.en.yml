@@ -110,26 +110,8 @@ en:
     institution_name:       "Federal Reserve Bank of Minneapolis"
     institution_name_full:  "Federal Reserve Bank of Minneapolis Research Division"
     account_name:           "My Institution Account Id"
-    dashboard:
-      my:
-        heading:
-          date_published:  "Date Published"
-          date_modified: "Date Modified"
     directory:
       suffix:               "@example.org"
     footer:
       copyright_html: "<strong>Copyright &copy; 2022 Federal Reserve Bank of Minneapolis</strong>"
       service_html: A service of the <a href="https://www.minneapolisfed.org/economic-research" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.
-    toolbar:
-      profile:
-        updates: "Sign up for Updates"
-    user_collections:
-      dashboard:
-        list: "Manage User Email Notification"
-      index:
-        user_collections: User Collections
-        manage_user_collections: Manage User Collections
-    creators:
-      index:
-        manage_creators: Manage Creators
-        creators: Creators

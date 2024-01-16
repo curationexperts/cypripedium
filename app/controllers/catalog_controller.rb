@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   end
 
   def self.modified_field
-    solr_name('date_modified', :stored_sortable, type: :date)
+    solr_name('system_modified', :stored_sortable, type: :date)
   end
 
   configure_blacklight do |config|
@@ -66,13 +66,12 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("title_tesim", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable), label: "Creator"
     config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
-    config.add_index_field solr_name("issue_number", :stored_searchable), label: "Issue Number"
+    config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
+    config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
     config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'abstract', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable), label: "Subject (JEL)"
-    config.add_index_field solr_name("date_created", :stored_sortable), itemprop: 'dateCreated', label: "Date Published"
-    config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date, label: "Date Modified"
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name('title', :stored_searchable)
@@ -268,14 +267,15 @@ class CatalogController < ApplicationController
     # First value in this list is the default sort order. Note that we are changing
     # the default sort oder in app/models/search_builder.rb so that the contents
     # of a collection will sort by issue number if there is no query string present.
-    config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
-    config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
+    config.add_sort_field "score desc, #{modified_field} desc", label: "relevance"
     config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"
     config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
-    config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
-    config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
+    config.add_sort_field "title_ssi desc, score desc", label: "title \u25BC"
+    config.add_sort_field "date_created_ssi desc", label: "date published \u25BC"
+    config.add_sort_field "date_created_ssi asc", label: "date published \u25B2"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
