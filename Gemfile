@@ -46,7 +46,7 @@ gem 'rsolr', '>= 1.0'
 gem 'rubyzip', '~> 1.0', require: 'zip'
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '>= 2.1.0'
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
 gem 'terser'
