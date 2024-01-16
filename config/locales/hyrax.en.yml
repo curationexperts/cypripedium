@@ -100,11 +100,8 @@ en:
         creators: Creators
     base:
       citations:
-          citations: Citations
-          endnote: EndNote
-          header: 'Citation Tools'
-          mendeley: Mendeley
-          zotero: Zotero
+          disclaimer: 'Provided as a suggestion only. Please verify these automated citations against the guidelines of your preferred style.'
+          header: 'Sample Citation'
     product_name:           "Research Database"
     product_twitter_handle: "@MinneapolisFed"
     institution_name:       "Federal Reserve Bank of Minneapolis"
