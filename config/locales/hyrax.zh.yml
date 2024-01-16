@@ -45,6 +45,10 @@ zh:
           title_tesim: 标题
   hyrax:
     account_name: 我的机构帐户标识符
+    base:
+      citations:
+        disclaimer: '僅作為建議提供 請根據您喜歡的風格指南查看這些自動引用'
+        header: '引用樣本'
     directory:
       suffix: "@example.org"
     footer:

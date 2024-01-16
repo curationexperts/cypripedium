@@ -45,6 +45,10 @@ de:
           title_tesim: Titel
   hyrax:
     account_name: Meine Institution Konto-ID
+    base:
+      citations:
+        disclaimer: 'Nur als Vorschlag bereitgestellt. Bitte überprüfen Sie diese automatisierten Zitate anhand der Richtlinien Ihres bevorzugten Stils.'
+        header: 'Beispielzitat'
     directory:
       suffix: "@ Example.org"
     footer:

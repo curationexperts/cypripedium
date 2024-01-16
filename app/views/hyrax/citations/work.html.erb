@@ -1,14 +1,34 @@
-<h4>Citation Formats</h4>
+<div class="modal-header citation-header">
+  <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+    <span aria-hidden="true">&times;</span>
+  </button>
 
-<% if params[:output].nil? || params[:output].eql?("mla") %>
-  <h4>MLA</h4>
-  <span class="mla-citation"><%= export_as_mla_citation(@presenter) %></span>
-  <br /><br />
-<% end %>
+  <h3 class="modal-title show-header">
+    <small><span class="text-muted"><%= t('hyrax.base.citations.header') %></span></small>
+  </h3>
 
-<% if params[:output].nil? || params[:output].eql?("chicago") %>
-  <h4>Chicago</h4>
-  <span class="chicago-citation"><%= export_as_chicago_citation(@presenter) %></span>
-  <br /><br />
-<% end %>
+  <span><em><%= t('hyrax.base.citations.disclaimer') %></em></span>
+</div>
 
+<div class="modal-body">
+  <div class="chicago-citation">
+    <h4><%= t('blacklight.citation.chicago') %></h4>
+    <%= export_as_chicago_citation(@presenter) %>
+  </div>
+
+  <div class="mla-citation">
+    <h4><%= t('blacklight.citation.mla') %></h4>
+    <%= export_as_mla_citation(@presenter) %>
+  </div>
+
+  <div class="apa-citation">
+    <h4><%= t('blacklight.citation.apa') %></h4>
+    <%= export_as_apa_citation(@presenter) %>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" data-dismiss="modal">
+    <%= t('blacklight.modal.close') %>
+  </button>
+</div>
