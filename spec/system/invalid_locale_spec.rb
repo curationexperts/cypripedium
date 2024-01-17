@@ -3,9 +3,11 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Getting a friendly error for Invalid Locales', type: :system do
-  # The empty before block allows these tests to pass in CI
-  before do
+  after do
+    # Reset the locale after any tests that use an explicit locale
+    I18n.locale = I18n.default_locale
   end
+
   context 'visiting a locale that does not exist' do
     it 'has a 406 page' do
       visit('/?locale=pluto')
