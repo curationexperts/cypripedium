@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BagController < ApplicationController
-  before_action :set_locale
   ALLOWED_EXTENSIONS = ['zip', 'tar'].freeze
 
   def download

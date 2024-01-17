@@ -3,8 +3,11 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Getting a 404 for RecordNotFound', type: :system do
-  before do
+  after do
+    # Reset the locale after any tests that use an explicit locale
+    I18n.locale = I18n.default_locale
   end
+
   context 'visiting a work that does not exist' do
     it 'has a 404 page' do
       visit('/concern/works/s7526c41m?locale=pt-BR')
