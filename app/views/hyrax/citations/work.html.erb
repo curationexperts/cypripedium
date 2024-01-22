@@ -13,17 +13,17 @@
 <div class="modal-body">
   <div class="chicago-citation">
     <h4><%= t('blacklight.citation.chicago') %></h4>
-    <%= export_as_chicago_citation(@presenter) %>
-  </div>
-
-  <div class="mla-citation">
-    <h4><%= t('blacklight.citation.mla') %></h4>
-    <%= export_as_mla_citation(@presenter) %>
+    <%= @presenter.chicago_citation %>
   </div>
 
   <div class="apa-citation">
     <h4><%= t('blacklight.citation.apa') %></h4>
-    <%= export_as_apa_citation(@presenter) %>
+    <%= @presenter.apa_citation %>
+  </div>
+
+  <div class="mla-citation">
+    <h4><%= t('blacklight.citation.mla') %></h4>
+    <%= @presenter.mla_citation %>
   </div>
 </div>
 
