@@ -44,7 +44,8 @@ module Cypripedium
         URL: url,
         publisher: publisher&.first || 'Federal Reserve Bank of Minneapolis, Minneapolis, MN',
         # 'publisher-place': 'Minneapolis, MN',
-        issued: date_for_citation
+        # issued: date_for_citation, # Citation engine attempts to parse, fails on '2019 Winter'
+        status: date_for_citation # same position as issued, but engine uses raw string
       }.merge(type_specific_data)
     end
 
@@ -68,7 +69,7 @@ module Cypripedium
     def dataset_label
       return unless citation_type == 'dataset'
 
-      if issue_number || title.first.match(/additional file/i)
+      if issue_number || title.first&.match(/additional file/i)
         'Supporting Data'
       else
         'Research Database'
@@ -89,11 +90,18 @@ module Cypripedium
       "#{series_for_citation} conference"
     end
 
-    # creations date or deposit date if creation date is missing
+    # creation date (use deposit date if creation date is missing)
+    # Extracts year and season or month
+    # e.g. 2021-01-12  --> January 2021
+    #      2019 Winter --> Winter 2019
+    #      1968        --> 1968
     def date_for_citation
-      return Date.parse(date_uploaded).year if date_created.blank?
+      return solr_document.date_uploaded&.year || 'no date' if date_created.blank?
 
-      date_created.first.to_i
+      elements = date_created.first.match(/(?<year>\d{4})(-(?<month>\d{2})(-(?<day>\d{2}))?|\s*(?<season>[[:alpha:]]+))?/)
+      return [elements[:season], elements[:year]].join(' ') if elements[:season]
+      return [Date::MONTHNAMES[elements[:month].to_i], elements[:year]].join(' ') if elements[:month]
+      elements[:year]
     end
 
     # Return the doi or other uri when present,
