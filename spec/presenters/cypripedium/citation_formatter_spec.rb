@@ -35,6 +35,28 @@ RSpec.describe Cypripedium::CitationFormatter do
       expect(citation).to include 'Kocherlakota, Narayana Rao, Charles T. Carlstrom, Carlos Avenancio-León, F. Thomas Juster, Ping Wang, and Harold Linh Cole'
     end
 
+    it 'uses the upload date if no creation date is provided' do
+      solr_data.delete(:date_created_tesim)
+      solr_data[:date_uploaded_dtsi] = '2018-04-20T15:37:15Z'
+      expect(citation).to include('2018')
+    end
+
+    it 'supports season in creation date' do
+      solr_data[:date_created_tesim] = '1994 Winter'
+      expect(citation).to include('Winter 1994')
+    end
+
+    it 'converts months from numeric to alpha' do
+      solr_data[:date_created_tesim] = '1988-06'
+      expect(citation).to include('June 1988')
+    end
+
+    it 'displays "no date" if both date_created and dated_uploaded are empty' do
+      solr_data.delete(:date_created_tesim)
+      solr_data.delete(:date_uploaded_dtsi)
+      expect(citation).to include('no date')
+    end
+
     it 'provides the direct link if DOI does not exist' do
       solr_data.delete(:identifier_tesim)
       expect(citation).to include 'https://researchdatabase.minneapolisfed.org/concern/publications/br86b3634'
@@ -67,7 +89,9 @@ RSpec.describe Cypripedium::CitationFormatter do
       end
 
       it 'formats elements correctly' do
-        expect(citation).to eq 'McGrattan, Ellen R., and Edward C. Prescott. “Expensed and Sweat Equity.” Working Paper 636. Federal Reserve Bank of Minneapolis, 2005. https://doi.org/10.21034/wp.636.'
+        expect(citation).to eq 'McGrattan, Ellen R., and Edward C. Prescott. “Expensed and Sweat Equity.” '\
+                               'Working Paper 636. Federal Reserve Bank of Minneapolis, September 2005. '\
+                               'https://doi.org/10.21034/wp.636.'
       end
     end
 
@@ -107,7 +131,7 @@ RSpec.describe Cypripedium::CitationFormatter do
 
       it 'formats elements correctly' do
         expect(citation).to eq 'English, William B., and Harold Linh Cole. “Direct Investment: '\
-          'A Doubtful Alternative to International Debt.” <i>Quarterly Review</i> 16, no. 1 (1992). '\
+          'A Doubtful Alternative to International Debt.” <i>Quarterly Review</i> 16, no. 1 (Winter 1992). '\
           'https://doi.org/10.21034/qr.1612.'
       end
     end
@@ -140,7 +164,7 @@ RSpec.describe Cypripedium::CitationFormatter do
       it 'formats elements correctly' do
         expect(citation).to eq 'Ickes, Barry William, Shaghil Ahmed, Byung Sam Yoo, and Ping Wang. '\
             '“International Business Cycles.” Paper Presented at the International Perspectives on Debt, '\
-            'Growth, and Business Cycles Conference, Federal Reserve Bank of Minneapolis, Minneapolis, MN, 1989.'\
+            'Growth, and Business Cycles Conference, Federal Reserve Bank of Minneapolis, Minneapolis, MN, July 1989.'\
             ' https://researchdatabase.minneapolisfed.org/concern/conference_proceedings/ks65hc256.'
       end
     end
@@ -161,10 +185,6 @@ RSpec.describe Cypripedium::CitationFormatter do
 
       it 'lists independent datasets as belonging to the "Research Database"' do
         expect(citation).to include('Research Database')
-      end
-
-      it 'uses the upload date if no creation date is provided' do
-        expect(citation).to include('2018')
       end
 
       it 'identifies supporting data' do
