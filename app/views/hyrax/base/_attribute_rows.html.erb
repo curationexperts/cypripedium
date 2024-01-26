@@ -22,6 +22,6 @@
 <%= presenter.attribute_to_html(:temporal ) %>
 <%= presenter.attribute_to_html(:extent ) %>
 <%= presenter.attribute_to_html(:geographic_name ) %>
-<%= presenter.attribute_to_html(:bibliographic_citation, label: 'Bibliographic citation' ) %>
+<%= presenter.attribute_to_html(:bibliographic_citation, render_as: :markdown, label: 'Bibliographic citation' ) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :external_link ) %>
 <%= presenter.attribute_to_html(:rights ) %>

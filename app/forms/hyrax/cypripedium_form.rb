@@ -21,6 +21,7 @@ module Hyrax
       result[:related_url]&.map! { |related_url| RDF::Markdown::Literal.new(related_url) }
       result[:description]&.map! { |description| RDF::Markdown::Literal.new(description) }
       result[:abstract]&.map! { |abstract| RDF::Markdown::Literal.new(abstract) }
+      result[:bibliographic_citation]&.map! { |bibliographic_citation| RDF::Markdown::Literal.new(bibliographic_citation) }
       result
     end
 

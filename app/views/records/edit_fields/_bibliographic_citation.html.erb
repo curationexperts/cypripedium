@@ -1,0 +1,2 @@
+<% input_type = f.object.multiple?(key) ? :multi_value : :text %>
+<%= f.input :bibliographic_citation, as: input_type, input_html: { rows: '5', type: 'textarea'}, required: f.object.required?(key) %>
