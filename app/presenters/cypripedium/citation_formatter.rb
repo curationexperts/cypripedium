@@ -112,7 +112,12 @@ module Cypripedium
 
     # Return the canonical url for the item
     def fallback_url
-      Rails.application.routes.url_helpers.url_for([self, { host: request.base_url }])
+      Rails.application.routes.url_helpers.url_for([self, host_options])
+    end
+
+    # Extract the :host from the request if present, or set :only_path to true
+    def host_options
+      { host: request&.base_url, only_path: request&.base_url.nil? }
     end
 
     # Sanitize creator names

@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CypripediumWorkPresenter do
-  let(:presenter) { described_class.new(solr_document, nil, request) }
-  let(:request) { instance_double(ActionDispatch::Request, base_url: 'example.org') }
+  let(:presenter) { described_class.new(solr_document, nil) }
   let(:solr_document) { SolrDocument.new(id: '123', has_model_ssim: ['Publication']) }
 
   it_behaves_like 'a work presenter'

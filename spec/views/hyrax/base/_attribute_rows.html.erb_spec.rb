@@ -13,8 +13,7 @@ RSpec.describe 'hyrax/base/_attribute_rows.html.erb', type: :view do
     }
   end
   let(:solr_document) { SolrDocument.new(solr_data) }
-  let(:request) { instance_double(ActionDispatch::Request, base_url: 'https://researchdatabase.minneapolisfed.org') }
-  let(:presenter) { CypripediumWorkPresenter.new(solr_document, nil, request) }
+  let(:presenter) { CypripediumWorkPresenter.new(solr_document, nil) }
 
   let(:partial) do
     render 'hyrax/base/attribute_rows', presenter: presenter
