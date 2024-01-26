@@ -151,6 +151,14 @@ footer.site-footer a.navbar-link:hover {
   text-decoration: underline;
 }
 
+.form-tab-content ul.listing {
+  max-width: 80rem;
+}
+
+.form-tab-content select {
+  max-width: 70rem;
+}
+
 .form-tab-content .multi_value li.field-wrapper {
   width: 100%;
 
