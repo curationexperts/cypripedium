@@ -6,12 +6,12 @@ module Hyrax
     self.required_fields = [:title]
 
     def primary_terms
-      [:title, :series, :issue_number, :creator_id, :date_created, :keyword, :subject,
-       :abstract, :description, :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license]
+      [:title, :series, :issue_number, :creator_id, :date_created, :keyword, :subject, :abstract, :description,
+       :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license, :bibliographic_citation]
     end
 
     def secondary_terms
-      [:contributor, :rights_statement, :language, :source, :alternative_title, :bibliographic_citation,
+      [:contributor, :rights_statement, :language, :source, :alternative_title,
        :date_available, :extent, :has_part, :is_version_of, :has_version, :is_replaced_by, :replaces, :requires,
        :geographic_name, :temporal, :table_of_contents]
     end
