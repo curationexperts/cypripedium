@@ -2,14 +2,14 @@
 <%= presenter.attribute_to_html(:series, render_as: :linked, search_field: 'series_tesim' ) %>
 <%= presenter.attribute_to_html(:issue_number ) %>
 <%= presenter.attribute_to_html(:date_created, label: 'Date created' ) %>
-<%= presenter.attribute_to_html(:description, render_as: :description, label: "Description" ) %>
+<%= presenter.attribute_to_html(:description, render_as: :markdown, label: "Description" ) %>
 
 
-<%= presenter.attribute_to_html(:abstract, render_as: :abstract ) %>
+<%= presenter.attribute_to_html(:abstract, render_as: :markdown ) %>
 <%= presenter.attribute_to_html(:subject, render_as: :linked, search_field: 'subject_tesim', label: "Subject (JEL)" ) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:table_of_contents ) %>
-<%= presenter.attribute_to_html(:related_url, render_as: :related_url, label: 'Related information' ) %>
+<%= presenter.attribute_to_html(:related_url, render_as: :markdown, label: 'Related information' ) %>
 <%= presenter.attribute_to_html(:alternative_title ) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :linked, search_field: 'all_fields' ) %>
 <%= presenter.attribute_to_html(:date_available, label: 'Date available' ) %>
