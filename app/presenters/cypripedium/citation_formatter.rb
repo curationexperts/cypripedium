@@ -9,7 +9,7 @@ module Cypripedium
     end
 
     def chicago_citation
-      citation_for('chicago-fullnote-bibliography')
+      custom_citation || citation_for('chicago-fullnote-bibliography')
     end
 
     def mla_citation
@@ -23,6 +23,15 @@ module Cypripedium
     end
 
     private
+
+    # Render :bibliographic_citation using markdown
+    def custom_citation
+      return unless bibliographic_citation
+
+      renderer = Redcarpet::Render::HTML.new(escape_html: true)
+      markdown = Redcarpet::Markdown.new(renderer, autolink: true)
+      markdown.render(bibliographic_citation.join("\n\n")).html_safe # rubocop:disable Rails/OutputSafety
+    end
 
     # Return a CiteProc::Item constructed from the presenter metadata
     def item
@@ -112,7 +121,12 @@ module Cypripedium
 
     # Return the canonical url for the item
     def fallback_url
-      Rails.application.routes.url_helpers.url_for([self, { host: request.base_url }])
+      Rails.application.routes.url_helpers.url_for([self, host_options])
+    end
+
+    # Extract the :host from the request if present, or set :only_path to true
+    def host_options
+      { host: request&.base_url, only_path: request&.base_url.nil? }
     end
 
     # Sanitize creator names

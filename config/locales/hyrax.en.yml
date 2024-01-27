@@ -68,11 +68,12 @@ en:
     hints:
       defaults:
          related_url: Enter published in or other related information here. This is a markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
-         description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
-         abstract: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         description: <a href="https://commonmark.org/help/">Markdown enabled</a> field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         abstract: <a href="https://commonmark.org/help/">Markdown enabled</a> field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         bibliographic_citation: <a href="https://commonmark.org/help/">Markdown enabled</a> field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.<br>Replaces the automated Chicago citation if present.
          date_created: YYYY-MM-DD
       collection:
-         description: Markdown enabled field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
+         description: <a href="https://commonmark.org/help/">Markdown enabled</a> field field. This link contains <a href="https://daringfireball.net/projects/markdown/syntax#link">Markdown link instructions</a>. You can also use HTML, and if you enter a URL by itself it will be automatically linked.
     labels:
       defaults:
         description: Description

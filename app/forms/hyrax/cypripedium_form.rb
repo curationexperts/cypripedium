@@ -6,12 +6,12 @@ module Hyrax
     self.required_fields = [:title]
 
     def primary_terms
-      [:title, :series, :issue_number, :creator_id, :date_created, :keyword, :subject,
-       :abstract, :description, :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license]
+      [:title, :series, :issue_number, :creator_id, :date_created, :keyword, :subject, :abstract, :description,
+       :identifier, :related_url, :corporate_name, :publisher, :resource_type, :license, :bibliographic_citation]
     end
 
     def secondary_terms
-      [:contributor, :rights_statement, :language, :source, :alternative_title, :bibliographic_citation,
+      [:contributor, :rights_statement, :language, :source, :alternative_title,
        :date_available, :extent, :has_part, :is_version_of, :has_version, :is_replaced_by, :replaces, :requires,
        :geographic_name, :temporal, :table_of_contents]
     end
@@ -21,6 +21,7 @@ module Hyrax
       result[:related_url]&.map! { |related_url| RDF::Markdown::Literal.new(related_url) }
       result[:description]&.map! { |description| RDF::Markdown::Literal.new(description) }
       result[:abstract]&.map! { |abstract| RDF::Markdown::Literal.new(abstract) }
+      result[:bibliographic_citation]&.map! { |bibliographic_citation| RDF::Markdown::Literal.new(bibliographic_citation) }
       result
     end
 
