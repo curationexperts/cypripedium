@@ -17,7 +17,7 @@ class SearchBuilder < Blacklight::SearchBuilder
   # the sort order.
   def sort_by_issue_number_when_no_query(solr_parameters)
     return unless @blacklight_params[:controller] == "hyrax/collections"
-    issue_number_sort = "issue_number_ssi desc, system_modified_dtsi desc"
+    issue_number_sort = "volume_number_isi desc, issue_number_isi desc, system_create_dtsi desc"
     solr_parameters["sort"] = issue_number_sort if @blacklight_params[:q].nil? && @blacklight_params[:sort].nil?
   end
 
