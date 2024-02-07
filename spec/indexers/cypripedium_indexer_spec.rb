@@ -10,6 +10,7 @@ RSpec.describe CypripediumIndexer, clean: true do
   let(:conference_proceeding) { ConferenceProceeding.new(attrs) }
   let(:data_doc) { data_indexer.generate_solr_document }
   let(:conf_doc) { conf_indexer.generate_solr_document }
+  let(:attrs) { {} }
 
   describe '#generate_solr_document' do
     context "with Creators from the authority records" do
@@ -91,9 +92,22 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'Kehoe, Patrick J.', 'Kehoe, Timothy J.']
       end
     end
+
+    context 'with issue numbers' do
+      let(:solr_doc) { pub_indexer.generate_solr_document }
+      let(:attrs) { { issue_number: ['vol.14 no.12'] } }
+
+      it 'indexes volume as a sortable integer' do
+        expect(solr_doc['volume_number_isi']).to eq 14
+      end
+
+      it 'indexes issue as a sortable integer' do
+        expect(solr_doc['issue_number_isi']).to eq 12
+      end
+    end
   end
 
-  describe "#extract_year" do
+  describe '#extract_year_from_date_created' do
     let(:extracted_year) { pub_indexer.extract_year_from_date_created }
     let(:attrs) { { date_created: date_created } }
     context "returns a 4 digit extracted_year" do
@@ -161,6 +175,45 @@ RSpec.describe CypripediumIndexer, clean: true do
         let(:date_created) { ["590 A.D."] }
         example { expect(extracted_year).to eq nil }
       end
+    end
+  end
+
+  describe '#parse_issue_number' do
+    let(:volume_issue) { pub_indexer.parsed_issue.named_captures }
+
+    it 'extracts the volume and issue numbers' do
+      attrs[:issue_number] = ['vol.20 no.11']
+      expect(volume_issue).to include('volume' => '20', 'issue' => '11')
+    end
+
+    it 'handles bare issue numbers' do
+      attrs[:issue_number] = ['508']
+      expect(volume_issue).to include('volume' => nil, 'issue' => '508')
+    end
+
+    it 'handles alternate punctuation and capitalization' do
+      attrs[:issue_number] = ['Vol. 26, No. 4']
+      expect(volume_issue).to include('volume' => '26', 'issue' => '4')
+    end
+
+    it 'handles issue suffixes' do
+      attrs[:issue_number] = ['no. 54A']
+      expect(volume_issue).to include('volume' => nil, 'issue' => '54')
+    end
+
+    it 'handles oddly formatted numbers' do
+      attrs[:issue_number] = ['2007-2']
+      expect(volume_issue).to include('volume' => '2007', 'issue' => '2')
+    end
+
+    it 'handles non-numeric data gracefully' do
+      attrs[:issue_number] = ['Vol. XVI']
+      expect(volume_issue).to include('volume' => nil, 'issue' => nil)
+    end
+
+    it 'handles empty values gracefully' do
+      attrs[:issue_number] = nil
+      expect(volume_issue).to include('volume' => nil, 'issue' => nil)
     end
   end
 end
