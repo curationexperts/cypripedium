@@ -10,6 +10,8 @@ module IndexesMetadata
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort
       solr_doc['creator_sim'] = creator_names(object)
       solr_doc['creator_id_ssim'] = creator_numerical_ids(object) if creator_numerical_ids(object)
+      solr_doc['volume_number_isi'] = volume_no
+      solr_doc['issue_number_isi'] = issue_no
     end
   end
 
@@ -49,5 +51,36 @@ module IndexesMetadata
   def extract_year_from_date_created
     year = object.date_created.first&.match(/\d{4}/)
     year.to_s.to_i if year
+  end
+
+  # Convert issue portion of `issue_number` to an Integer
+  # returns nil for non-integer and nil values
+  def issue_no
+    Integer(parsed_issue[:issue], exception: false)
+  end
+
+  # Convert volume portion of `issue_number` to an Integer
+  # returns nil for non-integer and nil values
+  def volume_no
+    Integer(parsed_issue[:volume], exception: false)
+  end
+
+  # Extract issue and volume numbers from the `issue_number` field
+  # and returns a hash-like MatchData object
+  # Examples from live data
+  #   '006'             --> {volume: nil, issue: '006'}
+  #   '130'             --> {volume: nil, issue: '130'}
+  #   'Vol. 9, No. 1'   --> {volume: '9', issue: '1'}
+  #   'Volume 32, No. 1'    etc.
+  #   '203_1'
+  #   'vol.6 no.236'
+  #   'no. 70'
+  #   'no.115'
+  #   'no. 54A'
+  #   'Vol. XIX'        --> {volume: nil, issue: nil} - i.e. return nil for non-numeric data
+  def parsed_issue
+    # prefixing with known text ensures we always return matchdata and don't have to deal with nil cases
+    issue_string = "text: #{object.issue_number.first}"
+    issue_string.match(/(?<anchor>text)[^\d]+(((?<volume>\d+)[^\d]+)?(?<issue>\d+))?/i)
   end
 end

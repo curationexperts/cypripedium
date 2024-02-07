@@ -268,8 +268,8 @@ class CatalogController < ApplicationController
     # the default sort oder in app/models/search_builder.rb so that the contents
     # of a collection will sort by issue number if there is no query string present.
     config.add_sort_field "score desc, #{modified_field} desc", label: "relevance"
-    config.add_sort_field "issue_number_ssi desc", label: "issue number \u25BC"
-    config.add_sort_field "issue_number_ssi asc", label: "issue number \u25B2"
+    config.add_sort_field "volume_number_isi desc, issue_number_isi desc, system_create_dtsi desc", label: "issue number \u25BC"
+    config.add_sort_field "volume_number_isi asc, issue_number_isi asc, system_create_dtsi asc", label: "issue number \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
     config.add_sort_field "title_ssi asc, score desc", label: "title \u25B2"
