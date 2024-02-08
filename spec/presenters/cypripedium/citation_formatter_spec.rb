@@ -69,7 +69,7 @@ RSpec.describe Cypripedium::CitationFormatter do
           "has_model_ssim": ["Publication"],
           "id": "br86b3634",
           "series_tesim": ["Working paper (Federal Reserve Bank of Minneapolis. Research Department)"],
-          "issue_number_tesim": ["636"],
+          "issue_number_isi": 636,
           "title_tesim": ["Expensed and Sweat Equity"],
           "resource_type_tesim": ["Research Paper"],
           "creator_tesim": ["McGrattan, Ellen R.",
@@ -102,7 +102,8 @@ RSpec.describe Cypripedium::CitationFormatter do
           "has_model_ssim": ["Publication"],
           "id": "12579s459",
           "series_tesim": ["Quarterly review (Federal Reserve Bank of Minneapolis. Research Department)"],
-          "issue_number_tesim": ["Vol. 16, No. 1"],
+          "volume_number_isi": 16,
+          "issue_number_isi": 1,
           "title_tesim": ["Direct Investment: A Doubtful Alternative to International Debt"],
           "resource_type_tesim": ["Article"],
           "creator_tesim": ["English, William B. (William Berkeley), 1960-",
@@ -189,7 +190,7 @@ RSpec.describe Cypripedium::CitationFormatter do
 
       it 'identifies supporting data' do
         solr_data["series_tesim"] = ["Staff report (Federal Reserve Bank of Minneapolis. Research Department)"]
-        solr_data["issue_number_tesim"] = ["396"]
+        solr_data["issue_number_isi"] = 396
         expect(citation).to include('Supporting Data. Staff Report 396')
       end
 
