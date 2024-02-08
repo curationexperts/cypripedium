@@ -30,6 +30,17 @@ class SolrDocument
     self['alpha_creator_tesim']
   end
 
+  # Issue number as a scalar integer
+  # Note: the `issue_number` field holds both the volume and issue number concatenated as text
+  def issue_num
+    self['issue_number_isi']
+  end
+
+  # Volume number as a scalar integer
+  def volume_num
+    self['volume_number_isi']
+  end
+
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)

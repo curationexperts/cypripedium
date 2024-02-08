@@ -48,8 +48,8 @@ module Cypripedium
         type: citation_type,
         title: title&.first,
         author: creators_for_citation,
-        volume: volume_number_for_citation,
-        issue: issue_number_for_citation,
+        volume: volume_num,
+        issue: issue_num,
         URL: url,
         publisher: publisher&.first || 'Federal Reserve Bank of Minneapolis, Minneapolis, MN',
         # 'publisher-place': 'Minneapolis, MN',
@@ -68,7 +68,7 @@ module Cypripedium
           'publisher' => nil } # publisher is inlcuded in comma separated sponsor info in conference details instead
       when 'manuscript', 'dataset'
         { 'collection-title' => [dataset_label, series_for_citation].compact.join('. '),
-          'collection-number' => issue_number&.first }
+          'collection-number' => issue_num }
       else
         {} # always return a hash
       end
@@ -78,7 +78,7 @@ module Cypripedium
     def dataset_label
       return unless citation_type == 'dataset'
 
-      if issue_number || title.first&.match(/additional file/i)
+      if issue_num || title.first&.match(/additional file/i)
         'Supporting Data'
       else
         'Research Database'
@@ -142,30 +142,6 @@ module Cypripedium
     # Use the beginning of the series name up to the first parenthesis
     def series_for_citation
       series&.first&.split(' (')&.first
-    end
-
-    def issue_number_for_citation
-      parse_issue_and_volume[:issue]
-    end
-
-    def volume_number_for_citation
-      parse_issue_and_volume[:volume]
-    end
-
-    # extract alpha-numeric issue and volume number from issue field
-    # sample data can appear as
-    #   Vol. 16, No. 1
-    #   vol.10 no.36
-    #   no. 41
-    #   no.93
-    #   130
-    #   081
-    #   "vol.8 no.59 "
-    #   no. 54A
-    def parse_issue_and_volume
-      return { issue: nil, volume: nil } unless issue_number
-
-      @parse_issue_and_volume ||= issue_number.first.match(/^(v(ol)?\.?\s*(?<volume>\w+),?\s*)?(no\.?)?\s*(?<issue>\w+)/i)
     end
   end
 end
