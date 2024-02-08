@@ -176,7 +176,10 @@ end
 # see https://github.com/heartcombo/simple_form/blob/8f77f598b32ed11b0d56c44481607a6e911bcecb/lib/simple_form/form_builder.rb#L676
 # issue reported on https://github.com/heartcombo/simple_form/commit/ff3903fe9346199e39538a39ea4e5a5694e31541
 # Temporary work-around: explicitly reference class names for any custom input classes here:
-MultiValueInput
-ControlledVocabularyInput
-MultiValueSelectInput
-MultifileInput
+ActiveSupport::Reloader.to_prepare do
+  # Ensure custom inputs are loaded at startup and anytime code is reloaded
+  MultiValueInput
+  ControlledVocabularyInput
+  MultiValueSelectInput
+  MultifileInput
+end
