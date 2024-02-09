@@ -55,14 +55,19 @@ module IndexesMetadata
 
   # Convert issue portion of `issue_number` to an Integer
   # returns nil for non-integer and nil values
+  # Note: force base 10 conversion to correctly handle leading 0's
+  # "060" --> 60 (base 10)
+  # instead of
+  # "060" --> 48 (base 8, octal)
   def issue_no
-    Integer(parsed_issue[:issue], exception: false)
+    Integer(parsed_issue[:issue], 10, exception: false)
   end
 
   # Convert volume portion of `issue_number` to an Integer
   # returns nil for non-integer and nil values
+  # Note: force base 10 conversion to correctly handle leading 0's
   def volume_no
-    Integer(parsed_issue[:volume], exception: false)
+    Integer(parsed_issue[:volume], 10, exception: false)
   end
 
   # Extract issue and volume numbers from the `issue_number` field

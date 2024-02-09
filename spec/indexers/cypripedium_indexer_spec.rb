@@ -104,6 +104,18 @@ RSpec.describe CypripediumIndexer, clean: true do
       it 'indexes issue as a sortable integer' do
         expect(solr_doc['issue_number_isi']).to eq 12
       end
+
+      # Ruby interprets a leading 0 indicates as an octal number by default
+      # see https://docs.ruby-lang.org/en/2.0.0/syntax/literals_rdoc.html#top
+      # This test ensures we handle that correctly, so
+      # "060" --> 60 (base 10)
+      # instead of
+      # "060" --> 48 (base 8, octal)
+      it 'ignores leading zeroes', :aggregate_failures do
+        attrs[:issue_number] = ["Vol. 010, No. 060"]
+        expect(solr_doc['volume_number_isi']).to eq 10
+        expect(solr_doc['issue_number_isi']).to eq 60
+      end
     end
   end
 
