@@ -16,15 +16,19 @@
     <%= @presenter.chicago_citation %>
   </div>
 
-  <div class="apa-citation">
-    <h4><%= t('blacklight.citation.apa') %></h4>
-    <%= @presenter.apa_citation %>
-  </div>
+  <% if Flipflop.apa_citation?%>
+    <div class="apa-citation">
+      <h4><%= t('blacklight.citation.apa') %></h4>
+      <%= @presenter.apa_citation %>
+    </div>
+  <% end %>
 
-  <div class="mla-citation">
-    <h4><%= t('blacklight.citation.mla') %></h4>
-    <%= @presenter.mla_citation %>
-  </div>
+  <% if Flipflop.mla_citation?%>
+    <div class="mla-citation">
+      <h4><%= t('blacklight.citation.mla') %></h4>
+      <%= @presenter.mla_citation %>
+    </div>
+  <% end %>
 </div>
 
 <div class="modal-footer">
