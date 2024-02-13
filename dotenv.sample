@@ -1,3 +1,4 @@
-DATABASE_USERNAME=cypripedium
-DATABASE_PASSWORD=
+# Default host for URIs produced by the graph exporter
 RDF_URI="http://localhost:3000"
+# Disables nesting indexer and determines collection membership via Solr queries
+HYRAX_USE_SOLR_GRAPH_NESTING=true
