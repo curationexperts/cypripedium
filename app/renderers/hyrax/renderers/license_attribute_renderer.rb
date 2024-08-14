@@ -19,7 +19,7 @@ module Hyrax
         license_html = if parsed_uri.nil?
                          ERB::Util.h(value)
                        else
-                         %(<a href=#{ERB::Util.h(value)} target="_blank">#{Hyrax.config.license_service_class.new.label(value)}</a>)
+                         %(<a href=#{ERB::Util.h(value)}>#{Hyrax.config.license_service_class.new.label(value)}</a>)
                        end
         if microdata_value_attributes(field).present?
           "<span#{html_attributes(microdata_value_attributes(field))}>#{license_html}</span>"

@@ -53,7 +53,7 @@ de:
       suffix: "@ Example.org"
     footer:
       copyright_html: "<strong>Copyright &copy; 2018 Federal Reserve Bank of Minneapolis</strong>"
-      service_html: Ein Dienst von <a href="https://research.minneapolisfed.org" class="navbar-link" target="_blank">Federal Reserve Bank of Minneapolis Research Division</a>.
+      service_html: Ein Dienst von <a href="https://research.minneapolisfed.org" class="navbar-link">Federal Reserve Bank of Minneapolis Research Division</a>.
     institution_name: Federal Reserve Bank of Minneapolis
     institution_name_full: Federal Reserve Bank of Minneapolis Research Division
     product_name: Research Database
