@@ -51,6 +51,7 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'sidekiq', '< 7'
 gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
+gem 'strscan', '1.0.3' # match version installed on server as system gem
 gem 'terser'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
