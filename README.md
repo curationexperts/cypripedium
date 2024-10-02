@@ -4,7 +4,8 @@
 
 The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br>
 <br>
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/curationexperts/cypripedium/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/curationexperts/cypripedium/tree/main) [![Coverage Status](https://coveralls.io/repos/github/MPLSFedResearch/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/MPLSFedResearch/cypripedium?branch=main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/curationexperts/cypripedium/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/curationexperts/cypripedium/tree/main)  
+[![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/cypripedium?branch=main)
 
 ## BagIt Functionality
 
