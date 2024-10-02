@@ -64,6 +64,9 @@ jobs:
 
             - samvera/parallel_rspec
 
+            - coveralls/upload:
+                  path_to_lcov: ./coverage/lcov/project.lcov
+
 workflows:
     version: 2
     ci:

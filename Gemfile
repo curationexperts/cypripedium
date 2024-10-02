@@ -70,16 +70,17 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
   gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
-  gem 'rspec_junit_formatter'
   gem 'solr_wrapper'
 end
 
 group :test do
-  gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'poltergeist'
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
   gem 'webdrivers'
 end
