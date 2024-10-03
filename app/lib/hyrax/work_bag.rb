@@ -4,7 +4,7 @@ require 'find'
 
 module Hyrax
   class WorkBag
-    attr_reader :bag_path, :bag, :work_id
+    attr_reader :bag_path, :bag, :work_id, :time_stamp
 
     # @param work_id [Array<String>]
     # @param time_stamp [String]

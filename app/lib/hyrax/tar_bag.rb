@@ -3,11 +3,8 @@ require 'rubygems/package'
 
 module Hyrax
   class TarBag < WorkBag
-    attr_reader :tar, :mode, :size, :file, :relative_path
-    BLOCK_SIZE = 102_400_0
-
     def compress
-      tar_file = "#{@bag_path}.tar"
+      tar_file = "#{bag_path}.tar"
       File.open tar_file, 'wb' do |open_tar_file|
         write_tar(open_tar_file)
       end
@@ -15,23 +12,22 @@ module Hyrax
 
     private
 
-    def file_metadata
-      @mode = File.stat(@file).mode
-      @size = File.stat(@file).size
-      @relative_path = @file.sub @bag_path.to_s, "#{Rails.application.config.bag_prefix}_#{@time_stamp}"
+    def relative_path(file)
+      file.sub bag_path, "#{Rails.application.config.bag_prefix}_#{time_stamp}"
     end
 
-    def write_dir_or_file
-      if File.directory? @file
-        tar.mkdir @relative_path, @mode
+    def write_dir_or_file(tar, file)
+      if File.directory? file
+        tar.mkdir relative_path(file), 0o755
       else
-        write_internal_file
+        write_internal_file(tar, file)
       end
     end
 
-    def write_internal_file
-      tar.add_file_simple @relative_path, @mode, @size do |tar_io|
-        File.open @file, 'rb' do |rio|
+    BLOCK_SIZE = 102_400_0
+    def write_internal_file(tar, file)
+      tar.add_file relative_path(file), 0o755 do |tar_io|
+        File.open file, 'rb' do |rio|
           while (buffer = rio.read(BLOCK_SIZE))
             tar_io.write buffer
           end
@@ -40,13 +36,9 @@ module Hyrax
     end
 
     def write_tar(open_tar_file)
-      src = @bag_path.to_s
       Gem::Package::TarWriter.new open_tar_file do |tar|
-        @tar = tar
-        ::Find.find *src do |file|
-          @file = file
-          file_metadata
-          write_dir_or_file
+        ::Find.find bag_path do |file|
+          write_dir_or_file(tar, file)
         end
       end
     end

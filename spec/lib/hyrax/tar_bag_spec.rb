@@ -30,9 +30,35 @@ RSpec.describe Hyrax::TarBag, type: :model do
     end
 
     context 'a work file attached files' do
-      it 'creates a bag from the works' do
+      let(:expected_files) {
+        [
+          "mpls_fed_research_109092",
+          "mpls_fed_research_109092/bag-info.txt",
+          "mpls_fed_research_109092/bagit.txt",
+          "mpls_fed_research_109092/data",
+          %r{mpls_fed_research_109092/data/\w{9}},
+          %r{mpls_fed_research_109092/data/\w{9}/\w{9}\.xml},
+          %r{mpls_fed_research_109092/data/\w{9}/pdf-sample.pdf},
+          %r{mpls_fed_research_109092/data/\w{9}/sir_mordred.jpg},
+          "mpls_fed_research_109092/manifest-sha256.txt",
+          "mpls_fed_research_109092/tagmanifest-md5.txt",
+          "mpls_fed_research_109092/tagmanifest-sha1.txt"
+        ]
+      }
+
+      it 'creates a bag from the works', :aggregate_failures do
         work_bag.create
-        expect(File.exist?("#{work_bag.bag_path}.tar"))
+
+        # Get the entries in the tar bag
+        entries = []
+        File.open("#{work_bag.bag_path}.tar") do |io|
+          Gem::Package::TarReader.new(io) do |tar|
+            entries = tar.map(&:full_name)
+          end
+        end
+
+        expect(entries.length).to eq 15
+        expect(entries).to include(*expected_files)
       end
     end
   end
