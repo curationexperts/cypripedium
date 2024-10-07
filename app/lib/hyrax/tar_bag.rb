@@ -24,13 +24,10 @@ module Hyrax
       end
     end
 
-    BLOCK_SIZE = 102_400_0
     def write_internal_file(tar, file)
-      tar.add_file relative_path(file), 0o755 do |tar_io|
-        File.open file, 'rb' do |rio|
-          while (buffer = rio.read(BLOCK_SIZE))
-            tar_io.write buffer
-          end
+      tar.add_file(relative_path(file), 0o755) do |dest_tar|
+        File.open file, 'rb' do |src_file|
+          IO.copy_stream(src_file, dest_tar)
         end
       end
     end
