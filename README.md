@@ -6,6 +6,9 @@ The Research Database is a digital repository designed for public discovery of t
 <br>
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/curationexperts/cypripedium/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/curationexperts/cypripedium/tree/main)  
 [![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/cypripedium?branch=main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a879e476e0002fca69ff/maintainability)](https://codeclimate.com/github/curationexperts/cypripedium/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a879e476e0002fca69ff/test_coverage)](https://codeclimate.com/github/curationexperts/cypripedium/test_coverage)
+
 
 ## BagIt Functionality
 

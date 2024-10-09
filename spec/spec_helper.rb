@@ -18,10 +18,12 @@
 if ENV['COVERAGE'] || ENV['CI']
   require 'simplecov'
   require 'simplecov-lcov'
+  require "simplecov_json_formatter"
   SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
   SimpleCov.formatter =
     SimpleCov::Formatter::MultiFormatter.new([
                                                SimpleCov::Formatter::HTMLFormatter,
+                                               SimpleCov::Formatter::JSONFormatter,
                                                SimpleCov::Formatter::LcovFormatter
                                              ])
 
