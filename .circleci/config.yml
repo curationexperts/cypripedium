@@ -29,9 +29,16 @@ jobs:
             ruby_version: << parameters.ruby_version >>
             solr_version: 8.11.1
         working_directory: ~/project
-        parallelism: 2
+
         steps:
             - checkout
+
+            - run:
+                name: Setup Code Climate test-reporter
+                command: |
+                    # download test reporter as a static binary
+                    curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+                    chmod +x ./cc-test-reporter
 
             - browser-tools/install-chrome
             - browser-tools/install-chromedriver
@@ -62,10 +69,14 @@ jobs:
 
             - samvera/install_solr_core
 
+            - run: ./cc-test-reporter before-build
+
             - samvera/parallel_rspec
 
             - coveralls/upload:
                   path_to_lcov: ./coverage/lcov/project.lcov
+
+            - run: ./cc-test-reporter after-build --coverage-input-type simplecov
 
 workflows:
     version: 2
