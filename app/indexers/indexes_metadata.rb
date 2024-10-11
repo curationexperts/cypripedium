@@ -7,7 +7,7 @@ module IndexesMetadata
       solr_doc['date_created_ssi'] = object.date_created.first
       solr_doc['date_created_iti'] = extract_year_from_date_created
       solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
-      solr_doc['alpha_creator_tesim'] = creator_names(object).sort
+      solr_doc['alpha_creator_tesim'] = creator_names(object).sort_by(&:downcase)
       solr_doc['creator_sim'] = creator_names(object)
       solr_doc['creator_id_ssim'] = creator_numerical_ids(object) if creator_numerical_ids(object)
       solr_doc['volume_number_isi'] = volume_no
