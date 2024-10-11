@@ -16,14 +16,14 @@ RSpec.describe CypripediumIndexer, clean: true do
     context "with Creators from the authority records" do
       let(:solr_doc) { pub_indexer.generate_solr_document }
 
-      let(:creator_one) { FactoryBot.create(:creator, display_name: 'Kehoe, Patrick J.') }
+      let(:creator_one) { FactoryBot.create(:creator, display_name: 'kehoe, Patrick J.') }
       let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
       let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
 
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04-30'],
-          # creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
+          # creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
           creator_id: [creator_one.id, creator_two.id, creator_three.id] }
       }
       it 'indexes a sortable title and date created' do
@@ -38,17 +38,19 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_id_array).to include creator_two.id.to_s
         expect(creator_id_array).to include creator_three.id.to_s
         creator_array = solr_doc['creator_tesim']
-        expect(creator_array).to include 'Kehoe, Patrick J.'
+        expect(creator_array).to include 'kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
         expect(creator_array).to include 'Kehoe, Timothy J.'
       end
       it 'indexes the creator names in alphabetical order' do
-        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'Kehoe, Patrick J.', 'Kehoe, Timothy J.']
+        # updated to be case insensitive for abbreviations - i.e. Anon. = anon.
+        # and non-european names
+        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J.']
       end
       it 'indexes for the facet' do
-        expect(solr_doc['creator_sim']).to match_array(["Kehoe, Timothy J.", "Backus, David", "Kehoe, Patrick J."])
+        expect(solr_doc['creator_sim']).to match_array(["Kehoe, Timothy J.", "Backus, David", "kehoe, Patrick J."])
       end
       it 'indexes a dataset' do
         expect(data_doc['title_ssi']).to eq 'My Title'
@@ -58,7 +60,7 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_id_array).to include creator_two.id.to_s
         expect(creator_id_array).to include creator_three.id.to_s
         creator_array = data_doc['creator_tesim']
-        expect(creator_array).to include 'Kehoe, Patrick J.'
+        expect(creator_array).to include 'kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
@@ -72,7 +74,7 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_id_array).to include creator_two.id.to_s
         expect(creator_id_array).to include creator_three.id.to_s
         creator_array = conf_doc['creator_tesim']
-        expect(creator_array).to include 'Kehoe, Patrick J.'
+        expect(creator_array).to include 'kehoe, Patrick J.'
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
@@ -86,10 +88,10 @@ RSpec.describe CypripediumIndexer, clean: true do
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04-30'],
-          creator: ['Kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'] }
+          creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'] }
       }
       it 'indexes the creator names in alphabetical order' do
-        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'Kehoe, Patrick J.', 'Kehoe, Timothy J.']
+        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J.']
       end
     end
 
