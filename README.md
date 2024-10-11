@@ -3,11 +3,11 @@
 ![Research Database Logo](app/assets/images/rdlogo.png)
 
 The Research Database is a digital repository designed for public discovery of the research conducted by economists affiliated with the Federal Reserve Bank of Minneapolis Research Division. Publications, data, and conference proceedings constitute the majority of materials. The Research Database uses open source software, [Hyrax](https://github.com/samvera/hyrax), developed by the [Samvera](https://github.com/samvera) community.<br>
-<br>
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/curationexperts/cypripedium/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/curationexperts/cypripedium/tree/main)  
-[![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/cypripedium?branch=main)
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/curationexperts/cypripedium/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/curationexperts/cypripedium/tree/main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a879e476e0002fca69ff/maintainability)](https://codeclimate.com/github/curationexperts/cypripedium/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a879e476e0002fca69ff/test_coverage)](https://codeclimate.com/github/curationexperts/cypripedium/test_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/cypripedium?branch=main)
 
 
 ## BagIt Functionality
@@ -22,6 +22,7 @@ The bag will be located in the directory set by the `ENV['BAG_PATH']` environmen
 
 To download a bag that has been created you can visit the route: `/bag/mpls_fed_research_<time-stamp>.tar`.
 
+
 ## Local Development with Docker
 
 Using docker is the most straightforward way of setting up a local development environment.
@@ -35,6 +36,7 @@ Using docker is the most straightforward way of setting up a local development e
   3. <http://localhost:8080/rest/> (dev and test instance of fedora)
   4. <http://localhost:3000/> (Your locally running rails application)
 
+
 ### Running the tests
 
 The best way to know that your local development environment is running as expected is to run the automated test suite:
@@ -42,6 +44,7 @@ The best way to know that your local development environment is running as expec
 1. In a new terminal window, navigate to your code base
 2. Connect to your running rails container: `docker-compose exec web bash`
 3. Run the test suite: `bundle exec rspec spec`
+
 
 ## Local Development without Docker
 
@@ -84,18 +87,10 @@ Whether you use docker or not, there are a few steps necessary to let you intera
 
 4. In the brower session, log in as the admin user you just created.
 
+
 ## Capistrano deployment
 
-There are currently 2 environments for cypripedium: the legacy ec2 installation & and the future SSM environment.
-
-
-To deploy to the legacy environment, the following command will continue to work
-
-```
-cap <environmentname> deploy
-```
-
-To deploy to the new SSM environment, you must have a configured .aws/credentials file, with a profile named "frbm-ssm".
+To deploy to the SSM environment, you must have a configured .aws/credentials file, with a profile named "frbm-ssm".
 
 After this is in place, 
 
@@ -109,10 +104,10 @@ hosts (SSM does not use ip addresses or the like), based on the value of the ```
 For instance, a host with the tags Environment=stage and Project=rdb will be the target of 
 
 ```
-host_env=stage bundle exec cap ssm deploy
+HOST_ENV=prod bundle exec cap ssm deploy
 ```
 
-The system defaults host_env to "prod"
+Capistrano defaults to "stage" if HOST_ENV is not set.
 
 
 ## Ansible
