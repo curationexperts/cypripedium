@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   rescue_from I18n::InvalidLocale, with: :render_406
 
   def render_406
+    params.delete('locale')
     render file: Rails.root.join('app', 'views', 'static', 'not_acceptable.html.erb'), status: :not_acceptable, layout: true
   end
 end
