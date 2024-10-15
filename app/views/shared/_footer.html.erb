@@ -9,7 +9,7 @@
       <div class="navbar-text text-right">
         <p><%= t('hyrax.footer.copyright_html') %></p>
         <p><%= t('hyrax.background_attribution_html') %></p>
-        <p><%= t('hyrax.product_name') %> <span title="<%= GIT_SHA %>"><%= BRANCH %> updated <%= LAST_DEPLOYED %></span></p>
+        <p><%= t('hyrax.product_name') %> <span title="<%= ReleaseInfo.sha %>"><%= ReleaseInfo.branch %> updated <%= ReleaseInfo.deployment_timestamp %></span></p>
         <p>built using Hyrax v<%= Hyrax::VERSION %></p>
       </div>
     </div>
