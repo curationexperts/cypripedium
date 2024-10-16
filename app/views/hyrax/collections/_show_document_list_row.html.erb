@@ -1,10 +1,5 @@
 <% id = document.id %>
 <tr class="document" id="document_<%= id %>">
-  <td>&nbsp;
-    <% if current_user and document.depositor != current_user.user_key %>
-      <i class="glyphicon glyphicon-share-alt" />
-    <% end %>
-  </td>
   <td class="title_author">
     <div class="media">
       <%= link_to [main_app, document], class: "media-left" do %>
@@ -14,7 +9,9 @@
         <p class="media-heading">
           <strong><%= link_to document.title_or_label, [main_app, document], id: "src_copy_link#{id}", class: "#{'document-title' if document.title_or_label == document.label}" %></strong>
         </p>
-        <p><%= document.creator.to_sentence %></p>
+        <p class="alpha_creator">
+          <%= document.alpha_creator.to_sentence(words_connector: '; ', last_word_connector: '; and ') %>
+        </p>
       </div>
     </div>
   </td>
