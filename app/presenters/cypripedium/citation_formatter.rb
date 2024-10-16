@@ -136,7 +136,7 @@ module Cypripedium
     #            'Juster, F. Thomas (Francis Thomas), 1926-2019', 'Wang, Ping, 1957 December 5-']
     # returns ['Kocherlakota, Narayana Rao', 'Avenancio-León, Carlos', 'Juster, F. Thomas', 'Wang, Ping']
     def creators_for_citation
-      creator.map { |name| name.gsub(/,\s*\d{4}.*|\([^)]*\)/, '') }
+      alpha_creator.map { |name| name.gsub(/,\s*\d{4}.*|\([^)]*\)/, '') }
     end
 
     # Use the beginning of the series name up to the first parenthesis
