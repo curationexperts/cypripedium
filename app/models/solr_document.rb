@@ -27,7 +27,7 @@ class SolrDocument
   end
 
   def alpha_creator
-    self['alpha_creator_tesim']
+    Array(self['alpha_creator_tesim'])
   end
 
   # Issue number as a scalar integer
