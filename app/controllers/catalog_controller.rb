@@ -64,14 +64,17 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("title_tesim", :stored_searchable), label: "Title", itemprop: 'name', if: false
-    config.add_index_field "alpha_creator_tesim", itemprop: 'creator', link_to_search: solr_name("creator", :facetable), label: "Creator"
-    config.add_index_field solr_name("series", :stored_searchable), link_to_search: solr_name("series", :facetable), label: "Series"
-    config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number"
+    config.add_index_field solr_name("alpha_creator", :stored_searchable), itemprop: 'creator',
+                                                                           link_to_search: solr_name("creator", :facetable), label: "Creator",
+                                                                           separator_options: { words_connector: '; ', last_word_connector: '; and ' }
+    config.add_index_field solr_name("series", :stored_searchable), itemprop: 'series', link_to_search: solr_name("series", :facetable), label: "Series"
+    config.add_index_field solr_name("issue_number", :stored_searchable), label: "Number", itemprop: 'issue_number'
     config.add_index_field solr_name("date_created", :stored_sortable, type: :date), itemprop: 'dateCreated', helper_method: :human_readable_date
     config.add_index_field solr_name("abstract", :stored_searchable), itemprop: 'abstract', helper_method: :render_with_markdown
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :render_with_markdown
     config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable), label: "Subject (JEL)"
+
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name('title', :stored_searchable)
