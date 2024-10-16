@@ -13,8 +13,8 @@ RSpec.describe Cypripedium::CitationFormatter do
       "has_model_ssim": ["Publication"],
       "id": "br86b3634",
       "title_tesim": ["Expensed and Sweat Equity"],
-      "creator_tesim": ["McGrattan, Ellen R.",
-                        "Prescott, Edward C."],
+      "alpha_creator_tesim": ["McGrattan, Ellen R.",
+                              "Prescott, Edward C."],
       "date_created_tesim": ["2005-09"]
     }
   end
@@ -25,14 +25,14 @@ RSpec.describe Cypripedium::CitationFormatter do
     end
 
     it 'removes author dates and other extraneous info' do
-      solr_data['creator_tesim'] =
-        ["Kocherlakota, Narayana Rao, 1963- ",  # birth date
+      solr_data['alpha_creator_tesim'] =
+        [" \tAvenancio-León, Carlos",           # non-printing character with UTF8 chars that should be kept
          "Carlstrom, Charles T., 1960-\n",      # birth date and non-printing character
-         " \tAvenancio-León, Carlos",           # non-printing character with UTF8 chars that should be kept
+         "Cole, Harold Linh, 1957-2057",        # birth and death dates
          "Juster, F. Thomas (Francis Thomas), 1926-", # initial expansion and birth date should be dropped
-         "Wang, Ping, 1957 December 5-",        # verbose birth
-         "Cole, Harold Linh, 1957-2057"]        # birth and death dates
-      expect(citation).to include 'Kocherlakota, Narayana Rao, Charles T. Carlstrom, Carlos Avenancio-León, F. Thomas Juster, Ping Wang, and Harold Linh Cole'
+         "Kocherlakota, Narayana Rao, 1963- ",  # birth date
+         "Wang, Ping, 1957 December 5-"]        # verbose birth
+      expect(citation).to include 'Avenancio-León, Carlos, Charles T. Carlstrom, Harold Linh Cole, F. Thomas Juster, Narayana Rao Kocherlakota, and Ping Wang'
     end
 
     it 'uses the upload date if no creation date is provided' do
@@ -72,8 +72,8 @@ RSpec.describe Cypripedium::CitationFormatter do
           "issue_number_isi": 636,
           "title_tesim": ["Expensed and Sweat Equity"],
           "resource_type_tesim": ["Research Paper"],
-          "creator_tesim": ["McGrattan, Ellen R.",
-                            "Prescott, Edward C."],
+          "alpha_creator_tesim": ["McGrattan, Ellen R.",
+                                  "Prescott, Edward C."],
           "publisher_tesim": ["Federal Reserve Bank of Minneapolis"],
           "date_created_tesim": ["2005-09"],
           "identifier_tesim": ["https://doi.org/10.21034/wp.636"]
@@ -106,8 +106,7 @@ RSpec.describe Cypripedium::CitationFormatter do
           "issue_number_isi": 1,
           "title_tesim": ["Direct Investment: A Doubtful Alternative to International Debt"],
           "resource_type_tesim": ["Article"],
-          "creator_tesim": ["English, William B. (William Berkeley), 1960-",
-                            "Cole, Harold Linh, 1957-"],
+          "alpha_creator_tesim": ["Cole, Harold Linh, 1957-", "English, William B. (William Berkeley), 1960-"],
           "publisher_tesim": ["Federal Reserve Bank of Minneapolis"],
           "date_created_tesim": ["1992 Winter"],
           "identifier_tesim": ["https://doi.org/10.21034/qr.1612"]
@@ -131,7 +130,7 @@ RSpec.describe Cypripedium::CitationFormatter do
       end
 
       it 'formats elements correctly' do
-        expect(citation).to eq 'English, William B., and Harold Linh Cole. “Direct Investment: '\
+        expect(citation).to eq 'Cole, Harold Linh, and William B. English. “Direct Investment: '\
           'A Doubtful Alternative to International Debt.” <i>Quarterly Review</i> 16, no. 1 (Winter 1992). '\
           'https://doi.org/10.21034/qr.1612.'
       end
@@ -146,10 +145,10 @@ RSpec.describe Cypripedium::CitationFormatter do
           "series_tesim": ["International perspectives on debt, growth, and business cycles"],
           "title_tesim": ["International Business Cycles"],
           "resource_type_tesim": ["Conference Proceeding"],
-          "creator_tesim": ["Ickes, Barry William",
-                            "Ahmed, Shaghil, 1959-",
-                            "Yoo, Byung Sam, 1952-",
-                            "Wang, Ping, 1957 December 5-"],
+          "alpha_creator_tesim": ["Ahmed, Shaghil, 1959-",
+                                  "Ickes, Barry William",
+                                  "Wang, Ping, 1957 December 5-",
+                                  "Yoo, Byung Sam, 1952-"],
           "date_created_tesim": ["1989-07"]
         }
       end
@@ -163,7 +162,7 @@ RSpec.describe Cypripedium::CitationFormatter do
       end
 
       it 'formats elements correctly' do
-        expect(citation).to eq 'Ickes, Barry William, Shaghil Ahmed, Byung Sam Yoo, and Ping Wang. '\
+        expect(citation).to eq 'Ahmed, Shaghil, Barry William Ickes, Ping Wang, and Byung Sam Yoo. '\
             '“International Business Cycles.” Paper Presented at the International Perspectives on Debt, '\
             'Growth, and Business Cycles Conference, Federal Reserve Bank of Minneapolis, Minneapolis, MN, July 1989.'\
             ' https://researchdatabase.minneapolisfed.org/concern/conference_proceedings/ks65hc256.'
@@ -179,7 +178,7 @@ RSpec.describe Cypripedium::CitationFormatter do
           "title_tesim": ["Railroad Stock Prices, 1834-1845."],
           "date_uploaded_dtsi": "2018-04-03T15:57:49Z",
           "resource_type_tesim": ["Dataset"],
-          "creator_tesim": ["Weber, Warren E."],
+          "alpha_creator_tesim": ["Weber, Warren E."],
           "publisher_tesim": ["Federal Reserve Bank of Minneapolis. Research Dept."]
         }
       end
@@ -205,7 +204,7 @@ RSpec.describe Cypripedium::CitationFormatter do
   describe 'unexpected errors' do
     it 'return a friendly message' do
       # e.g. unexpected birth date format
-      solr_data['creator_tesim'] = ['Kocherlakota, Narayana Rao, b. 1963']
+      solr_data['alpha_creator_tesim'] = ['Kocherlakota, Narayana Rao, b. 1963']
       expect(presenter.chicago_citation).to eq 'No citations found'
     end
   end
