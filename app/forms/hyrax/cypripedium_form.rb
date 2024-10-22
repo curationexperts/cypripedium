@@ -2,7 +2,7 @@
 module Hyrax
   class CypripediumForm < Hyrax::Forms::WorkForm
     self.terms += [:resource_type]
-    self.terms += ::Attributes.to_a
+    self.terms += Cypripedium::Attributes.to_a
     self.required_fields = [:title]
 
     def primary_terms
