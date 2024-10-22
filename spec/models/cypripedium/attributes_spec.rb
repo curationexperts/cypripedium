@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-RSpec.describe Attributes do
+RSpec.describe Cypripedium::Attributes do
   let(:attributes) { described_class.to_a }
   let(:defined_attributes) do
     ["creator_id", "series", "issue_number", "abstract", "alternative_title",
