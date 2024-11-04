@@ -26,7 +26,7 @@ RSpec.describe 'Recieve a notfication when creating a bag', type: :system, js: t
     end
 
     before do
-      AdminSet.find_or_create_default_admin_set_id
+      Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id
       Hyrax::CollectionType.find_or_create_default_collection_type
       publication
       publication2
