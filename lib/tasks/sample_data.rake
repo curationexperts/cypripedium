@@ -7,7 +7,7 @@ task sample_data: :environment do
   puts "Creating some fake sample data"
 
   puts "Make sure the default AdminSet exists"
-  AdminSet.find_or_create_default_admin_set_id
+  Hyrax::AdminSetCreateService.find_or_create_default_admin_set
 
   ['Collection One 111', 'Collection Two 222'].each do |title|
     puts "Create a Collection: #{title}"
