@@ -15,7 +15,7 @@ RSpec.describe 'Recieve an error notfication when creating a bag', type: :system
     let(:user) { FactoryBot.create(:admin) }
 
     before do
-      AdminSet.find_or_create_default_admin_set_id
+      Hyrax::AdminSetCreateService.find_or_create_default_admin_set
       login_as user
     end
 

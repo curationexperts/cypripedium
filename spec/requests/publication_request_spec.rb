@@ -4,9 +4,9 @@ include Warden::Test::Helpers
 
 RSpec.describe "/concern/publications", type: :request, clean: true do
   let(:user) { FactoryBot.create(:admin) }
-  let(:admin_set) { AdminSet.find_or_create_default_admin_set_id }
+
   before do
-    admin_set
+    Hyrax::AdminSetCreateService.find_or_create_default_admin_set
     login_as user
   end
 

@@ -8,7 +8,7 @@ RSpec.describe 'Edit markdown fields:', type: :system, js: true do
   before do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
-    AdminSet.find_or_create_default_admin_set_id
+    Hyrax::AdminSetCreateService.find_or_create_default_admin_set
     login_as admin_user
   end
 
