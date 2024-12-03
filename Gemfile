@@ -1,86 +1,60 @@
 # frozen_string_literal: true
+# Attempts to determine if a global gem source has ready been added by another Gemfile
+if @sources.global_rubygems_source == Bundler::SourceList.new.global_rubygems_source
+  Bundler.ui.info '[Dassie] Adding global rubygems source.'
+  source 'https://rubygems.org'
+else
+  Bundler.ui.info "[Dassie] Global rubygems source already set: #{@sources.global_rubygems_source.inspect}"
+end
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-source 'https://rubygems.org'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap', '~> 4.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'dalli'
+gem 'devise'
+gem 'devise-guests', '~> 0.8'
 
-ruby '2.7.4'
-
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+# Required because grpc and google-protobuf gem's binaries are not compatible with Alpine Linux.
+# To install the package in Alpine: `apk add ruby-grpc`
+# The pinned versions should match the version provided by the Alpine packages.
+if RUBY_PLATFORM =~ /musl/
+  path '/usr/lib/ruby/gems/3.2.0' do
+    gem 'google-protobuf', '~> 3.24.4', force_ruby_platform: true
+    gem 'grpc', '~> 1.59.3', force_ruby_platform: true
+  end
 end
 
-gem "actionview", ">= 5.1.6.2"
-gem 'active_job_status', '~> 1.2.1'
-gem 'bagit'
-gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
-gem 'bixby', '~> 3.0'
-gem "blacklight_range_limit", '~>6'
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'browse-everything'
-gem 'capistrano'
-gem 'capistrano-bundler', '~> 1.3'
-gem 'capistrano-ext'
-gem 'capistrano-rails'
-gem 'citeproc-ruby'
-gem 'coffee-rails', '~> 4.2'
-gem 'csl-styles'
-gem 'devise'
-gem 'devise-guests', '~> 0.6'
-gem 'dotenv-rails'
-gem 'ed25519', '~> 1.2', '>= 1.2.4'
-gem 'honeybadger', '~> 4.4.0'
-gem 'hydra-file_characterization', '~> 1.1'
-gem 'hydra-role-management'
-gem 'hyrax', '~> 3.6'
+gemspec name: 'hyrax', path: ENV.fetch('HYRAX_ENGINE_PATH', '..')
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-gem 'nokogiri', '>=1.8.2'
-gem 'parser'
-gem 'pg'
+gem 'pg', '~> 1.3'
 gem 'puma'
-gem 'rails', '~> 5'
-gem 'rails-assets-tether'
-gem 'rainbow'
-gem 'redcarpet'
-gem 'redis', '~> 4.1'
-gem 'redis-activesupport'
-gem 'rsolr', '>= 1.0'
-gem 'rubyzip', '~> 1.0', require: 'zip'
-gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails', '>= 2.1.0'
-gem 'sidekiq', '< 7'
-gem 'simple_form', ">= 5.0.0"
-gem 'solrizer'
-gem 'strscan', '1.0.3' # match version installed on server as system gem
-gem 'terser'
+gem 'rails', '~> 6.1'
+gem 'riiif', '~> 2.1'
+gem 'rsolr', '>= 1.0', '< 3'
+gem 'sass-rails', '~> 6.0'
+gem 'sidekiq', '~> 6.4'
 gem 'turbolinks', '~> 5'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'whenever', require: false
+gem 'uglifier', '>= 1.3.0'
 
 group :development do
-  gem 'capistrano-passenger'
-  gem 'capistrano-sidekiq'
-  gem 'listen'
-  gem 'web-console', '~> 3.7'
-  gem 'xray-rails'
-  gem 'yard'
+  gem 'better_errors' # add command line in browser when errors
+  gem 'binding_of_caller' # deeper stack trace used by better errors
+
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara'
-  gem 'fcrepo_wrapper'
-  gem 'solr_wrapper'
-end
-
-group :test do
-  gem 'database_cleaner'
-  gem 'factory_bot'
-  gem 'poltergeist'
-  gem 'rspec-rails'
-  gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver'
-  gem 'simplecov', require: false
-  gem 'simplecov-lcov', require: false
-  gem 'webdrivers'
+  gem 'debug', '>= 1.0.0'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-rescue'
 end
