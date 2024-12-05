@@ -2,7 +2,27 @@
 # yarn lockfile v1
 
 
+datatables.net-bs4@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/datatables.net-bs4/-/datatables.net-bs4-2.1.8.tgz"
+  integrity sha512-2mFfyD6KdeFaq5qlOWggcjLPblZTuoOFv1fHN3WzquYNiWe8BuSEEARvl7OQ+53/sEY3HOkHsbZ5+Pat0faG9Q==
+  dependencies:
+    datatables.net "2.1.8"
+    jquery ">=1.7"
+
+datatables.net@2.1.8:
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/datatables.net/-/datatables.net-2.1.8.tgz"
+  integrity sha512-47ULt+U4bcjbuGTpTlT6SnCuSFVRBxxdWa6X3NfvTObBJ2BZU0o+JUIl05wQ6cABNIavjbAV51gpgvFsMHL9zA==
+  dependencies:
+    jquery ">=1.7"
+
+jquery@>=1.7:
+  version "3.7.1"
+  resolved "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
+
 tether@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tether/-/tether-2.0.0.tgz#8ccb03992e71e2e913e6b1d4feb6be8cb49a4f79"
+  resolved "https://registry.npmjs.org/tether/-/tether-2.0.0.tgz"
   integrity sha512-iAkyBhwILpLIvkwzO5w5WUBtpYwxvzLRTO+sbzF3Uy7X4zznsy73v2b4sOQHXE3CQHeSNtB/YMU2Nn9tocbeBQ==

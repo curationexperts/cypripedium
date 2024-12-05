@@ -20,7 +20,7 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
-  Cypripedium::Attributes.to_a.each do |term|
+  CypripediumWork.metadata_attribute_names.each do |term|
     define_method(term) do
       self[Solrizer.solr_name(term.to_s)]
     end

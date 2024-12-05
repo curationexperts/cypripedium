@@ -21,7 +21,7 @@
 // require browse_everything
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/bootstrap/4/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
 //= require bootstrap-sprockets
 //= require jquery-ui/widgets/autocomplete

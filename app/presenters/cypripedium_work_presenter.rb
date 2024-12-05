@@ -3,7 +3,7 @@
 class CypripediumWorkPresenter < Hyrax::WorkShowPresenter
   include Cypripedium::CitationFormatter
 
-  Cypripedium::Attributes.to_a.each { |term| delegate term, to: :solr_document }
+  CypripediumWork.metadata_attribute_names.each { |term| delegate term, to: :solr_document }
   delegate :alpha_creator, to: :solr_document
   delegate :issue_num, to: :solr_document
   delegate :volume_num, to: :solr_document

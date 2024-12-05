@@ -3,6 +3,7 @@
   "name": "cypripedium",
   "private": true,
   "dependencies": {
+    "datatables.net-bs4": "^2.1.8",
     "tether": "^2.0.0"
   }
 }
