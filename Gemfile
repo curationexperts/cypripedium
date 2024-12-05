@@ -70,7 +70,7 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'listen'
   gem 'web-console', '~> 3.7'
-  gem 'xray-rails'
+  # gem 'xray-rails'
   gem 'yard'
 end
 
