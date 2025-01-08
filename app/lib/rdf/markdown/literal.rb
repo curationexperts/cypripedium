@@ -26,7 +26,7 @@ module RDF
       # reader.
       #
       # @see {RDF::Literal}
-      def initialize(value, options = {})
+      def initialize(value, **options)
         super
       end
 
