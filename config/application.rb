@@ -18,5 +18,12 @@ module Cypripedium
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    Rails.application.configure do
+      config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
+
+      config.bag_prefix = 'mpls_fed_research'
+      config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
+    end
   end
 end
