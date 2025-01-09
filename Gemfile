@@ -9,7 +9,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'active_job_status'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
@@ -84,6 +83,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'faker'
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'

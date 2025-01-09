@@ -57,9 +57,6 @@ GEM
     active_encode (0.8.2)
       rails
       sprockets (< 4)
-    active_job_status (1.2.1)
-      activejob (> 4.2)
-      activesupport (> 4.2)
     activejob (6.1.7.10)
       activesupport (= 6.1.7.10)
       globalid (>= 0.3.6)
@@ -332,6 +329,8 @@ GEM
     execjs (2.10.0)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     faraday (2.12.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -1088,8 +1087,6 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    xray-rails (0.3.2)
-      rails (>= 3.1.0)
     yaml-ld (0.0.3)
       json-ld (~> 3.3)
       psych (>= 3.3)
@@ -1102,7 +1099,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_job_status
   bagit
   bcrypt_pbkdf (~> 1.1)
   bixby (~> 3.0)
@@ -1127,6 +1123,7 @@ DEPENDENCIES
   dotenv-rails
   ed25519 (~> 1.2, >= 1.2.4)
   factory_bot
+  faker
   fcrepo_wrapper
   google-protobuf (~> 3.24.4)
   grpc (~> 1.59.3)
@@ -1165,7 +1162,6 @@ DEPENDENCIES
   web-console (~> 3.7)
   webdrivers
   whenever
-  xray-rails
   yard
 
 RUBY VERSION

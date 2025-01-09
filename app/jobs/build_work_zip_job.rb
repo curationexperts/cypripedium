@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class BuildWorkZipJob < ActiveJobStatus::TrackableJob
+class BuildWorkZipJob < ApplicationJob
+
   queue_as :default
 
   # Find the WorkZip record and tell it to build a

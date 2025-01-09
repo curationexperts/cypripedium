@@ -6,14 +6,14 @@ class Creator < ApplicationRecord
   after_save :reindex_setup
 
   def reindex_setup
-    CreatorReindexJob.perform_later id
+    CreatorReindexJob.perform_later self
   end
 
   def reindex_associated_works
     solr = Blacklight.default_index.connection
     response = solr.get 'select', params: { q: "creator_id_ssim:#{id}" }
     response['response']['docs'].each do |doc|
-      CypripediumWork.find(doc['id']).update_index
+      ActiveFedora::Base.find(doc['id']).update_index
     end
   end
 
