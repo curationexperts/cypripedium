@@ -11,6 +11,7 @@ RSpec.describe SearchBuilder do
     let(:customized_processor_chain) do
       [
         :default_solr_parameters,
+        :add_search_field_default_parameters,
         :add_query_to_solr,
         :add_facet_fq_to_solr,
         :add_facetting_to_solr,
@@ -19,6 +20,8 @@ RSpec.describe SearchBuilder do
         :add_sorting_to_solr,
         :add_group_config_to_solr,
         :add_facet_paging_to_solr,
+        :add_adv_search_clauses,
+        :add_additional_filters,
         :add_range_limit_params,
         :add_access_controls_to_solr_params,
         :filter_models,
