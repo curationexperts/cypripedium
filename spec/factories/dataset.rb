@@ -3,10 +3,13 @@
 FactoryBot.define do
   factory :dataset do
     title { ['Testing'] }
+    transient do
+      creators { create_list(:creator, 2)}
+    end
     factory :dataset_without_description do
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
-      creator { ["McGrattan, Ellen R.", "Prescott, Edward C."] }
-      creator_id { ['1', '2'] }
+      creator { creators.map(&:display_name) }
+      creator_id { creators.map(&:id) }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
       resource_type { ["Dataset"] }
       visibility { "open" }
@@ -16,8 +19,8 @@ FactoryBot.define do
     end
     factory :populated_dataset do
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
-      creator { ["McGrattan, Ellen R.", "Prescott, Edward C."] }
-      creator_id { ['1', '2'] }
+      creator { creators.map(&:display_name) }
+      creator_id { creators.map(&:id) }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
       resource_type { ["Dataset"] }
       visibility { "open" }

@@ -3,13 +3,11 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Use structured data that Google can parse', type: :system, clean: true, js: true do
-  let(:creator_one) { FactoryBot.create(:creator, display_name: 'McGrattan, Ellen R.', id: 1) }
-  let(:creator_two) { FactoryBot.create(:creator, display_name: 'Prescott, Edward C.', id: 2) }
+  let(:creator_one) { FactoryBot.create(:creator, display_name: 'McGrattan, Ellen R.') }
+  let(:creator_two) { FactoryBot.create(:creator, display_name: 'Prescott, Edward C.') }
   context "datasets" do
-    let(:work) { FactoryBot.create(:populated_dataset) }
+    let(:work) { FactoryBot.create(:populated_dataset, creators: [creator_one, creator_two]) }
     it "marks up with schema.org tags", :aggregate_failures do
-      creator_one
-      creator_two
       visit "/concern/datasets/#{work.id}"
       creators = page.all(:css, "[itemprop='creator']")
       expect(creators.first.text).to eq "McGrattan, Ellen R."
