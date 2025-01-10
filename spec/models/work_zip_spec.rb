@@ -70,8 +70,11 @@ RSpec.describe WorkZip, type: :model do
     context 'when it fails' do
       subject(:work_zip) { described_class.new(work_id: 'some_fake_id') }
 
-      it 'raises an exception' do
-        expect { work_zip.create_zip }.to raise_exception ActiveFedora::ObjectNotFoundError
+      it 'sets status to :failed' do
+        work_zip.create_zip
+        expect(work_zip.status).to eq 'failed'
+        # also, because status is a ActiveRecord enum,
+        expect(work_zip).to be_failed
       end
     end
   end
@@ -127,34 +130,28 @@ RSpec.describe WorkZip, type: :model do
 
   describe '#status' do
     subject { work_zip.status }
-    let(:work_zip) { described_class.new(job_id: job_id) }
-    let(:job_id) { '123' }
+    let(:publication) { FactoryBot.build(:publication) }
 
-    context 'when the job_id isn\'t set yet' do
-      let(:job_id) { nil }
-      it { is_expected.to eq :unavailable }
+    it 'is "unavilable" on initializtion' do
+      expect(work_zip.status).to eq 'unavailable'
     end
 
-    context 'when ActiveJobStatus returns a status' do
-      let(:expected_status) { :some_status }
-      before do
-        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_return(expected_status)
-      end
-      it { is_expected.to eq expected_status }
+    it 'is "failed" on errors' do
+      work_zip.create_zip # fails because the publication is not persisted
+      expect(work_zip.status).to eq 'failed'
     end
 
-    context 'when ActiveJobStatus returns nothing' do
-      before do
-        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_return(nil)
-      end
-      it { is_expected.to eq :unavailable }
+    it 'is "working" during zip creation' do
+      publication.save!
+      allow(work_zip).to receive(:working!)
+      work_zip.create_zip
+      expect(work_zip).to have_received(:working!)
     end
 
-    context 'when ActiveJobStatus raises an error' do
-      before do
-        allow(ActiveJobStatus).to receive(:get_status).with(job_id).and_raise('some error')
-      end
-      it { is_expected.to eq :unavailable }
+    it 'is "completed" after successful zip creation' do
+      publication.save!
+      work_zip.create_zip
+      expect(work_zip.status).to eq 'completed'
     end
   end
 end

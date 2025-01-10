@@ -40,14 +40,10 @@ RSpec.describe WorkZipsHelper, type: :helper do
     end
 
     context 'when the job is not yet complete' do
-      let(:work_zip) { WorkZip.new(work_id: '123') }
-
-      before do
-        allow(work_zip).to receive(:status).and_return(:queued)
-      end
+      let(:work_zip) { WorkZip.new(work_id: '123', status: :queued) }
 
       it 'returns a message that the zip file is still building' do
-        expect(return_value).to match(/not finished yet.  Please check back.*queued/)
+        expect(return_value).to match(/job is currently queued. Please check back/)
       end
     end
   end

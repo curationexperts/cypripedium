@@ -38,14 +38,21 @@ class BagJob < ApplicationJob
   end
 
   def render_message(bag_file_name:, bag_files:, bag_format:, work_count:)
-    ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_notification.html.erb',
-                                                                        locals: { bag_file_name: bag_file_name,
-                                                                                  bag_files: bag_files, bag_file_format: bag_format,
-                                                                                  work_count: work_count }
+    <<~NOTICE.html_safe
+      <div>
+        Your bag containing #{work_count} #{'work'.pluralize(work_count)}, 
+        including #{bag_files.first}, is available for download at 
+        <a data-turbolinks='false' href='/bag/#{bag_file_name}.#{bag_format}'>#{bag_file_name}.#{bag_format}</a>
+      </div>
+    NOTICE
   end
 
   def render_error_message(error:)
-    ActionView::Base.new(Rails.configuration.paths['app/views']).render file: 'bag/_error_notification.html.erb',
-                                                                        locals: { error: error }
+    <<~ERROR.html_safe
+      There was an error starting your bag job:
+      <pre>
+        #{error}
+      </pre>
+    ERROR
   end
 end

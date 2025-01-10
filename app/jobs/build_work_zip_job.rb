@@ -8,8 +8,7 @@ class BuildWorkZipJob < ApplicationJob
   # zip file for its associated work.
   #
   # @param work_zip_id [String] The ID for the WorkZip record.
-  def perform(work_zip_id)
-    work_zip = WorkZip.find(work_zip_id)
+  def perform(work_zip)
     work_zip.create_zip
   end
 end

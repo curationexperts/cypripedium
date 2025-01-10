@@ -13,31 +13,45 @@
 #   work_zip.work_id
 
 class WorkZip < ApplicationRecord
+  enum status: {
+    unavailable:  0,
+    queued:       1,
+    working:      2,
+    failed:       3,
+    completed:    4
+  }
+
   # Create a zip file that contains all the files
   # that are attached to the work record.
   def create_zip
-    work = ActiveFedora::Base.find(work_id)
-    files = work.file_sets.map { |file_set| file_set.original_file }
-    file_names = files.map { |f| f.file_name.first }
-    zip_file_name = File.join(path_root, file_name(work.title.first))
-    FileUtils.mkdir_p path_root
-    temps = [] # Keep track of temp files so we can delete them later
+    self.working!
+    begin
+      work = ActiveFedora::Base.find(work_id)
+      files = work.file_sets.map { |file_set| file_set.original_file }
+      file_names = files.map { |f| f.file_name.first }
+      zip_file_name = File.join(path_root, file_name(work.title.first))
+      FileUtils.mkdir_p path_root
+      temps = [] # Keep track of temp files so we can delete them later
 
-    Zip::File.open(zip_file_name, Zip::File::CREATE) do |zipfile|
-      files.each_with_index do |file, i|
-        name = new_file_name(file_names, file.file_name.first, i)
-        temp_file = Tempfile.new(name)
-        temp_file.binmode
-        temp_file.write(file.content)
-        temp_file.close
-        temps << temp_file
-        zipfile.add(name, temp_file)
+      Zip::File.open(zip_file_name, Zip::File::CREATE) do |zipfile|
+        files.each_with_index do |file, i|
+          name = new_file_name(file_names, file.file_name.first, i)
+          temp_file = Tempfile.new(name)
+          temp_file.binmode
+          temp_file.write(file.content)
+          temp_file.close
+          temps << temp_file
+          zipfile.add(name, temp_file)
+        end
       end
-    end
 
-    temps.each { |temp_file| temp_file.delete }
-    self.file_path = zip_file_name
-    save!
+      temps.each { |temp_file| temp_file.delete }
+      self.file_path = zip_file_name
+      self.status = 'completed'
+      save!
+    rescue
+      self.failed!
+    end
   end
 
   def path_root
@@ -72,14 +86,6 @@ class WorkZip < ApplicationRecord
     else
       file_name
     end
-  end
-
-  # The status of the background job that builds the zip file.
-  def status
-    return :unavailable if job_id.nil?
-    ActiveJobStatus.get_status(job_id) || :unavailable
-  rescue
-    :unavailable
   end
 
   # @param id [String] The ID for the work
