@@ -48,7 +48,7 @@ RSpec.describe "/creators", type: :request, clean: true do
       creator = Creator.create! valid_attributes
       get creator_url(creator), params: { format: :json }
       expect(response).to be_successful
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq "application/json; charset=utf-8"
       expect(response.body).not_to be_empty
       expect(response.content_length).to be > 0
       response_values = JSON.parse(response.body)
