@@ -2,20 +2,14 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::CollectionSearchBuilder do
-  subject(:builder) { described_class.new(scope) }
+  let(:builder) { described_class.new(scope).with(blacklight_params) }
   let(:scope) { Hyrax::CollectionsController.new }
+  let(:blacklight_params) { { 'sort' => 'date_created_ssi desc', 'per_page' => '50', 'locale' => 'en' }.with_indifferent_access }
 
-  describe '#add_sorting_to_solr' do
-    let(:builder) { described_class.new(scope).with(blacklight_params) }
-    let(:blacklight_params) do
-      { "sort" => "system_create_dtsi desc", "per_page" => "50", "locale" => "en" }.with_indifferent_access
-    end
-    let(:solr_parameters) { {} }
-
-    before { builder.add_sorting_to_solr(solr_parameters) }
-
-    it 'sets the solr paramters for sorting correctly' do
-      expect(solr_parameters[:sort]).to eq('system_create_dtsi desc')
-    end
+  example '#add_sorting_to_solr configures sorting correctly' do
+    #NOTE: the sort field must match a sort defined in the CatalogController config
+    solr_parameters = {}
+    builder.add_sorting_to_solr(solr_parameters)
+    expect(solr_parameters[:sort]).to eq('date_created_ssi desc')
   end
 end
