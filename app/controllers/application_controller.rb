@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
 
   def render_406
     params.delete('locale')
-    render file: Rails.root.join('app', 'views', 'static', 'not_acceptable.html.erb'), status: :not_acceptable, layout: true
+    render template: 'pages/not_acceptable', status: :not_acceptable
   end
 end
