@@ -42,9 +42,6 @@ GEM
     active_encode (0.8.2)
       rails
       sprockets (< 4)
-    active_job_status (1.2.1)
-      activejob (> 4.2)
-      activesupport (> 4.2)
     activejob (5.2.8.1)
       activesupport (= 5.2.8.1)
       globalid (>= 0.3.6)
@@ -1030,7 +1027,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionview (>= 5.1.6.2)
-  active_job_status (~> 1.2.1)
   bagit
   bcrypt_pbkdf (~> 1.1)
   bixby (~> 3.0)

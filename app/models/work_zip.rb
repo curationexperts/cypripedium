@@ -13,9 +13,20 @@
 #   work_zip.work_id
 
 class WorkZip < ApplicationRecord
+  # rubocop:disable Layout/HashAlignment
+  enum status: {
+    unavailable:  0,
+    queued:       1,
+    working:      2,
+    failed:       3,
+    completed:    4
+  }
+  # rubocop:enable Layout/HashAlignment
+
   # Create a zip file that contains all the files
   # that are attached to the work record.
   def create_zip
+    working!
     work = ActiveFedora::Base.find(work_id)
     files = work.file_sets.map { |file_set| file_set.original_file }
     file_names = files.map { |f| f.file_name.first }
@@ -37,7 +48,10 @@ class WorkZip < ApplicationRecord
 
     temps.each { |temp_file| temp_file.delete }
     self.file_path = zip_file_name
+    self.status = 'completed'
     save!
+  rescue
+    failed!
   end
 
   def path_root
@@ -72,14 +86,6 @@ class WorkZip < ApplicationRecord
     else
       file_name
     end
-  end
-
-  # The status of the background job that builds the zip file.
-  def status
-    return :unavailable if job_id.nil?
-    ActiveJobStatus.get_status(job_id) || :unavailable
-  rescue
-    :unavailable
   end
 
   # @param id [String] The ID for the work
