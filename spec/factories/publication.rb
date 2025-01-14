@@ -5,7 +5,7 @@ FactoryBot.define do
     title { ["Testing"] }
     factory :populated_publication do
       transient do
-        creators { create_list(:creator, 2)}
+        creators { create_list(:creator, 2) }
       end
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
       creator { creators.map(&:display_name) }

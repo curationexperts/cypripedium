@@ -11,14 +11,14 @@ end
 
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
-gem 'bixby', '~> 3.0'
+gem 'bixby'
 gem "blacklight_range_limit", '~> 7.0'
 # gem 'bootstrap-sass', '~> 3.4.1'
 # gem 'browse-everything'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0'
 gem 'capistrano'
-gem 'capistrano-bundler' #, '~> 1.3'
+gem 'capistrano-bundler'
 gem 'capistrano-ext'
 gem 'capistrano-rails'
 gem 'citeproc-ruby'
@@ -50,8 +50,8 @@ gem 'redcarpet'
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'rubyzip', '~> 1.0', require: 'zip'
-gem 'sass-rails', '~> 6.0'
 gem 'sassc-rails', '>= 2.1.0'
+gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 6.4'
 # gem 'simple_form', ">= 5.0.0"
 gem 'solrizer'
@@ -61,8 +61,8 @@ gem 'tether-rails'
 gem 'turbolinks', '~> 5'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'whenever', require: false
 gem 'uglifier', '>= 1.3.0'
+gem 'whenever', require: false
 
 group :development do
   gem 'capistrano-passenger'
@@ -85,8 +85,8 @@ group :test do
   gem 'factory_bot'
   gem 'faker'
   gem 'poltergeist'
-  gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false

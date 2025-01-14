@@ -15,7 +15,7 @@ module RDF
       # valid. If your markdown parser barfs, that's your problem.
       #
       # @see http://roopc.net/posts/2014/markdown-cfg/
-      GRAMMAR = %r{.*}.freeze
+      GRAMMAR = %r{.*}
 
       # support ActiveJob serialization
       include GlobalID::Identification

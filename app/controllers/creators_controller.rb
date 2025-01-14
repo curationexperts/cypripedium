@@ -89,7 +89,7 @@ class CreatorsController < ApplicationController
   # remove empty strings from alternate_names array
   def creator_params
     new_params = safe_params
-    new_params["alternate_names"].reject!(&:blank?)
+    new_params["alternate_names"].compact_blank!
     new_params
   end
 

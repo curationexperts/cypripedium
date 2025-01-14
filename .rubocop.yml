@@ -2,7 +2,8 @@ inherit_gem:
   bixby: bixby_default.yml
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.2
+  NewCops: enable
   Exclude:
     - 'bin/**'
     - 'db/**/**/*'
@@ -49,6 +50,12 @@ Rails/Date:
 Rails/FindBy:
   Enabled: false
 
+Rails/I18nLocaleAssignment:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/creator.rb'
@@ -67,6 +74,10 @@ RSpec/MultipleExpectations:
 
 Style/CommentAnnotation:
   Enabled: false
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedShorthandSyntax: never
 
 Style/Semicolon:
   Enabled: false

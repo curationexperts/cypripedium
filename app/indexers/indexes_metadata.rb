@@ -19,7 +19,7 @@ module IndexesMetadata
     @creator_names ||= if object.creator_id.present?
                          creator_numerical_ids(object).flat_map do |creator_id|
                            Creator.find_by(id: creator_id)&.display_name
-                         end.reject(&:blank?)
+                         end.compact_blank
                        else
                          object.creator
                        end
@@ -29,11 +29,11 @@ module IndexesMetadata
     @creator_alternate_names ||= if object.creator_id.present?
                                    creator_numerical_ids(object).flat_map do |creator_id|
                                      Creator.find_by(id: creator_id)&.alternate_names
-                                   end.reject(&:blank?)
+                                   end.compact_blank
                                  else
                                    object.creator.flat_map do |name|
                                      Creator.find_by(display_name: name)&.alternate_names
-                                   end.reject(&:blank?)
+                                   end.compact_blank
                                  end
   end
 

@@ -5,4 +5,5 @@ ActiveSupport::Reloader.to_prepare do
   # to re-patch the newly redefined classes
   Hydra::FileCharacterization::Characterizers::Fits.include(Extensions::ServletCharacterizer)
   Deprecation.include(Extensions::DeprecationReporting)
+  Hyrax::Collections::CollectionMemberSearchService.include(Extensions::CollectionMemberSearchService)
 end

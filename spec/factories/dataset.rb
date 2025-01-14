@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :dataset do
     title { ['Testing'] }
     transient do
-      creators { create_list(:creator, 2)}
+      creators { create_list(:creator, 2) }
     end
     factory :dataset_without_description do
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }

@@ -22,7 +22,7 @@ RSpec.describe CreatorReindexJob, type: :job do
     end
 
     it "re-indexes associated works" do
-      publication = FactoryBot.create(:populated_publication, creators: creators)
+      FactoryBot.create(:populated_publication, creators: creators)
       response = solr.get 'select', params: { q: 'has_model_ssim:Publication' }
       expect(response['response']['docs'].first['creator_tesim']).to include 'McGrattan, Ellen R.'
       expect(response['response']['docs'].first['creator_tesim']).not_to include "Name, Some New"

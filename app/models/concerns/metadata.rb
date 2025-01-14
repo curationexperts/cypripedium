@@ -2,8 +2,10 @@
 
 module Metadata
   extend ActiveSupport::Concern
+  # rubocop:disable Layout/HashAlignment
+  # rubocop:disable Layout/ExtraSpacing
   LOCAL_ATTRIBUTES = {
-    creator_id:     { predicate: RDF::Vocab::SCHEMA.identifier,   index_as: [:symbol]},
+    creator_id:     { predicate: RDF::Vocab::SCHEMA.identifier,   index_as: [:symbol] },
     series:         { predicate: RDF::Vocab::SCHEMA.isPartOf,     index_as: [:stored_searchable, :facetable] },
     issue_number:   { predicate: RDF::Vocab::SCHEMA.issueNumber,  index_as: [:stored_searchable, :stored_sortable] },
     abstract:       { predicate: RDF::Vocab::DC.abstract,         index_as: [:stored_searchable] },
@@ -18,13 +20,14 @@ module Metadata
     is_replaced_by: { predicate: RDF::Vocab::DC.isReplacedBy,     index_as: [:stored_searchable] },
     replaces:       { predicate: RDF::Vocab::DC.replaces,         index_as: [:stored_searchable] },
     requires:       { predicate: RDF::Vocab::DC.requires,         index_as: [:stored_searchable] },
-    geographic_name: {predicate: RDF::Vocab::DC.spatial,          index_as: [:stored_searchable] },
-    table_of_contents:{predicate: RDF::Vocab::DC.tableOfContents, index_as: [:stored_searchable] },
+    geographic_name: { predicate: RDF::Vocab::DC.spatial,         index_as: [:stored_searchable] },
+    table_of_contents: { predicate: RDF::Vocab::DC.tableOfContents, index_as: [:stored_searchable] },
     temporal:       { predicate: RDF::Vocab::DC.temporal,         index_as: [:stored_searchable] }
-  }
+  }.freeze
+  # rubocop:enable Layout/ExtraSpacing
+  # rubocop:enable Layout/HashAlignment
 
   included do
-
     LOCAL_ATTRIBUTES.each do |attribute_name, settings|
       property attribute_name, predicate: settings[:predicate] do |index|
         index.as(*settings[:index_as])
@@ -34,6 +37,5 @@ module Metadata
     def self.metadata_attribute_names
       @metadata_attribute_names ||= LOCAL_ATTRIBUTES.keys.map(&:to_s)
     end
-
   end
 end

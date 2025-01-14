@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class BagJob < ApplicationJob
-
   rescue_from(StandardError) do |exception|
     @bag&.remove
     @user.send_message(@user, render_error_message(error: exception), "Error creating your BagIt Archive")
@@ -38,17 +37,17 @@ class BagJob < ApplicationJob
   end
 
   def render_message(bag_file_name:, bag_files:, bag_format:, work_count:)
-    <<~NOTICE.html_safe
+    <<~NOTICE.html_safe # rubocop:disable Rails/OutputSafety
       <div>
-        Your bag containing #{work_count} #{'work'.pluralize(work_count)}, 
-        including #{bag_files.first}, is available for download at 
+        Your bag containing #{work_count} #{'work'.pluralize(work_count)},#{' '}
+        including #{bag_files.first}, is available for download at#{' '}
         <a data-turbolinks='false' href='/bag/#{bag_file_name}.#{bag_format}'>#{bag_file_name}.#{bag_format}</a>
       </div>
     NOTICE
   end
 
   def render_error_message(error:)
-    <<~ERROR.html_safe
+    <<~ERROR.html_safe # rubocop:disable Rails/OutputSafety
       There was an error starting your bag job:
       <pre>
         #{error}
