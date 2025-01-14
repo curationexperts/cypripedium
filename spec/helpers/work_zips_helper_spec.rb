@@ -27,11 +27,7 @@ RSpec.describe WorkZipsHelper, type: :helper do
     end
 
     context 'when the job status is unavailable' do
-      let(:work_zip) { WorkZip.new(work_id: '123') }
-
-      before do
-        allow(work_zip).to receive(:status).and_return(:unavailable)
-      end
+      let(:work_zip) { WorkZip.new(work_id: '123', status: :unavailable) }
 
       it 'returns a button to create the zip file' do
         expect(return_value).to match(/\/zip\/123/)
@@ -39,15 +35,19 @@ RSpec.describe WorkZipsHelper, type: :helper do
       end
     end
 
-    context 'when the job is not yet complete' do
-      let(:work_zip) { WorkZip.new(work_id: '123') }
+    context 'when the job queued' do
+      let(:work_zip) { WorkZip.new(work_id: '123', status: :queued) }
 
-      before do
-        allow(work_zip).to receive(:status).and_return(:queued)
+      it 'returns a corresponding message' do
+        expect(return_value).to match(/job is currently queued. Please check back/)
       end
+    end
 
-      it 'returns a message that the zip file is still building' do
-        expect(return_value).to match(/not finished yet.  Please check back.*queued/)
+    context 'when the job working' do
+      let(:work_zip) { WorkZip.new(work_id: '123', status: :working) }
+
+      it 'returns a corresponding message' do
+        expect(return_value).to match(/job is currently working. Please check back/)
       end
     end
   end

@@ -10,7 +10,6 @@ git_source(:github) do |repo_name|
 end
 
 gem "actionview", ">= 5.1.6.2"
-gem 'active_job_status', '~> 1.2.1'
 gem 'bagit'
 gem 'bcrypt_pbkdf', '~> 1.1' # Needed to support more secure ssh keys
 gem 'bixby', '~> 3.0'
