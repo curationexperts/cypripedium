@@ -6,7 +6,7 @@ class CypripediumWork < ActiveFedora::Base
     subclass.include 'Hyrax::WorkBehavior'.constantize
     subclass.indexer = CypripediumIndexer
   end
-  include Metadata
+  include Cypripedium::Metadata
 
   validates :title, presence: { message: 'Your work must have a title.' }
   self.indexer = CypripediumIndexer
