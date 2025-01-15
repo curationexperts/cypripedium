@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :creator do
-    display_name { 'Alvarez, Fernando, 1964-' }
+    display_name { "#{Faker::Name.last_name}, #{Faker::Name.first_name} #{Faker::Name.middle_name}" }
   end
 end
