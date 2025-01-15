@@ -4,9 +4,12 @@ FactoryBot.define do
   factory :publication do
     title { ["Testing"] }
     factory :populated_publication do
+      transient do
+        creators { create_list(:creator, 2) }
+      end
       title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
-      creator { ["McGrattan, Ellen R.", "Prescott, Edward C."] }
-      creator_id { ['1', '2'] }
+      creator { creators.map(&:display_name) }
+      creator_id { creators.map(&:id) }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
       resource_type { ["Dataset"] }
       visibility { "open" }

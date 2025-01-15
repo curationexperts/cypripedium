@@ -75,6 +75,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'faker'
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
