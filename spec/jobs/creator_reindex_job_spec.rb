@@ -6,9 +6,8 @@ RSpec.describe CreatorReindexJob, type: :job do
   context 'running the job' do
     it 'calls the method to reindex the associated works' do
       creator = FactoryBot.create(:creator)
-      allow(Creator).to receive(:find).with(creator.id).and_return(creator)
       allow(creator).to receive(:reindex_associated_works)
-      described_class.perform_now(creator.id)
+      described_class.perform_now(creator)
       expect(creator).to have_received(:reindex_associated_works)
     end
   end

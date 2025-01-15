@@ -6,7 +6,7 @@ class Creator < ApplicationRecord
   after_save :reindex_setup
 
   def reindex_setup
-    CreatorReindexJob.perform_later id
+    CreatorReindexJob.perform_later self
   end
 
   def reindex_associated_works
