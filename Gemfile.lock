@@ -1017,7 +1017,7 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    xray-rails (0.3.2)
+    xray-rails (0.3.3)
       rails (>= 3.1.0)
     yard (0.9.25)
     zeitwerk (2.6.12)
