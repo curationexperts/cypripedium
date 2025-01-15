@@ -68,8 +68,6 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
-  gem 'fcrepo_wrapper'
-  gem 'solr_wrapper'
 end
 
 group :test do

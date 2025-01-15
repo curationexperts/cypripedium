@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-stretch
+FROM ruby:2.7.4
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
@@ -14,7 +14,7 @@ RUN apt-get update && \
     libxslt-dev \
     netcat-openbsd \
     nodejs \
-    openjdk-8-jdk \
+    openjdk-11-jdk \
     unzip \
     wget
 
@@ -29,8 +29,8 @@ RUN mkdir -p /opt/fits && \
   curl -fSL -o /opt/fits-1.0.5.zip http://projects.iq.harvard.edu/files/fits/files/fits-1.0.5.zip && \
   cd /opt && unzip fits-1.0.5.zip && chmod +X fits-1.0.5/fits.sh
 
-RUN gem update --system
-RUN gem install bundler:2.1.4
+RUN gem update --system 3.4.6
+RUN gem install bundler:2.3.14
 
 RUN mkdir /data
 WORKDIR /data
@@ -42,7 +42,7 @@ RUN bundle install --jobs "$(nproc)" --verbose
 
 ADD . /data
 RUN bundle install
-RUN bundle exec rake assets:precompile
+#RUN bundle exec rake assets:precompile
 
 EXPOSE 3000
 CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:3000"]
