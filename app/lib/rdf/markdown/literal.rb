@@ -19,16 +19,6 @@ module RDF
 
       # support ActiveJob serialization
       include GlobalID::Identification
-      ##
-      # Initializes an RDF::Literal with Mardown datatype.
-      #
-      # Casts lexical values to {String}. Parsing is left as an excerise for the
-      # reader.
-      #
-      # @see {RDF::Literal}
-      def initialize(value, options = {})
-        super
-      end
 
       def self.find(id)
         new(id)
