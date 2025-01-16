@@ -23,7 +23,7 @@ describe 'Creator authority', type: :request, clean: true do
     it "returns http success and only active creators" do
       get "/authorities/search/creator_authority?q=Ca"
       expect(response).to have_http_status(:success)
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to match "application/json"
       json_body = JSON.parse(response.body)
       expect(json_body.count).to eq 4
       expect(json_body.first["label"]).to eq "Cagetti, Marco"
