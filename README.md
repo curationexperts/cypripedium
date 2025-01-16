@@ -29,7 +29,7 @@ Using docker is the most straightforward way of setting up a local development e
 
 1. Install docker for your local environment
 2. Check out the cypripedium code base and navigate to that code base: `git clone git@github.com:MPLSFedResearch/cypripedium.git; cd cypripedium`
-3. Bring up the docker container: `docker-compose up` Once the container has started, you should be able to visit in your browser:
+3. Bring up the docker container: `docker compose up` Once the container has started, you should be able to visit in your browser:
 
   1. <http://localhost:8983/solr/#/hydra-development> (dev instance of solr)
   2. <http://localhost:8983/solr/#/hydra-test> (test instance of solr)
@@ -42,18 +42,8 @@ Using docker is the most straightforward way of setting up a local development e
 The best way to know that your local development environment is running as expected is to run the automated test suite:
 
 1. In a new terminal window, navigate to your code base
-2. Connect to your running rails container: `docker-compose exec web bash`
+2. Connect to your running rails container: `docker compose exec web bash`
 3. Run the test suite: `bundle exec rspec spec`
-
-
-## Local Development without Docker
-
-1. **Install postgresql.** Because we use the postgresql database in production, we follow the rails recommendation and also use it in development. The easiest way to set up a local development instance is to set it up to allow local password-less connections (follow [this guide](https://gist.github.com/p1nox/4953113))
-2. Run `bundle exec rake db:setup` to create expected databases and run database migrations
-3. Run `solr_wrapper`; check in your browser at `localhost:8983/solr` to see it running.
-4. Run `fcrepo_wrapper`; check in your browser at `localhost:8984/rest` to see it running.
-5. Run `sidekiq`. You can see it running at localhost:3000/sidekiq
-6. Run `redis-server`; Redis will run, you can check redis running by running `redis-cli ping` in a new window
 
 ## Data setup
 

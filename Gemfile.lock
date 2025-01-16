@@ -325,8 +325,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.5)
       faraday
-    fcrepo_wrapper (0.9.0)
-      ruby-progressbar
     ffi (1.16.3)
     flipflop (2.7.1)
       activesupport (>= 4.0)
@@ -913,11 +911,6 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    solr_wrapper (2.2.0)
-      faraday
-      retriable
-      ruby-progressbar
-      rubyzip
     solrizer (4.1.0)
       activesupport
       nokogiri
@@ -1053,7 +1046,6 @@ DEPENDENCIES
   ed25519 (~> 1.2, >= 1.2.4)
   factory_bot
   faker
-  fcrepo_wrapper
   honeybadger (~> 4.4.0)
   hydra-file_characterization (~> 1.1)
   hydra-role-management
@@ -1083,7 +1075,6 @@ DEPENDENCIES
   simple_form (>= 5.0.0)
   simplecov
   simplecov-lcov
-  solr_wrapper
   solrizer
   strscan (= 1.0.3)
   terser
