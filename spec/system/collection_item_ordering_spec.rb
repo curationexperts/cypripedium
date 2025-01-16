@@ -54,5 +54,11 @@ RSpec.describe 'Collection landing page', type: :system, clean: true, js: true d
       publication_titles = page.all('tr.document p.media-heading').map(&:text)
       expect(publication_titles).to eq titles
     end
+
+    it 'returns a relevance sort when the user supplies a search parameter' do
+      visit Hyrax::Engine.routes.url_helpers.collection_path(collection.id, cq: 'Cougar')
+      publication_titles = page.all('tr.document p.media-heading').map(&:text)
+      expect(publication_titles.first).to eq 'Cunning Cougar'
+    end
   end
 end

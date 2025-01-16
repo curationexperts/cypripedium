@@ -8,7 +8,7 @@ RSpec.describe Hyrax::CollectionSearchBuilder do
   describe '#add_sorting_to_solr' do
     let(:builder) { described_class.new(scope).with(blacklight_params) }
     let(:blacklight_params) do
-      { "sort" => "system_create_dtsi desc", "per_page" => "50", "locale" => "en" }.with_indifferent_access
+      { "sort" => "system_create_dtsi desc" }.with_indifferent_access
     end
     let(:solr_parameters) { {} }
 
