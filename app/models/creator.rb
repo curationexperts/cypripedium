@@ -13,7 +13,7 @@ class Creator < ApplicationRecord
     solr = Blacklight.default_index.connection
     response = solr.get 'select', params: { q: "creator_id_ssim:#{id}" }
     response['response']['docs'].each do |doc|
-      CypripediumWork.find(doc['id']).update_index
+      ActiveFedora::Base.find(doc['id']).update_index
     end
   end
 
