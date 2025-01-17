@@ -1,5 +1,6 @@
 services:
   web:
+    profiles: [full]
     build: .
     volumes:
       - .:/data
@@ -26,6 +27,7 @@ services:
   # NOTE: This is only used in local development. These passwords are never
   # used in a running application available on the internet.
   db:
+    profiles: [full]
     image: postgres:12-alpine
     environment:
       POSTGRES_MULTIPLE_DATABASES: cypripedium_development,cypripedium_test
@@ -55,6 +57,7 @@ services:
     command: bash -c 'precreate-core hydra-development /opt/solr/config; precreate-core hydra-test /opt/solr/config; exec solr -f'
 
   redis:
+    profiles: [full]
     image: redis:6-alpine
     sysctls:
       - net.core.somaxconn=511
