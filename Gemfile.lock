@@ -368,7 +368,7 @@ GEM
     google-cloud-env (2.2.1)
       faraday (>= 1.0, < 3.a)
     google-logging-utils (0.1.0)
-    google-protobuf (3.24.4)
+    google-protobuf (3.25.5)
     googleapis-common-protos-types (1.18.0)
       google-protobuf (>= 3.18, < 5.a)
     googleauth (1.12.2)
@@ -1121,7 +1121,7 @@ DEPENDENCIES
   ed25519 (~> 1.2, >= 1.2.4)
   factory_bot
   faker
-  google-protobuf (~> 3.24.4)
+  google-protobuf (~> 3.25.5)
   grpc (~> 1.59.3)
   honeybadger
   hydra-role-management
