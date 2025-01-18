@@ -13,11 +13,9 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  skip_after_action :discard_flash_if_xhr
-
   rescue_from I18n::InvalidLocale, with: :render_406
 
-  def render_406
+  def render_406 # rubocop:disable Naming/VariableNumber
     params.delete('locale')
     render template: 'pages/not_acceptable', status: :not_acceptable
   end

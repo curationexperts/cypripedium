@@ -17,3 +17,5 @@ var bagButton = {
     }
   }
 }
+
+bagButton.bindClick({'compression': 'zip'})
