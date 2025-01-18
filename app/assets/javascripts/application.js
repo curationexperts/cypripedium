@@ -10,44 +10,33 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//=
-//= require turbolinks
-//
 
-// Required by Blacklight
-//= require jquery
 //= require tether
 /* removed b/c it currently breaks modals */
 // require browse_everything
-//= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+
+//= require activestorage
+//= require rails-ujs
+//= require turbolinks
+
+//= require jquery3
+//= require popper
+//= require twitter/typeahead
+//= require bootstrap
+
+//= require jquery.dataTables
+//= require dataTables.bootstrap4
 //= require blacklight/blacklight
+//= require blacklight_gallery/blacklight-gallery
 //= require bootstrap-sprockets
-//= require jquery-ui/widgets/autocomplete
-//= require_tree "./bag/"
-//= require_tree "./channels/"
-//= require blacklight_gallery
+//  require jquery-ui/widgets/autocomplete
 //= require cable
 //= require notification-sort
-//= require openseadragon
 //= require hyrax
 //= require almond
 //= require creator_id
 //= require hydra-editor/field_manager
-//= require 'blacklight_range_limit'
+//= require blacklight_range_limit
 
-bagButton.bindClick({'compression': 'zip'})
+//= require_tree .
 
-
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-//
-//= require 'blacklight_range_limit'
-
-
-
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
-//= require 'blacklight_range_limit'
-//

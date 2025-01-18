@@ -1,4 +1,4 @@
-FROM ruby:2.7.4
+FROM ruby:3.2.4
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
@@ -14,7 +14,6 @@ RUN apt-get update && \
     libxslt-dev \
     netcat-openbsd \
     nodejs \
-    openjdk-11-jdk \
     unzip \
     wget
 

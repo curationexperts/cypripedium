@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+openseadragon-rails@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/openseadragon-rails/-/openseadragon-rails-1.0.16.tgz#343c061678ac1eda563210f1a8c6343a94c30c28"
+  integrity sha512-aia9ZhY9pdZSL4bcn93buUPw5pzjcgVaQls2Hnwq0DLCYLQpwFBu36jNPu+U2NCo9sGTEWB01xxGYJXAKHv44Q==
+  dependencies:
+    openseadragon "^5.0.1"
+
+openseadragon@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-5.0.1.tgz#ad3aaccc6c0f733c3153131e9af05bc2e17a1952"
+  integrity sha512-a/hjouW9i3UfWxRADVYN2MyRhXMGnE7x9VVL7/4jXCcDLFyO4UM5o4RStYtqa5BfaHw/wMNAaD2WbxQF8f1pJg==
+
 tether@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/tether/-/tether-2.0.0.tgz#8ccb03992e71e2e913e6b1d4feb6be8cb49a4f79"

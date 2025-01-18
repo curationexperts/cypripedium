@@ -3,6 +3,12 @@
   "name": "cypripedium",
   "private": true,
   "dependencies": {
+    "openseadragon-rails": "^1.0.16",
     "tether": "^2.0.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MPLSFedResearch/cypripedium.git",
+  "author": "Mark Bussey <mark@curationexperts.com>",
+  "license": "MIT"
 }

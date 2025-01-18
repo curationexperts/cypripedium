@@ -5,6 +5,7 @@ class CypripediumWork < ActiveFedora::Base
   def self.inherited(subclass)
     subclass.include 'Hyrax::WorkBehavior'.constantize
     subclass.indexer = CypripediumIndexer
+    super
   end
   include Cypripedium::Metadata
 
