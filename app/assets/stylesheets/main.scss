@@ -126,14 +126,44 @@ to match orgnizational style guidelines
 HOMEPAGE Main Content Styling tweaks
  */
 
-#recent_docs .table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 0;
-}
+.home-content {
+  padding-bottom: 2.5rem;
 
-.media-body {
-  width: auto;
+  // Align the Welcome paragraph with Recently Added Items
+  div.col-xs-12 {
+    padding-left: 1rem;
+  }
+
+  // Approximate FRBM feature link styling
+  a {
+    color: var(--frbm-dark-contrast-blue);
+    font-weight: bold;
+  }
+
+  .recent-item, .featured-collection {
+    a {
+      font-weight: normal;
+    }
+
+    h4 a {
+      font-weight: bold;
+      color: var(--frbm-dark-blue);
+    }
+  }
+
+  // Match Collection Highlights styling to Recent Documents styling
+  ul.collection-highlights {
+    list-style: none;
+
+    li.featured-collection {
+      border-top: 1px solid #ddd;
+
+      img {
+        border: none;
+        height: auto;
+      }
+    }
+  }
 }
 
 /*

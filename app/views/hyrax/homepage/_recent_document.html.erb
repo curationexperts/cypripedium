@@ -1,21 +1,23 @@
-<table class="table table-hover">
-<tr>
-  <td class="col-sm-2">
-    <%= link_to [main_app, recent_document] do %>
-      <%= render_thumbnail_tag recent_document, { width: 45 }, suppress_link: true %>
-    <% end %>
-  </td>
-  <td>
-    <h4>
-      <span class="sr-only">Title</span><%= link_to truncate(recent_document.to_s, length: 100, separator: ' '), [main_app, recent_document] %>
-    </h4>
-    <p>
-      <span class="sr-only">Authors</span><%= link_to_facet_list(recent_document.alpha_creator, 'creator', '', ' / ' ).html_safe %>
-    </p>
-    <p>
-      <span class="sr-only">Series</span><%= link_to_facet_list(recent_document.series, 'series', '').html_safe %>
-      <span class="sr-only">Issue Number</span><%= link_to_facet_list(recent_document.issue_number, 'issue_number', '').html_safe %>
-    </p>
-</td>
-</tr>
-</table>
+<li class="recent-item">
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to [main_app, recent_document] do %>
+        <%= document_presenter(recent_document)&.thumbnail&.thumbnail_tag(
+              { width: 90, alt: "#{recent_document} #{ t('hyrax.homepage.admin_sets.thumbnail')}" },
+              { suppress_link: true }
+            ) %>
+      <% end %>
+      <h4 class="recent-field">
+        <span class="sr-only"><%= t('hyrax.homepage.recently_uploaded.document.title_label') %></span>
+        <%= link_to truncate(recent_document.to_s, length: 100, separator: ' '), [main_app, recent_document] %>
+      </h4>
+      <p class="recent-field">
+        <span class="sr-only">Authors</span><%= link_to_facet_list(recent_document.alpha_creator, 'creator', '', ' / ' ).html_safe %>
+      </p>
+      <p class="recent-field">
+        <span class="sr-only">Series</span><%= link_to_facet_list(recent_document.series, 'series', '').html_safe %>
+        <span class="sr-only">Issue Number</span><%= link_to_facet_list(recent_document.issue_number, 'issue_number', '').html_safe %>
+      </p>
+    </div>
+  </div>
+</li>

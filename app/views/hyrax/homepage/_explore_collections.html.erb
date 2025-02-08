@@ -1,20 +1,21 @@
-<table class="table table-hover">
-    <% collections.each do |collection| %>
-      <tr>
-        <td class="col-sm-2">
-            <%= link_to [hyrax, collection], class: 'media-left', 'aria-hidden' => true do %>
-              <%= render_thumbnail_tag collection, { width: 45 }, suppress_link: true %>
+<ul id="home-collections" class="inline-list list-group collection-highlights">
+  <% collections.each do |collection| %>
+    <li class="featured-collection">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>
+            <%= link_to [hyrax, collection], class: 'media-left' do %>
+              <%= document_presenter(collection)&.thumbnail&.thumbnail_tag(
+                    { width: 90, alt: "#{collection} #{ t('hyrax.homepage.admin_sets.thumbnail')}" },
+                    { suppress_link: true }
+                  ) %>
+              <%= collection.title_or_label %>
             <% end %>
-          </td>
-          <td>
-                <%= link_to [hyrax, collection] do %>
-                <h4>  <%= collection.title_or_label %></h4>
-                <% end %>
-        </td>
-      </tr>
-    <% end %>
-</table>
-<ul class="list-inline collection-highlights-list">
+          </h4>
+        </div>
+      </div>
+    </li>
+  <% end %>
   <li>
     <%= link_to t('hyrax.homepage.admin_sets.link'),
                 main_app.search_catalog_path(f: { human_readable_type_sim: ["Collection"]}),
