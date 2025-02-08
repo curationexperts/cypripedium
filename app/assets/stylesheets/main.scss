@@ -1,8 +1,3 @@
-/* ...
- *= require hyrax
- *= require_self
-*/
-
 :root {
   --frbm-dark-blue: #003a5d;
   --frbm-dark-contrast-blue: #456789;
@@ -146,33 +141,27 @@ FOOTER Styling
 to match orgnizational style guidelines
  */
 
-.site-footer {
-    margin-top: 35px;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    height: auto;
-    width: 100%;
-}
-
 footer.site-footer {
-    color: white;
-    font-size: 14px;
-    background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
-    border-top: 4px solid var(--frbm-goldenrod);
-    border-right: none;
-    border-bottom: none;
-    border-left: none;
-}
-
-footer.site-footer a.navbar-link {
   color: white;
-  text-decoration: none;
-}
+  background: var(--frbm-dark-blue);
+  background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
+  border: none;
+  border-top: 4px solid var(--frbm-goldenrod);
 
-footer.site-footer a.navbar-link:hover {
-  color: white;
-  text-decoration: underline;
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+
+  a.navbar-link {
+    color: var(--frbm-goldenrod);
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 }
 
 /*
