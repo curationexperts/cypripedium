@@ -12,11 +12,6 @@
  *
  *= require_tree .
  *= require dataTables.bootstrap4
- *= require_self
- 
- *
- * Used by blacklight_range_limit
  *= require  'blacklight_range_limit'
- *
+ *= require_self
 */
-
