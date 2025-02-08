@@ -3,23 +3,34 @@
  *= require_self
 */
 
+:root {
+  --frbm-dark-blue: #003a5d;
+  --frbm-dark-contrast-blue: #456789;
+  --frbm-goldenrod: #d0af21;
+  --frbm-pirate-gold: #ae8e03;
+  --frbm-contrast-blue: #45c2b1;
+  --background-transparent: rgb(245, 245, 245);
+}
+
+// Keep text sizing roughly consistent with earlier Hyrax 3 based version of the application
+html {
+  font-size: 14px; // Previously set by Hyrax 3
+}
+
 body.dashboard {
-  padding-top: 73px;
+  padding-top: 7.0rem;
 }
 
 @media (max-width: 979px) {
   body.dashboard {
-    padding-top: 0;
+    padding-top: 3.5rem;
   }
 }
 
-.btn-primary {
-    background-color: #d0af21;
-    border-color: #265b89;
-}
-button.navbar-toggle {
-  background: #5c5c5c;
-}
+/*
+HEADER Styling
+to match orgnizational style guidelines
+ */
 
 #left { max-height:76px;}
 
@@ -35,33 +46,32 @@ button.navbar-toggle {
     padding-top: 10px;
 }
 
-#masthead.navbar { background-color: #ffffff; border: none;}
-ul#user_utility_links a {color: #003a5d; }
-ul#user_utility_links a:hover, a:active, a:focus {text-decoration: underline; text-decoration-color: #d0af21;}
+#masthead.navbar { background-color: white; border: none;}
+ul#user_utility_links a {color: var(--frbm-dark-contrast-blue); }
+ul#user_utility_links a:hover, a:active, a:focus {text-decoration: underline; text-decoration-color: var(--frbm-goldenrod);}
 ul#user_utility_links.navbar-inverse.navbar-nav.open,
 a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #d1d3d4 !important;}
 
-
 .image-masthead .navbar {
-  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
-    color: #fff;
+  background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
+    color: white;
     padding: 5px;
     margin-bottom: 0;
 }
 
 .image-masthead .navbar .navbar-nav a {
-    color: #fff;
+    color: white;
     text-transform: uppercase;
 }
 
 .image-masthead .navbar .navbar-nav a:hover, a:active, a:focus {
     text-decoration: underline;
-    text-decoration-color: #d0af21;
+    text-decoration-color: var(--frbm-goldenrod);
 }
 
 .image-masthead .navbar .navbar-nav .active > a {
     background-color: inherit;
-    color: #fff;
+    color: white;
 
 }
 
@@ -72,7 +82,7 @@ a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #
 
 #lower-banner-border-masthead {
   overflow: hidden;
-  background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
+  background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 25px;
@@ -80,7 +90,7 @@ a.navbar-inverse.navbar-nav.open a:hover, a:active, a:focus {background-color: #
 }
 
 #lower-banner-border-masthead h1 a {
-  color: #fff;
+  color: white;
   font-family: 'Work Sans', 'Arial', sans-serif;
   font-size: 2.0rem;
   font-weight: 900;
@@ -101,6 +111,10 @@ a:focus {
   font-weight: normal;
 }
 
+/*
+HOMEPAGE Main Content Styling tweaks
+ */
+
 #recent_docs .table {
     width: 100%;
     max-width: 100%;
@@ -110,6 +124,11 @@ a:focus {
 .media-body {
   width: auto;
 }
+
+/*
+FOOTER Styling
+to match orgnizational style guidelines
+ */
 
 .site-footer {
     margin-top: 35px;
@@ -121,24 +140,30 @@ a:focus {
 }
 
 footer.site-footer {
-    color: #fff;
+    color: white;
     font-size: 14px;
-    background: linear-gradient(75deg, #003a5d 0%, #45c2b1 200%);
-    border-top: 4px solid #d0af21;
+    background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
+    border-top: 4px solid var(--frbm-goldenrod);
     border-right: none;
     border-bottom: none;
     border-left: none;
 }
 
 footer.site-footer a.navbar-link {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 
 footer.site-footer a.navbar-link:hover {
-  color: #fff;
+  color: white;
   text-decoration: underline;
 }
+
+/*
+FIXES for metadata editing forms
+Ensures that the first item of a multi-item list can be removed
+when there are more than one values in a field.
+ */
 
 .form-tab-content ul.listing {
   max-width: 80rem;
