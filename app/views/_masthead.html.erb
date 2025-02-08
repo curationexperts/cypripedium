@@ -1,23 +1,16 @@
-<nav id="masthead" class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<header aria-label="header" class="top-header">
+  <nav id="masthead" class="navbar navbar-expand-lg navbar-light <%= placement_class %>" role="navigation" aria-label="masthead">
+    <div class="container-fluid align-items-start">
       <%= render '/logo' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="top-navbar-collapse">
+        <%= render '/user_util_links' %>
+      </div>
     </div>
-
-    <div class="collapse navbar-collapse" id="top-navbar-collapse">
-      <%= render '/user_util_links' %>
-    </div>
-  </div>
-</nav>
-<div id="lower-banner-border-masthead">
-  <span class="group-header institution_name">
-  <h1><a href="<%= hyrax.root_path %>" data-no-turbolink="true"><%= application_name %></a></h1>
-  </span>
-  </div>
+  </nav>
+  <nav id="lower-banner-border-masthead" class="group-header institution_name flex-nowrap">
+    <h1><a href="<%= hyrax.root_path %>" data-no-turbolink="true"><%= application_name %></a></h1>
+  </nav>
+</header>
