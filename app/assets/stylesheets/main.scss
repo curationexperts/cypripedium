@@ -81,6 +81,11 @@ to match orgnizational style guidelines
   font-family: 'Work Sans', 'Arial', sans-serif;
   a {
     color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
   h1 {
     font-size: 1.75rem;
@@ -151,6 +156,11 @@ HOMEPAGE Main Content Styling tweaks
   a {
     color: var(--frbm-dark-contrast-blue);
     font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   //ol.list-group.list-group-striped li.recent-item:nth-of-type(odd) {
@@ -179,7 +189,7 @@ HOMEPAGE Main Content Styling tweaks
   }
 
   // Match Collection Highlights styling to Recent Documents styling
-  ul.collection-highlights {
+  ul#home-collections {
     list-style: none;
 
     li.featured-collection {
@@ -191,6 +201,12 @@ HOMEPAGE Main Content Styling tweaks
         height: 5rem;
         width: auto;
       }
+    }
+
+    li a.btn {
+      margin-top: 1.5rem;
+      margin-left: 1.0rem;
+      font-size: 1.25rem;
     }
   }
 }
