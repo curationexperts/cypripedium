@@ -12,8 +12,8 @@
 //
 
 //= require tether
-/* removed b/c it currently breaks modals */
-// require browse_everything
+//= require almond
+//= require bootstrap-sprockets
 
 //= require activestorage
 //= require rails-ujs
@@ -27,16 +27,8 @@
 //= require jquery.dataTables
 //= require dataTables.bootstrap4
 //= require blacklight/blacklight
-//= require blacklight_gallery/blacklight-gallery
-//= require bootstrap-sprockets
-//  require jquery-ui/widgets/autocomplete
-//= require cable
-//= require notification-sort
-//= require hyrax
-//= require almond
-//= require creator_id
-//= require hydra-editor/field_manager
+//= require blacklight_gallery/default
 //= require blacklight_range_limit
 
 //= require_tree .
-
+//= require hyrax
