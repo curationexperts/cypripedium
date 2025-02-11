@@ -22,6 +22,21 @@ body.dashboard {
   }
 }
 
+.alert {
+  margin: 0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#content-wrapper.container {
+  padding-bottom: 1.0rem;
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 /*
 HEADER Styling
 to match orgnizational style guidelines
@@ -138,6 +153,11 @@ HOMEPAGE Main Content Styling tweaks
     font-weight: bold;
   }
 
+  //ol.list-group.list-group-striped li.recent-item:nth-of-type(odd) {
+  #recent_docs li {
+    background-color: inherit;
+  }
+
   .recent-item, .featured-collection {
     a {
       font-weight: normal;
@@ -146,6 +166,15 @@ HOMEPAGE Main Content Styling tweaks
     h4 a {
       font-weight: bold;
       color: var(--frbm-dark-blue);
+    }
+
+    img {
+      border: solid lightgrey 1px;
+      margin-right: 1.0rem;
+    }
+
+    .recent-field {
+      padding-left: 8.0rem;
     }
   }
 
@@ -157,8 +186,10 @@ HOMEPAGE Main Content Styling tweaks
       border-top: 1px solid #ddd;
 
       img {
-        border: none;
-        height: auto;
+        margin-top: 0.5rem;
+        border: solid lightgrey 1px;
+        height: 5rem;
+        width: auto;
       }
     }
   }
