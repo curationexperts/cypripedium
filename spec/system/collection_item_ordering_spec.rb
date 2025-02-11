@@ -51,6 +51,7 @@ RSpec.describe 'Collection landing page', type: :system, clean: true, js: true d
 
       # change sort order
       select 'title ▲', from: 'sort'
+      click_on 'Refresh'
       publication_titles = page.all('tr.document p.media-heading').map(&:text)
       expect(publication_titles).to eq titles
     end
