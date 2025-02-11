@@ -28,7 +28,6 @@
 //= require dataTables.bootstrap4
 //= require blacklight/blacklight
 //= require blacklight_gallery/default
-//= require bootstrap-sprockets
 //= require cable
 //= require notification-sort
 //= require almond
