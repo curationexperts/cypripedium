@@ -8,11 +8,12 @@ RSpec.describe 'New work creation', type: :system, js: true do
   before do
     # Create legacy default AdminSet (ActiveFedora)
     # Mimics Hyrax::AdminSetCreateService, but persists the default admin set to Fedora instead of the Database
-    default_admin_set = AdminSet.where(id: 'admin_set/default').first ||
-                        AdminSet.create!(id: 'admin_set/default', title: ['Default Admin Set'])
-    permission_template = Hyrax::Collections::PermissionsCreateService.create_default(collection: default_admin_set, creating_user: nil)
-    Hyrax::AdminSetCreateService.new(admin_set: default_admin_set, creating_user: nil).send(:create_workflows_for, permission_template: permission_template)
-    # add deposit rights for registered users here if required
+    # default_admin_set = AdminSet.where(id: 'admin_set/default').first ||
+    #                     AdminSet.create!(id: 'admin_set/default', title: ['Default Admin Set'])
+    # permission_template = Hyrax::Collections::PermissionsCreateService.create_default(collection: default_admin_set, creating_user: nil)
+    # Hyrax::AdminSetCreateService.new(admin_set: default_admin_set, creating_user: nil).send(:create_workflows_for, permission_template: permission_template)
+    # # add deposit rights for registered users here if required
+    Hyrax::AdminSetCreateService.find_or_create_default_admin_set
   end
 
   example 'administrative deposit', :aggregate_failures do
