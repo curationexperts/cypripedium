@@ -692,7 +692,7 @@ GEM
     noid-rails (3.2.0)
       actionpack (>= 5.0.0, < 8)
       noid (~> 0.9)
-    nokogiri (1.18.2)
+    nokogiri (1.18.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oauth (1.1.0)
@@ -735,7 +735,7 @@ GEM
       rails (>= 5.0, < 8.1)
       rdf
     racc (1.8.1)
-    rack (2.2.10)
+    rack (2.2.11)
     rack-linkeddata (3.3.0)
       linkeddata (~> 3.3)
       rack (>= 2.2, < 4)
@@ -885,7 +885,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.4.0)
+    rexml (3.4.1)
     riiif (2.7.0)
       deprecation (>= 1.0.0)
       iiif-image-api (>= 0.1.0)
@@ -1154,7 +1154,6 @@ DEPENDENCIES
   ed25519 (~> 1.2, >= 1.2.4)
   factory_bot
   faker
-  google-protobuf (~> 3.25.5)
   grpc (~> 1.59.3)
   honeybadger
   hydra-role-management
