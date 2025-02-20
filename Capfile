@@ -19,13 +19,6 @@ install_plugin Capistrano::Sidekiq::Systemd
 set :sidekiq_service_unit_user, :system # Run Sidekiq as a system service
 
 # Load the SCM plugin appropriate to your project:
-#
-# require "capistrano/scm/hg"
-# install_plugin Capistrano::SCM::Hg
-# or
-# require "capistrano/scm/svn"
-# install_plugin Capistrano::SCM::Svn
-# or
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
