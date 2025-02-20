@@ -58,3 +58,11 @@ es:
     institution_name_full: Federal Reserve Bank of Minneapolis Research Division
     product_name: Research Database
     product_twitter_handle: "@MinneapolisFed"
+  creators:
+    table_headers:
+      id: "ID"
+      display_name: "Nombre Para Mostrar"
+      alternate_names: "Nombres Alternativos"
+      repec: "RePEc"
+      viaf: "VIAF"
+      active: "Activ"
