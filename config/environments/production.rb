@@ -120,3 +120,8 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end
+
+# Set the production derivatives path, unless it is already set in
+# the environment. This allows the Valkyrie Storage Adapter to initialize correctly
+# See https://github.com/samvera/hyrax/blob/v5.0.4/config/initializers/storage_adapter_initializer.rb#L10:
+ENV['HYRAX_DERIVATIVES_PATH'] ||= '/opt/derivatives'
