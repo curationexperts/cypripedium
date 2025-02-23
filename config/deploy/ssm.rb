@@ -17,7 +17,7 @@ set :instance_id, lambda {
                        Name=tag-key,Values=Project Name=tag-value,Values=rdb \
                        --query "Reservations[*].Instances[*].InstanceId" --output text`.chomp
 }
-server fetch(:instance_id), user: 'deploy', roles: [:web, :app, :db]
+server fetch(:instance_id), user: 'deploy', roles: [:web, :app, :db, :worker]
 set :command, %(aws --profile frbm-ssm  ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p')
 set :ssh_options,
   auth_methods: %w[publickey],

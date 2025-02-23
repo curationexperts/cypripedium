@@ -12,6 +12,13 @@ set :log_level, :error
 set :bundle_flags, '--deployment'
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
+# Sidekiq configuration on servers
+set :sidekiq_roles, :worker                  # Default role for Sidekiq processes
+set :sidekiq_default_hooks, true             # Enable default deployment hooks
+set :sidekiq_env, fetch(:rack_env, fetch(:rails_env, fetch(:stage))) # Environment for Sidekiq processes
+set :service_unit_user, :system              # We run Sidekiq as a system service to avoid setting up lingering
+set :sidekiq_service_unit_name, 'sidekiq'    # Match the service name configured by Ansible
+
 set :keep_releases, 3
 set :assets_prefix, "#{shared_path}/public/assets"
 
