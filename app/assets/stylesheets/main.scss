@@ -147,11 +147,6 @@ HOMEPAGE Main Content Styling tweaks
 .home-content {
   padding-bottom: 2.5rem;
 
-  // Align the Welcome paragraph with Recently Added Items
-  div.col-xs-12 {
-    padding-left: 1rem;
-  }
-
   // Approximate FRBM feature link styling
   a {
     color: var(--frbm-dark-contrast-blue);
