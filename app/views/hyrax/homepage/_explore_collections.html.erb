@@ -3,7 +3,7 @@
     <li class="featured-collection">
       <div class="row">
         <div class="col-sm-12">
-          <h4>
+          <h3>
             <%= link_to [hyrax, collection], class: 'media-left' do %>
               <%= document_presenter(collection)&.thumbnail&.thumbnail_tag(
                     { width: 90, alt: "#{collection} #{ t('hyrax.homepage.admin_sets.thumbnail')}" },
@@ -11,7 +11,7 @@
                   ) %>
               <%= collection.title_or_label %>
             <% end %>
-          </h4>
+          </h3>
         </div>
       </div>
     </li>

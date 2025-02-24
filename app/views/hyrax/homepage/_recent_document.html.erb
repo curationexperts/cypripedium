@@ -7,10 +7,10 @@
               { suppress_link: true }
             ) %>
       <% end %>
-      <h4 class="recent-field">
+      <h3 class="recent-field">
         <span class="sr-only"><%= t('hyrax.homepage.recently_uploaded.document.title_label') %></span>
         <%= link_to truncate(recent_document.to_s, length: 100, separator: ' '), [main_app, recent_document] %>
-      </h4>
+      </h3>
       <p class="recent-field">
         <span class="sr-only">Authors</span><%= link_to_facet_list(recent_document.alpha_creator, 'creator', '', ' / ' ).html_safe %>
       </p>
