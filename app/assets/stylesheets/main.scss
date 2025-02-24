@@ -1,10 +1,9 @@
 :root {
   --frbm-dark-blue: #003a5d;
-  --frbm-dark-contrast-blue: #456789;
+  --frbm-dark-contrast-blue: #13626E; // #456789;
   --frbm-goldenrod: #d0af21;
   --frbm-pirate-gold: #ae8e03;
   --frbm-contrast-blue: #45c2b1;
-  --background-transparent: rgb(245, 245, 245);
 }
 
 // Keep text sizing roughly consistent with earlier Hyrax 3 based version of the application
@@ -134,10 +133,16 @@ to match orgnizational style guidelines
   }
 }
 
+#search-field-header {
+  border-color: darkgray;
+}
+
 #search-submit-header {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  color: var(--frbm-dark-blue);
+  color: black;
+  background-color: var(--frbm-goldenrod);
+  border-color: var(--frbm-pirate-gold)
 }
 
 /*
@@ -168,8 +173,9 @@ HOMEPAGE Main Content Styling tweaks
       font-weight: normal;
     }
 
-    h4 a {
+    h3 a {
       font-weight: bold;
+      font-size: 1.3rem;
       color: var(--frbm-dark-blue);
     }
 
@@ -180,6 +186,7 @@ HOMEPAGE Main Content Styling tweaks
 
     .recent-field {
       padding-left: 8.0rem;
+      margin-bottom: 0.3rem;
     }
   }
 
