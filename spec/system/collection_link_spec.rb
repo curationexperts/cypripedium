@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Collections listing', type: :system do
+RSpec.describe 'Collections listing', type: :system, clean: true do
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) do
     Collection.create!(
