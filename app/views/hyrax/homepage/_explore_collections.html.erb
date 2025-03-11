@@ -18,7 +18,8 @@
   <% end %>
   <li>
     <%= link_to t('hyrax.homepage.admin_sets.link'),
-                main_app.search_catalog_path(f: { human_readable_type_sim: ["Collection"]}),
+                main_app.search_catalog_path(f: { has_model_ssim: ["Collection"]}),
+                id: 'all_collections',
                 class: 'btn btn-default' %>
   </li>
 </ul>
