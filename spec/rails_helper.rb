@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.before :suite do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
+    ActiveJob::Base.queue_adapter = :test
   end
 
   config.before do
