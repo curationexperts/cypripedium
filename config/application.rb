@@ -18,5 +18,9 @@ module Cypripedium
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Output logs in JSON format
+    config.rails_semantic_logger.format = :json
+    config.semantic_logger.application = Rails.version < '6' ? Rails.application.class.parent.name : Rails.application.class.module_parent_nam
   end
 end

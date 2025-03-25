@@ -40,6 +40,8 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5'
 gem 'rails-assets-tether'
+# Support semantic logs in JSON format [https://logger.rocketjob.io/rails.html]
+gem 'rails_semantic_logger'
 gem 'rainbow'
 gem 'redcarpet'
 gem 'redis', '~> 4.1'
