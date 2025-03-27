@@ -773,6 +773,10 @@ GEM
       actionview (> 3.1)
       activesupport (> 3.1)
       railties (> 3.1)
+    rails_semantic_logger (4.17.0)
+      rack
+      railties (>= 5.1)
+      semantic_logger (~> 4.16)
     railties (6.1.7.10)
       actionpack (= 6.1.7.10)
       activesupport (= 6.1.7.10)
@@ -963,6 +967,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    semantic_logger (4.16.1)
+      concurrent-ruby (~> 1.0)
     shacl (0.4.1)
       json-ld (~> 3.3)
       rdf (~> 3.3)
@@ -1169,6 +1175,7 @@ DEPENDENCIES
   pg (~> 1.3)
   puma
   rails (~> 6.1)
+  rails_semantic_logger
   redcarpet
   riiif (~> 2.1)
   rsolr (>= 1.0, < 3)

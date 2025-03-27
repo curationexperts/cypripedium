@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
     params.delete('locale')
     render template: 'pages/not_acceptable', status: :not_acceptable
   end
+
+  private
+
+  def append_info_to_payload(payload)
+    super
+    payload[:request_id] = request.request_id
+  end
 end

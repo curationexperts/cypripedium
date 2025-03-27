@@ -39,6 +39,8 @@ gem 'parser'
 gem 'pg', '~> 1.3'
 gem 'puma'
 gem 'rails', '~> 6.1'
+# Support semantic logs in JSON format [https://logger.rocketjob.io/rails.html]
+gem 'rails_semantic_logger'
 gem 'redcarpet'
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'

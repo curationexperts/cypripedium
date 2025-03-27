@@ -31,5 +31,9 @@ module Cypripedium
       config.bag_prefix = 'mpls_fed_research'
       config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
     end
+
+    # Output logs in JSON format
+    config.rails_semantic_logger.format = :json
+    config.semantic_logger.application = Rails.application.class.module_parent_name
   end
 end
