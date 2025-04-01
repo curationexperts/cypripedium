@@ -11,6 +11,8 @@ module Extensions
     def self.included(k)
       k.class_eval do
         def self.warn(*args)
+          return if Rails.application.config.active_support.deprecation == :silence
+
           if args[0].is_a?(String)
             message, callstack = args[0..1]
           else
