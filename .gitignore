@@ -23,7 +23,6 @@ coverage
 .byebug_history
 .env*
 .idea/*
-.ruby-version
 dump.rdb
 vendor
 public/assets

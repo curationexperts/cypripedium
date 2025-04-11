@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 # Load DSL and set up stages
-require "capistrano/setup"
+require 'capistrano/setup'
 
 # Include default deployment tasks
 require "capistrano/deploy"
+
+# Use RBENV to manage ruby version in use
+require 'capistrano/rbenv'
 
 # Use bundler to install gem requirements
 require 'capistrano/bundler'
