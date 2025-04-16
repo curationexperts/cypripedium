@@ -9,7 +9,6 @@ set :deploy_to, '/opt/cypripedium'
 set :ssh_options, keys: ["cypripedium-cd-deploy"] if File.exist?("cypripedium-cd-deploy")
 
 set :log_level, :error
-set :bundle_flags, '--deployment'
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 # Sidekiq configuration on servers
