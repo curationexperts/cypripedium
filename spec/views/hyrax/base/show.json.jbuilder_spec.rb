@@ -27,18 +27,18 @@ RSpec.describe 'hyrax/base/show.json.jbuilder', type: :view do
   )
   }
   let(:presenter) { CypripediumWorkPresenter.new(solr_document, nil) }
-  let(:json) do
-    rendered = ApplicationController.render template: subject,
-                                            format: :json,
-                                            assigns: { curation_concern: curation_concern, presenter: presenter }
-    JSON.parse(rendered)
-  end
 
   before do
     allow(curation_concern).to receive(:etag).and_return('not persisted')
   end
 
   it 'alphabetizes creator names' do
+    assign(:curation_concern, curation_concern)
+    assign(:presenter, presenter)
+
+    render
+
+    json = JSON.parse(rendered)
     expect(json['creator']).to eq ['anon. 17th Century', 'Back From The Dead Red', 'Delahaye, Jacquotte']
   end
 end
