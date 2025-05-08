@@ -44,6 +44,9 @@ RSpec.describe 'Edit markdown fields:', type: :system, js: true do
       # Go to the show page for this collection
       visit Hyrax::Engine.routes.url_helpers.dashboard_collection_path(collection.id)
 
+      # Ensure the new page has loaded (to avoid flaky test)
+      expect(page).to have_no_current_path(/edit/)
+
       # The markdown should be rendered
       expect(page).to have_link('example of a link', href: 'http://example.com/')
       expect(page).to have_selector('em', text: 'italic text')
