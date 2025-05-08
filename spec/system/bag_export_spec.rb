@@ -32,7 +32,6 @@ RSpec.describe 'Bagit export:', type: :system, js: true do
     xit 'queues the bagit job' do
       visit Hyrax::Engine.routes.url_helpers.my_works_path
 
-      # Click 'All Works' tab to trigger turbolinks
       click_on 'All Works'
       expect(page).to have_link(publication.title.first)
       expect(page).to have_link(data_set.title.first)

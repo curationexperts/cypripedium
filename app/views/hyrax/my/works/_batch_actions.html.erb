@@ -1,9 +1,9 @@
 <div class="batch-info">
   <%= render 'hyrax/dashboard/collections/form_for_select_collection', user_collections: @user_collections %>
 
-  <div class="batch-toggle" data-turbolinks="false">
-    <%= button_tag "Add to Zip Bag", data: {turbolinks: false}, class: 'btn btn-primary e submits-batches submits-ids-for-zip-bag' %>
-    <%= button_tag "Add to Tar Bag", data: {turbolinks: false}, class: 'btn btn-primary submits-batches submits-ids-for-tar-bag' %>
+  <div class="batch-toggle">
+    <%= button_tag "Add to Zip Bag", class: 'btn btn-primary e submits-batches submits-ids-for-zip-bag' %>
+    <%= button_tag "Add to Tar Bag", class: 'btn btn-primary submits-batches submits-ids-for-tar-bag' %>
 
 
     <% session[:batch_edit_state] = "on" %>
