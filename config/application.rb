@@ -35,5 +35,15 @@ module Cypripedium
     # Output logs in JSON format
     config.rails_semantic_logger.format = :json
     config.semantic_logger.application = Rails.application.class.module_parent_name
+
+    config.after_initialize do
+      # Override collection form class so that we can
+      # add markdown to some of the fields in the form.
+      Hyrax::Forms::CollectionForm.prepend ::CollectionFormMarkdown
+
+      # Cypripedium needs its own local schema.org config to handle microdata settings
+      # for fields that are not configured in base Hyrax, e.g., "alpha_creator"
+      Hyrax::Microdata.load_paths << Rails.root.join('config', 'schema_org.yml')
+    end
   end
 end
