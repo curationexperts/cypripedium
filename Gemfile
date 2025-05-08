@@ -28,13 +28,12 @@ gem 'ed25519', '~> 1.2', '>= 1.2.4'
 gem 'grpc', '~> 1.59.3'
 gem 'honeybadger'
 gem 'hydra-role-management'
-gem 'hyrax', '~> 5.0', '>= 5.0.4'
-gem 'jbuilder', '~> 2.5'
+gem 'hyrax', '~> 5.1'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'parser'
 gem 'pg', '~> 1.3'
-gem 'puma'
-gem 'rails', '~> 6.1'
+gem 'rails'
 # Support semantic logs in JSON format [https://logger.rocketjob.io/rails.html]
 gem 'rails_semantic_logger'
 gem 'redcarpet'
@@ -67,6 +66,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
+  gem 'puma'
 end
 
 group :test do
