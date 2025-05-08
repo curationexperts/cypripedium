@@ -42,7 +42,7 @@ class BagJob < ApplicationJob
       <div>
         Your bag containing #{work_count} #{'work'.pluralize(work_count)},
         including #{bag_files.first}, is available for download at
-        <a data-turbolinks='false' href='/bag/#{bag_file_name}.#{bag_format}'>#{bag_file_name}.#{bag_format}</a>
+        <a href='/bag/#{bag_file_name}.#{bag_format}'>#{bag_file_name}.#{bag_format}</a>
       </div>
     NOTICE
   end

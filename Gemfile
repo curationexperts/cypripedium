@@ -46,7 +46,6 @@ gem 'solrizer'
 gem 'strscan', '1.0.3' # match version installed on server as system gem
 gem 'terser'
 gem 'tether-rails'
-gem 'turbolinks', '~> 5'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
