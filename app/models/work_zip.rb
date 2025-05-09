@@ -14,7 +14,7 @@
 
 class WorkZip < ApplicationRecord
   # rubocop:disable Layout/HashAlignment
-  enum status: {
+  enum :status, {
     unavailable:  0,
     queued:       1,
     working:      2,
