@@ -83,4 +83,4 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2-7-4
+                name: ruby3-2-4
