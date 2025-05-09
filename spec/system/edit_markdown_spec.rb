@@ -40,6 +40,7 @@ RSpec.describe 'Edit markdown fields:', type: :system, js: true do
       # Fill in the new description and save
       fill_in 'Description', with: new_description
       click_on 'Save changes'
+      expect(page).to have_content 'successfully updated'
 
       # Go to the show page for this collection
       visit Hyrax::Engine.routes.url_helpers.dashboard_collection_path(collection.id)
