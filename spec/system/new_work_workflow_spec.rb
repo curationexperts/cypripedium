@@ -36,7 +36,8 @@ RSpec.describe 'New work creation', type: :system, js: true do
     click_on 'Save'
 
     # Yield control back to the browser until the page redirects to the Publication view
-    page.find(id: 'with_files_submit') until page.find('.work-title-wrapper span[itemprop="name"]')
+    page.has_selector?(id: 'with_files_submit') until page.has_selector?('.work-title-wrapper span[itemprop="name"]')
+
     # The page should redirect to the newly created Publication
     expect(current_path).to match(hyrax_publication_path(Publication.last))
     expect(page).to have_content('My new Publication')
