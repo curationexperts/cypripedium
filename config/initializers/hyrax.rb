@@ -262,6 +262,10 @@ Hyrax.config do |config|
   # Identify the indexer that will be used for Admin Sets
   # config.administrative_set_indexer = Hyrax::Indexers::AdministrativeSetIndexer
 
+  # Identify the model class name that will be used for File Sets in your app
+  # (i.e. FileSet for ActiveFedora, Hyrax::FileSet for Valkyrie)
+  config.file_set_model = '::FileSet'
+
   # Identify the form that will be used for File Sets
   # config.file_set_form = Hyrax::Forms::FileSetForm
 
