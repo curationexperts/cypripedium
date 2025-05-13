@@ -112,7 +112,7 @@ en:
     directory:
       suffix:               "@example.org"
     footer:
-      copyright_html: "<strong>Copyright &copy; 2022 Federal Reserve Bank of Minneapolis</strong>"
+      copyright_html: "<strong>Copyright &copy; %{year} Federal Reserve Bank of Minneapolis</strong>"
       service_html: A service of the <a href="https://www.minneapolisfed.org/economic-research" class="navbar-link">Federal Reserve Bank of Minneapolis Research Division</a>.
   creators:
     table_headers:
