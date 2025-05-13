@@ -51,6 +51,8 @@ en:
           date_created: Date Created
           date_modified: Date Modified
           date_uploaded: Date Uploaded
+          date_available: Date Available
+          related_url: Related Information
           description: Description
           file_format: File Format
           geographic_name: "Spatial"
@@ -80,7 +82,6 @@ en:
         alternative_title: Alternative Title
         bibliographic_citation: Bibliographic Citation
         corporate_name: Corporate Author
-        date_available: Date Available
         geographic_name: Spatial
         identifier: DOI
         isPartOf: Series

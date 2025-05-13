@@ -11,4 +11,12 @@ class CypripediumWorkPresenter < Hyrax::WorkShowPresenter
   def work_zip
     WorkZip.latest(id).first || WorkZip.new(work_id: id)
   end
+
+  # 2025-05-10 MHB - we're currently indexing all name variants into the creator field, so
+  # creator might inlcude multiple variants for the same person. Using alpha_creator
+  # in the presenter ensures that we only display the preferred name, and that names are sorted in
+  # alphbetical order
+  def creator
+    alpha_creator
+  end
 end
