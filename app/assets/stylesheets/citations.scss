@@ -1,5 +1,10 @@
-.citation-header h3 {
-  line-height: 1rem;
+.modal-header.citation-header {
+  display: block;
+
+  .show-header {
+    line-height: 1.75rem;
+    font-size: large;
+  }
 }
 
 .chicago-citation, .mla-citation, .apa-citation {
