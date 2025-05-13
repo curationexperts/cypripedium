@@ -52,7 +52,7 @@ zh:
     directory:
       suffix: "@example.org"
     footer:
-      copyright_html: "<strong>版权所有 &copy; 2018 Federal Reserve Bank of Minneapolis</strong>"
+      copyright_html: "<strong>版权所有 &copy; %{year} Federal Reserve Bank of Minneapolis</strong>"
       service_html: 的服务<a href="https://research.minneapolisfed.org" class="navbar-link">Federal Reserve Bank of Minneapolis Research Division</a>.
     institution_name: Federal Reserve Bank of Minneapolis
     institution_name_full: Federal Reserve Bank of Minneapolis
