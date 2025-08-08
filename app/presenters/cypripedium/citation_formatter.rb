@@ -104,10 +104,12 @@ module Cypripedium
     # e.g. 2021-01-12  --> January 2021
     #      2019 Winter --> Winter 2019
     #      1968        --> 1968
+    #      19xx        --> deposit year
+    #      Nineteen Ten -> deposit year (i.e. we don't handle non-numeric dates)
     def date_for_citation
-      return solr_document.date_uploaded&.year || 'no date' if date_created.blank?
+      elements = date_created&.first&.match(/(?<year>\d{4})(-(?<month>\d{2})(-(?<day>\d{2}))?|\s*(?<season>[[:alpha:]]+))?/)
+      return solr_document.date_uploaded&.year || 'no date' if elements.blank?
 
-      elements = date_created.first.match(/(?<year>\d{4})(-(?<month>\d{2})(-(?<day>\d{2}))?|\s*(?<season>[[:alpha:]]+))?/)
       return [elements[:season], elements[:year]].join(' ') if elements[:season]
       return [Date::MONTHNAMES[elements[:month].to_i], elements[:year]].join(' ') if elements[:month]
       elements[:year]
