@@ -57,6 +57,12 @@ RSpec.describe Cypripedium::CitationFormatter do
       expect(citation).to include('no date')
     end
 
+    it 'uses the upload year if "date created" can not be parsed' do
+      solr_data[:date_created_tesim] = '19xx'
+      solr_data[:date_uploaded_dtsi] = '1995-07-10T11:23:45Z'
+      expect(citation).to include('1995')
+    end
+
     it 'provides the direct link if DOI does not exist' do
       solr_data.delete(:identifier_tesim)
       expect(citation).to include 'https://researchdatabase.minneapolisfed.org/concern/publications/br86b3634'
