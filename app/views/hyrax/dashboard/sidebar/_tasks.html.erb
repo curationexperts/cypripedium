@@ -33,4 +33,11 @@
                     onclick: "dontChangeAccordion(event);") do %>
     <span class="fa fa-hourglass-half" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.leases.index.manage_leases') %></span>
   <% end %>
+
+  <%= menu.nav_link(main_app.reports_path,
+                    id: "dashboard-sidebar-reports",
+                    class: "nav-link",
+                    onclick: "dontChangeAccordion(event);") do %>
+    <span class="fa fa-list-alt" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.dashboard.breadcrumbs.reports') %></span>
+  <% end %>
 <% end %>
