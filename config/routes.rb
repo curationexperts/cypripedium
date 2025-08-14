@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   get '/users/signup', to: 'pages#error_404'
   post '/users', to: 'pages#error_404'
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
@@ -47,7 +49,9 @@ Rails.application.routes.draw do
   post '/zip/:work_id', to: 'work_zips#create', as: 'create_zip'
   get '/bag/:file_name', to: 'bag#download'
   post '/bag/create', to: 'bag#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :reports, only: [:index]
+
   get 'error_404', to: 'pages#error_404'
   # If you go somewhere without a route, show a 404 page
   match '*path', via: :all, to: 'pages#error_404'

@@ -104,6 +104,9 @@ en:
       citations:
           disclaimer: 'Provided as a suggestion only. Please verify these automated citations against the guidelines of your preferred style.'
           header: 'Sample Citation'
+    dashboard:
+      breadcrumbs:
+        reports: 'Reports'
     product_name:           "Research Database"
     product_twitter_handle: "@MinneapolisFed"
     institution_name:       "Federal Reserve Bank of Minneapolis"
