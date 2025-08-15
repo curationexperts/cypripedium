@@ -1,1 +1,29 @@
-Report options go here...
+<table>
+  <thead>
+    <tr>
+      <th>Period</th>
+      <% @periods.keys.each do |period| %>
+        <th><%= period -%></th>
+      <% end %>
+      <th>Total all Periods</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Unique Publications</td>
+      <% @periods.values.each do |count| %>
+        <td><%= count -%></td>
+      <% end %>
+      <td><%= @periods.values.sum -%></td>
+    </tr>
+  <% @authors.each do |author| %>
+    <tr>
+      <td><%= author['value'] %></td>
+      <% @periods.keys.each do |period| %>
+        <td><%= author['pivot'].select { |pivot| pivot['value'].to_s == period.to_s }.dig(0, 'count') || 0 -%></td>
+      <% end %>
+      <td><%= author["count"] -%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

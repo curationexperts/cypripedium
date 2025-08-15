@@ -8,11 +8,10 @@ class ReportsController < ApplicationController
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.reports'), '#'
-    @creators = Creator.all.order(:display_name)
-  end
-
-  def active_creators
-    @active_creators = Creator.where { active != false }
+    @report = AuthorReportService.run(start: '2022')
+    counts = @report['facet_counts']['facet_fields']['date_created_iti']
+    @periods = (0...counts.length).step(2).map{|n| [counts[n], counts[n+1]]}.to_h
+    @authors = @report['facet_counts']['facet_pivot']['creator_sim,date_created_iti']
   end
 
   private
