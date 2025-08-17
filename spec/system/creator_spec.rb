@@ -8,7 +8,7 @@ include ActionView::RecordIdentifier
 RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
   let(:creator) { Creator.create!(display_name: "Cheese, The Big") }
   let(:creator_with_alternates) { Creator.create!(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes", "Aliens, Steve"]) }
-  let(:inactive_creator) { Creator.create!(display_name: "Milk, The Small", active_creator: false) }
+  let(:inactive_creator) { Creator.create!(display_name: "Milk, The Small", active_creator: false, repec: '12345') }
 
   before do
     @initial_locale = default_url_options[:locale]
@@ -96,6 +96,33 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
       expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
       expect(page).to have_link("Edit")
+    end
+
+    it 'displays breadcrumbs' do
+      # this check also creates the two obejcts for the index view
+      expect(creator.repec).not_to eq inactive_creator.repec
+
+      visit creators_path
+      # check we have the expected creators
+      expect(page).to have_selector('table.creators tbody tr', count: 2)
+      # check for expected breadcrumbs
+      expect(page).to have_selector('.breadcrumb li', count: 3)
+      expect(page).to have_selector('.breadcrumb li.active', text: 'Manage Creators')
+
+      # edit the creator that doesn't have a repec ID set
+      within("tr##{dom_id(creator)}") { click_link 'Edit' }
+      # check for expected edit breadcrumbs
+      expect(page).to have_selector('.breadcrumb li', count: 4)
+      expect(page).to have_selector('.breadcrumb li.active', text: creator.display_name)
+
+      # enter some bad data so we get a validation error
+      fill_in 'Repec', with: inactive_creator.repec
+      click_on 'Save changes'
+      # make sure we triggered an error
+      expect(page).to have_selector('.creator_repec.has-error', text: 'id already in the system')
+      # make sure we're displaying breadcrumbs on error pages (from the update action instead of edit)
+      expect(page).to have_selector('.breadcrumb li', count: 4)
+      expect(page).to have_selector('.breadcrumb li:last-of-type', text: creator.display_name)
     end
 
     it "does not do weird things to the Alternate names array" do

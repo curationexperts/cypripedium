@@ -9,7 +9,7 @@ RSpec.describe "/creators", type: :request, clean: true do
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { group: "chaotic-good" }
   }
   let(:admin) { FactoryBot.create(:admin) }
   before do
@@ -31,7 +31,7 @@ RSpec.describe "/creators", type: :request, clean: true do
       expect(response).to be_successful
     end
 
-    it "renders a successful json response" do
+    it "renders a successful json response", :aggregate_failures do
       creator = Creator.create! valid_attributes
       get creator_url(creator), params: { format: :json }
       expect(response).to be_successful
@@ -40,6 +40,7 @@ RSpec.describe "/creators", type: :request, clean: true do
       expect(response.content_length).to be > 0
       response_values = JSON.parse(response.body)
       expect(response_values["display_name"]).to eq "A display name"
+      expect(response_values['group']).to eq "unassigned"
     end
   end
 
@@ -79,9 +80,10 @@ RSpec.describe "/creators", type: :request, clean: true do
         }.to change(Creator, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a successful response (i.e. to display the 'new' template)", :aggregate_failures do
         post creators_url, params: { creator: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
+        expect(response.body).to match "Please correct the 2 errors below before saving."
       end
     end
   end
@@ -90,14 +92,15 @@ RSpec.describe "/creators", type: :request, clean: true do
     context "with valid parameters" do
       let(:new_attributes) {
         { display_name: "A new display name", alternate_names: ["Additional naming", "So many names"],
-          repec: "12345", viaf: "6789", active_creator: false }
+          repec: "12345", viaf: "6789", active_creator: false, group: "staff" }
       }
 
-      it "updates the requested creator" do
+      it "updates the requested creator", :aggregate_failures do
         creator = Creator.create! valid_attributes
         patch creator_url(creator), params: { creator: new_attributes }
         creator.reload
         expect(creator.active_creator).to be false
+        expect(creator).to be_staff
       end
 
       it "redirects to the creator" do
@@ -112,7 +115,8 @@ RSpec.describe "/creators", type: :request, clean: true do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         creator = Creator.create! valid_attributes
         patch creator_url(creator), params: { creator: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to be_unprocessable
+        expect(response.body).to match "Please correct the 1 error below before saving."
       end
     end
   end

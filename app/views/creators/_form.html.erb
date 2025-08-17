@@ -1,8 +1,15 @@
 <%= simple_form_for @creator do |f| %>
+  <% if creator.errors.any? %>
+    <div class="has-error">
+      <h2>Please correct the <%= pluralize(creator.errors.count, "error") %> below before saving.</h2>
+    </div>
+  <% end %>
+
   <%= f.input :display_name %>
   <%= f.input :alternate_names, as: :multi_value %>
+  <%= f.input :group, collection: Creator.groups.keys, include_blank: false %>
   <%= f.input :repec %>
   <%= f.input :viaf %>
   <%= f.input :active_creator, as: :boolean %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: 'btn btn-primary text-white' %>
 <% end %>

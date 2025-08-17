@@ -35,10 +35,9 @@ RSpec.describe Creator, type: :model do
     end
 
     it "rejects invalid values" do
-      creator = FactoryBot.build(:creator)
-      expect {
-        creator.group = 'chaotic-good'
-      }.to raise_error(ArgumentError, /'chaotic-good' is not a valid group/)
+      creator = FactoryBot.build(:creator, group: 'chaotic-good')
+      expect(creator).to be_invalid
+      expect(creator.errors[:group]).to include "is not included in the list"
     end
   end
 

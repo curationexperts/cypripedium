@@ -41,3 +41,41 @@
     }
   }
 }
+
+form.new_creator, form.edit_creator {
+  width: 45rem;
+  .has-error {
+    input, select {
+      border-color: red;
+    }
+    .help-block {
+      margin-left: 0.5rem;
+      color: red;
+    }
+    h2 {
+      color: red;
+      font-size: 1.75rem;
+    }
+  }
+
+  .multi_value {
+    .field-controls {
+      margin-left: auto;
+    }
+    .listing {
+      max-width: 100%;
+
+      li:first-of-type {
+        width: 100%;
+      }
+    }
+  }
+
+  input[type=checkbox] {
+    margin-right: 0.5rem;
+  }
+
+  input[type=submit] {
+    margin-bottom: 1rem;
+  }
+}
