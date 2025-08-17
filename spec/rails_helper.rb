@@ -40,6 +40,9 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
+  # # Add Devise authentication support
+  config.include Devise::Test::ControllerHelpers, type: :view
+
   config.before :suite do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!

@@ -3,14 +3,11 @@ class CreatorsController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   load_and_authorize_resource
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
-  before_action :pick_theme
+  # before_action :pick_theme
+  with_themed_layout :pick_layout
 
-  def pick_theme
-    if current_user&.admin?
-      CreatorsController.with_themed_layout 'dashboard'
-    else
-      CreatorsController.with_themed_layout '1_column'
-    end
+  def pick_layout
+    current_user&.admin? ? 'hyrax/dashboard' : 'hyrax/1_column'
   end
 
   # GET /creators
@@ -18,12 +15,8 @@ class CreatorsController < ApplicationController
   def index
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
-    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), '#'
+    add_breadcrumb t(:'hyrax.creators.index.manage_creators')
     @creators = Creator.all.order(:display_name)
-  end
-
-  def active_creators
-    @active_creators = Creator.where { active != false }
   end
 
   # GET /creators/1
