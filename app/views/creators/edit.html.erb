@@ -1,4 +1,6 @@
-<h1>Editing Creator</h1>
+<% provide :page_header do %>
+  <h1><span class="fa fa-address-card" aria-hidden="true"></span> <%= t(:'hyrax.creators.edit') %></h1>
+<% end %>
 
 <%= render 'form', creator: @creator %>
 

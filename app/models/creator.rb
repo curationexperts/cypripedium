@@ -5,7 +5,7 @@ class Creator < ApplicationRecord
   serialize :alternate_names, type: Array
   after_save :reindex_setup
 
-  enum :group, { unassigned: 0, staff: 1, consultant: 2 }, default: :unassigned
+  enum :group, { unassigned: 0, staff: 1, consultant: 2 }, default: :unassigned, validate: true
 
   def reindex_setup
     CreatorReindexJob.perform_later self

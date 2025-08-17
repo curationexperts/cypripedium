@@ -3,7 +3,7 @@ class CreatorsController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   load_and_authorize_resource
   before_action :set_creator, only: [:show, :edit, :update, :destroy]
-  # before_action :pick_theme
+  before_action :set_breadcrumbs
   with_themed_layout :pick_layout
 
   def pick_layout
@@ -13,32 +13,18 @@ class CreatorsController < ApplicationController
   # GET /creators
   # GET /creators.json
   def index
-    add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
-    add_breadcrumb t(:'hyrax.creators.index.manage_creators')
     @creators = Creator.all.order(:display_name)
   end
 
   # GET /creators/1
   # GET /creators/1.json
-  def show
-    add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
-    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), '#'
-  end
+  def show; end
 
   # GET /creators/new
-  def new
-    @creator = Creator.new
-  end
+  def new; end
 
   # GET /creators/1/edit
-  def edit
-    add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
-    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), creators_path
-    add_breadcrumb "Edit Creator", '#'
-  end
+  def edit; end
 
   # POST /creators
   # POST /creators.json
@@ -50,7 +36,7 @@ class CreatorsController < ApplicationController
         format.html { redirect_to @creator, notice: 'Creator was successfully created.' }
         format.json { render :show, status: :created, location: @creator }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @creator.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +50,7 @@ class CreatorsController < ApplicationController
         format.html { redirect_to @creator, notice: 'Creator was successfully updated.' }
         format.json { render :show, status: :ok, location: @creator }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @creator.errors, status: :unprocessable_entity }
       end
     end
@@ -82,12 +68,21 @@ class CreatorsController < ApplicationController
   # remove empty strings from alternate_names array
   def creator_params
     new_params = safe_params
-    new_params["alternate_names"].compact_blank!
+    new_params["alternate_names"]&.compact_blank!
     new_params
   end
 
   # Only allow a list of trusted parameters through.
   def safe_params
-    params.require(:creator).permit(:display_name, { alternate_names: [] }, :repec, :viaf, :active_creator)
+    params.require(:creator).permit(:display_name, { alternate_names: [] }, :group, :repec, :viaf, :active_creator)
+  end
+
+  # Set breadcrumbs - e.g. / Home / Dashboard / Manage Creators / ...
+  def set_breadcrumbs
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
+    add_breadcrumb t(:'hyrax.creators.index.manage_creators'), creators_path
+    add_breadcrumb @creator&.display_name if [:show, :edit, :update].include?(action_name.to_sym)
+    add_breadcrumb "New Creator" if [:new, :create].include?(action_name.to_sym)
   end
 end
