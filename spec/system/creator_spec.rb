@@ -65,7 +65,6 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
       creator
       inactive_creator
       visit creators_path
-      expect(page).to have_content(/ID/i)
       expect(page).to have_content(/Display name/i)
       expect(page).to have_content(/Alternate names/i)
       expect(page).to have_content("Cheese, The Big", count: 1)

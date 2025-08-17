@@ -1,0 +1,44 @@
+#creators {
+  table {
+    .active_creator { width: 4rem; }
+    .group { width: 8rem; }
+    .edit { width: 4rem; }
+    .display_name { width: 24rem; }
+    .alternate_names { width: auto; }
+    .repec { width: 6rem; }
+    .viaf { width: 22rem; }
+  }
+
+  .table th, .table td {
+    padding: 0.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  a.btn.new_creator {
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  th.active_creator {
+    text-align: center;
+  }
+
+  tbody {
+    td.active_creator {
+      font-size: 0;
+      text-align: center;
+      .active-true::before {
+        font-size: initial;
+        content: "✅";
+      }
+      .active-false::before {
+        font-size: initial;
+        content: "☑️️";
+      }
+    }
+    td.display_name a::before {
+      content: "✏️";
+      margin-right: 0.5rem;
+    }
+  }
+}

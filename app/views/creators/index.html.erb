@@ -1,18 +1,15 @@
 <% provide :page_header do %>
-  <h1><span class="fa fa-sitemap" aria-hidden="true"></span><%= t(:'hyrax.creators.index.creators') %></h1>
+  <h1><span class="fa fa-address-card" aria-hidden="true"></span> <%= t(:'hyrax.creators.index.creators') %></h1>
 <% end %>
 
-<p id="notice"><%= notice %></p>
-
-<div class="panel panel-default tabs">
+<div id="creators" class="panel panel-default tabs">
   <div class="panel-body">
     <div class="tab-content">
       <div class="tab-pane active" id="active">
         <% if current_or_guest_user.can?(:edit, Creator) %>
-          <%= link_to 'New Creator', new_creator_path %>
-          <br>
+          <%= link_to 'New Creator', new_creator_path, class: "new_creator btn btn-primary" %>
         <% end %>
-        <%= render "list_active_creators" %>
+        <%= render "creator_listing" %>
       </div>
     </div>
   </div>
