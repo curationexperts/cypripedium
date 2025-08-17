@@ -36,9 +36,8 @@
         content: "☑️️";
       }
     }
-    td.display_name a::before {
-      content: "✏️";
-      margin-right: 0.5rem;
+    td.group.unassigned {
+      color: lightgray;
     }
   }
 }
