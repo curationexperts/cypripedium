@@ -1,35 +1,53 @@
-<p id="notice"><%= notice %></p>
-<div class="col-xd-12">
-  <h1>Show Creator</h1>
-</div>
-<div class="col-sm-8">
-  <label class="control-label string" for="creator_display_name">Display name</label>
-  <ul class="tabular">
-    <li class="attribute"><%= @creator.display_name %>
-    </li>
-  </ul>
+<% provide :page_header do %>
+  <h1><span class="fa fa-address-card" aria-hidden="true"></span> <%= t('creators.creator') %></h1>
+<% end %>
 
-  <label class="control-label string" for="creator_alternate_names">Alternate names</label>
-  <ul class="tabular">
-    <% @creator.alternate_names.each do |name| %>
-        <li class="attribute"><%= name %></li>
-    <% end %>
-  </ul>
+<div id="creators">
+  <table class="creators-show table table-borderless">
+    <tbody>
+    <tr class="display_name">
+      <td class="attribute_name"><%= t('creators.display_name') -%></td>
+      <td class="attribute_value"><%= @creator.display_name -%></td>
+    </tr>
 
-  <label class="control-label string" for="creator_repec">RePEc</label>
-  <ul class="tabular">
-    <li class="attribute"><%= @creator.repec %></li>
-  </ul>
+    <tr class="active_creator">
+      <td class="attribute_name"><%= t('creators.active_creator') -%></td>
+      <td class="attribute_value">
+        <span class="visually-hidden"><%= @creator.active_creator.to_s -%></span>
+        <span class="aria-hidden active-<%= @creator.active_creator.to_s -%>"></span>
+      </td>
+    </tr>
 
-  <label class="control-label string" for="creator_viaf">VIAF</label>
-  <ul class="tabular">
-    <li class="attribute"><%= @creator.viaf %></li>
-  </ul>
+    <tr class="group">
+      <td class="attribute_name"><%= t('creators.group') -%></td>
+      <td class="attribute_value group <%= @creator.group -%>"><%= @creator.group -%></td>
+    </tr>
 
-  <label class="control-label string" for="creator_active">Active</label>
-  <ul class="tabular">
-    <li class="attribute"><%= @creator.active_creator.to_s %></li>
-  </ul>
+    <tr class="repec">
+      <td class="attribute_name"><%= t('creators.repec') -%></td>
+      <td class="attribute_value"><%= @creator.repec -%></td>
+    </tr>
+
+    <tr class="viaf">
+      <td class="attribute_name"><%= t('creators.viaf') -%></td>
+      <td class="attribute_value"><%= @creator.viaf -%></td>
+    </tr>
+
+    <tr class="alternate_names">
+      <td class="attribute_name"><%= t('creators.alternate_names') -%></td>
+      <td class="attribute_value">
+        <ul class="tabular">
+        <% @creator.alternate_names.each do |name| %>
+          <li class="attribute"><%= name %></li>
+        <% end %>
+        </ul>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+
   <% if current_or_guest_user.can?(:edit, Creator) %>
     <%= link_to 'Edit', edit_creator_path(@creator) %> |
   <% end %>

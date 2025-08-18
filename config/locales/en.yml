@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  creators:
+    display_name: "Display Name"
+    active_creator: "Active"
+    group: "Group"
+    repec: "RePEc"
+    viaf: "VIAF"
+    alternate_names: "Alternate Names"
+    creator: "Creator"
+
