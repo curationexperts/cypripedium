@@ -7,11 +7,31 @@
     .alternate_names { width: auto; }
     .repec { width: 6rem; }
     .viaf { width: 22rem; }
+
+    &.creators-show.table td.attribute_value {
+      text-align: left;
+    }
   }
 
   .table th, .table td {
     padding: 0.25rem;
     padding-bottom: 0.5rem;
+
+    &.attribute_name {
+      width: 9.5rem;
+      text-align: right;
+      padding-right: 1rem;
+    }
+
+    &.attribute_value {
+      text-align: left;
+      width: auto;
+      font-weight: bold;
+    }
+
+    ul.tabular {
+      padding-left: 0;
+    }
   }
 
   a.btn.new_creator {
@@ -24,7 +44,7 @@
   }
 
   tbody {
-    td.active_creator {
+    td.active_creator, tr.active_creator td.attribute_value {
       font-size: 0;
       text-align: center;
       .active-true::before {

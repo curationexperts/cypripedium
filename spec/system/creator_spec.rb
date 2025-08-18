@@ -45,8 +45,8 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
 
     it "does not link to edit an existing creator" do
       visit creator_path(creator)
-      expect(page).to have_content("Display name")
-      expect(page).to have_content("Alternate names")
+      expect(page).to have_content("Display Name")
+      expect(page).to have_content("Alternate Names")
       expect(page).to have_content("RePEc")
       expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")
@@ -90,8 +90,8 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
 
     it "can show an existing creator" do
       visit creator_path(creator)
-      expect(page).to have_content("Display name")
-      expect(page).to have_content("Alternate names")
+      expect(page).to have_content("Display Name")
+      expect(page).to have_content("Alternate Names")
       expect(page).to have_content("RePEc")
       expect(page).to have_content("VIAF")
       expect(page).to have_link("Back")

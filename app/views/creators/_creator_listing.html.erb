@@ -1,15 +1,15 @@
 <table class="creators table">
   <thead>
     <tr>
-      <th class="active_creator"><%= t('.active') -%></th>
-      <th class="group"><%= t('.group') -%></th>
+      <th class="active_creator"><%= t('creators.active_creator') -%></th>
+      <th class="group"><%= t('creators.group') -%></th>
       <% if current_or_guest_user.can?(:edit, Creator) %>
         <th class="edit"></th>
       <% end %>
-      <th class="display_name"><%= t('.display_name') -%></th>
-      <th class="repec"><%= t('.repec') -%></th>
-      <th class="viaf"><%= t('.viaf') -%></th>
-      <th class="alternate_names"><%= t('.alternate_names') -%></th>
+      <th class="display_name"><%= t('creators.display_name') -%></th>
+      <th class="repec"><%= t('creators.repec') -%></th>
+      <th class="viaf"><%= t('creators.viaf') -%></th>
+      <th class="alternate_names"><%= t('creators.alternate_names') -%></th>
     </tr>
   </thead>
   <tbody>
