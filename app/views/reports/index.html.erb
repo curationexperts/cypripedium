@@ -1,1 +1,25 @@
-Report options go here...
+<% provide :page_header do %>
+  <h1><span class="fa fa-list-alt" aria-hidden="true"></span>Publication Statistics</h1>
+<% end %>
+
+<% headers = @report[0] %>
+<div id=report>
+  <table class="table  table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <% headers.each do |key, label| %>
+          <th class="<%= "report-#{key}" -%>"><%= label -%></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @report[1..-1].each do |row| %>
+        <tr>
+          <% headers.keys.each do |key| %>
+            <td class="<%= "report-#{key}" -%>"><%= row[key] -%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

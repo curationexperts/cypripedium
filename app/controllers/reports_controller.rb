@@ -8,11 +8,7 @@ class ReportsController < ApplicationController
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.reports'), '#'
-    @creators = Creator.all.order(:display_name)
-  end
-
-  def active_creators
-    @active_creators = Creator.where { active != false }
+    @report = AuthorReportService.run
   end
 
   private
