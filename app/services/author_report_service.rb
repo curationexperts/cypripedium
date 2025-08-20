@@ -39,11 +39,11 @@ class AuthorReportService
   end
 
   def spacer_row(group = nil)
-    [header_keys.index_with { |key| key == 'group' ? group : '' }]
+    [header_keys.index_with { |key| key == 'group' ? group : nil }]
   end
 
   def total_row
-    [{ 'group' => 'TOTAL', 'id' => '', 'name' => 'unique documents' }
+    [{ 'group' => 'TOTAL', 'id' => nil, 'name' => 'unique documents' }
        .merge(document_totals)
        .merge('total' => @raw_data['response']['numFound'])]
   end

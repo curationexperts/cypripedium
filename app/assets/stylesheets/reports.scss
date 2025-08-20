@@ -1,5 +1,8 @@
 #report {
-  margin-top: 1rem;
+  position: relative;
+  width: max-content;
+  margin-top: -2.75rem;
+
   .table { width: auto;}
   .report-group { width: 5rem;}
   .report-id    { width: 5rem;}
@@ -9,4 +12,10 @@
   .report-2024  { width: 5rem;}
   .report-2025  { width: 5rem;}
   .report-total { width: 5rem;}
+
+  .button_holder {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
 }
