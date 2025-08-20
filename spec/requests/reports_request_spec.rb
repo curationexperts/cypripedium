@@ -15,6 +15,11 @@ RSpec.describe "/reports", type: :request do
         get reports_path
         expect(response).to be_successful
       end
+
+      it "accepts CSV format rquests" do
+        get reports_path(format: nil, params: { format: :csv })
+        expect(response.headers).to include("Content-Type" => "text/csv", "Content-Disposition" => /attachment/)
+      end
     end
 
     # Only the #index action should be routable, all the others should return a 404

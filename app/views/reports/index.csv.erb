@@ -1,0 +1,5 @@
+<% headers = @report[0].keys %>
+<% @report.each do |row_hash| %>
+  <% orderd_row = headers.map{|key| row_hash[key]}  %>
+  <%= CSV.generate_line(orderd_row).html_safe -%>
+<% end %>

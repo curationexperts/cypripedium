@@ -36,6 +36,7 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
       }
     ]
   end
+
   before do
     assign(:report, report)
     assign(:start_date, 2022)
@@ -62,7 +63,12 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
     expect(rendered).to have_selector('td.report-2025', text: '18')
   end
 
-  describe 'creator cell' do
+  it 'has a CSV download link' do
+    render
+    expect(rendered).to have_link(id: 'reports-download', href: '/reports?format=csv')
+  end
+
+  describe 'each creator name' do
     let(:creator) { FactoryBot.create(:creator) }
     before {
       report << {
@@ -75,7 +81,7 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
       }
     }
 
-    it 'has links to the counted documents' do
+    it 'has a link to documents by that author' do
       render
       expect(rendered).to have_link(creator.display_name, href: /\/catalog.*&range%5Bdate_created_iti%5D%5Bbegin%5D=2022/)
     end
