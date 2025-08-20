@@ -38,13 +38,19 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
   end
   before do
     assign(:report, report)
+    assign(:start_date, 2022)
   end
 
   it 'renders a header row' do
     render
     expect(rendered).to have_selector('table thead tr', count: 1)
     expect(rendered).to have_selector('th.report-group', text: 'Group')
+    # there should be a column for the starting year
+    expect(rendered).to have_selector('th.report-2022', text: '2022')
+    # there should be a column for each year between the starting year and now
     expect(rendered).to have_selector('th.report-2024', text: '2024')
+    # the report should not inlcude dates before the start date
+    expect(rendered).not_to have_selector('th.report-2021')
     expect(rendered).to have_selector('th.report-total', text: 'Total')
   end
 
@@ -54,5 +60,24 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
     expect(rendered).to have_selector('td.report-group', text: 'TOTAL')
     expect(rendered).to have_selector('td.report-name', text: 'unique documents')
     expect(rendered).to have_selector('td.report-2025', text: '18')
+  end
+
+  describe 'creator cell' do
+    let(:creator) { FactoryBot.create(:creator) }
+    before {
+      report << {
+        'group' => creator.group,
+        'id' => creator.id,
+        'name' => creator.display_name,
+        '2023' => 4,
+        '2025' => 6,
+        'total' => '10'
+      }
+    }
+
+    it 'has links to the counted documents' do
+      render
+      expect(rendered).to have_link(creator.display_name, href: /\/catalog.*&range%5Bdate_created_iti%5D%5Bbegin%5D=2022/)
+    end
   end
 end

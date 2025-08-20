@@ -8,7 +8,8 @@ class ReportsController < ApplicationController
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path if current_user&.admin?
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.reports'), '#'
-    @report = AuthorReportService.run
+    @start_date = 2022
+    @report = AuthorReportService.run(start: @start_date)
   end
 
   private

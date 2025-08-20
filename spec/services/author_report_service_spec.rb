@@ -20,6 +20,11 @@ RSpec.describe AuthorReportService, :aggregate_failures do
     expect(described_class.run).to be_a_kind_of(Array)
   end
 
+  it 'sends a valid Solr query' do
+    allow(Blacklight.default_index.connection).to receive(:get).and_call_original
+    expect { described_class.run }.not_to raise_exception
+  end
+
   it 'has expected headers in the first row' do
     report_data = described_class.run
     headers = report_data[0].values
@@ -59,5 +64,13 @@ RSpec.describe AuthorReportService, :aggregate_failures do
     unmatched = report_data.find { |row| row['id'] == '999' }
     expect(unmatched['name']).to eq 'Keynes, John Maynard'
     expect(unmatched['total']).to be_blank
+  end
+
+  it 'accepts a start date' do
+    allow(Blacklight.default_index.connection)
+      .to receive(:get).with('select', params: hash_including('q' => anything))
+    described_class.new(start: 1998)
+    expect(Blacklight.default_index.connection)
+      .to have_received(:get).with('select', params: hash_including('q' => 'date_created_iti:[1998 TO *]'))
   end
 end
