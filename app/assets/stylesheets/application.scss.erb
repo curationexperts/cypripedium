@@ -15,3 +15,15 @@
  *= require  'blacklight_range_limit'
  *= require_self
 */
+
+// Disable animations to eliminate certain flaky tests
+<% if Rails.env.test? %>
+*, *::after, *::before {
+  animation: none !important; /* 0*/
+  animation-duration: 1ms !important; /* 1 */
+  animation-delay: -1ms !important; /* 2 */
+  animation-iteration-count: 1 !important; /* 3 */
+  transition-duration: 1ms !important; /* 4 */
+  transition-delay: -1ms !important; /* 5 */
+}
+<% end %>
