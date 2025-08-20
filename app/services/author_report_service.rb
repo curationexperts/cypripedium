@@ -27,7 +27,11 @@ class AuthorReportService
   private
 
   def header_keys
-    ['group', 'id', 'name', '2022', '2023', '2024', '2025', 'total']
+    ['group', 'id', 'name'] + report_periods + ['total']
+  end
+
+  def report_periods
+    @report_periods ||= document_totals.keys
   end
 
   def header_row
@@ -39,16 +43,9 @@ class AuthorReportService
   end
 
   def total_row
-    [{
-      'group' => 'TOTAL',
-      'id' => '',
-      'name' => 'unique documents',
-      '2022' => document_totals['2022'],
-      '2023' => document_totals['2023'],
-      '2024' => document_totals['2024'],
-      '2025' => document_totals['2025'],
-      'total' => @raw_data['response']['numFound']
-    }]
+    [{ 'group' => 'TOTAL', 'id' => '', 'name' => 'unique documents' }
+       .merge(document_totals)
+       .merge('total' => @raw_data['response']['numFound'])]
   end
 
   def document_totals
@@ -96,6 +93,7 @@ class AuthorReportService
     creator_row['id'] = raw_facet['value']
     creator_row['total'] = raw_facet['count']
     raw_facet['pivot'].each do |pivot|
+      # e.g. creator_row [ year ] = publication count for year
       creator_row[pivot['value'].to_s] = pivot['count']
     end
     creator_row

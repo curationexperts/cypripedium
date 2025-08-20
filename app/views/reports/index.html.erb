@@ -16,7 +16,7 @@
       <% @report[1..-1].each do |row| %>
         <tr>
           <% headers.keys.each do |key| %>
-            <td class="<%= "report-#{key}" -%>"><%= row[key] -%></td>
+            <td class="<%= "report-#{key}" -%>"><%= author_formatter(row, key, @start_date) -%></td>
           <% end %>
         </tr>
       <% end %>
