@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 class AuthorReportService
+  QUARTERS = { '01' => 'Q1', '04' => 'Q2', '07' => 'Q3', '10' => 'Q4' }.freeze
+  PERIODS = { 'yearly' => :yearly, 'quarterly' => :quarterly, 'monthly' => :monthly }.with_indifferent_access
+
+  attr_reader :start_date, :period
+
   def self.run(...)
     new(...).build_report
   end
 
-  def initialize(start: 2022)
-    @start_date = start
-    @raw_data = fetch_stats_from_solr(start)
+  def initialize(start: Time.current, period: :yearly)
+    @start_date = safe_date(start)
+    @period = PERIODS[period] || :yearly
+    @raw_data = fetch_stats_from_solr
   end
 
   def build_report
@@ -27,7 +33,25 @@ class AuthorReportService
   private
 
   def header_keys
-    ['group', 'id', 'name'] + report_periods + ['total']
+    @header_keys ||= ['group', 'id', 'name'] + report_periods + ['total']
+  end
+
+  def header_labels
+    ['Group', 'ID', 'Name'] + labels_for_periods + ['Total']
+  end
+
+  def labels_for_periods
+    case period
+    when :yearly
+      # 2021
+      report_periods.map { |p| p[0..3] }
+    when :quarterly
+      # 2021 Q2
+      report_periods.map { |p| "#{p[0..3]} #{QUARTERS[p[5..6]]}" }
+    when :monthly
+      # 2021-06
+      report_periods.map { |p| p[0..6] }
+    end
   end
 
   def report_periods
@@ -35,7 +59,7 @@ class AuthorReportService
   end
 
   def header_row
-    [header_keys.index_with { |key| key.titleize }]
+    [header_keys.zip(header_labels).to_h]
   end
 
   def spacer_row(group = nil)
@@ -49,8 +73,8 @@ class AuthorReportService
   end
 
   def document_totals
-    date_created_iti = @raw_data['facet_counts']['facet_fields']['date_created_iti']
-    Hash[*date_created_iti]
+    date_uploaded = @raw_data['facet_counts']['facet_ranges']['date_uploaded_dtsi']['counts']
+    Hash[*date_uploaded]
   end
 
   def staff_rows
@@ -81,7 +105,7 @@ class AuthorReportService
   end
 
   def pivot_counts
-    @pivots ||= @raw_data['facet_counts']['facet_pivot']["creator_id_ssim,date_created_iti"]
+    @raw_data['facet_counts']['facet_pivot']["creator_id_ssim"]
   end
 
   # Transform a pivot facet from the Solr response into a simple
@@ -92,9 +116,9 @@ class AuthorReportService
     creator_row = {}
     creator_row['id'] = raw_facet['value']
     creator_row['total'] = raw_facet['count']
-    raw_facet['pivot'].each do |pivot|
-      # e.g. creator_row [ year ] = publication count for year
-      creator_row[pivot['value'].to_s] = pivot['count']
+    counts = raw_facet['ranges']['date_uploaded_dtsi']['counts']
+    counts.each_cons(2) do |period, count|
+      creator_row[period] = count
     end
     creator_row
   end
@@ -103,17 +127,51 @@ class AuthorReportService
   # and a facet pivot on publication counts by creator id and year
   # the only things in the repository with creation years and creator ids
   # are the publications we want to count
-  def fetch_stats_from_solr(start)
+  def fetch_stats_from_solr
     solr = Blacklight.default_index.connection
     query = {
-      "q" => "date_created_iti:[#{start} TO *]",
-      "facet.field" => "date_created_iti",
-      "facet.pivot" => "creator_id_ssim,date_created_iti",
-      "facet.limit" => "-1",
+      "fq" => ["date_created_iti:[#{start_year} TO *]",
+               "date_uploaded_dtsi:[#{start_date} TO *]"],
+      "facet.range" => "{!tag=r1}date_uploaded_dtsi",
+      "facet.range.start" => start_date,
+      "facet.range.end" => now_iso,
+      "facet.range.gap" => gap_for_solr,
+      "facet.pivot" => "{!range=r1}creator_id_ssim",
       "rows" => "0",
       "facet" => "true",
+      "facet.mincount" => "0",
+      "facet.limit" => "-1",
       "facet.sort" => "index"
     }
     solr.get 'select', params: query
+  end
+
+  def start_year
+    start_date[0..3]
+  end
+
+  def now_iso
+    Time.now.utc.iso8601
+  end
+
+  # return the appropriate range.gap value for Solr based on the selected period
+  GAP_FOR_SOLR = { yearly: '+1YEAR', quarterly: '+3MONTH', monthly: '+1MONTH' }.freeze
+  def gap_for_solr
+    GAP_FOR_SOLR[period]
+  end
+
+  # Ensure we have a valid timestamp for Solr range queries
+  # @param :start - String of Time-like object
+  # @return String - a date in iso8601 format
+  def safe_date(start)
+    Time.parse(start.to_s).utc.beginning_of_day.iso8601
+  rescue ArgumentError
+    safe_start_year
+  end
+
+  # provide a fallback safe starting date
+  # returns January 1st, 3 Years ago in iso format
+  def safe_start_year
+    Time.now.years_ago(3).utc.beginning_of_year.iso8601
   end
 end
