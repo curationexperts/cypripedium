@@ -118,7 +118,7 @@ class AuthorReportService
     creator_row['total'] = raw_facet['count']
     counts = raw_facet['ranges']['date_uploaded_dtsi']['counts']
     counts.each_cons(2) do |period, count|
-      creator_row[period] = count
+      creator_row[period] = count unless count == 0
     end
     creator_row
   end
