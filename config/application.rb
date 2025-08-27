@@ -17,6 +17,10 @@ module Cypripedium
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # We have to explicitly turn on fomr helper ids since we are loading Rails 5.1 defaults
+    # see https://edgeguides.rubyonrails.org/5_2_release_notes.html#action-view-notable-changes
+    config.action_view.form_with_generates_ids = true
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

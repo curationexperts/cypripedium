@@ -39,6 +39,8 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
 
   before do
     assign(:report, report)
+    assign(:start_date, '2022-01-01T00:00:00Z')
+    assign(:period, 'yearly')
   end
 
   it 'renders a header row' do
@@ -83,6 +85,29 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
     it 'has a link to documents by that author' do
       render
       expect(rendered).to have_link(creator.display_name, href: /\/catalog.*&range%5Bdate_created_iti%5D%5Bbegin%5D=2022/)
+    end
+  end
+
+  describe 'user input' do
+    it 'lets you select the starting year' do
+      render
+      expect(rendered).to have_select('start_date', selected: '2022')
+    end
+
+    it 'reporting period defaults to yearly' do
+      render
+      expect(rendered).to have_select('period', selected: 'yearly')
+    end
+
+    it 'allows you to select yearly, quarterly, or montly reporting periods' do
+      render
+      expect(rendered).to have_select('period', options: ["yearly", "quarterly", "monthly"])
+    end
+
+    it 'has a button to refresh the page with the new options' do
+      render
+      expect(rendered).to have_button('Refresh')
+      expect(rendered).to have_selector("form[@action='#{reports_path}'][@method='get']")
     end
   end
 end

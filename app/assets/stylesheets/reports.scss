@@ -1,7 +1,6 @@
 #report {
   position: relative;
   width: max-content;
-  margin-top: -2.75rem;
 
   .table { width: auto;}
   .report-group { width: 5rem;}
@@ -15,7 +14,18 @@
 
   .button_holder {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: 1rem;
+  }
+
+  #reporting_options {
+    select {
+      margin-right: 1rem;
+      padding: 0.25rem;
+    }
+
+    label {
+      margin-bottom: 0;
+    }
   }
 }
