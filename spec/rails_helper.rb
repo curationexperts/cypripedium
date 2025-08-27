@@ -40,8 +40,11 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
-  # # Add Devise authentication support
+  # Add Devise authentication support
   config.include Devise::Test::ControllerHelpers, type: :view
+
+  # Include Rails Time helpers
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.before :suite do
     DatabaseCleaner.clean_with(:truncation)

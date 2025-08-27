@@ -3,6 +3,7 @@
 <% end %>
 
 <% headers = @report[0] %>
+<% start = headers.keys[3][0..3] # year from first date column %>
 <div id=report>
   <div class="button_holder">
     <%= link_to('Download', reports_path(format: nil, params: { format: :csv }), class: 'btn btn-primary', id: 'reports-download' )%>
@@ -11,7 +12,7 @@
     <thead class="thead-dark">
       <tr>
         <% headers.each do |key, label| %>
-          <th class="<%= "report-#{key}" -%>"><%= label -%></th>
+          <th class="<%= "report-#{key.parameterize}" -%>"><%= label -%></th>
         <% end %>
       </tr>
     </thead>
@@ -19,7 +20,7 @@
       <% @report[1..-1].each do |row| %>
         <tr>
           <% headers.keys.each do |key| %>
-            <td class="<%= "report-#{key}" -%>"><%= author_formatter(row, key, @start_date) -%></td>
+            <td class="<%= "report-#{key.parameterize}" -%>"><%= author_formatter(row, key, start) -%></td>
           <% end %>
         </tr>
       <% end %>
