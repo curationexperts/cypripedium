@@ -3,9 +3,18 @@
 <% end %>
 
 <% headers = @report[0] %>
-<% start = headers.keys[3][0..3] # year from first date column %>
+<% available_years = (2018..Date.current.year).map{|y| [y.to_s, y.to_s + '-01-01T00:00:00Z']}.reverse %>
 <div id=report>
   <div class="button_holder">
+    <div id="reporting_options">
+      <%= form_with method: :get, local: true, skip_enforcing_utf8: true do |report_options| %>
+        <%= report_options.label :start_date, 'Start:' %>
+        <%= report_options.select :start_date, available_years, selected: @start_date %>
+        <%= report_options.label :period, 'Interval:' %>
+        <%= report_options.select :period, ['yearly', 'quarterly', 'monthly'], selected: @period %>
+        <%= report_options.submit 'Refresh', name: '', class: 'btn btn-info' %>
+      <% end %>
+    </div>
     <%= link_to('Download', reports_path(format: nil, params: { format: :csv }), class: 'btn btn-primary', id: 'reports-download' )%>
   </div>
   <table class="table  table-striped table-bordered">
@@ -20,7 +29,7 @@
       <% @report[1..-1].each do |row| %>
         <tr>
           <% headers.keys.each do |key| %>
-            <td class="<%= "report-#{key.parameterize}" -%>"><%= author_formatter(row, key, start) -%></td>
+            <td class="<%= "report-#{key.parameterize}" -%>"><%= author_formatter(row, key, @start_date) -%></td>
           <% end %>
         </tr>
       <% end %>
