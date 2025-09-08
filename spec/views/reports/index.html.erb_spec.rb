@@ -83,8 +83,9 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
     }
 
     it 'has a link to documents by that author' do
+      travel_to('2025-03-17T05:26:48Z')
       render
-      expect(rendered).to have_link(creator.display_name, href: /\/catalog.*&range%5Bdate_created_iti%5D%5Bbegin%5D=2022/)
+      expect(rendered).to have_link(creator.display_name, href: /\/catalog.*&range%5Bdate_created_iti%5D%5Bbegin%5D=2022&range%5Bdate_created_iti%5D%5Bend%5D=2025/)
     end
   end
 
