@@ -761,7 +761,7 @@ GEM
       rails (>= 5.0, < 8.1)
       rdf
     racc (1.8.1)
-    rack (2.2.17)
+    rack (2.2.19)
     rack-linkeddata (3.3.0)
       linkeddata (~> 3.3)
       rack (>= 2.2, < 4)
