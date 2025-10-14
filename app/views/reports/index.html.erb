@@ -15,7 +15,7 @@
         <%= report_options.submit 'Refresh', name: '', class: 'btn btn-info' %>
       <% end %>
     </div>
-    <%= link_to('Download', reports_path(format: nil, params: { format: :csv }), class: 'btn btn-primary', id: 'reports-download' )%>
+    <%= link_to('Download', reports_path(format: nil, params: { format: :csv, start_date: @start_date, period: @period }), class: 'btn btn-primary', id: 'reports-download' )%>
   </div>
   <table class="table  table-striped table-bordered">
     <thead class="thead-dark">

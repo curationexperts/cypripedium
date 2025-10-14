@@ -66,7 +66,13 @@ RSpec.describe "reports/index", :aggregate_failures, type: :view do
 
   it 'has a CSV download link' do
     render
-    expect(rendered).to have_link(id: 'reports-download', href: '/reports?format=csv')
+    expect(rendered).to have_link(id: 'reports-download', href: /\/reports/)
+  end
+
+  it 'populates the download link with the report params' do
+    assign(:period, 'quarterly')
+    render
+    expect(rendered).to have_link(id: 'reports-download', href: /period=quarterly/)
   end
 
   describe 'each creator name' do
