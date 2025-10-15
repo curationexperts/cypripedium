@@ -58,7 +58,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq'
   gem 'listen'
-  gem 'web-console', '~> 3.7'
+  gem 'web-console'
   gem 'xray-rails'
   gem 'yard'
 end
