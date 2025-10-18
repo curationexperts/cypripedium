@@ -2,21 +2,23 @@
 
 FactoryBot.define do
   factory :publication do
-    title { ["Testing"] }
+    title { [Faker::Book.title] }
+
     factory :populated_publication do
+      # id { Noid::Rails::Service.new.mint }
       transient do
-        creators { create_list(:creator, 2) }
+        creators { create_list(:creator, 1) }
       end
-      title { ["The 1929 Stock Market: Irving Fisher Was Right: Additional Files"] }
       creator { creators.map(&:display_name) }
       creator_id { creators.map(&:id) }
       series { ["Staff Report (Federal Reserve Bank of Minneapolis. Research Department)"] }
-      resource_type { ["Dataset"] }
+      resource_type { ["Report"] }
       visibility { "open" }
-      abstract { ["This is my abstract"] }
-      identifier { ["https://doi.org/10.21034/sr.600"] }
-      description { ["This is my description"] }
+      abstract { [Faker::Lorem.paragraph] }
+      sequence(:identifier) { |n| ["https://doi.org/10.21034/sr.#{n}"] }
+      description { [Faker::Lorem.paragraph] }
     end
+
     transient do
       file_sets { [] }
     end

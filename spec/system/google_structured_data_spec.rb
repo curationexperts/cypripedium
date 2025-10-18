@@ -34,7 +34,7 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
     end
   end
   context "publications" do
-    let(:work) { FactoryBot.create(:populated_publication) }
+    let(:work) { FactoryBot.create(:populated_publication, abstract: ['This is my abstract']) }
     it "marks abstract with schema.org tags" do
       visit "/concern/publications/#{work.id}"
       expect(page).to have_css('[itemprop="abstract"]', text: 'This is my abstract')
