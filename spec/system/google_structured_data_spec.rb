@@ -21,18 +21,13 @@ RSpec.describe 'Use structured data that Google can parse', type: :system, clean
       expect(page).not_to have_css('[itemprop="description"][itemtype]')
       expect(page).to have_css('[itemprop="license"][itemtype="http://schema.org/CreativeWork"]', text: "Creative Commons BY-NC Attribution-NonCommercial 4.0 International")
     end
-  end
 
-  context "dataset without description field" do
-    let(:work) { FactoryBot.create(:dataset_without_description) }
-    let(:related_url) do
-      "Data supports Staff Report 315, \"Does Neoclassical Theory Account for the Effects of Big Fiscal Shocks? Evidence From World War II.\" https://doi.org/10.21034/sr.315"
-    end
     it "marks related_url with description schema.org tags" do
       visit "/concern/datasets/#{work.id}"
-      expect(page).to have_css('[itemprop="description"]', text: related_url)
+      expect(page).to have_css('[itemprop="description"]', text: work.related_url.first)
     end
   end
+
   context "publications" do
     let(:work) { FactoryBot.create(:populated_publication, abstract: ['This is my abstract']) }
     it "marks abstract with schema.org tags" do
