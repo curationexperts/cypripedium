@@ -46,7 +46,6 @@ gem 'strscan', '1.0.3' # match version installed on server as system gem
 gem 'terser'
 gem 'tether-rails'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
@@ -64,7 +63,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug'
   gem 'capybara'
   gem 'puma'
 end
