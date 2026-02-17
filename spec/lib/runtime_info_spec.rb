@@ -14,6 +14,8 @@ RSpec.describe RuntimeInfo do
       let(:response) { nil }
 
       before do
+        described_class.instance_variable_set(:@ec2, true)
+
         # stub an EC2Metadata object
         metadata_service = instance_double(Aws::EC2Metadata)
         # stub the metadata service

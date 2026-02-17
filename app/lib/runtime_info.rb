@@ -30,11 +30,17 @@ class RuntimeInfo
     def aws_info
       @aws_info ||=
         begin
+          return nil unless ec2?
           metadata_client = Aws::EC2Metadata.new
-          metadata_client&.get('/latest/meta-data/tags/instance/Environment')
-        rescue Errno::EHOSTDOWN, Net::OpenTimeout
+          metadata_client.get('/latest/meta-data/tags/instance/Environment')
+        rescue Errno::EHOSTDOWN, Net::OpenTimeout, Errno::EHOSTUNREACH
           # just return nil without an exception
         end
+    end
+
+    def ec2?
+      @ec2 ||= File.exist?('/sys/devices/virtual/dmi/id/bios_vendor') &&
+               File.read('/sys/devices/virtual/dmi/id/bios_vendor').match(/EC2/)
     end
   end
 end
