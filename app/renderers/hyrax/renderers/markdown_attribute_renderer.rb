@@ -4,7 +4,7 @@ module Hyrax
   module Renderers
     # This is used by PresentsAttributes to render fields that include Markdown formatting
     #   e.g.: presenter.attribute_to_html(:abstract, render_as: :markdown)
-    class MarkdownRenderer < AttributeRenderer
+    class MarkdownAttributeRenderer < AttributeRenderer
       private
 
       def attribute_value_to_html(value)
