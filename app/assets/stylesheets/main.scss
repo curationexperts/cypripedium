@@ -74,10 +74,11 @@ to match orgnizational style guidelines
 #lower-banner-border-masthead {
   background: var(--frbm-dark-blue);
   background: linear-gradient(75deg, var(--frbm-dark-blue) 0%, var(--frbm-contrast-blue) 200%);
-  padding-top: 1.0rem;
-  padding-bottom: 1.0rem;
-  padding-left: 2.0rem;
+  padding: 1rem 2rem 1rem 2rem;
   font-family: 'Work Sans', 'Arial', sans-serif;
+  display: flex;
+  justify-content: space-between;
+
   a {
     color: white;
     text-decoration: none;
@@ -86,10 +87,20 @@ to match orgnizational style guidelines
       text-decoration: underline;
     }
   }
+
   h1 {
     font-size: 1.75rem;
     line-height: 2.5rem;
     margin-bottom: 0;
+  }
+  #environment_badge {
+    color: white;
+    background: orangered;
+    font-size: 1.75rem;
+    font-weight: bold;
+    font-style: italic;
+    border-radius: 0.4rem;
+    padding: 0 1rem 0 1rem;
   }
 }
 
