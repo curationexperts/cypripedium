@@ -32,7 +32,7 @@ class RuntimeInfo
         begin
           metadata_client = Aws::EC2Metadata.new
           metadata_client&.get('/latest/meta-data/tags/instance/Environment')
-        rescue Errno::EHOSTDOWN, Net::OpenTimeout
+        rescue Errno::EHOSTDOWN, Net::OpenTimeout, Errno::EHOSTUNREACH
           # just return nil without an exception
         end
     end
