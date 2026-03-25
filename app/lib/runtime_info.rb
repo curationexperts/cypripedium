@@ -33,6 +33,8 @@ class RuntimeInfo
           return nil unless ec2?
           metadata_client = Aws::EC2Metadata.new
           metadata_client.get('/latest/meta-data/tags/instance/Environment')
+        rescue Aws::EC2Metadata::MetadataNotFoundError
+          'tag diabled or missing'
         rescue Errno::EHOSTDOWN, Net::OpenTimeout, Errno::EHOSTUNREACH
           # just return nil without an exception
         end
