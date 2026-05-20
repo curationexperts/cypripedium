@@ -1,6 +1,6 @@
 FROM ruby:3.2.4
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_24.x | bash -
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
@@ -14,6 +14,7 @@ RUN apt-get update && \
     libxslt-dev \
     netcat-openbsd \
     nodejs \
+    openjdk-17-jre-headless \
     unzip \
     wget
 
@@ -25,11 +26,12 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # install FITS for file characterization
 RUN mkdir -p /opt/fits && \
-  curl -fSL -o /opt/fits-1.0.5.zip http://projects.iq.harvard.edu/files/fits/files/fits-1.0.5.zip && \
-  cd /opt && unzip fits-1.0.5.zip && chmod +X fits-1.0.5/fits.sh
+  curl -fSL -o /opt/fits/fits-1.5.5.zip https://github.com/harvard-lts/fits/releases/download/1.5.5/fits-1.5.5.zip && \
+  cd /opt/fits && unzip fits-1.5.5.zip && chmod +X /opt/fits/fits.sh && \
+  ln -s /opt/fits/fits.sh /usr/local/bin/fits
 
-RUN gem update --system 3.4.6
-RUN gem install bundler:2.3.14
+RUN gem update --system 4.0.9
+RUN gem install bundler:2.7.2
 
 RUN mkdir /data
 WORKDIR /data
