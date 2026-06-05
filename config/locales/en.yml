@@ -39,4 +39,8 @@ en:
     viaf: "VIAF"
     alternate_names: "Alternate Names"
     creator: "Creator"
+  dashboard:
+    breadcrumbs:
+      admin:
+        exports: "Exports"
 

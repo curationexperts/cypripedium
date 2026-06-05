@@ -1,0 +1,35 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-archive" aria-hidden="true"></span>Exported Archive Files</h1>
+<% end %>
+
+<div class="table-responsive">
+  <table id='exports' class='table table-striped table-bordered datatable' >
+    <thead>
+    <tr>
+      <th class="id">ID</th>
+      <th class="timestamp">Processed</th>
+      <th class="status">Status</th>
+      <th class="user">Submitted by</th>
+      <th class="format">Format</th>
+      <th class="file">File</th>
+      <th class="item_count">Item Count</th>
+      <th class="message">Message</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @exports.each_with_index do |export, index| %>
+      <tr>
+        <td class="id"><%= export.id -%></td>
+        <td class="timestamp" data-sort=<%= index %> ><%= export.updated_at.to_fs(:db) -%></td>
+        <td class="status #{export.status}"><%= export.status -%></td>
+        <td class="user"><%= export.user.display_name -%></td>
+        <td class="format"><%= export.format -%></td>
+        <td class="file"><%= link_to(export.export_file.filename, export_download_path(export), download: export.export_file.filename) if export.export_file.attached? -%></td>
+        <td class="item_count"><%= export.items.count -%></td>
+        <td class="message"><%= export.message -%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -50,6 +50,13 @@ Rails.application.routes.draw do
   get '/bag/:file_name', to: 'bag#download'
   post '/bag/create', to: 'bag#create'
 
+  scope '/admin' do
+    resources :exports, only: [:index, :destroy]
+  end
+  # Since export download links will be publicly accessible, we do not
+  # want them nested under the admin namespace.
+  get '/exports/downloads/:id', to: 'exports#download', as: 'export_download'
+
   resources :reports, only: [:index]
 
   get 'error_404', to: 'pages#error_404'
