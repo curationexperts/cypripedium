@@ -42,6 +42,7 @@ RSpec.configure do |config|
 
   # Add Devise authentication support
   config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   # Include Rails Time helpers
   config.include ActiveSupport::Testing::TimeHelpers

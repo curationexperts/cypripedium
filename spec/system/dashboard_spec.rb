@@ -40,6 +40,10 @@ RSpec.describe 'dashboard', js: true do
       expect(page).to have_selector('#dashboard-sidebar-reports')
     end
 
+    it 'displays an archive management menu' do
+      expect(page).to have_selector('#dashboard-sidebar-exports')
+    end
+
     # We need an engine routing test because Hrax namespaced controllers
     # don't access tenejo routes as expected
     it 'allows Hyrax controllers to access Cypripedium paths' do

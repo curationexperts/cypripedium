@@ -34,6 +34,13 @@
     <span class="fa fa-hourglass-half" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.leases.index.manage_leases') %></span>
   <% end %>
 
+  <%= menu.nav_link(main_app.exports_path,
+                    id: "dashboard-sidebar-exports",
+                    class: "nav-link",
+                    onclick: "dontChangeAccordion(event);") do %>
+    <span class="fa fa-archive" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('dashboard.breadcrumbs.admin.exports') %></span>
+  <% end %>
+
   <%= menu.nav_link(main_app.reports_path,
                     id: "dashboard-sidebar-reports",
                     class: "nav-link",
