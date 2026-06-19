@@ -8,6 +8,10 @@ RSpec.describe ExportsController, type: :routing do
       expect(get: '/admin/exports').to route_to('exports#index')
     end
 
+    it 'routes POST /admin/exports to #create' do
+      expect(post: '/admin/exports').to route_to('exports#create')
+    end
+
     it 'routes DELETE /admin/exports/:id to #destroy' do
       expect(delete: '/admin/exports/1').to route_to('exports#destroy', id: '1')
     end
@@ -22,10 +26,6 @@ RSpec.describe ExportsController, type: :routing do
   describe 'does not provide' do
     it 'a route to #new' do
       expect(get: '/admin/exports/new').to route_to('pages#error_404', path: 'admin/exports/new')
-    end
-
-    it 'a route to #create' do
-      expect(post: '/admin/exports').to route_to('pages#error_404', path: 'admin/exports')
     end
 
     it 'a route to #show' do

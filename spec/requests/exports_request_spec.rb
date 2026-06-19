@@ -151,4 +151,73 @@ RSpec.describe '/exports', type: :request do
       end
     end
   end
+
+  describe 'POST /admin/exports' do
+    let(:items) { ['abc123', 'def456'] }
+
+    context 'as an administrator' do
+      before { sign_in admin }
+
+      it 'creates an Export record' do
+        expect {
+          post exports_path, params: { export: { items: items } }
+        }.to change(Export, :count).by(1)
+      end
+
+      it 'sets the correct attributes on the export', :aggregate_failures do
+        post exports_path, params: { export: { items: items } }
+        export = Export.last
+        expect(export.items).to eq items
+        expect(export.format).to eq 'bag'
+        expect(export.user).to eq admin
+      end
+
+      it 'enqueues an ExportJob' do
+        expect {
+          post exports_path, params: { export: { items: items } }
+        }.to have_enqueued_job(ExportJob)
+      end
+
+      it 'redirects to the exports index' do
+        post exports_path, params: { export: { items: items } }
+        expect(response).to redirect_to(exports_path(locale: I18n.locale))
+      end
+
+      it 'sets a notice flash message' do
+        post exports_path, params: { export: { items: items } }
+        expect(flash[:notice]).to be_present
+      end
+
+      context 'when no items are selected' do
+        it 'does not create an Export record' do
+          expect {
+            post exports_path, params: { export: { items: [] } }
+          }.not_to change(Export, :count)
+        end
+
+        it 'redirects back with an alert' do
+          post exports_path, params: { export: { items: [] } },
+                             headers: { 'HTTP_REFERER' => hyrax.dashboard_works_path(locale: :en) }
+          expect(response).to redirect_to(hyrax.dashboard_works_path(locale: :en))
+          expect(flash[:alert]).to be_present
+        end
+      end
+    end
+
+    context 'as a regular user' do
+      before { sign_in user }
+
+      it 'returns not found' do
+        post exports_path, params: { export: { items: items } }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when not logged in' do
+      it 'returns not found' do
+        post exports_path, params: { export: { items: items } }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end

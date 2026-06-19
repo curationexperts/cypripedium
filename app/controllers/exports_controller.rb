@@ -14,6 +14,19 @@ class ExportsController < ApplicationController
     @exports = Export.all.order(created_at: :desc)
   end
 
+  # POST /admin/exports
+  def create
+    export_defaults = { user: current_user, format: :bag, status: :queued }
+    @export = Export.new(export_params.reverse_merge(export_defaults))
+    @export.items.compact_blank!
+    if @export.save
+      ExportJob.perform_later(@export)
+      redirect_to exports_path, notice: 'Export queued.'
+    else
+      redirect_back fallback_location: hyrax.dashboard_works_path, flash: { alert: 'Please select at least one item to export.' }
+    end
+  end
+
   # DELETE /admin/exports/:id
   def destroy
     @export.destroy
@@ -30,6 +43,10 @@ class ExportsController < ApplicationController
   end
 
   private
+
+  def export_params
+    params.require(:export).permit(:format, items: [])
+  end
 
   def render404
     render file: Rails.public_path.join('404.html'), status: :not_found, layout: 'hyrax/1_column'
