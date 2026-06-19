@@ -2,9 +2,15 @@
   <%= render 'hyrax/dashboard/collections/form_for_select_collection', user_collections: @user_collections %>
 
   <div class="batch-toggle">
-    <%= button_tag "Add to Zip Bag", class: 'btn btn-primary e submits-batches submits-ids-for-zip-bag' %>
-    <%= button_tag "Add to Tar Bag", class: 'btn btn-primary submits-batches submits-ids-for-tar-bag' %>
-
+    <% if can? :create, Export %>
+      <form id="export-form" action="<%= main_app.exports_path %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag 'export[format]', 'bag' %>
+      </form>
+      <button type="submit" form="export-form" class="btn btn-primary" id="create-bag-export">
+        Create BagIt Export
+      </button>
+    <% end %>
 
     <% session[:batch_edit_state] = "on" %>
     <div class="button_to-inline">

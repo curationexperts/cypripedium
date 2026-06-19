@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'csv'
+require 'find'
 
 class ExportJob < ApplicationJob
   METADATA_HEADERS = ['title', 'name-creator', 'name-author', 'dateCreated',
@@ -16,7 +17,6 @@ class ExportJob < ApplicationJob
     Dir.mktmpdir do |tmp_dir|
       @bag = BagIt::Bag.new(File.join(tmp_dir, bag_name))
       build_bag
-      write_metadata_csv
       zip_path = compress(tmp_dir)
       attach(zip_path)
     end
@@ -39,11 +39,12 @@ class ExportJob < ApplicationJob
       work = ActiveFedora::Base.find(item_id)
       add_item_to_bag(work)
     end
+    write_metadata_csv
     @bag.manifest!(algo: 'sha256')
   end
 
   def write_metadata_csv
-    @bag.add_file('metadata.csv') do |io|
+    @bag.add_tag_file('metadata.csv') do |io|
       csv = CSV.new(io, headers: METADATA_HEADERS, write_headers: true)
       @metadata_rows.each { |row| csv << row }
     end
