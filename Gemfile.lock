@@ -717,7 +717,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     net-ssh (7.3.0)
-    nio4r (2.7.4)
+    nio4r (2.7.5)
     noid (0.9.0)
     noid-rails (3.2.0)
       actionpack (>= 5.0.0, < 8)
@@ -756,7 +756,7 @@ GEM
     prism (1.9.0)
     psych (3.3.4)
     public_suffix (6.0.2)
-    puma (6.5.0)
+    puma (7.2.1)
       nio4r (~> 2.0)
     qa (5.14.0)
       activerecord-import
