@@ -31,7 +31,7 @@ class ExportJob < ApplicationJob
   private
 
   def bag_name
-    "#{Rails.application.config.bag_prefix}_#{@export.id}"
+    @export.base_name
   end
 
   def build_bag

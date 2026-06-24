@@ -97,6 +97,37 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  describe '#base_name' do
+    let(:export) { build(:export, format: :bag, items: ['abc123']) }
+
+    it 'includes segments in the expected order' do
+      prefix = Rails.application.config.bag_prefix
+      expect(export.base_name).to eq prefix + '_bag_abc123'
+    end
+
+    context 'disambiguation' do
+      def attach_file(export)
+        export.export_file.attach(
+          io: Rails.root.join('spec', 'fixtures', 'files', 'test_file.zip').open,
+          filename: "#{export.base_name}.zip",
+          content_type: 'application/zip'
+        )
+      end
+
+      it 'omits the counter when no prior export has the same base name' do
+        expect(export.base_name).to end_with 'bag_abc123'
+      end
+
+      it 'adds a counter for each additional export with the same base name' do
+        2.times do
+          prior = create(:export, format: :bag, items: ['abc123'])
+          attach_file(prior)
+        end
+        expect(export.base_name).to end_with 'bag_abc123_3'
+      end
+    end
+  end
+
   describe 'system user' do
     it 'can be assigned User.system_user as the submitting user' do
       system_export = described_class.new(user: User.system_user, format: :zip, items: ['abc123'])
