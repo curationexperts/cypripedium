@@ -16,14 +16,27 @@ class ExportsController < ApplicationController
 
   # POST /admin/exports
   def create
-    export_defaults = { user: current_user, format: :bag, status: :queued }
-    @export = Export.new(export_params.reverse_merge(export_defaults))
-    @export.items.compact_blank!
-    if @export.save
-      ExportJob.perform_later(@export)
+    export = Export.new(export_params.reverse_merge(format: :bag, user: current_user))
+    if export.items.empty?
+      redirect_back_or_to hyrax.dashboard_works_path, allow_other_host: false, alert: 'Please select one or more items to export.'
+      return
+    end
+
+    existing = Export.order(updated_at: :desc).find_by(items: export.items, format: export.format)
+    case existing&.status
+    when 'queued', 'working'
+      redirect_to exports_path, alert: 'An export with those items is already queued, please wait for it to complete.'
+      return
+    when 'completed'
+      redirect_to exports_path, alert: 'An export with those items already exists and is available for download.'
+      return
+    end
+
+    if export.save
+      ExportJob.perform_later(export)
       redirect_to exports_path, notice: 'Export queued.'
     else
-      redirect_back fallback_location: hyrax.dashboard_works_path, flash: { alert: 'Please select at least one item to export.' }
+      redirect_back_or_to hyrax.dashboard_works_path, alert: "Your request could not be processed.\n\n#{export.errors.full_messages.join("\n- ")}"
     end
   end
 

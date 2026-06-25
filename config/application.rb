@@ -12,6 +12,10 @@ module Cypripedium
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+    # Explicitly set AR Marshalling to support normalization
+    # see: https://api.rubyonrails.org/v7.1/classes/ActiveRecord/Normalization/ClassMethods.html#method-i-normalizes
+    config.active_record.marshalling_format_version = 7.1
+
     config.active_job.queue_adapter = :sidekiq
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

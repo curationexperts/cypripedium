@@ -35,6 +35,12 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'status lifecycle' do
+    it 'sets status to :queued on when queued', :aggregate_failures do
+      expect(export.status).to eq 'unknown'
+      described_class.perform_later(export)
+      expect(export.reload.status).to eq 'queued'
+    end
+
     it 'sets status to :completed on success', :aggregate_failures do
       expect(export).to receive(:working!)
       described_class.perform_now(export)
