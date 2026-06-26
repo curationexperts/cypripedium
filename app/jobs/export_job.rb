@@ -9,6 +9,8 @@ class ExportJob < ApplicationJob
 
   SUPPORTED_TYPES = [Publication, Dataset, ConferenceProceeding].freeze
 
+  after_enqueue { |job| job.arguments.first.queued! }
+
   def perform(export)
     @export = export
     @export.working!

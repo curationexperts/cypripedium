@@ -46,10 +46,19 @@ RSpec.describe Export, type: :model do
       expect(export.items).to be_an Array
     end
 
-    it 'accepts an array of id strings' do
-      export.items = ['abc123', 'def456']
-      export.save!
-      expect(export.reload.items).to eq ['abc123', 'def456']
+    it 'sorts and deduplicates on assignment' do
+      export = build(:export, items: ['zzz', 'aaa', 'abc', 'aaa'])
+      expect(export.items).to eq ['aaa', 'abc', 'zzz']
+    end
+
+    it 'removes blank items' do
+      export = build(:export, items: ['789', nil, '123', 'atoz', '', 'abc'])
+      expect(export.items).to eq ['123', '789', 'abc', 'atoz']
+    end
+
+    it 'persists as a sorted and deduplicated list' do
+      export = create(:export, items: ['zzz', 'aaa', 'abc', 'aaa'])
+      expect(export.reload.items).to eq ['aaa', 'abc', 'zzz']
     end
   end
 
