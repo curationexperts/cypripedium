@@ -14,12 +14,13 @@
       <th class="file">File</th>
       <th class="item_count">Item Count</th>
       <th class="message">Message</th>
+      <th class="actions">Actions</th>
     </tr>
     </thead>
 
     <tbody>
     <% @exports.each_with_index do |export, index| %>
-      <tr>
+      <tr id="<%= dom_id(export) -%>">
         <td class="id"><%= export.id -%></td>
         <td class="timestamp" data-sort=<%= index %> ><%= export.updated_at.to_fs(:db) -%></td>
         <td class="status #{export.status}"><%= export.status -%></td>
@@ -28,6 +29,11 @@
         <td class="file"><%= link_to(export.export_file.filename, export_download_path(export), download: export.export_file.filename) if export.export_file.attached? -%></td>
         <td class="item_count"><%= export.items.count -%></td>
         <td class="message"><%= export.message -%></td>
+        <td class="actions">
+          <% unless export.queued? || export.working? %>
+            <%= button_to 'Delete', export_path(export), method: :delete, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     </tbody>
