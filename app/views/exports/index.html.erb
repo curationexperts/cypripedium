@@ -11,8 +11,8 @@
       <th class="status">Status</th>
       <th class="user">Submitted by</th>
       <th class="format">Format</th>
+      <th class="item_count">Items</th>
       <th class="file">File</th>
-      <th class="item_count">Item Count</th>
       <th class="message">Message</th>
       <th class="actions">Actions</th>
     </tr>
@@ -21,21 +21,63 @@
     <tbody>
     <% @exports.each_with_index do |export, index| %>
       <tr id="<%= dom_id(export) -%>">
-        <td class="id"><%= export.id -%></td>
+        <td class="id">
+          <a href="#"
+             data-toggle="modal"
+             data-target="#items-modal"
+             data-items-url="<%= items_export_path(export) %>"
+             aria-label="Show <%= export.items.count %> included items">
+            <%= export.id %> <span class="fa fa-circle-info" aria-hidden="true"></span>
+          </a>
+        </td>
         <td class="timestamp" data-sort=<%= index %> ><%= export.updated_at.to_fs(:db) -%></td>
-        <td class="status #{export.status}"><%= export.status -%></td>
+        <td class="status <%= export.status %>"><%= export.status -%></td>
         <td class="user"><%= export.user.display_name -%></td>
         <td class="format"><%= export.format -%></td>
+        <td class="item_count" data-search="<%= export.items.join(' ') %>">
+          <a href="#"
+             data-toggle="modal"
+             data-target="#items-modal"
+             data-items-url="<%= items_export_path(export) %>"
+             aria-label="Show <%= export.items.count %> included items">
+            <%= export.items.count %> <span class="fa fa-circle-info" aria-hidden="true"></span>
+          </a>
+        </td>
         <td class="file"><%= link_to(export.export_file.filename, export_download_path(export), download: export.export_file.filename) if export.export_file.attached? -%></td>
-        <td class="item_count"><%= export.items.count -%></td>
         <td class="message"><%= export.message -%></td>
         <td class="actions">
           <% unless export.queued? || export.working? %>
-            <%= button_to 'Delete', export_path(export), method: :delete, class: 'btn btn-danger btn-sm' %>
+            <%= button_to export_path(export), method: :delete, class: 'btn btn-danger btn-sm' do %>
+              Delete
+              <span class="fa fa-trash-o" aria-hidden="true"></span>
+            <% end %>
           <% end %>
         </td>
       </tr>
     <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="modal fade" id="items-modal" tabindex="-1" role="dialog" aria-labelledby="items-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="items-modal-label">Export Details</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="items-modal-spinner" class="text-center">
+          <span class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></span>
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div id="items-modal-content" class="d-none"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -15,6 +15,10 @@ RSpec.describe ExportsController, type: :routing do
     it 'routes DELETE /admin/exports/:id to #destroy' do
       expect(delete: '/admin/exports/1').to route_to('exports#destroy', id: '1')
     end
+
+    it 'routes GET /admin/exports/:id/items to #items' do
+      expect(get: '/admin/exports/1/items').to route_to('exports#items', id: '1')
+    end
   end
 
   describe 'public routes' do

@@ -152,6 +152,47 @@ RSpec.describe '/exports', type: :request do
     end
   end
 
+  describe 'GET /admin/exports/:id/items' do
+    let(:export) { create(:export, format: :bag, items: ['abc123', 'def456']) }
+
+    context 'as an administrator' do
+      before { sign_in admin }
+
+      it 'returns a successful response' do
+        get items_export_path(export)
+        expect(response).to be_successful
+      end
+
+      it 'returns an HTML partial without a layout' do
+        get items_export_path(export)
+        expect(response.content_type).to match(/html/)
+        expect(response.body).not_to include('<html')
+      end
+
+      it 'includes an entry for each item' do
+        get items_export_path(export)
+        expect(response.body).to include('abc123')
+        expect(response.body).to include('def456')
+      end
+    end
+
+    context 'as a regular user' do
+      before { sign_in user }
+
+      it 'returns not found' do
+        get items_export_path(export)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when not logged in' do
+      it 'returns not found' do
+        get items_export_path(export)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe 'POST /admin/exports' do
     let(:items) { ['def456', 'abc123'] }
 

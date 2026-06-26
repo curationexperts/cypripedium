@@ -1,0 +1,19 @@
+<h3>Export ID: <%= export.id %><br/></h3>
+<%= link_to(export.export_file.filename, export_download_path(export), download: export.export_file.filename) if export.export_file.attached?  %><br/>
+created: <%= export.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+<hr>
+<ul class="list-unstyled mb-0">
+  <% docs.each do |doc| %>
+    <li class="py-1 border-bottom" id="<%= dom_id(doc) %>">
+      <% if doc.title.present? %>
+        <%= link_to doc.id, work_path(doc), target: '_blank', rel: 'noopener noreferrer' %>
+        &mdash;
+        <%= doc.title.first %>
+      <% else %>
+        <span class="text-monospace text-muted"><%= doc.id %></span>
+        &mdash;
+        <em>Item not available</em>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
