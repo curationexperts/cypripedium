@@ -32,3 +32,20 @@
     max-width: 3rem;
   }
 }
+
+#items-modal {
+  .modal-content {
+    border-radius: 1rem;
+  }
+
+  .id {
+    display: inline-block;
+    width: 6.5rem;
+  }
+  .title {
+    &::before {
+      content: " \2014 ";
+      margin-right: 1.5rem;
+    }
+  }
+}
