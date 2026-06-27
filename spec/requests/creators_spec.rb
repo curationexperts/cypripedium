@@ -69,7 +69,7 @@ RSpec.describe "/creators", type: :request, clean: true do
 
       it "redirects to the created creator" do
         post creators_url, params: { creator: valid_attributes }
-        expect(response).to redirect_to(creator_url(Creator.last) + "?locale=en")
+        expect(response).to redirect_to(creator_url(Creator.last))
       end
     end
 
@@ -107,7 +107,7 @@ RSpec.describe "/creators", type: :request, clean: true do
         creator = Creator.create! valid_attributes
         patch creator_url(creator), params: { creator: new_attributes }
         creator.reload
-        expect(response).to redirect_to(creator_url(creator) + "?locale=en")
+        expect(response).to redirect_to(creator_url(creator))
       end
     end
 

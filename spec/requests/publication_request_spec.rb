@@ -65,7 +65,7 @@ RSpec.describe "/concern/publications", type: :request, clean: true do
 
       it "redirects to the created publication" do
         post hyrax_publications_url, params: { publication: valid_attributes }
-        expect(response).to redirect_to(hyrax_publication_url(Publication.last) + "?locale=en")
+        expect(response).to redirect_to(hyrax_publication_url(Publication.last))
       end
     end
   end
@@ -87,7 +87,7 @@ RSpec.describe "/concern/publications", type: :request, clean: true do
         publication = Publication.create! valid_attributes
         patch hyrax_publication_url(publication), params: { publication: new_attributes }
         publication.reload
-        expect(response).to redirect_to(hyrax_publication_url(publication) + "?locale=en")
+        expect(response).to redirect_to(hyrax_publication_url(publication))
       end
     end
   end

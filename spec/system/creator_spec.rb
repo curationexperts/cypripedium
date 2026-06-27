@@ -10,12 +10,12 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
   let(:creator_with_alternates) { Creator.create!(display_name: "Allen, Stephen G.", alternate_names: ["Allen, S. Gomes", "Aliens, Steve"]) }
   let(:inactive_creator) { Creator.create!(display_name: "Milk, The Small", active_creator: false, repec: '12345') }
 
-  before do
+  before :all do
     @initial_locale = default_url_options[:locale]
     default_url_options[:locale] = I18n.default_locale
   end
 
-  after do
+  after :all do
     default_url_options[:locale] = @initial_locale
   end
 
