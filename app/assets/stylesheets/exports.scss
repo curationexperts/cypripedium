@@ -1,0 +1,34 @@
+#exports {
+  .id {
+    max-width: 3rem;
+    text-align: right;
+  }
+  .timestamp { max-width: 10rem; }
+  .actions { text-align: right; }
+
+  .item_count {
+    max-width: 3rem;
+    text-align: center;
+    a {
+      text-decoration: none;
+
+      ::after {
+        font-family: 'FontAwesome';
+        content: '\f05a'; // fa-info-circle
+        margin-left: 0.25rem;
+      }
+    }
+  }
+
+  .status {
+    color: black;
+    &.completed { color: green; }
+    &.failed { color: red; }
+    &.working { color: var(--frbm-dark-blue); }
+    &.queued { color: var(--frbm-pirate-gold); }
+  }
+
+  .format {
+    max-width: 3rem;
+  }
+}

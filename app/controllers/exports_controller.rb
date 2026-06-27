@@ -55,6 +55,18 @@ class ExportsController < ApplicationController
     end
   end
 
+  def items
+    ids = @export.items
+    query = ids.map { |id| "id:#{RSolr.solr_escape(id)}" }.join(' OR ')
+    results = Hyrax::SolrService.query(query,
+                                       rows: ids.length,
+                                       fl: 'id,title_tesim,has_model_ssim')
+    indexed_results = results.index_by { |doc| doc['id'] }
+    docs = ids.map { |id| SolrDocument.new(indexed_results.fetch(id, { 'id' => id })) }
+
+    render partial: 'items', layout: false, locals: { export: @export, docs: docs }
+  end
+
   private
 
   def export_params

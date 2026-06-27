@@ -51,7 +51,9 @@ Rails.application.routes.draw do
   post '/bag/create', to: 'bag#create'
 
   scope '/admin' do
-    resources :exports, only: [:index, :create, :destroy]
+    resources :exports, only: [:index, :create, :destroy] do
+      member { get :items }
+    end
   end
   # Since export download links will be publicly accessible, we do not
   # want them nested under the admin namespace.

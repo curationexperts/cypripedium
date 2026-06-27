@@ -17,6 +17,6 @@ class Ability
     return unless current_user.admin?
     can [:index], :reports
     can [:edit, :update, :create, :index, :show], Creator
-    can [:index, :create, :destroy, :download], Export
+    can [:index, :create, :destroy, :download, :items], Export
   end
 end
