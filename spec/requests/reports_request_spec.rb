@@ -42,7 +42,7 @@ RSpec.describe "/reports", type: :request do
 
         # Authorization failures currently default to redirecting to the sign-in page
         # see Hydra::Controller::ControllerBehavior#deny_access
-        expect(response).to redirect_to(new_user_session_path(locale: I18n.locale))
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 

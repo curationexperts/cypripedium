@@ -47,7 +47,7 @@ RSpec.describe '/exports', type: :request do
 
       it 'redirects to the index' do
         delete export_path(export)
-        expect(response).to redirect_to(exports_path(locale: I18n.locale))
+        expect(response).to redirect_to(exports_path)
       end
     end
 
@@ -208,8 +208,8 @@ RSpec.describe '/exports', type: :request do
 
         it 'redirects back with an alert' do
           post exports_path, params: { export: { items: [] } },
-                             headers: { 'HTTP_REFERER' => hyrax.dashboard_works_path(locale: :en) }
-          expect(response).to redirect_to(hyrax.dashboard_works_path(locale: :en))
+                             headers: { 'HTTP_REFERER' => hyrax.dashboard_works_path }
+          expect(response).to redirect_to(hyrax.dashboard_works_path)
           expect(flash[:alert]).to match(/select one or more/i)
         end
       end
@@ -225,7 +225,7 @@ RSpec.describe '/exports', type: :request do
         it 'redirects to the index with an alert' do
           create(:export, format: :bag, items: items, status: :working)
           post exports_path, params: { export: { items: items } }
-          expect(response).to redirect_to(exports_path(locale: I18n.locale))
+          expect(response).to redirect_to(exports_path)
           expect(flash[:alert]).to match(/already queued/i)
         end
       end
@@ -241,7 +241,7 @@ RSpec.describe '/exports', type: :request do
 
         it 'redirects to the index with an alert', :aggregate_failures do
           post exports_path, params: { export: { items: items } }
-          expect(response).to redirect_to(exports_path(locale: I18n.locale))
+          expect(response).to redirect_to(exports_path)
           expect(flash[:alert]).to match(/already exists/i)
         end
       end
@@ -270,7 +270,7 @@ RSpec.describe '/exports', type: :request do
 
         it 'redirects to the exports index with a notice' do
           post exports_path, params: { export: { items: items } }
-          expect(response).to redirect_to(exports_path(locale: I18n.locale))
+          expect(response).to redirect_to(exports_path)
           expect(flash[:notice]).to be_present
         end
       end

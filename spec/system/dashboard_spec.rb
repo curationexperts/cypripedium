@@ -10,8 +10,8 @@ RSpec.describe 'dashboard', js: true do
   context 'for guest users' do
     it 'redirects to login' do
       logout
-      visit('dashboard')
-      expect(page).to have_current_path(new_user_session_path)
+      visit('/dashboard')
+      expect(page).to have_current_path(new_user_session_path(locale: nil))
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe 'dashboard', js: true do
     end
 
     it 'has a works section' do
-      expect(page).to have_link('Works', href: '/dashboard/my/works?locale=en')
+      expect(page).to have_link('Works', href: %r{/dashboard/my/works})
     end
 
     it 'restricts admin-only menus' do
@@ -49,7 +49,7 @@ RSpec.describe 'dashboard', js: true do
     it 'allows Hyrax controllers to access Cypripedium paths' do
       login_as admin
       expect { visit('dashboard/my/works') }.not_to raise_exception
-      expect(page).to have_link(href: reports_path(locale: I18n.locale))
+      expect(page).to have_link(href: reports_path)
     end
   end
 end

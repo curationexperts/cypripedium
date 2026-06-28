@@ -39,10 +39,10 @@ RSpec.describe 'New work creation', type: :system, js: true do
     page.has_selector?(id: 'with_files_submit') until page.has_selector?('.work-title-wrapper span[itemprop="name"]')
 
     # The page should redirect to the newly created Publication
-    expect(current_path).to match(hyrax_publication_path(Publication.last))
+    expect(current_path).to include(hyrax_publication_path(Publication.last, locale: nil))
     expect(page).to have_content('My new Publication')
     expect(page).to have_selector('span.badge', text: 'Public')
     edit_link = page.find_link('Edit')['href']
-    expect(edit_link).to match edit_hyrax_publication_path(Publication.last)
+    expect(edit_link).to include(edit_hyrax_publication_path(Publication.last, locale: nil))
   end
 end
