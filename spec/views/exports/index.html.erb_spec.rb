@@ -10,14 +10,26 @@ RSpec.describe 'exports/index', type: :view do
   let(:queued_export)    { create(:export, user: admin, format: :bag, items: ['ghi789'], status: :queued) }
   let(:working_export)   { create(:export, user: admin, format: :bag, items: ['jkl012'], status: :working) }
 
+  let(:exports) { [completed_export, failed_export, queued_export, working_export] }
+
   before do
-    assign(:exports, [completed_export, failed_export, queued_export, working_export])
+    # Mimic an ActiveRecord relation orderd by id in descending order
+    assign(:exports, exports.sort_by(&:id).reverse)
     allow(view).to receive(:main_app).and_return(main_app)
   end
 
   it 'renders a row for each export' do
     render
     expect(rendered).to have_selector('tbody tr', count: 4)
+  end
+
+  it 'includes a data-sort attribute on ids', :aggregate_failures do
+    render
+    # `data-sort` attributes should be in inverse order of the export order in the assigns
+    expect(rendered).to have_selector("td.id[data-sort=0]", text: working_export.id)
+    expect(rendered).to have_selector("td.id[data-sort=1]", text: queued_export.id)
+    expect(rendered).to have_selector("td.id[data-sort=2]", text: failed_export.id)
+    expect(rendered).to have_selector("td.id[data-sort=3]", text: completed_export.id)
   end
 
   it 'has a download link for completed exports' do

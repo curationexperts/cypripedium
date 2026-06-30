@@ -11,7 +11,7 @@ class ExportsController < ApplicationController
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
     add_breadcrumb t(:'dashboard.breadcrumbs.admin.exports')
-    @exports = Export.all.order(created_at: :desc)
+    @exports = @exports.reorder(id: :desc)
   end
 
   # POST /admin/exports
