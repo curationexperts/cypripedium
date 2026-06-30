@@ -1,24 +1,4 @@
 #exports {
-  .id {
-    max-width: 3rem;
-    text-align: right;
-  }
-  .timestamp { max-width: 10rem; }
-  .actions { text-align: right; }
-
-  .item_count {
-    max-width: 3rem;
-    text-align: center;
-    a {
-      text-decoration: none;
-
-      ::after {
-        font-family: 'FontAwesome';
-        content: '\f05a'; // fa-info-circle
-        margin-left: 0.25rem;
-      }
-    }
-  }
 
   .status {
     color: black;
@@ -28,8 +8,31 @@
     &.queued { color: var(--frbm-pirate-gold); }
   }
 
-  .format {
-    max-width: 3rem;
+  table {
+    .id {
+      max-width: 3rem;
+      text-align: right;
+    }
+    .timestamp { max-width: 10rem; }
+    .actions { text-align: right; }
+
+    .item_count {
+      max-width: 3rem;
+      text-align: center;
+      a {
+        text-decoration: none;
+
+        ::after {
+          font-family: 'FontAwesome';
+          content: '\f05a'; // fa-info-circle
+          margin-left: 0.25rem;
+        }
+      }
+    }
+
+    .format {
+      max-width: 3rem;
+    }
   }
 }
 
@@ -54,6 +57,14 @@
       content: "\2014 "; // em dash
       display: inline-flex;
       width: 1rem;
+    }
+  }
+
+  #export-message {
+    margin-top: 2rem;
+
+    h4.status {
+      padding: 0;
     }
   }
 }
