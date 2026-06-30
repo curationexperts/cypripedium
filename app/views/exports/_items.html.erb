@@ -5,7 +5,7 @@ created: <%= export.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
 <ul class="list-unstyled mt-4 mb-0 border-top">
   <% docs.each do |doc| %>
     <% item_link = work_path(doc) %>
-    <li class="py-1 border-bottom" id="<%= dom_id(doc) %>">
+    <li class="py-1 border-bottom d-flex" id="<%= dom_id(doc) %>">
       <span class="id"><%= link_to_if item_link, doc.id, item_link, target: '_blank', rel: 'noopener noreferrer' %></span>
       <span class="title"><%= doc.title.first || content_tag(:em, "Item not available") %></span>
     </li>
