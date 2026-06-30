@@ -34,18 +34,26 @@
 }
 
 #items-modal {
+  .modal-dialog {
+    max-width: 50rem;
+  }
   .modal-content {
     border-radius: 1rem;
   }
 
   .id {
-    display: inline-block;
-    width: 6.5rem;
+    flex: 0 0 6.5rem;
   }
+
   .title {
+    flex: 0 0 40rem;
+    padding-left: 2rem;
+    text-indent: -1rem;
+
     &::before {
-      content: " \2014 ";
-      margin-right: 1.5rem;
+      content: "\2014 "; // em dash
+      display: inline-flex;
+      width: 1rem;
     }
   }
 }
