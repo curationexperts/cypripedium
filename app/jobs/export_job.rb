@@ -78,6 +78,17 @@ class ExportJob < ApplicationJob
   end
 
   def add_files_to_bag(work)
+    # serialize the work's metadata to a JSON file in the metadata tag directory
+    @bag.add_tag_file("metadata/#{work.id}.json") do |io|
+      json = ::ApplicationController.render(
+        template: 'hyrax/base/show',
+        formats: [:json],
+        assigns: { curation_concern: work, presenter: Hyrax::WorkShowPresenter.new(SolrDocument.new(work.to_solr), nil) }
+      )
+      io.write json
+    end
+
+    # add the work's files to the bag
     work.file_sets.each do |file_set|
       file_set.files.each do |file|
         next if file.file_name.first.empty?
