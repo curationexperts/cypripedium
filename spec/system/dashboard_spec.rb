@@ -48,8 +48,9 @@ RSpec.describe 'dashboard', js: true do
     # don't access tenejo routes as expected
     it 'allows Hyrax controllers to access Cypripedium paths' do
       login_as admin
-      expect { visit('dashboard/my/works') }.not_to raise_exception
-      expect(page).to have_link(href: reports_path)
+      visit('dashboard/my/works')
+      # Hyrax controllers should render sidebar with main app links
+      expect(page).to have_link(id: 'dashboard-sidebar-reports', href: /reports/)
     end
   end
 end
