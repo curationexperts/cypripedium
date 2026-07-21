@@ -20,8 +20,8 @@ terms:
   - id: 'A19 - General Economics: Other'
     term: 'A19 - General Economics: Other'
     active: true
-  - id: 'A20 - Economics Education and Teaching of Economics: General'
-    term: 'A20 - Economics Education and Teaching of Economics: General'
+  - id: 'A20 - Economic Education and Teaching of Economics: General'
+    term: 'A20 - Economic Education and Teaching of Economics: General'
     active: true
   - id: 'A21 - Economic Education and Teaching of Economics: Pre-college'
     term: 'A21 - Economic Education and Teaching of Economics: Pre-college'
@@ -131,8 +131,8 @@ terms:
   - id: 'B51 - Current Heterodox Approaches: Socialist; Marxian; Sraffian'
     term: 'B51 - Current Heterodox Approaches: Socialist; Marxian; Sraffian'
     active: true
-  - id: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary'
-    term: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary'
+  - id: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary; Modern Monetary Theory'
+    term: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary; Modern Monetary Theory'
     active: true
   - id: 'B53 - Current Heterodox Approaches: Austrian'
     term: 'B53 - Current Heterodox Approaches: Austrian'
@@ -238,7 +238,7 @@ terms:
     active: true
   - id: 'C42 - Classification Discontinued 2008. See C83.'
     term: 'C42 - Classification Discontinued 2008. See C83.'
-    active: true
+    active: false
   - id: 'C43 - Index Numbers and Aggregation; Leading indicators'
     term: 'C43 - Index Numbers and Aggregation; Leading indicators'
     active: true
@@ -356,8 +356,8 @@ terms:
   - id: 'C93 - Field Experiments'
     term: 'C93 - Field Experiments'
     active: true
-  - id: 'C99 - Design of Experiments: Other '
-    term: 'C99 - Design of Experiments: Other '
+  - id: 'C99 - Design of Experiments: Other'
+    term: 'C99 - Design of Experiments: Other'
     active: true
   - id: 'D00 - Microeconomics: General'
     term: 'D00 - Microeconomics: General'
@@ -494,8 +494,8 @@ terms:
   - id: 'D63 - Equity, Justice, Inequality, and Other Normative Criteria and Measurement'
     term: 'D63 - Equity, Justice, Inequality, and Other Normative Criteria and Measurement'
     active: true
-  - id: 'D64 - Altruism; Philanthropy; Intergenerational Transfer'
-    term: 'D64 - Altruism; Philanthropy; Intergenerational Transfer'
+  - id: 'D64 - Altruism; Philanthropy; Intergenerational Transfers'
+    term: 'D64 - Altruism; Philanthropy; Intergenerational Transfers'
     active: true
   - id: 'D69 - Welfare Economics: Other'
     term: 'D69 - Welfare Economics: Other'
@@ -569,8 +569,8 @@ terms:
   - id: 'E11 - General Aggregative Models: Marxian; Sraffian; Kaleckian'
     term: 'E11 - General Aggregative Models: Marxian; Sraffian; Kaleckian'
     active: true
-  - id: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian'
-    term: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian'
+  - id: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian; Modern Monetary Theory'
+    term: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian; Modern Monetary Theory'
     active: true
   - id: 'E13 - General Aggregative Models: Neoclassical'
     term: 'E13 - General Aggregative Models: Neoclassical'
@@ -671,8 +671,8 @@ terms:
   - id: 'E61 - Policy Objectives; Policy Designs and Consistency; Policy Coordination'
     term: 'E61 - Policy Objectives; Policy Designs and Consistency; Policy Coordination'
     active: true
-  - id: 'E62 - Fiscal Policy'
-    term: 'E62 - Fiscal Policy'
+  - id: 'E62 - Fiscal Policy; Modern Monetary Theory'
+    term: 'E62 - Fiscal Policy; Modern Monetary Theory'
     active: true
   - id: 'E63 - Comparative or Joint Analysis of Fiscal and Monetary Policy; Stabilization; Treasury Policy'
     term: 'E63 - Comparative or Joint Analysis of Fiscal and Monetary Policy; Stabilization; Treasury Policy'
@@ -860,14 +860,14 @@ terms:
   - id: 'G01 - Financial Crises'
     term: 'G01 - Financial Crises'
     active: true
-  - id: 'G10 - General Financial Markets: General (includes Measurement and Data)'
-    term: 'G10 - General Financial Markets: General (includes Measurement and Data)'
+  - id: 'G10 - Asset Markets and Pricing'
+    term: 'G10 - Asset Markets and Pricing'
     active: true
   - id: 'G11 - Portfolio Choice; Investment Decisions'
     term: 'G11 - Portfolio Choice; Investment Decisions'
     active: true
-  - id: 'G12 - Asset Pricing; Trading Volume; Bond Interest Rates'
-    term: 'G12 - Asset Pricing; Trading Volume; Bond Interest Rates'
+  - id: 'G12 - Equities; Fixed Income Securities'
+    term: 'G12 - Equities; Fixed Income Securities'
     active: true
   - id: 'G13 - Contingent Pricing; Futures Pricing; option pricing'
     term: 'G13 - Contingent Pricing; Futures Pricing; option pricing'
@@ -937,6 +937,21 @@ terms:
     active: true
   - id: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
     term: 'G41 - Behavioral Finance: Role and Effects of Psychological, Emotional, Social, and Cognitive Factors on Decision Making in Financial Markets'
+    active: true
+  - id: 'G50 - Household Finance: General'
+    term: 'G50 - Household Finance: General'
+    active: true
+  - id: 'G51 - Household Saving, Borrowing, Debt, and Wealth'
+    term: 'G51 - Household Saving, Borrowing, Debt, and Wealth'
+    active: true
+  - id: 'G52 - Household Finance: Insurance'
+    term: 'G52 - Household Finance: Insurance'
+    active: true
+  - id: 'G53 - Household Finance: Financial Literacy'
+    term: 'G53 - Household Finance: Financial Literacy'
+    active: true
+  - id: 'G59 - Household Finance: Other'
+    term: 'G59 - Household Finance: Other'
     active: true
   - id: 'H00 - Public Economics: General'
     term: 'H00 - Public Economics: General'
@@ -1196,8 +1211,8 @@ terms:
   - id: 'J13 - Fertility; Family Planning; Child Care; Children; Youth'
     term: 'J13 - Fertility; Family Planning; Child Care; Children; Youth'
     active: true
-  - id: 'J14 - Economics of the Elderly; Economics of the Handicapped; Non-labor Market Discrimination'
-    term: 'J14 - Economics of the Elderly; Economics of the Handicapped; Non-labor Market Discrimination'
+  - id: 'J14 - Economics of the Elderly; Economics of Disability; Non-labor Market Discrimination'
+    term: 'J14 - Economics of the Elderly; Economics of Disability; Non-labor Market Discrimination'
     active: true
   - id: 'J15 - Economics of Minorities, Races, Indigenous Peoples, and Immigrants; Non-labor Discrimination'
     term: 'J15 - Economics of Minorities, Races, Indigenous Peoples, and Immigrants; Non-labor Discrimination'
@@ -1352,8 +1367,8 @@ terms:
   - id: 'J82 - Labor Standards: Labor Force Composition'
     term: 'J82 - Labor Standards: Labor Force Composition'
     active: true
-  - id: 'J83 - Labor Standards: Workers Rights'
-    term: 'J83 - Labor Standards: Workers Rights'
+  - id: 'J83 - Labor Standards: Workers'' Rights'
+    term: 'J83 - Labor Standards: Workers'' Rights'
     active: true
   - id: 'J88 - Labor Standards: Public Policy'
     term: 'J88 - Labor Standards: Public Policy'
@@ -1373,8 +1388,8 @@ terms:
   - id: 'K12 - Contract Law'
     term: 'K12 - Contract Law'
     active: true
-  - id: 'K13 - Tort Law and Product Liability; Forensic Economic'
-    term: 'K13 - Tort Law and Product Liability; Forensic Economic'
+  - id: 'K13 - Tort Law and Product Liability; Forensic Economics'
+    term: 'K13 - Tort Law and Product Liability; Forensic Economics'
     active: true
   - id: 'K14 - Criminal Law'
     term: 'K14 - Criminal Law'
@@ -1433,8 +1448,8 @@ terms:
   - id: 'K37 - Immigration Law'
     term: 'K37 - Immigration Law'
     active: true
-  - id: 'K38 - Human Rights Law; Gender Law'
-    term: 'K38 - Human Rights Law; Gender Law'
+  - id: 'K38 - Human Rights Law; Gender Law; Animal Rights Law'
+    term: 'K38 - Human Rights Law; Gender Law; Animal Rights Law'
     active: true
   - id: 'K39 - Other Substantive Areas of Law: Other'
     term: 'K39 - Other Substantive Areas of Law: Other'
@@ -2048,6 +2063,9 @@ terms:
   - id: 'O35 - Social Innovation'
     term: 'O35 - Social Innovation'
     active: true
+  - id: 'O36 - Open Innovation'
+    term: 'O36 - Open Innovation'
+    active: true
   - id: 'O38 - Technological Change: Government Policy'
     term: 'O38 - Technological Change: Government Policy'
     active: true
@@ -2099,14 +2117,14 @@ terms:
   - id: 'O57 - Comparative Studies of Countries'
     term: 'O57 - Comparative Studies of Countries'
     active: true
-  - id: 'P00 - Economic Systems: General'
-    term: 'P00 - Economic Systems: General'
+  - id: 'P00 - Political Economy and Comparative Economic Systems: General'
+    term: 'P00 - Political Economy and Comparative Economic Systems: General'
     active: true
-  - id: 'P10 - Capitalist Systems: General'
-    term: 'P10 - Capitalist Systems: General'
+  - id: 'P10 - Capitalist Economies: General'
+    term: 'P10 - Capitalist Economies: General'
     active: true
-  - id: 'P11 - Capitalist Systems: Planning, Coordination, and Reform'
-    term: 'P11 - Capitalist Systems: Planning, Coordination, and Reform'
+  - id: 'P11 - Capitalist Economies: Planning, Coordination, and Reform'
+    term: 'P11 - Capitalist Economies: Planning, Coordination, and Reform'
     active: true
   - id: 'P12 - Capitalist Enterprises'
     term: 'P12 - Capitalist Enterprises'
@@ -2114,50 +2132,50 @@ terms:
   - id: 'P13 - Cooperative Enterprises'
     term: 'P13 - Cooperative Enterprises'
     active: true
-  - id: 'P14 - Capitalist Systems: Property Rights'
-    term: 'P14 - Capitalist Systems: Property Rights'
+  - id: 'P14 - Capitalist Economies: Property Rights'
+    term: 'P14 - Capitalist Economies: Property Rights'
     active: true
-  - id: 'P16 - Capitalist Systems: Political Economy'
-    term: 'P16 - Capitalist Systems: Political Economy'
+  - id: 'P16 - Capitalist Institutions; Welfare State'
+    term: 'P16 - Capitalist Institutions; Welfare State'
     active: true
-  - id: 'P17 - Capitalist Systems: Performance and Prospects'
-    term: 'P17 - Capitalist Systems: Performance and Prospects'
+  - id: 'P17 - Capitalist Economies: Performance and Prospects'
+    term: 'P17 - Capitalist Economies: Performance and Prospects'
     active: true
   - id: 'P18 - Energy; Environment'
     term: 'P18 - Energy; Environment'
     active: true
-  - id: 'P19 - Capitalist Systems: Other'
-    term: 'P19 - Capitalist Systems: Other'
+  - id: 'P19 - Capitalist Economies: Other'
+    term: 'P19 - Capitalist Economies: Other'
     active: true
-  - id: 'P20 - Socialist Systems and Transitional Economies: General'
-    term: 'P20 - Socialist Systems and Transitional Economies: General'
+  - id: 'P20 - Socialist and Transition Economies: General'
+    term: 'P20 - Socialist and Transition Economies: General'
     active: true
-  - id: 'P21 - Socialist Systems and Transitional Economies: Planning, Coordination, and Reform'
-    term: 'P21 - Socialist Systems and Transitional Economies: Planning, Coordination, and Reform'
+  - id: 'P21 - Socialist and Transitional Economies: Planning, Coordination, and Reform'
+    term: 'P21 - Socialist and Transitional Economies: Planning, Coordination, and Reform'
     active: true
-  - id: 'P22 - Socialist Systems and Transitional Economies: Prices'
-    term: 'P22 - Socialist Systems and Transitional Economies: Prices'
+  - id: 'P22 - Socialist and Transitional Economies: Prices'
+    term: 'P22 - Socialist and Transitional Economies: Prices'
     active: true
-  - id: 'P23 - Socialist Systems and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
-    term: 'P23 - Socialist Systems and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+  - id: 'P23 - Socialist and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+    term: 'P23 - Socialist and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
     active: true
-  - id: 'P24 - Socialist Systems and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
-    term: 'P24 - Socialist Systems and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+  - id: 'P24 - Socialist and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+    term: 'P24 - Socialist and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
     active: true
-  - id: 'P25 - Socialist Systems and Transitional Economies: Urban, Rural, and Regional Economics'
-    term: 'P25 - Socialist Systems and Transitional Economies: Urban, Rural, and Regional Economics'
+  - id: 'P25 - Socialist and Transitional Economies: Urban, Rural, and Regional Economics'
+    term: 'P25 - Socialist and Transitional Economies: Urban, Rural, and Regional Economics'
     active: true
-  - id: 'P26 - Socialist Systems and Transitional Economies: Political Economy; Property Rights'
-    term: 'P26 - Socialist Systems and Transitional Economies: Political Economy; Property Rights'
+  - id: 'P26 - Socialist and Transitional Economies: Property Rights'
+    term: 'P26 - Socialist and Transitional Economies: Property Rights'
     active: true
-  - id: 'P27 - Socialist Systems and Transitional Economies: Performance and Prospects'
-    term: 'P27 - Socialist Systems and Transitional Economies: Performance and Prospects'
+  - id: 'P27 - Socialist and Transitional Economies: Performance and Prospects'
+    term: 'P27 - Socialist and Transitional Economies: Performance and Prospects'
     active: true
-  - id: 'P28 - Socialist Systems and Transitional Economies: Natural Resources; Energy; Environment'
-    term: 'P28 - Socialist Systems and Transitional Economies: Natural Resources; Energy; Environment'
+  - id: 'P28 - Socialist and Transitional Economies: Natural Resources; Energy; Environment'
+    term: 'P28 - Socialist and Transitional Economies: Natural Resources; Energy; Environment'
     active: true
-  - id: 'P29 - Socialist Systems and Transitional Economies: Other'
-    term: 'P29 - Socialist Systems and Transitional Economies: Other'
+  - id: 'P29 - Socialist and Transitional Economies: Other'
+    term: P29 - Socialist and Transitional Economies: Other'
     active: true
   - id: 'P30 - Socialist Institutions and Their Transitions: General'
     term: 'P30 - Socialist Institutions and Their Transitions: General'
@@ -2210,8 +2228,8 @@ terms:
   - id: 'P47 - Other Economic Systems: Performance and Prospects'
     term: 'P47 - Other Economic Systems: Performance and Prospects'
     active: true
-  - id: 'P48 - Other Economic Systems: Political Economy; Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
-    term: 'P48 - Other Economic Systems: Political Economy; Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+  - id: 'P48 - Other Economic Systems: Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+    term: 'P48 - Other Economic Systems: Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
     active: true
   - id: 'P49 - Other Economic Systems: Other'
     term: 'P49 - Other Economic Systems: Other'
@@ -2250,6 +2268,9 @@ terms:
     term: 'Q13 - Agricultural Markets and Marketing; Cooperatives; Agribusiness'
     active: true
   - id: 'Q14 - Agricultural Finance'
+    term: 'Q14 - Agricultural Finance'
+    active: true
+  - id: 'Q15 - Land Ownership and Tenure; Land Reform; Land Use; Irrigation; Agriculture and Environment'
     term: 'Q15 - Land Ownership and Tenure; Land Reform; Land Use; Irrigation; Agriculture and Environment'
     active: true
   - id: 'Q16 - Agricultural R&D; Agricultural Technology; Biofuels; Agricultural Extension Services'
@@ -2258,8 +2279,8 @@ terms:
   - id: 'Q17 - Agriculture in International Trade'
     term: 'Q17 - Agriculture in International Trade'
     active: true
-  - id: 'Q18 - Agricultural Policy; Food Policy'
-    term: 'Q18 - Agricultural Policy; Food Policy'
+  - id: 'Q18 - Agricultural Policy; Food Policy; Animal Welfare Policy'
+    term: 'Q18 - Agricultural Policy; Food Policy; Animal Welfare Policy'
     active: true
   - id: 'Q19 - Agriculture: Other'
     term: 'Q19 - Agriculture: Other'
@@ -2295,6 +2316,9 @@ terms:
     term: 'Q29 - Renewable Resources and Conservation: Other'
     active: true
   - id: 'Q30 - Nonrenewable Resources and Conservation: General'
+    term: 'Q30 - Nonrenewable Resources and Conservation: General'
+    active: true
+  - id: 'Q31 - Nonrenewable Resources and Conservation: Demand and Supply; Prices'
     term: 'Q31 - Nonrenewable Resources and Conservation: Demand and Supply; Prices'
     active: true
   - id: 'Q32 - Exhaustible Resources and Economic Development'
@@ -2366,8 +2390,8 @@ terms:
   - id: 'Q58 - Environmental Economics: Government Policy'
     term: 'Q58 - Environmental Economics: Government Policy'
     active: true
-  - id: 'Q59 - Environmental Economics: Other '
-    term: 'Q59 - Environmental Economics: Other '
+  - id: 'Q59 - Environmental Economics: Other'
+    term: 'Q59 - Environmental Economics: Other'
     active: true
   - id: 'R00 - Urban, Rural, Regional, Real Estate, and Transportation Economics: General'
     term: 'R00 - Urban, Rural, Regional, Real Estate, and Transportation Economics: General'
@@ -2384,8 +2408,8 @@ terms:
   - id: 'R13 - General Equilibrium and Welfare Economic Analysis of Regional Economies'
     term: 'R13 - General Equilibrium and Welfare Economic Analysis of Regional Economies'
     active: true
-  - id: 'R14 - Land Use Pattern'
-    term: 'R14 - Land Use Pattern'
+  - id: 'R14 - Land Use Patterns'
+    term: 'R14 - Land Use Patterns'
     active: true
   - id: 'R15 - General Regional Economics: Econometric and Input-Output Models; Other Models'
     term: 'R15 - General Regional Economics: Econometric and Input-Output Models; Other Models'
@@ -2481,6 +2505,9 @@ terms:
     term: 'Y60 - Excerpt'
     active: true
   - id: 'Y70 - No Author General Discussions'
+    term: 'Y70 - No Author General Discussions'
+    active: true
+  - id: 'Y80 - Related Disciplines'
     term: 'Y80 - Related Disciplines'
     active: true
   - id: 'Y90 - Miscellaneous Categories: Other'
