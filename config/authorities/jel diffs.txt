@@ -1,0 +1,117 @@
+- rdb: 'A20 - Economics Education and Teaching of Economics: General'
+- aea: 'A20 - Economic Education and Teaching of Economics: General'
+
+- rdb: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary'
+- aea: 'B52 - Current Heterodox Approaches: Historical; Institutional; Evolutionary; Modern Monetary Theory'
+
+- rdb: 'C99 - Design of Experiments: Other '
+- aea: 'C99 - Design of Experiments: Other'
+
+- rdb: 'D64 - Altruism; Philanthropy; Intergenerational Transfer'
+- aea: 'D64 - Altruism; Philanthropy; Intergenerational Transfers'
+1 item
+
+- rdb: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian'
+- aea: 'E12 - General Aggregative Models: Keynes; Keynesian; Post-Keynesian; Modern Monetary Theory'
+18 items
+
+- rdb: 'E62 - Fiscal Policy'
+- aea: 'E62 - Fiscal Policy; Modern Monetary Theory'
+57 items
+
+- rdb: 'G10 - General Financial Markets: General (includes Measurement and Data)'
+- aea: 'G10 - Asset Markets and Pricing'
+22 items
+
+- rdb: 'G12 - Asset Pricing; Trading Volume; Bond Interest Rates'
+- aea: 'G12 - Equities; Fixed Income Securities'
+50 items
+
+- rdb: 'G51 - Household Finance: Household Saving, Borrowing, Debt, and Wealth'
+- aea: 'G51 - Household Saving, Borrowing, Debt, and Wealth'
+2 items
+
+- rdb: 'J14 - Economics of the Elderly; Economics of the Handicapped; Non-labor Market Discrimination'
+- aea: 'J14 - Economics of the Elderly; Economics of Disability; Non-labor Market Discrimination'
+3 items
+
+- rdb: 'J83 - Labor Standards: Workers Rights'
+- aea: 'J83 - Labor Standards: Workers\' Rights'
+
+- rdb: 'K13 - Tort Law and Product Liability; Forensic Economic'
+- aea: 'K13 - Tort Law and Product Liability; Forensic Economics'
+
+- rdb: 'K38 - Human Rights Law; Gender Law'
+- aea: 'K38 - Human Rights Law; Gender Law; Animal Rights Law'
+
+- rdb: 'P00 - Economic Systems: General'
+- aea: 'P00 - Political Economy and Comparative Economic Systems: General'
+
+- rdb: 'P10 - Capitalist Systems: General'
+- aea: 'P10 - Capitalist Economies: General'
+
+- rdb: 'P11 - Capitalist Systems: Planning, Coordination, and Reform'
+- aea: 'P11 - Capitalist Economies: Planning, Coordination, and Reform'
+
+- rdb: 'P14 - Capitalist Systems: Property Rights'
+- aea: 'P14 - Capitalist Economies: Property Rights'
+
+- rdb: 'P16 - Capitalist Systems: Political Economy'
+- aea: 'P16 - Capitalist Institutions; Welfare State'
+2 items
+
+- rdb: 'P17 - Capitalist Systems: Performance and Prospects
+- aea: 'P17 - Capitalist Economies: Performance and Prospects'
+
+- rdb: 'P19 - Capitalist Systems: Other'
+- aea: 'P19 - Capitalist Economies: Other'
+
+- rdb: 'P20 - Socialist Systems and Transitional Economies: General'
+- aea: 'P20 - Socialist and Transition Economies: General'
+2 items
+
+- rdb: 'P21 - Socialist Systems and Transitional Economies: Planning, Coordination, and Reform'
+- aea: 'P21 - Socialist and Transitional Economies: Planning, Coordination, and Reform'
+
+- rdb: 'P22 - Socialist Systems and Transitional Economies: Prices'
+- aea: 'P22 - Socialist and Transitional Economies: Prices'
+
+- rdb: 'P23 - Socialist Systems and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+- aea: 'P23 - Socialist and Transitional Economies: Factor and Product Markets; Industry Studies; Population'
+
+- rdb: 'P24 - Socialist Systems and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+- aea: 'P24 - Socialist and Transitional Economies: National Income, Product, and Expenditure; Money; Inflation'
+2 items
+
+- rdb: 'P25 - Socialist Systems and Transitional Economies: Urban, Rural, and Regional Economics'
+- aea: 'P25 - Socialist and Transitional Economies: Urban, Rural, and Regional Economics'
+
+- rdb: 'P26 - Socialist Systems and Transitional Economies: Political Economy; Property Rights'
+- aea: 'P26 - Socialist and Transitional Economies: Property Rights'
+
+- rdb: 'P27 - Socialist Systems and Transitional Economies: Performance and Prospects'
+- aea: 'P27 - Socialist and Transitional Economies: Performance and Prospects'
+2 items
+
+- rdb: 'P28 - Socialist Systems and Transitional Economies: Natural Resources; Energy; Environment'
+- aea: 'P28 - Socialist and Transitional Economies: Natural Resources; Energy; Environment'
+
+- rdb: 'P29 - Socialist Systems and Transitional Economies: Other'
+- aea: 'P29 - Socialist and Transitional Economies: Other'
+1 item
+
+- rdb: 'P48 - Other Economic Systems: Political Economy; Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+- aea: 'P48 - Other Economic Systems: Legal Institutions; Property Rights; Natural Resources; Energy; Environment; Regional Studies'
+4 items
+
+- rdb: 'Q18 - Agricultural Policy; Food Policy'
+- aea: 'Q18 - Agricultural Policy; Food Policy; Animal Welfare Policy'
+1 item
+
+- rdb: 'Q59 - Environmental Economics: Other '
+- aea: 'Q59 - Environmental Economics: Other'
+
+- rdb: 'R14 - Land Use Pattern'
+- aea: 'R14 - Land Use Patterns'
+1 item
+
