@@ -19,4 +19,33 @@ namespace :cypripedium do
     admin_role.users << u
     admin_role.save!
   end
+
+  desc "Normalize date_modified field"
+  task normalize_date_modified: :environment do
+    current_offset = 0
+    documents = [{ 'id' => 'dummy' }] # dummy value to trigger first loop iteration
+    ids = []
+    puts "===================================================="
+    while documents.present?
+      print "\rFetching documents from Solr (offset: #{current_offset})"
+      $stdout.flush
+      response = Hyrax::SolrService.get('date_modified_ssi:*', rows: 100, start: current_offset)
+      documents = response.dig('response', 'docs') || []
+      ids += documents.map { |doc| doc['id'] }
+      current_offset += 100
+    end
+
+    puts "\n"
+    total = ids.length
+    ids.each.with_index do |id, index|
+      af_object = ActiveFedora::Base.find(id)
+      af_object.date_modified = af_object.date_modified.in_time_zone
+      af_object.save!
+
+      print "\rProcessing #{index} of #{total}"
+      $stdout.flush
+    end
+
+    puts "\n"
+  end
 end
