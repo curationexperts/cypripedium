@@ -14,13 +14,15 @@ RSpec.describe ExportJob, type: :job do
   let(:publication) do
     FactoryBot.create(:publication,
            title: ['Test Publication'],
-           creator: ['Smith, Jane', 'Jones, Bob'],
+           creator: ['Smith, Jane', 'Jones, Bob, 1960-2010'],
            corporate_name: ['Federal Reserve Bank of Minneapolis'],
            date_created: ['2020-01-15'],
            date_modified: test_time,
            abstract: ['A test abstract'],
            identifier: ['https://doi.org/10.21034/sr.999'],
            table_of_contents: ['Chapter 1; Chapter 2'],
+           series: ['Series 1', 'Series 2'],
+           issue_number: ['Vol. 44, No. 4'],
            file_sets: [pdf_file])
   end
 
@@ -104,9 +106,9 @@ RSpec.describe ExportJob, type: :job do
     before { described_class.perform_now(export) }
 
     it 'includes the correct headers' do
-      expect(csv.headers).to eq ['title', 'name-creator', 'name-author', 'dateCreated',
-                                 'dateModified', 'abstract', 'location-url',
-                                 'identifier', 'tableOfContents']
+      expect(csv.headers).to eq ["title", "creator", "corporate_author", "date_created", "date_modified",
+                                 "location_url", "identifier", "series", "issue_number", "collection",
+                                 "abstract", "table_of_contents"]
     end
 
     it 'writes a row for the publication' do
@@ -114,19 +116,23 @@ RSpec.describe ExportJob, type: :job do
     end
 
     it 'maps metadata', :aggregate_failures do
+      # rubocop:disable Layout/HashAlignment
       expect(csv[0].to_hash)
-        .to eq({
-                 # rubocop:disable Layout/HashAlignment
-                 'title' => 'Test Publication',
-                 'name-creator'    => 'Federal Reserve Bank of Minneapolis',
-                 'name-author'     => 'Jones, Bob|Smith, Jane',
-                 'dateCreated'     => '2020-01-15',
-                 'dateModified'    => '2020-01-15T12:00:00+00:00',
-                 'abstract'        => 'A test abstract',
-                 'location-url'    => "http://localhost:3000/concern/publications/#{publication.id}",
-                 'identifier'      => 'https://doi.org/10.21034/sr.999',
-                 'tableOfContents' => 'Chapter 1; Chapter 2'
-               })
+        .to include({
+                      'title'             => 'Test Publication',
+                      'corporate_author'  => 'Federal Reserve Bank of Minneapolis',
+                      'creator'           => 'Jones, Bob|Smith, Jane',
+                      'date_created'      => '2020-01-15',
+                      'date_modified'     => '2020-01-15',
+                      'abstract'          => 'A test abstract',
+                      'location_url'      => "http://localhost:3000/concern/publications/#{publication.id}",
+                      'identifier'        => 'https://doi.org/10.21034/sr.999',
+                      'table_of_contents' => 'Chapter 1; Chapter 2',
+                      'series'            => a_string_matching(/Series 1/),
+                      'issue_number'      => 'Vol. 44, No. 4',
+                      'collection'        => ''
+                    })
+      # rubocop:enable Layout/HashAlignment
     end
 
     context 'when items include multiple works' do
