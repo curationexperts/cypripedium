@@ -3,9 +3,9 @@ require 'csv'
 require 'find'
 
 class ExportJob < ApplicationJob
-  METADATA_HEADERS = ['title', 'name-creator', 'name-author', 'dateCreated',
-                      'dateModified', 'abstract', 'location-url',
-                      'identifier', 'tableOfContents'].freeze
+  METADATA_HEADERS = ['title', 'creator', 'corporate_author', 'date_created', 'date_modified',
+                      'location_url', 'identifier', 'series', 'issue_number', 'collection',
+                      'abstract', 'table_of_contents'].freeze
 
   SUPPORTED_TYPES = [Publication, Dataset, ConferenceProceeding].freeze
 
@@ -65,16 +65,26 @@ class ExportJob < ApplicationJob
 
   def add_metadata_for_bag(work)
     @metadata_rows << [
-      work.title.first,
-      work.corporate_name.first,
-      work.creator.sort.join('|'), # list creators in alphabetical order
-      work.date_created.first,
-      work.date_modified,
-      work.abstract.first,
+      work.title&.join('|'),
+      normalized_creators(work),
+      work.corporate_name&.join('|'),
+      work.date_created&.join('|'),
+      work.date_modified&.strftime('%F'),
       location_url(work),
-      work.identifier.first,
-      work.table_of_contents.first
+      work.identifier&.join('|'),
+      work.series&.join('|'),
+      work.issue_number&.join('|'),
+      work.member_of_collections&.to_a&.join('|'),
+      work.abstract&.join('|'),
+      work.table_of_contents&.join('|')
     ]
+  end
+
+  # Strip creator names of any date suffixes, sort by last name, and join with '|'
+  # NOTE: This code duplicates functionality in the presenter, but it seemed overly
+  # complex to access the presenter from the job right now and the specific method is private.
+  def normalized_creators(work)
+    work.creator&.map { |name| name.gsub(/,\s*\d{4}.*|\([^)]*\)/, '') }&.sort&.join('|')
   end
 
   def add_files_to_bag(work)
