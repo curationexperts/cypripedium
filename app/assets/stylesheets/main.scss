@@ -282,3 +282,7 @@ when there are more than one values in a field.
 .form-tab-content .multi_value li.field-wrapper:last-of-type .remove {
   display: none;
 }
+
+#blacklight-modal .facet-label {
+  width: 95%;
+}
