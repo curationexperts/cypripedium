@@ -48,4 +48,32 @@ namespace :cypripedium do
 
     puts "\n"
   end
+
+  desc "Update JEL subject codes"
+  task update_jels: :environment do
+    JELS = %w[E12 E62 G10 G12 G51 J14 P16 P20 P24 P27 P29 Q18 R14].freeze
+
+    puts "===================================================="
+    JELS.each do |jel|
+      label = Qa::Authorities::Local.subauthority_for('jels').search(jel)&.first&.dig('label')
+      puts label || "No label found for #{jel}"
+      response = Hyrax::SolrService.get("subject_tesim:#{jel}", rows: 100)
+      documents = response.dig('response', 'docs') || []
+      ids = documents.map { |doc| doc['id'] }
+      ids = [] unless label
+      total = ids.length
+      ids.each.with_index do |id, index|
+        work = ActiveFedora::Base.find(id)
+        subjects = work.subject.to_a
+        idx = subjects.index { |subject| subject.start_with?(jel) }
+        subjects[idx] = label
+        work.subject = subjects
+        # work.save!
+
+        print "\rProcessing #{index} of #{total}"
+        $stdout.flush
+      end
+      puts "\n\n"
+    end
+  end
 end
