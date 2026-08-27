@@ -14,6 +14,11 @@ class ExportsController < ApplicationController
     @exports = @exports.reorder(id: :desc)
   end
 
+  # POST /admin/exports/confirm
+  def confirm
+    create
+  end
+
   # POST /admin/exports
   def create
     export = Export.new(export_params.reverse_merge(format: :bag, user: current_user))

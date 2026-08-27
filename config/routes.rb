@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :exports, only: [:index, :create, :destroy] do
       member { get :items }
+      collection do
+        post :confirm
+      end
     end
   end
   # Since export download links will be publicly accessible, we do not

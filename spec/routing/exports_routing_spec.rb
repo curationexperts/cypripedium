@@ -8,6 +8,10 @@ RSpec.describe ExportsController, type: :routing do
       expect(get: '/admin/exports').to route_to('exports#index')
     end
 
+    it 'routes POST /admin/exports/confirm to #confirm' do
+      expect(post: '/admin/exports/confirm').to route_to('exports#confirm')
+    end
+
     it 'routes POST /admin/exports to #create' do
       expect(post: '/admin/exports').to route_to('exports#create')
     end

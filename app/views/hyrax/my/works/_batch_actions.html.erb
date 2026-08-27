@@ -3,7 +3,7 @@
 
   <div class="batch-toggle">
     <% if can? :create, Export %>
-      <form id="export-form" action="<%= main_app.exports_path %>" method="post">
+      <form id="export-form" action="<%= main_app.confirm_exports_path %>" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <%= hidden_field_tag 'export[format]', 'bag' %>
       </form>
