@@ -19,7 +19,7 @@
     <% if can? :create, Export %>
       <li class="dropdown-item" role="menuitem" tabindex="-1">
         <%= button_to 'Create BagIt Export',
-                      main_app.exports_path,
+                      main_app.confirm_exports_path,
                       params: { export: { items: [document.id], format: :bag } },
                       class: 'btn btn-link' %>
       </li>

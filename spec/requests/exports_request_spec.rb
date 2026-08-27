@@ -193,6 +193,38 @@ RSpec.describe '/exports', type: :request do
     end
   end
 
+  describe 'GET /admin/exports/confirm' do
+    let(:items) { ['def456', 'abc123'] }
+
+    context 'as an administrator' do
+      before { sign_in admin }
+
+      it "behaves like create (no-op passthrough) and persists the record" do
+        expect {
+          post confirm_exports_path, params: { export: { items: items } }
+        }.to change(Export, :count).by(1)
+
+        expect(response).to redirect_to(exports_path)
+      end
+    end
+
+    context 'as a regular user' do
+      before { sign_in user }
+
+      it 'returns not found' do
+        post confirm_exports_path, params: { export: { items: items } }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when not logged in' do
+      it 'returns not found' do
+        post confirm_exports_path, params: { export: { items: items } }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe 'POST /admin/exports' do
     let(:items) { ['def456', 'abc123'] }
 

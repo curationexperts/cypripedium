@@ -24,7 +24,7 @@ RSpec.describe 'hyrax/my/_work_action_menu', type: :view do
 
     it 'submits to the exports path' do
       render partial: 'hyrax/my/work_action_menu', locals: { document: document }
-      expect(rendered).to have_selector("form[action='#{main_app.exports_path}']")
+      expect(rendered).to have_selector("form[action='#{main_app.confirm_exports_path}']")
     end
 
     it 'includes the work id as an item' do

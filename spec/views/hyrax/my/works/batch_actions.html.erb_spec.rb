@@ -23,7 +23,7 @@ RSpec.describe 'hyrax/my/works/_batch_actions', type: :view do
 
     it 'includes a form targeting the exports path' do
       render partial: 'hyrax/my/works/batch_actions'
-      expect(rendered).to have_selector("form#export-form[action='#{main_app.exports_path}'][method='post']")
+      expect(rendered).to have_selector("form#export-form[action='#{main_app.confirm_exports_path}'][method='post']")
     end
 
     it 'includes the bag format as a hidden field' do
