@@ -199,12 +199,13 @@ RSpec.describe '/exports', type: :request do
     context 'as an administrator' do
       before { sign_in admin }
 
-      it "behaves like create (no-op passthrough) and persists the record" do
+      it 'renders the confirmation form without persisting anything', :aggregate_failures do
         expect {
           post confirm_exports_path, params: { export: { items: items } }
-        }.to change(Export, :count).by(1)
+        }.not_to change(Export, :count)
 
-        expect(response).to redirect_to(exports_path)
+        expect(response).to have_http_status(:ok)
+        items.each { |id| expect(response.body).to include(id) }
       end
     end
 
@@ -304,6 +305,45 @@ RSpec.describe '/exports', type: :request do
           post exports_path, params: { export: { items: items } }
           expect(response).to redirect_to(exports_path)
           expect(flash[:notice]).to be_present
+        end
+
+        describe 'filename handling' do
+          context 'with a blank filename' do
+            it 'creates the export with a default filename', :aggregate_failures do
+              expect {
+                post exports_path, params: { export: { items: items, filename: '' } }
+              }.to change(Export, :count).by(1)
+
+              new_export = Export.last
+              expect(new_export.filename).to be_nil
+              expect(ExportJob).to have_been_enqueued.with(new_export)
+            end
+          end
+
+          context 'with a valid filename' do
+            it 'creates the export with the provided filename', :aggregate_failures do
+              expect {
+                post exports_path, params: { export: { items: items, filename: 'my_bag' } }
+              }.to change(Export, :count).by(1)
+
+              new_export = Export.last
+              expect(new_export.filename).to eq 'my_bag'
+              expect(ExportJob).to have_been_enqueued.with(new_export)
+            end
+          end
+
+          context 'with an invalid filename' do
+            it 're-renders the confirmation view', :aggregate_failures do
+              expect {
+                post exports_path, params: { export: { items: items, filename: '❌ invalid_filename' } }
+              }.not_to change(Export, :count)
+
+              expect(ExportJob).not_to have_been_enqueued
+              expect(response).to have_http_status(:unprocessable_entity)
+              expect(response.body).to match(/must start with a letter/i)
+              items.each { |id| expect(response.body).to include(id) }
+            end
+          end
         end
       end
 

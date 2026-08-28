@@ -33,7 +33,7 @@ class ExportJob < ApplicationJob
   private
 
   def bag_name
-    @export.base_name
+    @export.base_filename
   end
 
   def build_bag

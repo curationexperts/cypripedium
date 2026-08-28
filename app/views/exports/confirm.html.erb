@@ -1,0 +1,25 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-archive" aria-hidden="true"></span>Export Options</h1>
+<% end %>
+
+<%= form_with model: @export, id: 'confirm_export_form', url: exports_path, method: :post, local: true do |f| %>
+  <% @export.items.each do |item_id| %>
+    <%= f.hidden_field :items, multiple: true, value: item_id, id: nil %>
+  <% end %>
+
+  <div class="form-group row">
+    <%= f.label :filename, 'Output file name' %>
+    <%= f.text_field :filename,
+                     placeholder: @export.default_filename,
+                     class: "form-control #{'is-invalid' if @export.errors[:filename].any?}" %>
+    <% if @export.errors[:filename].any? %>
+      <div class="invalid-feedback d-block">
+        <%= @export.errors[:filename].to_sentence %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit 'Submit Export Job', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', hyrax.dashboard_works_path, class: 'btn btn-default' %>
+<% end %>
+

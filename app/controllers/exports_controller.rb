@@ -16,18 +16,19 @@ class ExportsController < ApplicationController
 
   # POST /admin/exports/confirm
   def confirm
-    create
+    @export = Export.new(export_params)
   end
 
   # POST /admin/exports
   def create
-    export = Export.new(export_params.reverse_merge(format: :bag, user: current_user))
-    if export.items.empty?
+    @export.user = current_user
+
+    if @export.items.empty?
       redirect_back_or_to hyrax.dashboard_works_path, allow_other_host: false, alert: 'Please select one or more items to export.'
       return
     end
 
-    existing = Export.order(updated_at: :desc).find_by(items: export.items, format: export.format)
+    existing = Export.order(updated_at: :desc).find_by(items: @export.items, format: @export.format)
     case existing&.status
     when 'queued', 'working'
       redirect_to exports_path, alert: 'An export with those items is already queued, please wait for it to complete.'
@@ -37,11 +38,11 @@ class ExportsController < ApplicationController
       return
     end
 
-    if export.save
-      ExportJob.perform_later(export)
+    if @export.save
+      ExportJob.perform_later(@export)
       redirect_to exports_path, notice: 'Export queued.'
     else
-      redirect_back_or_to hyrax.dashboard_works_path, alert: "Your request could not be processed.\n\n#{export.errors.full_messages.join("\n- ")}"
+      render :confirm, status: :unprocessable_entity
     end
   end
 
@@ -75,7 +76,7 @@ class ExportsController < ApplicationController
   private
 
   def export_params
-    params.require(:export).permit(:format, items: [])
+    params.require(:export).permit(:filename, :format, items: [])
   end
 
   def render404
