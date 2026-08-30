@@ -17,26 +17,13 @@ class ExportsController < ApplicationController
   # POST /admin/exports/confirm
   def confirm
     @export = Export.new(export_params)
+    redirect_to_works if @export.items.empty?
   end
 
   # POST /admin/exports
   def create
     @export.user = current_user
-
-    if @export.items.empty?
-      redirect_back_or_to hyrax.dashboard_works_path, allow_other_host: false, alert: 'Please select one or more items to export.'
-      return
-    end
-
-    existing = Export.order(updated_at: :desc).find_by(items: @export.items, format: @export.format)
-    case existing&.status
-    when 'queued', 'working'
-      redirect_to exports_path, alert: 'An export with those items is already queued, please wait for it to complete.'
-      return
-    when 'completed'
-      redirect_to exports_path, alert: 'An export with those items already exists and is available for download.'
-      return
-    end
+    return redirect_to_works if @export.items.empty?
 
     if @export.save
       ExportJob.perform_later(@export)
@@ -81,5 +68,13 @@ class ExportsController < ApplicationController
 
   def render404
     render file: Rails.public_path.join('404.html'), status: :not_found, layout: 'hyrax/1_column'
+  end
+
+  def redirect_to_works
+    redirect_back_or_to(
+      hyrax.dashboard_works_path,
+      allow_other_host: false,
+      alert: 'Please select one or more items to export.'
+    )
   end
 end
