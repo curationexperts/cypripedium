@@ -60,7 +60,7 @@ RSpec.describe ExportJob, type: :job do
       collection = Collection.new(
         title: ['Test Collection'],
         collection_type: Hyrax::CollectionType.find_or_create_default_collection_type
-).tap(&:save!)
+      ).tap(&:save!)
       export.update!(items: [collection.id])
       described_class.perform_now(export)
       expect(export.reload.status).to eq 'failed'
@@ -79,6 +79,24 @@ RSpec.describe ExportJob, type: :job do
       it 'does not attach a file on failure' do
         described_class.perform_now(export)
         expect(export.reload.export_file).not_to be_attached
+      end
+    end
+
+    describe 'filename' do
+      it 'has the expected default' do
+        default_filename = export.default_filename # capture now to avoide deduplication issues
+        described_class.perform_now(export)
+        attachment = export.reload.export_file
+        expect(attachment.filename.to_s).to match(default_filename)
+      end
+
+      context 'when overridden' do
+        let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id], filename: 'my_export') }
+        it 'uses the user supplied value' do
+          described_class.perform_now(export)
+          attachment = export.reload.export_file
+          expect(attachment.filename.to_s).to eq 'my_export.zip'
+        end
       end
     end
   end
