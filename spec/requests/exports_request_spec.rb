@@ -204,8 +204,29 @@ RSpec.describe '/exports', type: :request do
           post confirm_exports_path, params: { export: { items: items } }
         }.not_to change(Export, :count)
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to be_successful
+        expect(ExportJob).not_to have_been_enqueued
         items.each { |id| expect(response.body).to include(id) }
+      end
+
+      context 'when no items are selected' do
+        it 'redirects back with an alert' do
+          post confirm_exports_path, params: { export: { items: [] } },
+                                     headers: { 'HTTP_REFERER' => hyrax.dashboard_works_path }
+          expect(response).to redirect_to(hyrax.dashboard_works_path)
+          expect(flash[:alert]).to match(/select one or more/i)
+        end
+      end
+
+      context 'when an export with the same items exists', :aggregate_failures do
+        it 'displays an information message' do
+          duplicate = create(:export, format: :bag, items: items, status: :working)
+          post confirm_exports_path, params: { export: { items: items } }
+
+          expect(response).to be_successful
+          expect(response.body).to match(/#{duplicate.id}[^<]*working/i)
+          items.each { |id| expect(response.body).to include(id) }
+        end
       end
     end
 
@@ -244,38 +265,6 @@ RSpec.describe '/exports', type: :request do
                              headers: { 'HTTP_REFERER' => hyrax.dashboard_works_path }
           expect(response).to redirect_to(hyrax.dashboard_works_path)
           expect(flash[:alert]).to match(/select one or more/i)
-        end
-      end
-
-      context 'when a queued or working export with the same items and format exists' do
-        it 'does not create a new Export record' do
-          create(:export, format: :bag, items: items, status: :queued)
-          expect {
-            post exports_path, params: { export: { items: items } }
-          }.not_to change(Export, :count)
-        end
-
-        it 'redirects to the index with an alert' do
-          create(:export, format: :bag, items: items, status: :working)
-          post exports_path, params: { export: { items: items } }
-          expect(response).to redirect_to(exports_path)
-          expect(flash[:alert]).to match(/already queued/i)
-        end
-      end
-
-      context 'when a completed export with the same items and format exists' do
-        before { create(:export, format: :bag, items: items, status: :completed) }
-
-        it 'does not create a new Export record' do
-          expect {
-            post exports_path, params: { export: { items: items } }
-          }.not_to change(Export, :count)
-        end
-
-        it 'redirects to the index with an alert', :aggregate_failures do
-          post exports_path, params: { export: { items: items } }
-          expect(response).to redirect_to(exports_path)
-          expect(flash[:alert]).to match(/already exists/i)
         end
       end
 

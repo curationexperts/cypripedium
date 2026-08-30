@@ -179,6 +179,28 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  describe '#duplicates?' do
+    it 'returns true if there are exports with the same items' do
+      create(:export, items: ['abc123'])
+      expect(described_class.new(items: ['abc123']).duplicates?).to be true
+    end
+
+    it 'returns false if there are no matching exports' do
+      expect(subject.duplicates?).to be false
+    end
+  end
+
+  describe '#duplicate_records' do
+    it 'returns a list of exports with the same items' do
+      create(:export, items: ['abc123'])
+      expect(described_class.new(items: ['abc123']).duplicate_records).to eq [described_class.last]
+    end
+
+    it 'returns an empty array if there are no matching exports' do
+      expect(subject.duplicate_records).to be_empty
+    end
+  end
+
   describe 'system user' do
     it 'can be assigned User.system_user as the submitting user' do
       system_export = described_class.new(user: User.system_user, format: :zip, items: ['abc123'])

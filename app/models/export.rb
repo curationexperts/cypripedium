@@ -28,4 +28,12 @@ class Export < ApplicationRecord
     return base unless collisions.positive?
     base.concat('_', collisions.next.to_s)
   end
+
+  def duplicate_records
+    @duplicate_records ||= Export.where(items: items).where.not(id: id).to_a
+  end
+
+  def duplicates?
+    duplicate_records.any?
+  end
 end

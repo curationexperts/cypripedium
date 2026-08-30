@@ -19,6 +19,23 @@
     <% end %>
   </div>
 
+  <% if @export.duplicates? %>
+    <% duplicates = @export.duplicate_records.to_a %>
+    <div id="duplicate_warning" class="alert alert-warning">
+      <% if duplicates.one? %>
+        An export with the selected items already exists:
+      <% else %>
+        Exports with the selected items already exist:
+      <% end %>
+      <ul>
+        <% duplicates.each do |duplicate| %>
+          <li>Export #<%= duplicate.id %> — <%= duplicate.format %> — <%= duplicate.status %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'View existing exports', exports_path %>
+    </div>
+  <% end %>
+
   <%= f.submit 'Submit Export Job', class: 'btn btn-primary' %>
   <%= link_to 'Cancel', hyrax.dashboard_works_path, class: 'btn btn-default' %>
 <% end %>
