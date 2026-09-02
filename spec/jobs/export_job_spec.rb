@@ -102,7 +102,7 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'bag structure' do
-    it 'includes files for the work in the bag' do
+    it 'includes a folder for each the work in the bag' do
       described_class.perform_now(export)
       expect(zip_entry_names(export)).to include(a_string_matching(publication.id))
     end
@@ -115,6 +115,53 @@ RSpec.describe ExportJob, type: :job do
     it 'includes a metadata CSV at the bag root' do
       described_class.perform_now(export)
       expect(zip_entry_names(export)).to include(a_string_matching('metadata.csv'))
+    end
+
+    context 'inter-work file name collisions' do
+      let(:publication2) { create(:publication, title: ['Second Publication'], file_sets: [pdf_file]) }
+      let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id, publication2.id]) }
+      it 'handles file name collisions' do
+        described_class.perform_now(export)
+        expect(zip_entry_names(export)).to match ['metadata.csv', 'pdf-sample.pdf',"pdf-sample-#{publication2.members.first.id}.pdf"]
+      end
+    end
+
+    context 'intra-work file name collisions' do
+      let(:txt_file) { File.open(file_fixture('tiny.txt')) { |file| create(:file_set, content: file) } }
+      let(:txt_file2) { File.open(file_fixture('tiny.txt')) { |file| create(:file_set, content: file) } }
+      let(:publication2) { create(:publication, title: ['Second Publication'], file_sets: [txt_file, txt_file2]) }
+      it 'handles file name collisions' do
+        described_class.perform_now(export)
+        expect(zip_entry_names(export)).to match ['metadata.csv', 'pdf-sample.pdf', 'tiny.txt',"tiny-#{txt_file2.id}.txt"]
+      end
+    end
+  end
+
+  describe 'zip structure' do
+    let(:txt_file) { File.open(file_fixture('tiny.txt')) { |file| create(:file_set, content: file) } }
+    let(:publication2) { create(:publication, title: ['Second Publication'], file_sets: [txt_file]) }
+    let(:export) { FactoryBot.create(:export, user: admin, format: :zip, items: [publication.id, publication2.id]) }
+
+    it 'includes expected file' do
+      described_class.perform_now(export)
+      expect(zip_entry_names(export)).to eq ['metadata.csv', 'pdf-sample.pdf', 'tiny.txt']
+    end
+
+    context 'inter-work file name collisions' do
+      let(:publication2) { create(:publication, title: ['Second Publication'], file_sets: [pdf_file]) }
+      it 'handles file name collisions' do
+        described_class.perform_now(export)
+        expect(zip_entry_names(export)).to eq ['metadata.csv', 'pdf-sample.pdf',"pdf-sample-#{publication2.members.first.id}.pdf"]
+      end
+    end
+
+    context 'intra-work file name collisions' do
+      let(:txt_file2) { File.open(file_fixture('tiny.txt')) { |file| create(:file_set, content: file) } }
+      let(:publication2) { create(:publication, title: ['Second Publication'], file_sets: [txt_file, txt_file2]) }
+      it 'handles file name collisions' do
+        described_class.perform_now(export)
+        expect(zip_entry_names(export)).to eq ['metadata.csv', 'pdf-sample.pdf',"pdf-sample-#{publication2.members.first.id}.pdf"]
+      end
     end
   end
 
