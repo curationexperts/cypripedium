@@ -124,6 +124,22 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  describe '#visibility' do
+    it 'defaults to :open' do
+      expect(export.visibility).to eq 'open'
+    end
+
+    it 'mirrors Hyrax visibility' do
+      # See Hyrax.config.visibility_map.visibilities
+      expect(described_class.visibilities.keys).to eq(['open', 'authenticated', 'restricted'])
+    end
+
+    it 'rejects invalid visibilities' do
+      expect { export.visibility = :bogus }
+        .to raise_error(ArgumentError)
+    end
+  end
+
   describe '#message' do
     it 'is nil by default' do
       expect(export.message).to be_nil
