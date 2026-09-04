@@ -5,34 +5,47 @@ require 'rails_helper'
 RSpec.describe ExportJob, type: :job do
   let(:admin) { FactoryBot.create(:admin) }
 
-  let(:pdf_file) do
-    File.open(file_fixture('pdf-sample.pdf')) { |file| create(:file_set, content: file) }
-  end
-
-  let(:test_time) { Time.zone.parse('2020-01-15T12:00:00Z') }
-
-  let(:publication) do
-    FactoryBot.create(:publication,
-           title: ['Test Publication'],
-           creator: ['Smith, Jane', 'Jones, Bob, 1960-2010'],
-           corporate_name: ['Federal Reserve Bank of Minneapolis'],
-           date_created: ['2020-01-15'],
-           date_modified: test_time,
-           abstract: ['A test abstract'],
-           identifier: ['https://doi.org/10.21034/sr.999'],
-           table_of_contents: ['Chapter 1; Chapter 2'],
-           series: ['Series 1', 'Series 2'],
-           issue_number: ['Vol. 44, No. 4'],
-           file_sets: [pdf_file])
-  end
+  let(:publication) { @publication }
+  let(:publication2) { @publication2 }
 
   let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id]) }
 
-  before :all do
+  before(:all) do
     Hyrax::AdminSetCreateService.find_or_create_default_admin_set
+
+    pdf = FactoryBot.create(:file_set, content: File.open(Rails.root.join('spec', 'fixtures', 'files', 'pdf-sample.pdf')))
+
+    test_time = Time.zone.parse('2020-01-15T12:00:00Z')
+
+    @publication =
+      FactoryBot.create(:publication,
+                        title: ['Test Publication'],
+                        creator: ['Smith, Jane', 'Jones, Bob, 1960-2010'],
+                        corporate_name: ['Federal Reserve Bank of Minneapolis'],
+                        date_created: ['2020-01-15'],
+                        date_modified: test_time,
+                        abstract: ['A test abstract'],
+                        identifier: ['https://doi.org/10.21034/sr.999'],
+                        table_of_contents: ['Chapter 1; Chapter 2'],
+                        series: ['Series 1', 'Series 2'],
+                        issue_number: ['Vol. 44, No. 4'],
+                        file_sets: [pdf])
+
+    @publication2 =
+      FactoryBot.create(:publication,
+                        title: ['Publication with no files'],
+                        creator: ['Other, A.N.', 'Nescio, Nomen'],
+                        corporate_name: ['Federal Reserve Bank of Minneapolis'],
+                        date_created: ['2020-01-10'],
+                        date_modified: test_time,
+                        abstract: ['A test abstract'],
+                        identifier: ['https://doi.org/10.21034/sr.888'],
+                        table_of_contents: ['Introduction, One, Two, Appendix'],
+                        file_sets: [])
   end
 
-  after :all do
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
   end
 
@@ -154,7 +167,6 @@ RSpec.describe ExportJob, type: :job do
     end
 
     context 'when items include multiple works' do
-      let(:publication2) { create(:publication, title: ['Second Publication']) }
       let(:export) do
         FactoryBot.create(:export, user: admin, format: :bag,
                                    items: [publication.id, publication2.id])
