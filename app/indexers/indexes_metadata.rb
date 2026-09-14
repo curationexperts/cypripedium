@@ -9,7 +9,7 @@ module IndexesMetadata
       solr_doc['creator_tesim'] = creator_alternate_names(object).to_a + creator_names(object).to_a
       solr_doc['alpha_creator_tesim'] = creator_names(object).sort_by(&:downcase)
       solr_doc['creator_sim'] = creator_names(object)
-      solr_doc['creator_id_ssim'] = creator_numerical_ids(object) if creator_numerical_ids(object)
+      solr_doc['creator_id_ssim'] = creator_numerical_ids(object)
       solr_doc['volume_number_isi'] = volume_no
       solr_doc['issue_number_isi'] = issue_no
     end
@@ -17,9 +17,7 @@ module IndexesMetadata
 
   def creator_names(object)
     @creator_names ||= if object.creator_id.present?
-                         creator_numerical_ids(object).flat_map do |creator_id|
-                           Creator.find_by(id: creator_id)&.display_name
-                         end.compact_blank
+                         Creator.where(id: object.creator_id.to_a).map(&:display_name)
                        else
                          object.creator
                        end
@@ -27,10 +25,10 @@ module IndexesMetadata
 
   def creator_alternate_names(object)
     @creator_alternate_names ||= if object.creator_id.present?
-                                   creator_numerical_ids(object).flat_map do |creator_id|
-                                     Creator.find_by(id: creator_id)&.alternate_names
-                                   end.compact_blank
+                                   Creator.where(id: object.creator_id.to_a).flat_map(&:alternate_names)
                                  else
+                                   # MHB 2026-09-14: there's no contract that string-literal creators have corresponding
+                                   # Creator records, so this code may be moot.
                                    object.creator.flat_map do |name|
                                      Creator.find_by(display_name: name)&.alternate_names
                                    end.compact_blank
@@ -38,12 +36,7 @@ module IndexesMetadata
   end
 
   def creator_numerical_ids(object)
-    @creator_numerical_ids ||= if object.creator_id.present?
-                                 object.creator_id.map do |identifier|
-                                   identifier.to_s
-                                   # URI(creator_triple.id).path.split('/').last
-                                 end
-                               end
+    @creator_numerical_ids ||= object.creator_id.map(&:to_s)
   end
 
   # Looks for the first sequence of four digits in a row in date_created

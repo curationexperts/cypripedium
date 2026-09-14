@@ -80,11 +80,9 @@ class ExportJob < ApplicationJob
     ]
   end
 
-  # Strip creator names of any date suffixes, sort by last name, and join with '|'
-  # NOTE: This code duplicates functionality in the presenter, but it seemed overly
-  # complex to access the presenter from the job right now and the specific method is private.
   def normalized_creators(work)
-    work.creator&.map { |name| name.gsub(/,\s*\d{4}.*|\([^)]*\)/, '') }&.sort&.join('|')
+    creators = CreatorNames.normalized_names(work.creator_id)
+    creators.join('|')
   end
 
   def add_files_to_bag(work)
