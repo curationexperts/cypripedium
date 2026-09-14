@@ -18,12 +18,12 @@ RSpec.describe CypripediumIndexer, clean: true do
 
       let(:creator_one) { FactoryBot.create(:creator, display_name: 'kehoe, Patrick J.') }
       let(:creator_two) { FactoryBot.create(:creator, display_name: 'Backus, David', alternate_names: ['Backus, Davey', 'Backus-Up, David']) }
-      let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J.') }
+      let(:creator_three) { FactoryBot.create(:creator, display_name: 'Kehoe, Timothy J. (Jerome), 1953-') }
 
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04-30'],
-          # creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'],
+          # creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J. (Jerome), 1953-'],
           creator_id: [creator_one.id, creator_two.id, creator_three.id] }
       }
       it 'indexes a sortable title and date created' do
@@ -42,15 +42,15 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
-        expect(creator_array).to include 'Kehoe, Timothy J.'
+        expect(creator_array).to include 'Kehoe, Timothy J. (Jerome), 1953-'
       end
       it 'indexes the creator names in alphabetical order' do
         # updated to be case insensitive for abbreviations - i.e. Anon. = anon.
         # and non-european names
-        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J.']
+        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J. (Jerome), 1953-']
       end
       it 'indexes for the facet' do
-        expect(solr_doc['creator_sim']).to match_array(["Kehoe, Timothy J.", "Backus, David", "kehoe, Patrick J."])
+        expect(solr_doc['creator_sim']).to match_array(["Kehoe, Timothy J. (Jerome), 1953-", "Backus, David", "kehoe, Patrick J."])
       end
       it 'indexes a dataset' do
         expect(data_doc['title_ssi']).to eq 'My Title'
@@ -64,7 +64,7 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
-        expect(creator_array).to include 'Kehoe, Timothy J.'
+        expect(creator_array).to include 'Kehoe, Timothy J. (Jerome), 1953-'
       end
       it 'indexes a conference proceeding' do
         expect(conf_doc['title_ssi']).to eq 'My Title'
@@ -78,7 +78,7 @@ RSpec.describe CypripediumIndexer, clean: true do
         expect(creator_array).to include 'Backus, David'
         expect(creator_array).to include 'Backus, Davey'
         expect(creator_array).to include 'Backus-Up, David'
-        expect(creator_array).to include 'Kehoe, Timothy J.'
+        expect(creator_array).to include 'Kehoe, Timothy J. (Jerome), 1953-'
       end
     end
 
@@ -88,10 +88,10 @@ RSpec.describe CypripediumIndexer, clean: true do
       let(:attrs) {
         { title: ['My Title'],
           date_created: ['1970-04-30'],
-          creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J.'] }
+          creator: ['kehoe, Patrick J.', 'Backus, David', 'Kehoe, Timothy J. (Jerome), 1953-'] }
       }
       it 'indexes the creator names in alphabetical order' do
-        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J.']
+        expect(solr_doc['alpha_creator_tesim']).to eq ['Backus, David', 'kehoe, Patrick J.', 'Kehoe, Timothy J. (Jerome), 1953-']
       end
     end
 

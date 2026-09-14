@@ -15,12 +15,15 @@ RSpec.describe ExportJob, type: :job do
 
     pdf = FactoryBot.create(:file_set, content: File.open(Rails.root.join('spec', 'fixtures', 'files', 'pdf-sample.pdf')))
 
+    creator = FactoryBot.create(:creator, display_name: 'Smith, Jane')
+    additional_creator = FactoryBot.create(:creator, display_name: 'Gordon, Robert J. (Robert James), 1940-')
+
     test_time = Time.zone.parse('2020-01-15T12:00:00Z')
 
     @publication =
       FactoryBot.create(:publication,
                         title: ['Test Publication'],
-                        creator: ['Smith, Jane', 'Jones, Bob, 1960-2010'],
+                        creator_id: [creator.id, additional_creator.id],
                         corporate_name: ['Federal Reserve Bank of Minneapolis'],
                         date_created: ['2020-01-15'],
                         date_modified: test_time,
@@ -152,7 +155,7 @@ RSpec.describe ExportJob, type: :job do
         .to include({
                       'title'             => 'Test Publication',
                       'corporate_author'  => 'Federal Reserve Bank of Minneapolis',
-                      'creator'           => 'Jones, Bob|Smith, Jane',
+                      'creator'           => 'Gordon, Robert J.|Smith, Jane',
                       'date_created'      => '2020-01-15',
                       'date_modified'     => '2020-01-15',
                       'abstract'          => 'A test abstract',
