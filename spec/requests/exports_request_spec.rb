@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe '/exports', type: :request do
   let(:admin) { FactoryBot.create(:admin) }
   let(:user)  { FactoryBot.create(:user) }
-  let!(:export) { FactoryBot.create(:export) }
+  let(:export) { FactoryBot.create(:export) }
 
   describe 'GET /admin/exports' do
     context 'as an administrator' do
@@ -40,8 +40,9 @@ RSpec.describe '/exports', type: :request do
       before { sign_in admin }
 
       it 'destroys the export record' do
+        export_id = export.id
         expect {
-          delete export_path(export)
+          delete export_path(export_id)
         }.to change(Export, :count).by(-1)
       end
 
@@ -69,17 +70,72 @@ RSpec.describe '/exports', type: :request do
   end
 
   describe 'GET /exports/downloads/:id' do
-    let(:attached_zip) { FactoryBot.create(:export, format: :zip) }
-    let(:attached_bag) { FactoryBot.create(:export, format: :bag) }
+    let(:attached_zip) { FactoryBot.create(:export, format: :zip, export_file: test_zip) }
+    let(:attached_bag) { FactoryBot.create(:export, format: :bag, export_file: test_zip) }
+    let(:test_zip) { fixture_file_upload('test_file.zip', 'application/zip') }
 
-    def attach_file(export)
-      file = fixture_file_upload('test_file.zip', 'application/zip')
-      export.export_file.attach(file)
+    describe 'by' do
+      let(:public_zip) { FactoryBot.create(:export, format: :zip, visibility: :open, export_file: test_zip) }
+      let(:authenticated_zip) { FactoryBot.create(:export, format: :zip, visibility: :authenticated, export_file: test_zip) }
+      let(:restricted_zip) { FactoryBot.create(:export, format: :zip, visibility: :restricted, export_file: test_zip) }
+
+      context 'administrators' do
+        before { sign_in admin }
+        it 'permits "open" export downloads' do
+          get export_download_path(public_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+
+        it 'permits "authenticated" export downloads' do
+          get export_download_path(authenticated_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+
+        it 'permits "restricted" export downloads' do
+          get export_download_path(restricted_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+      end
+
+      context 'regular users' do
+        before { sign_in user }
+        it 'permits "open" export downloads' do
+          get export_download_path(public_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+
+        it 'permits "authenticated" export downloads' do
+          get export_download_path(authenticated_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+
+        it 'BLOCKS "restricted" export downloads' do
+          get export_download_path(restricted_zip)
+          expect(response).to be_not_found
+        end
+      end
+
+      context 'guests' do
+        before { sign_out user }
+
+        it 'permits "open" export downloads' do
+          get export_download_path(public_zip)
+          expect(response).to redirect_to(/active_storage\/blobs/)
+        end
+
+        it 'BLOCKS "authenticated" export downloads' do
+          get export_download_path(authenticated_zip)
+          expect(response).to be_not_found
+        end
+
+        it 'BLOCKS "restricted" export downloads' do
+          get export_download_path(restricted_zip)
+          expect(response).to be_not_found
+        end
+      end
     end
 
     context 'for a zip export' do
-      before { attach_file(attached_zip) }
-
       context 'as an administrator' do
         before { sign_in admin }
 
@@ -107,8 +163,6 @@ RSpec.describe '/exports', type: :request do
     end
 
     context 'for a bag export' do
-      before { attach_file(attached_bag) }
-
       context 'as an administrator' do
         before { sign_in admin }
 

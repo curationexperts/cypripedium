@@ -11,7 +11,10 @@ class Ability
     # All Users
     return unless current_user
     can [:index, :show], Creator
-    can [:download], Export, format: Export.formats[:zip]
+    can [:download], Export, visibility: Export.visibilities[:open], format: Export.formats[:zip]
+
+    return unless current_user.persisted?
+    can [:download], Export, visibility: Export.visibilities[:authenticated], format: Export.formats[:zip]
 
     # Restricted to Admins
     return unless current_user.admin?
