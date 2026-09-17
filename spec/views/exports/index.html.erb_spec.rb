@@ -5,15 +5,15 @@ require 'rails_helper'
 RSpec.describe 'exports/index', type: :view do
   let(:admin) { create(:admin) }
 
-  let(:completed_export) { create(:export, user: admin, format: :bag, items: ['abc123'], status: :completed) }
+  let(:completed_export) { create(:export, user: admin, format: :bag, items: ['abc123'], status: :completed, visibility: :restricted) }
   let(:failed_export)    { create(:export, user: admin, format: :bag, items: ['def456'], status: :failed) }
-  let(:queued_export)    { create(:export, user: admin, format: :bag, items: ['ghi789'], status: :queued) }
+  let(:queued_export)    { create(:export, user: admin, format: :bag, items: ['ghi789'], status: :queued, visibility: :authenticated) }
   let(:working_export)   { create(:export, user: admin, format: :bag, items: ['jkl012'], status: :working) }
 
   let(:exports) { [completed_export, failed_export, queued_export, working_export] }
 
   before do
-    # Mimic an ActiveRecord relation orderd by id in descending order
+    # Mimic an ActiveRecord relation ordered by id in descending order
     assign(:exports, exports.sort_by(&:id).reverse)
     allow(view).to receive(:main_app).and_return(main_app)
   end
@@ -77,5 +77,12 @@ RSpec.describe 'exports/index', type: :view do
     expect(rendered).to have_selector(
                           "form[action='#{main_app.export_path(completed_export)}'][method='post']"
                         )
+  end
+
+  it 'displays the export visibility' do
+    render
+    body = Capybara.string(rendered)
+    expect(body.all('td.visibility').map(&:text))
+      .to eq ["Public", "Federal Reserve Bank of Minneapolis", "Public", "Private"]
   end
 end

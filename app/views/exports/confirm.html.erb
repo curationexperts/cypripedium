@@ -19,6 +19,22 @@
     <% end %>
   </div>
 
+  <div class="form-group row">
+    <%= f.label :visibility, 'Visibility' %>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :visibility, 'open', class: 'form-check-input' %>
+      <%= f.label :visibility_open, class: 'form-check-label' do %>
+        <%= visibility_badge('open') %>
+      <% end %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :visibility, 'restricted', class: 'form-check-input' %>
+      <%= f.label :visibility_restricted, class: 'form-check-label' do %>
+        <%= visibility_badge('restricted') %>
+      <% end %>
+    </div>
+  </div>
+
   <% if @export.duplicates? %>
     <% duplicates = @export.duplicate_records.to_a %>
     <div id="duplicate_warning" class="alert alert-warning">

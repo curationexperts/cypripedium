@@ -27,6 +27,12 @@ RSpec.describe 'exports/confirm', type: :view do
     expect(rendered).to have_link('Cancel', href: hyrax.dashboard_works_path)
   end
 
+  it 'displays visibility options' do
+    render
+    expect(rendered).to have_selector('input[type="radio"][name="export[visibility]"][value="open"]')
+    expect(rendered).to have_selector('input[type="radio"][name="export[visibility]"][value="restricted"]')
+  end
+
   it 'displays a warning for duplicate exports', :aggregate_failures do
     existing_export = FactoryBot.create(:export, items: export.items, status: 'queued')
 

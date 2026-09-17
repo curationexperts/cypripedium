@@ -329,6 +329,12 @@ RSpec.describe '/exports', type: :request do
           }.to change(Export, :count).by(1)
         end
 
+        it 'accepts a visibility parameter' do
+          post exports_path, params: { export: { items: items, visibility: 'restricted' } }
+          new_export = Export.last
+          expect(new_export.visibility).to eq 'restricted'
+        end
+
         it 'stores items in canonical order', :aggregate_failures do
           post exports_path, params: { export: { items: items } }
           new_export = Export.last
