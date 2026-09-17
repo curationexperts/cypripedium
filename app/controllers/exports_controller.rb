@@ -63,7 +63,7 @@ class ExportsController < ApplicationController
   private
 
   def export_params
-    params.require(:export).permit(:filename, :format, items: [])
+    params.require(:export).permit(:filename, :format, :visibility, items: [])
   end
 
   def render404

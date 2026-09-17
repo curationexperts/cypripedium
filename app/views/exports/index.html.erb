@@ -12,6 +12,7 @@
         <th class="status">Status</th>
         <th class="user">Submitted by</th>
         <th class="format">Format</th>
+        <th class="visibility">Visibility</th>
         <th class="item_count">Items</th>
         <th class="file">File</th>
         <th class="actions">Actions</th>
@@ -34,6 +35,7 @@
           <td class="status <%= export.status %>"><%= export.status -%></td>
           <td class="user"><%= export.user.display_name -%></td>
           <td class="format"><%= export.format -%></td>
+          <td class="visibility"><%= visibility_badge(export.visibility) -%></td>
           <td class="item_count" data-search="<%= export.items.join(' ') %>">
             <a href="#"
                data-toggle="modal"
