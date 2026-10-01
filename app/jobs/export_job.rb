@@ -3,11 +3,17 @@ require 'csv'
 require 'find'
 
 class ExportJob < ApplicationJob
-  METADATA_HEADERS = ['title', 'creator', 'corporate_author', 'date_created', 'date_modified',
-                      'location_url', 'identifier', 'series', 'issue_number', 'collection',
-                      'abstract', 'table_of_contents'].freeze
+  METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title, :creator, :corporate_author,
+                      :date_created, :date_uploaded, :date_modified, :location_url, :identifier, :filename, :path, :series, :issue_number, :collection,
+                      :abstract, :table_of_contents].freeze
 
   SUPPORTED_TYPES = [Publication, Dataset, ConferenceProceeding].freeze
+
+  VISIBILITY_FILTER = {
+    'open' => ['open'],
+    'authenticated' => ['open', 'authenticated'],
+    'restricted' => ['open', 'authenticated', 'restricted']
+  }.freeze
 
   after_enqueue { |job| job.arguments.first.queued! }
 
@@ -15,6 +21,7 @@ class ExportJob < ApplicationJob
     @export = export
     @export.working!
     @metadata_rows = []
+    @item_count = 0
 
     Dir.mktmpdir do |tmp_dir|
       @bag = BagIt::Bag.new(File.join(tmp_dir, bag_name))
@@ -36,6 +43,10 @@ class ExportJob < ApplicationJob
     @export.base_filename
   end
 
+  def visibility
+    @visibility ||= VISIBILITY_FILTER[@export.visibility]
+  end
+
   def build_bag
     @export.items.each do |item_id|
       work = ActiveFedora::Base.find(item_id)
@@ -52,32 +63,53 @@ class ExportJob < ApplicationJob
     end
   end
 
-  def location_url(work)
-    type_path = work.class.to_s.underscore.pluralize
-    "#{Rails.application.config.rdf_uri}/concern/#{type_path}/#{work.id}"
-  end
-
   def add_item_to_bag(work)
     raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
-    add_metadata_for_bag(work)
-    add_files_to_bag(work)
+    return unless visibility.include?(work.visibility)
+    add_metadata_for_item(work)
+    add_members_to_bag(work)
+    @metadata_rows << []
+    @item_count += 1
   end
 
-  def add_metadata_for_bag(work)
-    @metadata_rows << [
-      work.title&.join('|'),
-      normalized_creators(work),
-      work.corporate_name&.join('|'),
-      work.date_created&.join('|'),
-      work.date_modified&.strftime('%F'),
-      location_url(work),
-      work.identifier&.join('|'),
-      work.series&.join('|'),
-      work.issue_number&.join('|'),
-      work.member_of_collections&.to_a&.join('|'),
-      work.abstract&.join('|'),
-      work.table_of_contents&.join('|')
-    ]
+  def add_metadata_for_item(work)
+    add_metadata_row(
+      internal_id: work.id,
+      type: work.class.to_s,
+      visibility: Export::VISIBILITY_LABELS[work.visibility],
+      representative_id: work.representative_id,
+      title: work.title.join('|'),
+      creator: normalized_creators(work),
+      corporate_author: work.corporate_name&.join('|'),
+      date_created: work.date_created.join('|'),
+      date_uploaded: work.date_uploaded&.strftime('%F'),
+      date_modified: work.date_modified&.strftime('%F'),
+      location_url: Rails.application.routes.url_helpers.polymorphic_url(work, host: Rails.application.config.rdf_uri),
+      identifier: work.identifier.join('|'),
+      series: work.series.join('|'),
+      issue_number: work.issue_number.join('|'),
+      collection: work.member_of_collections.to_a.join('|'),
+      abstract: work.abstract.join('|'),
+      table_of_contents: work.table_of_contents.join('|')
+    )
+  end
+
+  def add_metadata_for_file(work_id, file_set, path)
+    add_metadata_row(
+      internal_id: work_id,
+      member_id: file_set.id,
+      type: 'File',
+      visibility: Export::VISIBILITY_LABELS[file_set.visibility],
+      date_uploaded: file_set.date_uploaded&.strftime('%F'),
+      location_url: Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
+      filename: file_set.original_file.file_name.first,
+      path: "data/#{path}"
+    )
+  end
+
+  def add_metadata_row(row)
+    row.assert_valid_keys(*METADATA_HEADERS)
+    @metadata_rows << row
   end
 
   def normalized_creators(work)
@@ -85,7 +117,7 @@ class ExportJob < ApplicationJob
     creators.join('|')
   end
 
-  def add_files_to_bag(work)
+  def add_members_to_bag(work)
     # serialize the work's metadata to a JSON file in the metadata tag directory
     @bag.add_tag_file("metadata/#{work.id}.json") do |io|
       json = ::ApplicationController.render(
@@ -97,14 +129,20 @@ class ExportJob < ApplicationJob
     end
 
     # add the work's files to the bag
-    work.file_sets.each do |file_set|
-      file_set.files.each do |file|
-        next if file.file_name.first.empty?
-        @bag.add_file("#{work.id}/#{file.file_name.first}") do |io|
-          io.set_encoding Encoding::BINARY
-          io.write file.content
-        end
+    members = work.ordered_members.to_a
+    padding = (members.count - 1).to_s.length
+
+    members.each_with_index do |member, index|
+      # filter based on object type and visibility
+      next unless member.file_set? && visibility.include?(member.visibility)
+      file = member.original_file
+      next if file.file_name.first.empty?
+      path = "#{work.id}/#{index.to_s.rjust(padding, '0')}/#{file.file_name.first}"
+      @bag.add_file(path) do |io|
+        io.set_encoding Encoding::BINARY
+        io.write file.content
       end
+      add_metadata_for_file(work.id, member, path)
     end
   end
 
@@ -143,8 +181,8 @@ class ExportJob < ApplicationJob
   def success_message
     <<~MSG.html_safe
       <div>
-        Your export (#{@export.id}) containing #{@export.items.count}
-        #{'item'.pluralize(@export.items.count)} is available for download at
+        Your export (#{@export.id}) containing #{@item_count} #{'item'.pluralize(@item_count)}
+        is available for download at
         <a href="#{Rails.application.routes.url_helpers.export_download_path(@export)}">
           #{bag_name}.zip
         </a>

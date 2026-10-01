@@ -3,6 +3,8 @@
 FactoryBot.define do
   factory :publication do
     title { [Faker::Book.title] }
+    date_uploaded { Time.zone.now }
+    date_modified { Time.zone.now }
 
     factory :populated_publication do
       # id { Noid::Rails::Service.new.mint }
@@ -17,6 +19,7 @@ FactoryBot.define do
       abstract { [Faker::Lorem.paragraph] }
       sequence(:identifier) { |n| ["https://doi.org/10.21034/sr.#{n}"] }
       description { [Faker::Lorem.paragraph] }
+      date_created { [Faker::Date.between(from: 100.years.ago, to: Date.today).to_s] }
     end
 
     transient do
