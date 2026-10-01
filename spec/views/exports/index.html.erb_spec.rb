@@ -83,6 +83,6 @@ RSpec.describe 'exports/index', type: :view do
     render
     body = Capybara.string(rendered)
     expect(body.all('td.visibility').map(&:text))
-      .to eq ["Public", "Federal Reserve Bank of Minneapolis", "Public", "Private"]
+      .to eq ['Public', 'FRBM', 'Public', 'Private']
   end
 end

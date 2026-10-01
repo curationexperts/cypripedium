@@ -33,12 +33,15 @@ module Cypripedium
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    Rails.application.configure do
-      config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
+    # I18n configuration
+    config.i18n.default_locale = :en
+    config.i18n.fallbacks = true
 
-      config.bag_prefix = 'mpls_fed_research'
-      config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
-    end
+    # Set the URI for the RDF exports. Also used outside of requests to set the default hostname
+    config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
+
+    config.bag_prefix = 'mpls_fed_research'
+    config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
 
     # Output logs in JSON format
     config.rails_semantic_logger.format = :json
