@@ -9,12 +9,12 @@ RSpec.describe '/exports', type: :request do
 
   describe 'GET /admin/exports' do
     context 'as an administrator' do
-      before { sign_in admin }
+      before { sign_in admin; export }
 
       it 'includes the export in the response', :aggregate_failures do
         get exports_path
         expect(response).to be_successful
-        expect(response.body).to include(export.id.to_s)
+        expect(response.body).to include(%(id="export_#{export.id}"))
       end
     end
 
