@@ -52,7 +52,7 @@ fr:
     directory:
       suffix: "@ Example.org"
     footer:
-      copyright_html: "<strong>Copyright &copy; %{year} Federal Reserve Bank of Minneapolis/strong>"
+      copyright_html: "<strong>Copyright &copy; %{year} Federal Reserve Bank of Minneapolis</strong>"
       service_html: Un service de <a href="https://research.minneapolisfed.org" class="navbar-link">Federal Reserve Bank of Minneapolis Research Division</a>.
   creators:
     table_headers:
