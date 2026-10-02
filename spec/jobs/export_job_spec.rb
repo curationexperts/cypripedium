@@ -285,7 +285,7 @@ RSpec.describe ExportJob, type: :job do
     return CSV::Table.new([]) unless export.export_file.attached?
     Zip::File.open_buffer(export.export_file.download) do |zip|
       csv_entry = zip.find { |e| e.name.end_with?('metadata.csv') }
-      return CSV.parse(csv_entry.get_input_stream.read, headers: true)
+      return CSV.parse(csv_entry.get_input_stream.read, headers: true, skip_blanks: true)
     end
   end
 end
