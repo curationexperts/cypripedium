@@ -53,7 +53,7 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'status lifecycle' do
-    it 'sets status to :queued on when queued', :aggregate_failures do
+    it 'sets status to :queued when queued', :aggregate_failures do
       expect(export.status).to eq 'unknown'
       described_class.perform_later(export)
       expect(export.reload.status).to eq 'queued'
@@ -123,9 +123,16 @@ RSpec.describe ExportJob, type: :job do
       expect(zip_entry_names(export)).to include(a_string_matching(publication.id))
     end
 
-    it 'includes a SHA-256 manifest' do
+    it 'contains required files' do
       described_class.perform_now(export)
-      expect(zip_entry_names(export)).to include(a_string_matching('manifest-sha256.txt'))
+      zip_names = zip_entry_names(export)
+      expect(zip_names).to include(a_string_matching(%r{/bagit.txt\z}))
+      expect(zip_names).to include(a_string_matching(%r{/bag-info.txt\z}))
+      expect(zip_names).to include(a_string_matching(%r{/manifest-sha256.txt\z}))
+      expect(zip_names).to include(a_string_matching(%r{/tagmanifest-sha1.txt\z}))
+      expect(zip_names).to include(a_string_matching(%r{/metadata.csv\z}))
+      expect(zip_names).to include(a_string_matching('/data/'))
+      expect(zip_names).to include(a_string_matching('/metadata/'))
     end
 
     it 'includes a metadata CSV at the bag root' do
