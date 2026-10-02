@@ -61,6 +61,7 @@ class ExportJob < ApplicationJob
     raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
     add_metadata_for_bag(work)
     add_files_to_bag(work)
+    @metadata_rows << []
   end
 
   def add_metadata_for_bag(work)
