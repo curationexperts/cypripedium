@@ -135,9 +135,32 @@ RSpec.describe ExportJob, type: :job do
       expect(zip_names).to include(a_string_matching('/metadata/'))
     end
 
-    it 'includes a metadata CSV at the bag root' do
-      described_class.perform_now(export)
-      expect(zip_entry_names(export)).to include(a_string_matching('metadata.csv'))
+    describe 'metadata CSV' do
+      let(:publication) { FactoryBot.create(:publication, visibility: 'open', file_sets: []) }
+      it 'includes the expected columns' do
+        described_class.perform_now(export)
+        csv = parsed_csv(export)
+        expect(csv.headers)
+          .to include(
+                'title',
+                'creator',
+                'corporate_author',
+                'date_created',
+                'location_url',
+                'identifier',
+                'series',
+                'issue_number',
+                'collection',
+                'abstract',
+                'table_of_contents'
+              )
+      end
+
+      it 'includes works with no files attached' do
+        described_class.perform_now(export)
+        csv = parsed_csv(export)
+        expect(csv.length).to eq 1
+      end
     end
   end
 
