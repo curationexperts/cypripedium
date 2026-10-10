@@ -31,17 +31,17 @@ RSpec.describe Hyrax::TarBag, type: :model do
   describe '#create' do
     let(:expected_files) {
       [
-        "mpls_fed_research_109092",
-        "mpls_fed_research_109092/bag-info.txt",
-        "mpls_fed_research_109092/bagit.txt",
-        "mpls_fed_research_109092/data",
-        %r{mpls_fed_research_109092/data/\w{9}},
-        %r{mpls_fed_research_109092/data/\w{9}/\w{9}\.xml},
-        %r{mpls_fed_research_109092/data/\w{9}/pdf-sample.pdf},
-        %r{mpls_fed_research_109092/data/\w{9}/sir_mordred.jpg},
-        "mpls_fed_research_109092/manifest-sha256.txt",
-        "mpls_fed_research_109092/tagmanifest-md5.txt",
-        "mpls_fed_research_109092/tagmanifest-sha1.txt"
+        "frbm_109092",
+        "frbm_109092/bag-info.txt",
+        "frbm_109092/bagit.txt",
+        "frbm_109092/data",
+        %r{frbm_109092/data/\w{9}},
+        %r{frbm_109092/data/\w{9}/\w{9}\.xml},
+        %r{frbm_109092/data/\w{9}/pdf-sample.pdf},
+        %r{frbm_109092/data/\w{9}/sir_mordred.jpg},
+        "frbm_109092/manifest-sha256.txt",
+        "frbm_109092/tagmanifest-md5.txt",
+        "frbm_109092/tagmanifest-sha1.txt"
       ]
     }
 
