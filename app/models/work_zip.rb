@@ -34,7 +34,7 @@ class WorkZip < ApplicationRecord
     FileUtils.mkdir_p path_root
     temps = [] # Keep track of temp files so we can delete them later
 
-    Zip::File.open(zip_file_name, Zip::File::CREATE) do |zipfile|
+    Zip::File.open(zip_file_name, create: true) do |zipfile|
       files.each_with_index do |file, i|
         name = new_file_name(file_names, file.file_name.first, i)
         temp_file = Tempfile.new(name)
