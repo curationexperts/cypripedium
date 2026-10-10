@@ -18,9 +18,9 @@ BagIt archives can be created from the command line using the bag rake task:
 
 `USER_ID` is the id of the user that will be notified.
 
-The bag will be located in the directory set by the `ENV['BAG_PATH']` environment variable or you can specify it when running the rake task. It will be named `mpls_fed_research_<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in the specified publications. The created bag will use `sha256` to create checksums for the files.
+The bag will be located in the directory set by the `ENV['BAG_PATH']` environment variable or you can specify it when running the rake task. It will be named `frbm_<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in the specified publications. The created bag will use `sha256` to create checksums for the files.
 
-To download a bag that has been created you can visit the route: `/bag/mpls_fed_research_<time-stamp>.tar`.
+To download a bag that has been created you can visit the route: `/bag/frbm_<time-stamp>.tar`.
 
 
 ## Local Development with Docker
