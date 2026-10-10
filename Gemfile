@@ -78,5 +78,4 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
-  gem 'webdrivers'
 end

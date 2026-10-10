@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
     samvera: samvera/circleci-orb@1.0.3
-    browser-tools: circleci/browser-tools@1.4.8
+    browser-tools: circleci/browser-tools@2.4.2
     coveralls: coveralls/coveralls@1.0.6
 
 jobs:
@@ -33,8 +33,7 @@ jobs:
 
         steps:
             - checkout
-            - browser-tools/install-chrome
-            - browser-tools/install-chromedriver
+            - browser-tools/install_chrome
 
             - samvera/bundle:
                 ruby_version: << parameters.ruby_version >>
