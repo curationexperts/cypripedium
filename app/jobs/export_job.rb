@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'csv'
-require 'find'
 
 class ExportJob < ApplicationJob
   METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title,
@@ -150,13 +149,7 @@ class ExportJob < ApplicationJob
   def compress(tmp_dir)
     zip_path = File.join(tmp_dir, "#{bag_name}.zip")
     bag_dir  = @bag.bag_dir
-
-    Zip::File.open(zip_path, Zip::File::CREATE) do |zip|
-      Find.find(bag_dir) do |file|
-        relative_path = file.sub("#{tmp_dir}/", '')
-        zip.add(relative_path, file)
-      end
-    end
+    Zip::File.add_recursive(zip_path, bag_dir, prefix: @export.base_filename)
 
     zip_path
   end

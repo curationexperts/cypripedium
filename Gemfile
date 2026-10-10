@@ -40,7 +40,7 @@ gem 'rails_semantic_logger'
 gem 'redcarpet'
 gem 'riiif', '~> 2.1'
 gem 'rsolr', '>= 1.0', '< 3'
-gem 'rubyzip', '~> 1.0', require: 'zip'
+gem 'rubyzip'
 gem 'sidekiq', '< 8'
 gem 'solrizer'
 gem 'strscan', '1.0.3' # match version installed on server as system gem
