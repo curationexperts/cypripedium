@@ -7,7 +7,7 @@ class ExportJob < ApplicationJob
     @export = export
     @export.working!
 
-    @item_count = ExportWriter.package_itmes(@export)
+    @item_count = ExportPackager.package_itmes(@export)
 
     @export.completed!
     notify(success: true)
