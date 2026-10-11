@@ -4,6 +4,5 @@ FactoryBot.define do
   factory :export do
     user { User.system_user }
     items { ['dummy_id'] }
-    format { :bag }
   end
 end
