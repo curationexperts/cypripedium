@@ -55,7 +55,7 @@ download "Public" zip exports: this allows us to build the single item archives 
     >     | Private  | `restricted` |
     > - "FRBM" is the configured institution name (`hyrax.institution_name`). `VisibilityLabel.for` produces
         the same text as `Hyrax::PermissionBadge`.
-    > - Filtering lives in `ExportWriter::VISIBILITY_FILTER` and applies to both formats.
+    > - Filtering lives in `ExportPackager::VISIBILITY_FILTER` and applies to both formats.
     > - Download permissions are in `Ability`. "authenticated" means a persisted user, not a Hyrax guest user.
 
 ## Tracking and managing exports
@@ -82,7 +82,7 @@ Administrators will get a notification when their submitted export finishes.
     > **Implementation Details**
     > - The work count in the notification is the number of works that passed visibility filtering, not
         the number selected.
-    > - Exports are built in the background by `ExportJob`, which hands off to `ExportWriter`.
+    > - Exports are built in the background by `ExportJob`, which hands off to `ExportPackager`.
 
 ## Sharing download links
 The **File** link on the Exports page can be shared. Whether someone can open it depends on the format
@@ -166,7 +166,7 @@ Both formats include `metadata.csv` at the top level of the export.
 | `path` | (blank) | Where the file is inside the export. ZIP: `abc123/1/wp345.pdf`. Bag: `data/abc123/1/wp345.pdf`. |
 
 > **Implementation Details**
-> - Columns are defined in `ExportWriter::METADATA_HEADERS`.
+> - Columns are defined in `ExportPackager::METADATA_HEADERS`.
 > - `creator` uses `CreatorNames.normalized_names`.
 > - URLs are built with `config.rdf_uri` as the host.
 > - `path` never includes the top-level export folder name.

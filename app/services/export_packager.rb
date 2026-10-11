@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'csv'
 
-class ExportWriter
+class ExportPackager
   METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title,
                       :creator, :corporate_author, :date_created, :date_uploaded, :date_modified,
                       :location_url, :identifier, :filename, :path, :series, :issue_number, :collection,
