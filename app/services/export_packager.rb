@@ -102,7 +102,7 @@ class ExportPackager
       date_uploaded: file_set.date_uploaded&.strftime('%F'),
       location_url: Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
       filename: file_set.original_file.file_name.first,
-      path: "data/#{path}"
+      path: path
     )
   end
 
