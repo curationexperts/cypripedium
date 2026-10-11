@@ -163,7 +163,7 @@ Both formats include `metadata.csv` at the top level of the export.
 | `date_uploaded` | Date the work was uploaded | Date the file was uploaded |
 | `location_url` | Link to the work page | Link to download the file |
 | `filename` | (blank) | File name |
-| `path` | (blank) | Where the file is inside the export. ZIP: `abc123/1/wp345.pdf`. Bag: `data/abc123/1/wp345.pdf`. |
+| `path` | (blank) | Path to the file, relative to the export folder (ZIP) or its `data/` folder (Bag), e.g., `abc123/1/wp345.pdf` |
 
 > **Implementation Details**
 > - Columns are defined in `ExportPackager::METADATA_HEADERS`.
