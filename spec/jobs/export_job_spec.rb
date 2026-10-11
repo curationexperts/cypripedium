@@ -11,7 +11,7 @@ RSpec.describe ExportJob, type: :job do
   let(:file_set) { @pdf }
   let(:restricted_publication_open_file_set) { @pdf_alt }
 
-  let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id]) }
+  let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id], filename: 'test_export') }
 
   before(:all) do
     Hyrax::AdminSetCreateService.find_or_create_default_admin_set
@@ -112,11 +112,14 @@ RSpec.describe ExportJob, type: :job do
     end
 
     describe 'filename' do
-      it 'has the expected default' do
-        default_filename = export.default_filename # capture now to avoide deduplication issues
-        described_class.perform_now(export)
-        attachment = export.reload.export_file
-        expect(attachment.filename.to_s).to match(default_filename)
+      let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id]) }
+      context 'with no override' do
+        it 'has the expected default' do
+          default_filename = export.default_filename # capture now to avoide deduplication issues
+          described_class.perform_now(export)
+          attachment = export.reload.export_file
+          expect(attachment.filename.to_s).to match(default_filename)
+        end
       end
 
       context 'when overridden' do
@@ -224,12 +227,9 @@ RSpec.describe ExportJob, type: :job do
       # payload checks
       zip_names = zip_entry_names(export)
       data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
-      expect(data_files.length).to eq 1
-      expect(data_files).to include(a_string_matching(publication.id))
-      expect(data_files).to include(a_string_matching('/0/pdf-sample.pdf'))
-      expect(data_files).not_to include(a_string_matching('/1/pdf-sample.pdf'))
-      expect(data_files).not_to include(a_string_matching('/2/tiny.txt'))
-      expect(data_files).not_to include(a_string_matching(restricted_publication.id))
+      expect(data_files).to contain_exactly(
+                              "test_export/data/#{publication.id}/1/pdf-sample.pdf"
+                            )
 
       # metadata checks
       csv = parsed_csv(export)
@@ -265,7 +265,7 @@ RSpec.describe ExportJob, type: :job do
                       'visibility' => 'Public',
                       'title' => nil,
                       'filename' => 'pdf-sample.pdf',
-                      'path' => "data/#{publication.id}/0/pdf-sample.pdf",
+                      'path' => "data/#{publication.id}/1/pdf-sample.pdf",
                       'date_uploaded' => '2020-07-31',
                       'location_url' => "http://localhost:3000/downloads/#{file_set.id}",
                       'representative_id' => nil,
@@ -283,12 +283,10 @@ RSpec.describe ExportJob, type: :job do
       described_class.perform_now(export)
       zip_names = zip_entry_names(export)
       data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
-      expect(data_files.length).to eq 2
-      expect(data_files).to include(a_string_matching(publication.id))
-      expect(data_files).to include(a_string_matching('/0/pdf-sample.pdf'))
-      expect(data_files).not_to include(a_string_matching('/1/pdf-sample.pdf'))
-      expect(data_files).to include(a_string_matching('/2/tiny.txt'))
-      expect(data_files).not_to include(a_string_matching(restricted_publication.id))
+      expect(data_files).to contain_exactly(
+                              "test_export/data/#{publication.id}/1/pdf-sample.pdf",
+                              "test_export/data/#{publication.id}/2/tiny.txt"
+                            )
     end
 
     it 'includes all files in "restricted" exports', :aggregate_failures do
@@ -298,12 +296,12 @@ RSpec.describe ExportJob, type: :job do
       data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
 
       # structure checks
-      expect(data_files.length).to eq 4
-      expect(data_files).to include(a_string_matching(publication.id))
-      expect(data_files).to include(a_string_matching('/0/pdf-sample.pdf'))
-      expect(data_files).to include(a_string_matching('/1/pdf-sample.pdf'))
-      expect(data_files).to include(a_string_matching('/2/tiny.txt'))
-      expect(data_files).to include(a_string_matching(restricted_publication.id))
+      expect(data_files).to contain_exactly(
+                              "test_export/data/#{publication.id}/1/pdf-sample.pdf",
+                              "test_export/data/#{publication.id}/2/pdf-sample.pdf",
+                              "test_export/data/#{publication.id}/3/tiny.txt",
+                              "test_export/data/#{restricted_publication.id}/1/pdf-sample.pdf"
+                            )
 
       # metadata checks
       csv = parsed_csv(export)
@@ -343,7 +341,7 @@ RSpec.describe ExportJob, type: :job do
                       'visibility' => 'Public',
                       'title' => nil,
                       'filename' => 'pdf-sample.pdf',
-                      'path' => "data/#{restricted_publication.id}/0/pdf-sample.pdf",
+                      'path' => "data/#{restricted_publication.id}/1/pdf-sample.pdf",
                       'date_uploaded' => '1999-10-27',
                       'location_url' => "http://localhost:3000/downloads/#{restricted_publication_open_file_set.id}",
                       'representative_id' => nil,
