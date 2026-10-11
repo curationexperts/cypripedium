@@ -228,7 +228,7 @@ RSpec.describe ExportJob, type: :job do
       zip_names = zip_entry_names(export)
       data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
       expect(data_files).to contain_exactly(
-                              "test_export/data/#{publication.id}/1/pdf-sample.pdf"
+                              "test_export/data/#{publication.id}/pdf-sample.pdf"
                             )
 
       # metadata checks
@@ -265,7 +265,7 @@ RSpec.describe ExportJob, type: :job do
                       'visibility' => 'Public',
                       'title' => nil,
                       'filename' => 'pdf-sample.pdf',
-                      'path' => "data/#{publication.id}/1/pdf-sample.pdf",
+                      'path' => "data/#{publication.id}/pdf-sample.pdf",
                       'date_uploaded' => '2020-07-31',
                       'location_url' => "http://localhost:3000/downloads/#{file_set.id}",
                       'representative_id' => nil,
@@ -300,7 +300,7 @@ RSpec.describe ExportJob, type: :job do
                               "test_export/data/#{publication.id}/1/pdf-sample.pdf",
                               "test_export/data/#{publication.id}/2/pdf-sample.pdf",
                               "test_export/data/#{publication.id}/3/tiny.txt",
-                              "test_export/data/#{restricted_publication.id}/1/pdf-sample.pdf"
+                              "test_export/data/#{restricted_publication.id}/pdf-sample.pdf"
                             )
 
       # metadata checks
@@ -341,7 +341,7 @@ RSpec.describe ExportJob, type: :job do
                       'visibility' => 'Public',
                       'title' => nil,
                       'filename' => 'pdf-sample.pdf',
-                      'path' => "data/#{restricted_publication.id}/1/pdf-sample.pdf",
+                      'path' => "data/#{restricted_publication.id}/pdf-sample.pdf",
                       'date_uploaded' => '1999-10-27',
                       'location_url' => "http://localhost:3000/downloads/#{restricted_publication_open_file_set.id}",
                       'representative_id' => nil,

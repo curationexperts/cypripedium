@@ -129,22 +129,27 @@ class ExportWriter
 
     # add the work's files to the bag
     file_sets = visible_file_sets(work)
-    padding = file_sets.count.to_s.length
+    count = file_sets.count
 
     file_sets.each.with_index(1) do |file_set, index|
       file = file_set.original_file
       next if file.file_name.first.empty?
-      path = "#{work.id}/#{index.to_s.rjust(padding, '0')}/#{file.file_name.first}"
-      @bag.add_file(path) do |io|
+      relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
+      @bag.add_file(relative_path) do |io|
         io.set_encoding Encoding::BINARY
         io.write file.content
       end
-      add_metadata_for_file(work.id, file_set, path)
+      add_metadata_for_file(work.id, file_set, relative_path)
     end
   end
 
   def visible_file_sets(work)
     work.ordered_members.to_a.select { |member| member.file_set? && permitted_visibilities.include?(member.visibility) }
+  end
+
+  def padded_index(index, count)
+    return '' if count == 1
+    index.to_s.rjust(count.to_s.length, '0')
   end
 
   def compress(tmp_dir)
