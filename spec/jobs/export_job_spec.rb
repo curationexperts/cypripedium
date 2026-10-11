@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ExportJob, type: :job do
   let(:admin) { FactoryBot.create(:admin) }
+  let(:system_user) { FactoryBot.create(:admin, email: Hyrax.config.system_user_key) }
 
   let(:publication) { @publication }
   let(:restricted_publication) { @publication2 }
@@ -208,10 +209,11 @@ RSpec.describe ExportJob, type: :job do
     let(:export) { FactoryBot.create(:export, user: admin, format: :bag, items: [publication.id, restricted_publication.id], filename: 'test_export') }
 
     it 'only includes "open" files in "open" exports', :aggregate_failures do
+      allow(User).to receive(:system_user).and_return(system_user)
       export.update!(visibility: 'open')
 
       # notification count check - two items in export, but one should be filtered out
-      expect(admin).to receive(:send_message).with(
+      expect(system_user).to receive(:send_message).with(
         admin,
         a_string_matching(/containing 1 item\s+is available for download/i),
         a_string_matching(/completed/i)
@@ -356,32 +358,58 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'user notification' do
+    before do
+      allow(User).to receive(:system_user).and_return(system_user)
+    end
+
     context 'when the submitting user is an admin' do
       it 'sends a success notification on completion' do
-        expect(admin).to receive(:send_message).with(
-          admin,
-          a_string_matching(/export/i),
-          a_string_matching(/completed/i)
+        expect(system_user).to receive(:send_message).with(
+          admin,                          # to:
+          a_string_matching(/export/i),   # body
+          a_string_matching(/completed/i) # subject
         )
         described_class.perform_now(export)
       end
 
       it 'sends a failure notification on error' do
-        export.update!(items: ['nonexistent_id'])
-        expect(admin).to receive(:send_message).with(
-          admin,
-          a_string_matching(/export/i),
-          a_string_matching(/failed/i)
+        allow(ActiveFedora::Base).to receive(:find).and_raise(StandardError, 'Packaging failed')
+
+        expect(system_user).to receive(:send_message).with(
+          admin,                                 # to:
+          a_string_matching(/Packaging failed/), # body
+          a_string_matching(/failed/i)           # subject
         )
         described_class.perform_now(export)
       end
+
+      it 'includes a link to the export file' do
+        export.update!(filename: 'my_export')
+        allow(system_user).to receive(:send_message)
+
+        described_class.perform_now(export)
+
+        expect(system_user).to have_received(:send_message) do |_recipient, body, _subject|
+          link = Nokogiri::HTML.fragment(body).at_css('a')
+          expect(link['href']).to eq "/exports/downloads/#{export.id}"
+          expect(link.text.strip).to eq 'my_export.zip'
+        end
+      end
     end
 
-    context 'when the submitting user is not an admin' do
-      let(:export) { FactoryBot.create(:export, user: User.system_user, format: :bag, items: [publication.id]) }
+    context 'for guests' do
+      let(:guest) { FactoryBot.create(:guest) }
+      let(:export) { FactoryBot.create(:export, user: guest, items: [publication.id]) }
 
-      it 'does not send a notification' do
-        expect(User.system_user).not_to receive(:send_message)
+      it 'sends no success messages' do
+        expect(system_user).not_to receive(:send_message)
+        described_class.perform_now(export)
+      end
+
+      it 'sends no failure messages' do
+        allow(ActiveFedora::Base).to receive(:find).and_raise(StandardError, 'Packaging failed')
+
+        expect(system_user).not_to receive(:send_message)
         described_class.perform_now(export)
       end
     end

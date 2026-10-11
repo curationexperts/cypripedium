@@ -12,5 +12,9 @@ FactoryBot.define do
     factory :admin do
       after(:create) { |user| user.add_role(:admin) }
     end
+
+    factory :guest do
+      guest { true }
+    end
   end
 end

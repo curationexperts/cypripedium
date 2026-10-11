@@ -168,7 +168,7 @@ class ExportJob < ApplicationJob
     return if @export.user.guest?
     subject = success ? 'Export completed' : 'Export failed'
     message = success ? success_message : failure_message
-    @export.user.send_message(@export.user, message, subject)
+    User.system_user.send_message(@export.user, message, subject)
   end
 
   # rubocop:disable Rails/OutputSafety
