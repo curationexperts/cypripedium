@@ -15,7 +15,7 @@ class ExportPackager
     'restricted' => ['open', 'authenticated', 'restricted'].freeze
   }.freeze
 
-  def self.package_itmes(export)
+  def self.package_items(export)
     new(export).run
   end
 
@@ -133,7 +133,6 @@ class ExportPackager
 
     file_sets.each.with_index(1) do |file_set, index|
       file = file_set.original_file
-      next if file.file_name.first.empty?
       relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
       @bag.add_file(relative_path) do |io|
         io.set_encoding Encoding::BINARY
