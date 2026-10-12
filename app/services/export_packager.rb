@@ -7,6 +7,8 @@ class ExportPackager
                       :location_url, :identifier, :filename, :path, :series, :issue_number, :collection,
                       :abstract, :table_of_contents].freeze
 
+  METADATA_FILENAME = 'metadata.csv'
+
   SUPPORTED_TYPES = [Publication, Dataset, ConferenceProceeding].freeze
 
   VISIBILITY_FILTER = {
@@ -28,8 +30,9 @@ class ExportPackager
   # @return [Integer] number of works included after visibility filtering
   def run
     Dir.mktmpdir do |tmp_dir|
-      @bag = BagIt::Bag.new(File.join(tmp_dir, bag_name))
-      build_bag
+      @archive_root = File.join(tmp_dir, 'archive')
+      @writer = ExportPackager::BagWriter.new(@archive_root)
+      build_package
       zip_path = compress(tmp_dir)
       attach(zip_path)
     end
@@ -38,35 +41,29 @@ class ExportPackager
 
   private
 
-  def bag_name
-    @export.base_filename
-  end
-
   def permitted_visibilities
     @visibility ||= VISIBILITY_FILTER[@export.visibility]
   end
 
-  def build_bag
+  def build_package
     @export.items.each do |item_id|
       work = ActiveFedora::Base.find(item_id)
-      add_item_to_bag(work)
+      add_item(work)
     end
-    write_metadata_csv
-    @bag.manifest!(algo: 'sha256')
+    @writer.finalize(metadata_csv)
   end
 
-  def write_metadata_csv
-    @bag.add_tag_file('metadata.csv') do |io|
-      csv = CSV.new(io, headers: METADATA_HEADERS, write_headers: true)
+  def metadata_csv
+    CSV.generate(headers: METADATA_HEADERS, write_headers: true) do |csv|
       @metadata_rows.each { |row| csv << row }
     end
   end
 
-  def add_item_to_bag(work)
+  def add_item(work)
     raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
     return unless permitted_visibilities.include?(work.visibility)
     add_metadata_for_item(work)
-    add_members_to_bag(work)
+    add_members(work)
     @metadata_rows << []
     @item_count += 1
   end
@@ -116,28 +113,17 @@ class ExportPackager
     creators.join('|')
   end
 
-  def add_members_to_bag(work)
-    # serialize the work's metadata to a JSON file in the metadata tag directory
-    @bag.add_tag_file("metadata/#{work.id}.json") do |io|
-      json = ::ApplicationController.render(
-        template: 'hyrax/base/show',
-        formats: [:json],
-        assigns: { curation_concern: work, presenter: Hyrax::WorkShowPresenter.new(SolrDocument.new(work.to_solr), nil) }
-      )
-      io.write json
-    end
+  def add_members(work)
+    @writer.write_item_metadata(work)
 
-    # add the work's files to the bag
+    # add the work's files to package
     file_sets = visible_file_sets(work)
     count = file_sets.count
 
     file_sets.each.with_index(1) do |file_set, index|
       file = file_set.original_file
       relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
-      @bag.add_file(relative_path) do |io|
-        io.set_encoding Encoding::BINARY
-        io.write file.content
-      end
+      @writer.write_content(relative_path, file)
       add_metadata_for_file(work.id, file_set, relative_path)
     end
   end
@@ -152,9 +138,8 @@ class ExportPackager
   end
 
   def compress(tmp_dir)
-    zip_path = File.join(tmp_dir, "#{bag_name}.zip")
-    bag_dir  = @bag.bag_dir
-    Zip::File.add_recursive(zip_path, bag_dir, prefix: @export.base_filename)
+    zip_path = File.join(tmp_dir, "#{@export.base_filename}.zip")
+    Zip::File.add_recursive(zip_path, @archive_root, prefix: @export.base_filename)
 
     zip_path
   end
@@ -163,7 +148,7 @@ class ExportPackager
     File.open(zip_path) do |file|
       @export.export_file.attach(
         io: file,
-        filename: "#{bag_name}.zip",
+        filename: "#{@export.base_filename}.zip",
         content_type: 'application/zip'
       )
     end
