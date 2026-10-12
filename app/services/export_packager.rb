@@ -31,7 +31,6 @@ class ExportPackager
   def run
     Dir.mktmpdir do |tmp_dir|
       @archive_root = File.join(tmp_dir, 'archive')
-      @writer = ExportPackager::BagWriter.new(@archive_root)
       build_package
       zip_path = compress(tmp_dir)
       attach(zip_path)
@@ -40,6 +39,13 @@ class ExportPackager
   end
 
   private
+
+  def writer
+    @writer ||= case @export.format
+                when 'zip' then ExportPackager::ZipWriter.new(@archive_root)
+                when 'bag' then ExportPackager::BagWriter.new(@archive_root)
+                end
+  end
 
   def permitted_visibilities
     @visibility ||= VISIBILITY_FILTER[@export.visibility]
@@ -50,7 +56,7 @@ class ExportPackager
       work = ActiveFedora::Base.find(item_id)
       add_item(work)
     end
-    @writer.finalize(metadata_csv)
+    writer.finalize(metadata_csv)
   end
 
   def metadata_csv
@@ -114,7 +120,7 @@ class ExportPackager
   end
 
   def add_members(work)
-    @writer.write_item_metadata(work)
+    writer.write_item_metadata(work)
 
     # add the work's files to package
     file_sets = visible_file_sets(work)
@@ -123,7 +129,7 @@ class ExportPackager
     file_sets.each.with_index(1) do |file_set, index|
       file = file_set.original_file
       relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
-      @writer.write_content(relative_path, file)
+      writer.write_content(relative_path, file)
       add_metadata_for_file(work.id, file_set, relative_path)
     end
   end
