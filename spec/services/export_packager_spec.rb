@@ -262,16 +262,17 @@ RSpec.describe ExportPackager do
 
     it 'includes all files in "restricted" exports', :aggregate_failures do
       export.update!(visibility: 'restricted')
+      export.update!(format: :zip)
       described_class.package_items(export)
       zip_names = zip_filenames(export)
-      data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
 
       # structure checks
-      expect(data_files).to contain_exactly(
-                              "test_export/data/#{publication.id}/1/pdf-sample.pdf",
-                              "test_export/data/#{publication.id}/2/pdf-sample.pdf",
-                              "test_export/data/#{publication.id}/3/tiny.txt",
-                              "test_export/data/#{restricted_publication.id}/pdf-sample.pdf"
+      expect(zip_names).to contain_exactly(
+                             "test_export/metadata.csv",
+                              "test_export/#{publication.id}/1/pdf-sample.pdf",
+                              "test_export/#{publication.id}/2/pdf-sample.pdf",
+                              "test_export/#{publication.id}/3/tiny.txt",
+                              "test_export/#{restricted_publication.id}/pdf-sample.pdf"
                             )
 
       # metadata checks
