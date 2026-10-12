@@ -2,8 +2,8 @@
 
 class ExportPackager
   class BagWriter
-    def initialize(output_path)
-      @bag = BagIt::Bag.new(output_path)
+    def initialize(archive_root)
+      @bag = BagIt::Bag.new(archive_root)
     end
 
     # Serialize the work's metadata to a JSON file in the metadata tag directory
