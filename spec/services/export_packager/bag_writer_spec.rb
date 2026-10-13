@@ -74,5 +74,23 @@ RSpec.describe ExportPackager::BagWriter do
       bag.valid?
       expect(bag.errors.full_messages).to eq []
     end
+
+    it 'writes the expected files' do
+      # get a list of files in the archive directory, excluding the archive root itself
+      bag_files = Dir.glob(File.join(archive_root, '**/*'))
+                     .select { |path| File.file?(path) }
+                     .map { |path| path.delete_prefix("#{archive_root}/") }
+
+      expect(bag_files).to contain_exactly(
+                             'bagit.txt',
+                             'bag-info.txt',
+                             'manifest-sha256.txt',
+                             'tagmanifest-md5.txt',
+                             'tagmanifest-sha1.txt',
+                             'metadata.csv',
+                             'metadata/abc123.json',
+                             'data/abc123/1/file.txt'
+                           )
+    end
   end
 end
