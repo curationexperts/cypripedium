@@ -10,16 +10,16 @@ RSpec.describe ExportPackager do
   let(:file_set) { @pdf }
   let(:restricted_publication_open_file_set) { @pdf_alt }
 
-  let(:export) { FactoryBot.create(:export, format: :bag, items: [publication.id], filename: 'test_export') }
+  # We override the default export format to zip, because we don't need the bag format overhead in most tests.
+  # We keep most tests fast by using a restricted work on an open export, so nothing passes the visibility filter.
+  let(:export) { FactoryBot.create(:export, format: :zip, items: [restricted_publication.id], filename: 'test_export') }
 
   before(:all) do
-    Hyrax::AdminSetCreateService.find_or_create_default_admin_set
-
     pdf_path = Rails.root.join('spec', 'fixtures', 'files', 'pdf-sample.pdf')
     @pdf     = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('2020-07-31'))
     @pdf_dup = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'restricted')
     @pdf_alt = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('1999-10-27'))
-    @txt = FactoryBot.create(:file_set, content: File.open(Rails.root.join('spec', 'fixtures', 'files', 'tiny.txt')), visibility: 'authenticated')
+    @txt     = FactoryBot.create(:file_set, content: File.open(Rails.root.join('spec', 'fixtures', 'files', 'tiny.txt')), visibility: 'authenticated')
 
     creator = FactoryBot.create(:creator, display_name: 'Smith, Jane')
     additional_creator = FactoryBot.create(:creator, display_name: 'Gordon, Robert J. (Robert James), 1940-')
@@ -87,120 +87,85 @@ RSpec.describe ExportPackager do
     end
 
     describe 'filename' do
-      let(:export) { FactoryBot.create(:export, format: :bag, items: [publication.id]) }
       context 'with no override' do
+        let(:export) { FactoryBot.create(:export, format: :zip, items: [restricted_publication.id]) }
         it 'has the expected default' do
-          default_filename = export.default_filename # capture now to avoid deduplication issues
+          default_filename = export.default_filename # capture now to avoid deduplication collisions
           described_class.package_items(export)
-          attachment = export.reload.export_file
-          expect(attachment.filename.to_s).to match(default_filename)
+          expect(export.export_file.filename).to eq "#{default_filename}.zip"
         end
       end
 
       context 'when overridden' do
-        let(:export) { FactoryBot.create(:export, format: :bag, items: [publication.id], filename: 'my_export') }
+        let(:export) { FactoryBot.create(:export, format: :zip, items: [restricted_publication.id], filename: 'my_export') }
         it 'uses the user supplied value' do
           described_class.package_items(export)
-          attachment = export.reload.export_file
-          expect(attachment.filename.to_s).to eq 'my_export.zip'
+          expect(export.export_file.filename).to eq 'my_export.zip'
         end
       end
     end
   end
 
-  describe 'bag structure' do
-    it 'includes files for the work in the bag' do
+  describe '#metadata_csv' do
+    let(:work)   { FactoryBot.build(:publication, id: 'abc123', visibility: 'open', file_sets: []) }
+    let(:export) { FactoryBot.create(:export, format: :zip, items: ['abc123'], filename: 'test_export') }
+
+    before { allow(ActiveFedora::Base).to receive(:find).with('abc123').and_return(work) }
+
+    it 'includes works with no files attached' do
       described_class.package_items(export)
-      expect(zip_filenames(export)).to include(a_string_matching(publication.id))
+      expect(parsed_csv(export)['internal_id']).to eq ['abc123']
     end
 
-    it 'contains required files' do
+    # Test for the order of specific columns, not intended to be comprehensive
+    it 'orders key header columns' do
       described_class.package_items(export)
-      zip_names = zip_filenames(export)
-      expect(zip_names).to include(a_string_matching(%r{/bagit.txt\z}))
-      expect(zip_names).to include(a_string_matching(%r{/bag-info.txt\z}))
-      expect(zip_names).to include(a_string_matching(%r{/manifest-sha256.txt\z}))
-      expect(zip_names).to include(a_string_matching(%r{/tagmanifest-sha1.txt\z}))
-      expect(zip_names).to include(a_string_matching(%r{/metadata.csv\z}))
-      expect(zip_names).to include(a_string_matching('/data/'))
-      expect(zip_names).to include(a_string_matching('/metadata/'))
-    end
-
-    describe 'metadata CSV' do
-      let(:publication) { FactoryBot.create(:publication, visibility: 'open', file_sets: []) }
-      it 'includes the expected columns' do
-        described_class.package_items(export)
-        csv = parsed_csv(export)
-        expect(csv.headers)
-          .to include(
-                # NOTE: this is a subset of the columns in the CSV, not a definitive list
-                'title',
-                'creator',
-                'corporate_author',
-                'date_created',
-                'location_url',
-                'identifier',
-                'series',
-                'issue_number',
-                'collection',
-                'abstract',
-                'table_of_contents'
-              )
-      end
-
-      it 'includes works with no files attached' do
-        described_class.package_items(export)
-        csv = parsed_csv(export)
-        expect(csv.length).to eq 1
-      end
+      headers = parsed_csv(export).headers
+      expect(headers.first(4)).to eq ['internal_id', 'member_id', 'type', 'visibility']
+      expect(headers.last(2)).to eq ['abstract', 'table_of_contents'] # potentially long strings should go to the end
     end
   end
 
   describe 'temporary file cleanup' do
-    it 'removes the temporary directory after success' do
-      tmp_dir = nil
-      allow(Dir).to receive(:mktmpdir).and_wrap_original do |original, *args, &block|
-        original.call(*args) do |dir|
-          tmp_dir = dir
-          block.call(dir)
-        end
-      end
+    let(:packager) { described_class.new(export) }
+    let(:tmp_dir)  { File.dirname(packager.instance_variable_get(:@archive_root)) } # parent directory of the archive root
 
-      described_class.package_items(export)
+    it 'removes the temporary directory after success' do
+      packager.run
       expect(Dir.exist?(tmp_dir)).to be false
     end
 
-    it 'removes the temporary directory after failure', :aggregate_failures do
+    it 'removes the temporary directory after failure' do
       allow(ActiveFedora::Base).to receive(:find).and_raise(ActiveFedora::ObjectNotFoundError)
 
-      tmp_dir = nil
-      allow(Dir).to receive(:mktmpdir).and_wrap_original do |original, *args, &block|
-        original.call(*args) do |dir|
-          tmp_dir = dir
-          block.call(dir)
-        end
-      end
-
-      expect { described_class.package_items(export) }.to raise_error(ActiveFedora::ObjectNotFoundError)
+      expect { packager.run }.to raise_error(ActiveFedora::ObjectNotFoundError)
       expect(Dir.exist?(tmp_dir)).to be false
     end
   end
 
   describe 'visibility filtering' do
-    let(:export) { FactoryBot.create(:export, format: :bag, items: [publication.id, restricted_publication.id], filename: 'test_export') }
+    let(:export) { FactoryBot.create(:export, format: :zip, items: [publication.id, restricted_publication.id], filename: 'test_export') }
 
     it 'only includes "open" files in "open" exports', :aggregate_failures do
-      export.update!(visibility: 'open')
+      # Because this is the shortest export, we change the format to :bag to ensure we're testing end-to-end
+      # BagIt export functionality with real fedora objects. The BagWriter tests generally use mocks.
+      export.update!(format: :bag, visibility: 'open')
 
       item_count = described_class.package_items(export)
       expect(item_count).to eq 1
 
       # payload checks
-      zip_names = zip_filenames(export)
-      data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
-      expect(data_files).to contain_exactly(
-                              "test_export/data/#{publication.id}/pdf-sample.pdf"
-                            )
+      zip_names = zip_filenames(export).map { |path| path.delete_prefix("test_export/") }
+      expect(zip_names).to contain_exactly(
+                             'bagit.txt',
+                             'bag-info.txt',
+                             'manifest-sha256.txt',
+                             'tagmanifest-md5.txt',
+                             'tagmanifest-sha1.txt',
+                             'metadata.csv',
+                             "metadata/#{publication.id}.json",
+                             "data/#{publication.id}/pdf-sample.pdf"
+                           )
 
       # metadata checks
       csv = parsed_csv(export)
@@ -253,16 +218,16 @@ RSpec.describe ExportPackager do
       export.update!(visibility: 'authenticated')
       described_class.package_items(export)
       zip_names = zip_filenames(export)
-      data_files = zip_names.select { |e| e.match?('/data/.*[^/]\z') }
-      expect(data_files).to contain_exactly(
-                              "test_export/data/#{publication.id}/1/pdf-sample.pdf",
-                              "test_export/data/#{publication.id}/2/tiny.txt"
+      expect(zip_names).to contain_exactly(
+                              "test_export/metadata.csv",
+                              "test_export/#{publication.id}/1/pdf-sample.pdf",
+                              "test_export/#{publication.id}/2/tiny.txt"
+                              # does not include the restricted fileset
                             )
     end
 
     it 'includes all files in "restricted" exports', :aggregate_failures do
       export.update!(visibility: 'restricted')
-      export.update!(format: :zip)
       described_class.package_items(export)
       zip_names = zip_filenames(export)
 
