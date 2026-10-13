@@ -23,11 +23,7 @@ class Export < ApplicationRecord
   end
 
   def default_filename
-    base = "#{Rails.application.config.bag_prefix}_#{format}_#{items.first}"
-    collisions = ActiveStorage::Blob.where("filename LIKE ?", base + '%').count
-
-    return base unless collisions.positive?
-    base.concat('_', collisions.next.to_s)
+    "#{Rails.application.config.bag_prefix}_#{format}_#{items.first}"
   end
 
   def duplicate_records

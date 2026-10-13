@@ -89,10 +89,10 @@ RSpec.describe ExportPackager do
     describe 'filename' do
       context 'with no override' do
         let(:export) { FactoryBot.create(:export, format: :zip, items: [restricted_publication.id]) }
-        it 'has the expected default' do
-          default_filename = export.default_filename # capture now to avoid deduplication collisions
+        it 'has the expected default', :aggregate_failures do
           described_class.package_items(export)
-          expect(export.export_file.filename).to eq "#{default_filename}.zip"
+          expect(export.export_file.filename.base).to eq export.default_filename
+          expect(export.export_file.filename.extension).to eq 'zip'
         end
       end
 
