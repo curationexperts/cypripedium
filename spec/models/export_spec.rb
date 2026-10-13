@@ -89,8 +89,8 @@ RSpec.describe Export, type: :model do
   end
 
   describe '#format' do
-    it 'defaults to "bag"' do
-      expect(export.format).to eq 'bag'
+    it 'defaults to "zip"' do
+      expect(export.format).to eq 'zip'
     end
 
     it 'accepts :zip' do

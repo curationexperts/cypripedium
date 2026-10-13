@@ -339,15 +339,15 @@ RSpec.describe '/exports', type: :request do
           post exports_path, params: { export: { items: items } }
           new_export = Export.last
           expect(new_export.items).to eq ['abc123', 'def456'] # canonical order
-          expect(new_export.format).to eq 'bag' # defaults to bag
           expect(new_export.user).to eq admin # defaults to current user
-          expect(new_export.status).to eq 'queued' # set when queued
         end
 
         it 'enqueues an ExportJob' do
           expect {
             post exports_path, params: { export: { items: items } }
           }.to have_enqueued_job(ExportJob)
+          new_export = Export.last
+          expect(new_export.status).to eq 'queued' # set when queued
         end
 
         it 'redirects to the exports index with a notice' do

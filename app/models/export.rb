@@ -2,7 +2,7 @@
 
 class Export < ApplicationRecord
   enum :status, [:unknown, :queued, :working, :failed, :completed], default: :unknown
-  enum :format, [:zip, :bag], scopes: false, default: :bag
+  enum :format, [:zip, :bag], scopes: false, default: :zip
   enum :visibility, { open: 'open', authenticated: 'authenticated', restricted: 'restricted' }, scopes: false, default: 'open'
   belongs_to :user
   has_one_attached :export_file

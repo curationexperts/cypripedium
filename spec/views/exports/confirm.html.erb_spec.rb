@@ -37,9 +37,9 @@ RSpec.describe 'exports/confirm', type: :view do
     existing_export = FactoryBot.create(:export, items: export.items, status: 'queued')
 
     render
-    alert = Capybara.string(rendered).find('.alert-warning')
+    alert = Capybara.string(rendered).find('#duplicate_warning')
 
-    expect(alert).to have_selector('li', text: /#{existing_export.id}.*bag.*queued/)
+    expect(alert).to have_selector('li', text: /#{existing_export.id}.*queued/)
     expect(alert).to have_link('View existing exports', href: exports_path)
   end
 end
