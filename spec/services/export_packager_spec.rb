@@ -128,7 +128,7 @@ RSpec.describe ExportPackager do
 
   describe 'temporary file cleanup' do
     let(:packager) { described_class.new(export) }
-    let(:tmp_dir)  { File.dirname(packager.instance_variable_get(:@archive_root)) } # parent directory of the archive root
+    let(:tmp_dir)  { packager.instance_variable_get(:@tmp_dir) }
 
     it 'removes the temporary directory after success' do
       packager.run

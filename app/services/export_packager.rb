@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 require 'csv'
 
+# Generates a compressed archive of metadata and files
+# from an Export's item IDs and attaches it to the Export.
 class ExportPackager
   METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title,
                       :creator, :corporate_author, :date_created, :date_uploaded, :date_modified,
@@ -30,32 +32,38 @@ class ExportPackager
   # @return [Integer] number of works included after visibility filtering
   def run
     Dir.mktmpdir do |tmp_dir|
-      @archive_root = File.join(tmp_dir, 'archive')
-      build_package
-      zip_path = compress(tmp_dir)
-      attach(zip_path)
+      @tmp_dir = tmp_dir
+      build_archive
+      finalize_archive
+      attach_archive
     end
     @item_count
   end
 
   private
 
+  def archive_root
+    @archive_root = File.join(@tmp_dir, 'archive')
+  end
+
   def writer
     @writer ||= case @export.format
-                when 'zip' then ExportPackager::ZipWriter.new(@archive_root)
-                when 'bag' then ExportPackager::BagWriter.new(@archive_root)
+                when 'zip' then ExportPackager::ZipWriter.new(archive_root)
+                when 'bag' then ExportPackager::BagWriter.new(archive_root)
                 end
   end
 
   def permitted_visibilities
-    @visibility ||= VISIBILITY_FILTER[@export.visibility]
+    VISIBILITY_FILTER[@export.visibility]
   end
 
-  def build_package
+  def build_archive
     @export.items.each do |item_id|
-      work = ActiveFedora::Base.find(item_id)
-      add_item(work)
+      add_item(item_id)
     end
+  end
+
+  def finalize_archive
     writer.finalize(metadata_csv)
   end
 
@@ -65,7 +73,8 @@ class ExportPackager
     end
   end
 
-  def add_item(work)
+  def add_item(item_id)
+    work = ActiveFedora::Base.find(item_id)
     raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
     return unless permitted_visibilities.include?(work.visibility)
     add_metadata_for_item(work)
@@ -75,38 +84,43 @@ class ExportPackager
   end
 
   def add_metadata_for_item(work)
+    writer.write_item_metadata(work)
+    # rubocop:disable Layout/HashAlignment
     add_metadata_row(
-      internal_id: work.id,
-      type: work.class.to_s,
-      visibility: VisibilityLabel.for(work.visibility),
-      representative_id: work.representative_id,
-      title: work.title.join('|'),
-      creator: normalized_creators(work),
-      corporate_author: work.corporate_name&.join('|'),
-      date_created: work.date_created.join('|'),
-      date_uploaded: work.date_uploaded&.strftime('%F'),
-      date_modified: work.date_modified&.strftime('%F'),
-      location_url: Rails.application.routes.url_helpers.polymorphic_url(work, host: Rails.application.config.rdf_uri),
-      identifier: work.identifier.join('|'),
-      series: work.series.join('|'),
-      issue_number: work.issue_number.join('|'),
-      collection: work.member_of_collections.to_a.join('|'),
-      abstract: work.abstract.join('|'),
-      table_of_contents: work.table_of_contents.join('|')
+      internal_id:        work.id,
+      type:               work.class.to_s,
+      visibility:         VisibilityLabel.for(work.visibility),
+      representative_id:  work.representative_id,
+      title:              work.title.join('|'),
+      creator:            normalized_creators(work),
+      corporate_author:   work.corporate_name&.join('|'),
+      date_created:       work.date_created.join('|'),
+      date_uploaded:      work.date_uploaded&.strftime('%F'),
+      date_modified:      work.date_modified&.strftime('%F'),
+      location_url:       Rails.application.routes.url_helpers.polymorphic_url(work, host: Rails.application.config.rdf_uri),
+      identifier:         work.identifier.join('|'),
+      series:             work.series.join('|'),
+      issue_number:       work.issue_number.join('|'),
+      collection:         work.member_of_collections.to_a.join('|'),
+      abstract:           work.abstract.join('|'),
+      table_of_contents:  work.table_of_contents.join('|')
     )
+    # rubocop:enable Layout/HashAlignment
   end
 
   def add_metadata_for_file(work_id, file_set, path)
+    # rubocop:disable Layout/HashAlignment
     add_metadata_row(
-      internal_id: work_id,
-      member_id: file_set.id,
-      type: 'File',
-      visibility: VisibilityLabel.for(file_set.visibility),
-      date_uploaded: file_set.date_uploaded&.strftime('%F'),
-      location_url: Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
-      filename: file_set.original_file.file_name.first,
-      path: path
+      internal_id:        work_id,
+      member_id:          file_set.id,
+      type:               'File',
+      visibility:         VisibilityLabel.for(file_set.visibility),
+      date_uploaded:      file_set.date_uploaded&.strftime('%F'),
+      location_url:       Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
+      filename:           file_set.original_file.file_name.first,
+      path:               path
     )
+    # rubocop:enable Layout/HashAlignment
   end
 
   def add_metadata_row(row)
@@ -120,8 +134,6 @@ class ExportPackager
   end
 
   def add_members(work)
-    writer.write_item_metadata(work)
-
     # add the work's files to package
     file_sets = visible_file_sets(work)
     count = file_sets.count
@@ -143,20 +155,11 @@ class ExportPackager
     index.to_s.rjust(count.to_s.length, '0')
   end
 
-  def compress(tmp_dir)
-    zip_path = File.join(tmp_dir, "#{@export.base_filename}.zip")
-    Zip::File.add_recursive(zip_path, @archive_root, prefix: @export.base_filename)
-
-    zip_path
-  end
-
-  def attach(zip_path)
-    File.open(zip_path) do |file|
-      @export.export_file.attach(
-        io: file,
-        filename: "#{@export.base_filename}.zip",
-        content_type: 'application/zip'
-      )
+  def attach_archive
+    output_file = File.join(@tmp_dir, "export.zip")
+    Zip::File.add_recursive(output_file, archive_root, prefix: @export.base_filename)
+    File.open(output_file) do |file|
+      @export.export_file.attach(io: file, filename: "#{@export.base_filename}.zip", content_type: 'application/zip')
     end
   end
 end
