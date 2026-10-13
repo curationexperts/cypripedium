@@ -4,46 +4,48 @@ class ExportJob < ApplicationJob
   after_enqueue { |job| job.arguments.first.queued! }
 
   def perform(export)
-    @export = export
-    @export.working!
+    export.working!
 
-    @item_count = ExportPackager.package_items(@export)
+    item_count = ExportPackager.package_items(export)
 
-    @export.completed!
-    notify(success: true)
+    export.completed!
+    notify_success(export, item_count)
 
   rescue StandardError => e
-    @export.update!(status: :failed, message: e.message)
-    notify(success: false)
+    export.update!(status: :failed, message: e.message)
+    notify_failure(export)
   end
 
   private
 
-  def notify(success:)
-    return if @export.user.guest?
-    subject = success ? 'Export completed' : 'Export failed'
-    message = success ? success_message : failure_message
-    User.system_user.send_message(@export.user, message, subject)
+  def notify_success(export, item_count)
+    return if export.user.guest?
+    User.system_user.send_message(export.user, success_message(export, item_count), 'Export completed')
+  end
+
+  def notify_failure(export)
+    return if export.user.guest?
+    User.system_user.send_message(export.user, failure_message(export), 'Export failed')
   end
 
   # rubocop:disable Rails/OutputSafety
-  def success_message
+  def success_message(export, item_count)
     <<~MSG.html_safe
       <div>
-        Your export (#{@export.id}) containing #{@item_count} #{'item'.pluralize(@item_count)}#{' '}
+        Your export (#{export.id}) containing #{item_count} #{'item'.pluralize(item_count)}#{' '}
         is available for download at
-        <a href="#{Rails.application.routes.url_helpers.export_download_path(@export)}">
-          #{@export.base_filename}.zip
+        <a href="#{Rails.application.routes.url_helpers.export_download_path(export)}">
+          #{export.base_filename}.zip
         </a>
       </div>
     MSG
   end
 
-  def failure_message
+  def failure_message(export)
     <<~MSG.html_safe
       <div>
-        Your export (#{@export.id}) failed with the following error:
-        <pre>#{ERB::Util.html_escape(@export.message)}</pre>
+        Your export (#{export.id}) failed with the following error:
+        <pre>#{ERB::Util.html_escape(export.message)}</pre>
       </div>
     MSG
   end
