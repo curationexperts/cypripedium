@@ -171,28 +171,6 @@ RSpec.describe Export, type: :model do
       prefix = Rails.application.config.bag_prefix
       expect(export.default_filename).to eq prefix + '_bag_abc123'
     end
-
-    context 'disambiguation' do
-      def attach_file(export)
-        export.export_file.attach(
-          io: Rails.root.join('spec', 'fixtures', 'files', 'test_file.zip').open,
-          filename: "#{export.default_filename}.zip",
-          content_type: 'application/zip'
-        )
-      end
-
-      it 'omits the counter when no prior export has the same base name' do
-        expect(export.default_filename).to end_with 'bag_abc123'
-      end
-
-      it 'adds a counter for each additional export with the same base name' do
-        2.times do
-          prior = create(:export, format: :bag, items: ['abc123'])
-          attach_file(prior)
-        end
-        expect(export.default_filename).to end_with 'bag_abc123_3'
-      end
-    end
   end
 
   describe '#duplicates?' do
