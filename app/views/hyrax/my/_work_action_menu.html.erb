@@ -18,9 +18,19 @@
 
     <% if can? :create, Export %>
       <li class="dropdown-item" role="menuitem" tabindex="-1">
-        <%= button_to 'Create BagIt Export',
-                      main_app.confirm_exports_path,
-                      params: { export: { items: [document.id], format: :bag } },
+        <%= button_to 'Create Zip Export',
+                      main_app.exports_path,
+                      form: { id: "zip-export-#{document.id}" },
+                      id:"submit-zip-export-#{document.id}",
+                      params: { export: { items: [document.id], visibility: document.visibility, format: :zip } },
+                      class: 'btn btn-link' %>
+      </li>
+      <li class="dropdown-item" role="menuitem" tabindex="-1">
+        <%= button_to 'Create Bag Export',
+                      main_app.exports_path,
+                      form: { id: "bag-export-#{document.id}" },
+                      id:"submit-bag-export-#{document.id}",
+                      params: { export: { items: [document.id], visibility: document.visibility, format: :bag } },
                       class: 'btn btn-link' %>
       </li>
     <% end %>
