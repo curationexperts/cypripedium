@@ -72,3 +72,26 @@
     }
   }
 }
+
+#confirm-export-form {
+  width: fit-content;
+  #export_filename {
+    width: 30rem;
+  }
+
+  .form-group {
+    background-color: #f8f9fa;
+    border: 0.5px solid var(--frbm-dark-contrast-blue);
+    border-left: 0.75rem solid var(--frbm-dark-contrast-blue);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    .btn { width: auto; }
+  }
+}
