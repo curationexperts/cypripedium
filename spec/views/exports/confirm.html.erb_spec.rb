@@ -27,10 +27,21 @@ RSpec.describe 'exports/confirm', type: :view do
     expect(rendered).to have_link('Cancel', href: hyrax.dashboard_works_path)
   end
 
+  it 'displays format options', :aggregate_failures do
+    render
+    expect(rendered).to have_selector('input[type="radio"][name="export[format]"][value="zip"][checked="checked"]')
+    expect(rendered).to have_selector('input[type="radio"][name="export[format]"][value="bag"]:not([checked])')
+  end
+
   it 'displays visibility options' do
     render
     expect(rendered).to have_selector('input[type="radio"][name="export[visibility]"][value="open"]')
     expect(rendered).to have_selector('input[type="radio"][name="export[visibility]"][value="restricted"]')
+  end
+
+  it 'displays a filename override option' do
+    render
+    expect(rendered).to have_selector('input[type="text"][name="export[filename]"][placeholder="frbm_zip_abc123"]')
   end
 
   it 'displays a warning for duplicate exports', :aggregate_failures do

@@ -1,8 +1,8 @@
-// Event listener for the "Create Bag Export" button on the works index page.
+// Event listener for the "Create Export Package" button on the works index page.
 // Copies selected work ids to a hidden form field and submits the form..
 
 document.addEventListener('DOMContentLoaded', function () {
-  var button = document.getElementById('create-bag-export')
+  var button = document.getElementById('create-export-package')
   if (!button) return
 
   button.addEventListener('click', function (event) {
