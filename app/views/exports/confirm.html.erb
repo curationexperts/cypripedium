@@ -2,73 +2,81 @@
   <h1><span class="fa fa-archive" aria-hidden="true"></span>Export Options</h1>
 <% end %>
 
-<%= form_with model: @export, id: 'confirm_export_form', url: exports_path, method: :post, local: true do |f| %>
+<%= form_with model: @export, id: 'confirm-export-form', url: exports_path, method: :post, local: true, class: 'card' do |f| %>
+  <%# Pass-through the items selected in the previous step %>
   <% @export.items.each do |item_id| %>
     <%= f.hidden_field :items, multiple: true, value: item_id, id: nil %>
   <% end %>
 
-  <div class="form-group row">
-    <%= f.label :format, 'Format' %>
-    <div class="form-check form-check-inline">
-      <%= f.radio_button :format, 'zip', class: 'form-check-input' %>
-      <%= f.label :format_zip, class: 'form-check-label' do %>
-        Plain Zip
-      <% end %>
-    </div>
-    <div class="form-check form-check-inline">
-      <%= f.radio_button :format, 'bag', class: 'form-check-input' %>
-      <%= f.label :format_bag, class: 'form-check-label' do %>
-        BagIt
-      <% end %>
-    </div>
-  </div>
 
-  <div class="form-group row">
-    <%= f.label :filename, 'Output file name' %>
-    <%= f.text_field :filename,
-                     placeholder: @export.default_filename,
-                     class: "form-control #{'is-invalid' if @export.errors[:filename].any?}" %>
-    <% if @export.errors[:filename].any? %>
-      <div class="invalid-feedback d-block">
-        <%= @export.errors[:filename].to_sentence %>
+  <div class="card-body">
+    <div class="form-group">
+      <%= f.label :format, 'Format', class: 'd-block font-weight-bold text-left' %>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :format, 'zip', class: 'form-check-input' %>
+        <%= f.label :format_zip, class: 'form-check-label' do %>
+          Plain Zip
+        <% end %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :format, 'bag', class: 'form-check-input' %>
+        <%= f.label :format_bag, class: 'form-check-label' do %>
+          BagIt
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :filename, 'Output file name', class: 'd-block font-weight-bold text-left' %>
+      <%= f.text_field :filename,
+                       placeholder: @export.default_filename,
+                       class: "form-control #{'is-invalid' if @export.errors[:filename].any?}" %>
+      <% if @export.errors[:filename].any? %>
+        <div class="invalid-feedback d-block">
+          <%= @export.errors[:filename].to_sentence %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :visibility, 'Visibility', class: 'd-block font-weight-bold text-left' %>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :visibility, 'open', class: 'form-check-input' %>
+        <%= f.label :visibility_open, class: 'form-check-label' do %>
+          <%= visibility_badge('open') %>
+        <% end %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :visibility, 'restricted', class: 'form-check-input' %>
+        <%= f.label :visibility_restricted, class: 'form-check-label' do %>
+          <%= visibility_badge('restricted') %>
+        <% end %>
+      </div>
+    </div>
+
+    <% if @export.duplicates? %>
+      <% duplicates = @export.duplicate_records.to_a %>
+      <div id="duplicate_warning" class="alert alert-warning">
+        <% if duplicates.one? %>
+          An export with the selected items already exists:
+        <% else %>
+          Exports with the selected items already exist:
+        <% end %>
+        <ul>
+          <% duplicates.each do |duplicate| %>
+            <li>Export #<%= duplicate.id %> — <%= duplicate.format %> — <%= duplicate.status %></li>
+          <% end %>
+        </ul>
+        <%= link_to 'View existing exports', exports_path %>
       </div>
     <% end %>
-  </div>
 
-  <div class="form-group row">
-    <%= f.label :visibility, 'Visibility' %>
-    <div class="form-check form-check-inline">
-      <%= f.radio_button :visibility, 'open', class: 'form-check-input' %>
-      <%= f.label :visibility_open, class: 'form-check-label' do %>
-        <%= visibility_badge('open') %>
-      <% end %>
-    </div>
-    <div class="form-check form-check-inline">
-      <%= f.radio_button :visibility, 'restricted', class: 'form-check-input' %>
-      <%= f.label :visibility_restricted, class: 'form-check-label' do %>
-        <%= visibility_badge('restricted') %>
-      <% end %>
+    <div class="form-actions">
+      <%= f.submit 'Submit Export Job', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', hyrax.dashboard_works_path, class: 'btn btn-default ml-auto' %>
     </div>
   </div>
 
-  <% if @export.duplicates? %>
-    <% duplicates = @export.duplicate_records.to_a %>
-    <div id="duplicate_warning" class="alert alert-warning">
-      <% if duplicates.one? %>
-        An export with the selected items already exists:
-      <% else %>
-        Exports with the selected items already exist:
-      <% end %>
-      <ul>
-        <% duplicates.each do |duplicate| %>
-          <li>Export #<%= duplicate.id %> — <%= duplicate.format %> — <%= duplicate.status %></li>
-        <% end %>
-      </ul>
-      <%= link_to 'View existing exports', exports_path %>
-    </div>
-  <% end %>
 
-  <%= f.submit 'Submit Export Job', class: 'btn btn-primary' %>
-  <%= link_to 'Cancel', hyrax.dashboard_works_path, class: 'btn btn-default' %>
 <% end %>
 
