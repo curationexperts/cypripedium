@@ -9,19 +9,21 @@ compressed `.zip` archive. Two formats are available:
 | **ZIP** | Sharing with researchers, colleagues, or the public               | A folder for each work, its files, and a `metadata.csv` spreadsheet |
 | **Bag** | Preservation, transfer to other systems, and automated processing | Everything in a ZIP export, plus checksums and per-work JSON metadata in the standard BagIt layout |
 
+> **Terminology:** UI labels may vary in wording and capitalization ("ZIP", "Zip", "Plain Zip";
+> "Bag", "BagIt"). These are interchangeable and are not discrepancies.
+
 ## Creating Exports
 1. In the dashboard, go to the **Works** tab.
 2. Choose the works to include:
     - Click the checkbox next to each work you want to include.
     - Then click the "**Create Export Package**" button at the top of the list.
     - On the **Export Options** page, set:
-        - **Output file name** (optional). Leave it blank to use the default name shown in the box 
-          (see [File names](#export-file-names)). A custom name must start with a letter, can contain only letters,
-          numbers, periods, hyphens, and underscores, and can be up to 250 characters long.
+        - **Output file name** (optional). Leave it blank to use the default name
+          (see [File names](#export-file-names)).
         - **Format:** ZIP (default) or Bag (BagIt)
         - **Visibility:** Public, or Private (see [Choosing visibility](#choosing-visibility)).
-      >If an export with the same works already exists, the **Export Options** page shows a warning that lists the
-      existing exports. You can still create a new export.
+      >If an export with the same works already exists, regardless of format, the **Export Options** page shows a 
+      warning that lists the existing exports and their format. You can still create a new export.
 3. Click **Submit Export Job**. You'll be taken to the **Exports** page, where the new export shows as *queued*.
 
 **NOTE:** There is also an express single item export option accessed from the **Actions** menu in each work row. 
@@ -57,6 +59,8 @@ download "Public" zip exports: this allows us to build the single item archives 
         the same text as `Hyrax::PermissionBadge`.
     > - Filtering lives in `ExportPackager::VISIBILITY_FILTER` and applies to both formats.
     > - Download permissions are in `Ability`. "authenticated" means a persisted user, not a Hyrax guest user.
+    > - `authenticated` works do not currently occur in production data, so we don't feature-level testing. 
+    >   We should also minimize unit testing related to the `authenticated` visibility level.
 
 ## Tracking and managing exports
 Click **Exports** in the Dashboard sidebar to open the **Exported Archive Files** page. Each export shows:
@@ -175,10 +179,14 @@ Both formats include `metadata.csv` at the top level of the export.
 If you leave **Output file name** blank, the export is named
 `frbm_<format>_<first work ID>`, for example `frbm_zip_abc123.zip`. The top-level folder inside
 the archive has the same name.
+A custom name must start with a letter, can contain only letters,
+numbers, periods, hyphens, and underscores, and can be up to 250 characters long.
 
 > **Implementation Details**
 > - The default comes from `Export#default_filename`, using the prefix in `config.bag_prefix`.
 > - "First work ID" means first after sorting, because export items are stored sorted.
+> - The placeholder uses the default export format (ZIP).
+> - The placeholder is not updated when format radio buttons are changed.
 
 ## Limitations
 - Only **Publication**, **Dataset**, and **Conference Proceeding** works can be exported. If you select
