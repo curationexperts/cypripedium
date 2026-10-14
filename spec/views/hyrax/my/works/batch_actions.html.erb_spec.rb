@@ -16,9 +16,9 @@ RSpec.describe 'hyrax/my/works/_batch_actions', type: :view do
       allow(view).to receive(:can?).with(:create, Export).and_return(true)
     end
 
-    it 'displays the Create BagIt Export button' do
+    it 'displays the Create Export Package button' do
       render partial: 'hyrax/my/works/batch_actions'
-      expect(rendered).to have_button('Create BagIt Export')
+      expect(rendered).to have_button(id: 'create-export-package')
     end
 
     it 'includes a form targeting the exports path' do
@@ -26,9 +26,9 @@ RSpec.describe 'hyrax/my/works/_batch_actions', type: :view do
       expect(rendered).to have_selector("form#export-form[action='#{main_app.confirm_exports_path}'][method='post']")
     end
 
-    it 'includes the bag format as a hidden field' do
+    it 'includes a hidden items field' do
       render partial: 'hyrax/my/works/batch_actions'
-      expect(rendered).to have_selector("input[name='export[format]'][value='bag']", visible: :hidden)
+      expect(rendered).to have_selector("input[name='export[items][]'][value='']", visible: :hidden)
     end
 
     it 'includes an authenticity token' do
@@ -38,9 +38,9 @@ RSpec.describe 'hyrax/my/works/_batch_actions', type: :view do
   end
 
   context 'for users without Export permissions' do
-    it 'does not display the Create BagIt Export button' do
+    it 'does not display the Create button' do
       render partial: 'hyrax/my/works/batch_actions'
-      expect(rendered).not_to have_button('Create BagIt Export')
+      expect(rendered).not_to have_button(id: 'create-export-package')
     end
 
     it 'does not include the export form' do

@@ -8,6 +8,22 @@
   <% end %>
 
   <div class="form-group row">
+    <%= f.label :format, 'Format' %>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :format, 'zip', class: 'form-check-input' %>
+      <%= f.label :format_zip, class: 'form-check-label' do %>
+        Plain Zip
+      <% end %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :format, 'bag', class: 'form-check-input' %>
+      <%= f.label :format_bag, class: 'form-check-label' do %>
+        BagIt
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group row">
     <%= f.label :filename, 'Output file name' %>
     <%= f.text_field :filename,
                      placeholder: @export.default_filename,

@@ -13,7 +13,7 @@ compressed `.zip` archive. Two formats are available:
 1. In the dashboard, go to the **Works** tab.
 2. Choose the works to include:
     - Click the checkbox next to each work you want to include.
-    - Then click the "**Export Selected**" button at the top of the list.
+    - Then click the "**Create Export Package**" button at the top of the list.
     - On the **Export Options** page, set:
         - **Output file name** (optional). Leave it blank to use the default name shown in the box 
           (see [File names](#export-file-names)). A custom name must start with a letter, can contain only letters,

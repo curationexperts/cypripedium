@@ -335,6 +335,18 @@ RSpec.describe '/exports', type: :request do
           expect(new_export.visibility).to eq 'restricted'
         end
 
+        it 'accepts a format parameter' do
+          post exports_path, params: { export: { items: items, format: 'bag' } }
+          new_export = Export.last
+          expect(new_export.format).to eq 'bag'
+        end
+
+        it 'defaults the format to "zip"' do
+          post exports_path, params: { export: { items: items } }
+          new_export = Export.last
+          expect(new_export.format).to eq 'zip'
+        end
+
         it 'stores items in canonical order', :aggregate_failures do
           post exports_path, params: { export: { items: items } }
           new_export = Export.last
