@@ -33,8 +33,7 @@ set to match the work's visibility. Using the express export option does not per
 not provide a duplication check or warning.
 
 ## Choosing visibility
-The visibility you choose controls which works and files are included in your export. Additionally, any user can
-download "Public" zip exports: this allows us to build the single item archives provided on each work's show page.
+The visibility you choose controls which works and files are included in your export.
 
 | Export visibility | Works and files included | Who can download |
 |---|---|---|
