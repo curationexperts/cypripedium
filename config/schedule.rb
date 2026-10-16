@@ -26,8 +26,3 @@
 every :day, at: '1:00am' do
   command '/usr/bin/find /tmp -type f -mtime +7 -user deploy -execdir /bin/rm – {} \\;'
 end
-
-# Remove older zip files from bulk downloads
-every :day, at: '1:05am' do
-  rake 'cleanup:zips'
-end

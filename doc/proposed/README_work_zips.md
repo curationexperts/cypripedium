@@ -20,7 +20,7 @@ When the user reloads the page, if the background job isn't finished yet, instea
 
 ### Config
 
-You can configure the root directory where Rails will put the zip files by setting an environment variable in the shell that runs the Sidekiq workers.  If you don't set the environment variable, the zips will be placed in a default location.  See the `path_root` method in [the WorkZip class](app/models/work_zip.rb)
+You can configure the root directory where Rails will put the zip files by setting an environment variable in the shell that runs the Sidekiq workers.  If you don't set the environment variable, the zips will be placed in a default location.  See the `path_root` method in [the WorkZip class](../../app/models/work_zip.rb)
 
 ```bash
 export CYPRIPEDIUM_ZIP_DIR="/Users/valerie/work/dce/projects/fed_reserve/cypripedium/tmp/zips"
@@ -28,11 +28,11 @@ export CYPRIPEDIUM_ZIP_DIR="/Users/valerie/work/dce/projects/fed_reserve/cypripe
 
 If you change the directory where the zip files are stored, you probably also want to edit the scheduled cleanup task to make sure it's cleaning up the correct directories.
 
-[Config for Scheduled Tasks](config/schedule.rb)
+[Config for Scheduled Tasks](../../config/schedule.rb)
 
-[Rake task that does the cleanup](lib/tasks/cleanup.rake)
+[Rake task that does the cleanup](../../lib/tasks/cleanup.rake)
 
 ### More Info
 
-See the comments in [the WorkZip class](app/models/work_zip.rb)
+See the comments in [the WorkZip class](../../app/models/work_zip.rb)
 
