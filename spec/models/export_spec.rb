@@ -168,8 +168,7 @@ RSpec.describe Export, type: :model do
     let(:export) { build(:export, format: :bag, items: ['abc123']) }
 
     it 'includes segments in the expected order' do
-      prefix = Rails.application.config.bag_prefix
-      expect(export.default_filename).to eq prefix + '_bag_abc123'
+      expect(export.default_filename).to eq 'frbm_bag_abc123'
     end
   end
 

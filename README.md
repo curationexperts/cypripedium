@@ -10,18 +10,10 @@ The Research Database is a digital repository designed for public discovery of t
 [![Coverage Status](https://coveralls.io/repos/github/curationexperts/cypripedium/badge.svg?branch=main)](https://coveralls.io/github/curationexperts/cypripedium?branch=main)
 
 
-## BagIt Functionality
+## Export Functionality
 
-BagIt archives can be created from the command line using the bag rake task:
-
-`USER_ID=1 BAG_PATH=/tmp/bags rake bag:create[publication1,publication2,publication3]`
-
-`USER_ID` is the id of the user that will be notified.
-
-The bag will be located in the directory set by the `ENV['BAG_PATH']` environment variable or you can specify it when running the rake task. It will be named `frbm_<time-stamp>.tar` (time stamp being a unix time stamp). The contents of the bag will consist of all the attached files in the specified publications. The created bag will use `sha256` to create checksums for the files.
-
-To download a bag that has been created you can visit the route: `/bag/frbm_<time-stamp>.tar`.
-
+Compressed archives can be exported from the Research Database. For details see the export feature description at 
+[features/export.md](features/export.md).
 
 ## Local Development with Docker
 

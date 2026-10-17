@@ -23,7 +23,7 @@ class Export < ApplicationRecord
   end
 
   def default_filename
-    "#{Rails.application.config.bag_prefix}_#{format}_#{items.first}"
+    "frbm_#{format}_#{items.first}"
   end
 
   def duplicate_records

@@ -182,7 +182,8 @@ A custom name must start with a letter, can contain only letters,
 numbers, periods, hyphens, and underscores, and can be up to 250 characters long.
 
 > **Implementation Details**
-> - The default comes from `Export#default_filename`, using the prefix in `config.bag_prefix`.
+> - The default comes from `Export#default_filename`. 
+> - The default uses the fixed prefix `frbm`.
 > - "First work ID" means first after sorting, because export items are stored sorted.
 > - The placeholder uses the default export format (ZIP).
 > - The placeholder is not updated when format radio buttons are changed.

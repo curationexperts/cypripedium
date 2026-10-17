@@ -304,14 +304,6 @@ Hyrax.config do |config|
   ## Configure index adapter for Valkyrie::Resources to use solr readonly indexer
   config.index_adapter = :solr_index
 
-  ## Fedora import/export tool
-  #
-  # Path to the Fedora import export tool jar file
-  # config.import_export_jar_file_path = "tmp/fcrepo-import-export.jar"
-  #
-  # Location where BagIt files should be exported
-  # config.bagit_dir = "tmp/descriptions"
-
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
   begin
     if defined? BrowseEverything
