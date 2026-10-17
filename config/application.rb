@@ -40,9 +40,6 @@ module Cypripedium
     # Set the URI for the RDF exports. Also used outside of requests to set the default hostname
     config.rdf_uri = ENV['RDF_URI'] || 'https://researchdatabase.minneapolisfed.org'
 
-    config.bag_prefix = 'frbm'
-    config.bag_path = ENV['BAG_PATH'] || Rails.root.join('tmp', 'bags')
-
     # Output logs in JSON format
     config.rails_semantic_logger.format = :json
     config.semantic_logger.application = Rails.application.class.module_parent_name

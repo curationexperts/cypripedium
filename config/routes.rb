@@ -45,9 +45,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/bag/:file_name', to: 'bag#download'
-  post '/bag/create', to: 'bag#create'
-
   scope '/admin' do
     resources :exports, only: [:index, :create, :destroy] do
       member { get :items }
