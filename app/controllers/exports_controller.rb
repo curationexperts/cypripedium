@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ExportsController < ApplicationController
+  include ActiveStorage::Streaming
+
   load_and_authorize_resource
   with_themed_layout 'dashboard'
 
@@ -42,7 +44,7 @@ class ExportsController < ApplicationController
   # GET /exports/downloads/:id
   def download
     if @export.export_file.attached?
-      redirect_to rails_blob_url(@export.export_file, disposition: 'attachment')
+      send_blob_stream(@export.export_file, disposition: 'attachment')
     else
       render404
     end
