@@ -70,126 +70,101 @@ RSpec.describe '/exports', type: :request do
   end
 
   describe 'GET /exports/downloads/:id' do
-    let(:attached_zip) { FactoryBot.create(:export, format: :zip, export_file: test_zip) }
-    let(:attached_bag) { FactoryBot.create(:export, format: :bag, export_file: test_zip) }
     let(:test_zip) { fixture_file_upload('test_file.zip', 'application/zip') }
 
-    describe 'by' do
+    describe 'for zips' do
       let(:public_zip) { FactoryBot.create(:export, format: :zip, visibility: :open, export_file: test_zip) }
       let(:authenticated_zip) { FactoryBot.create(:export, format: :zip, visibility: :authenticated, export_file: test_zip) }
       let(:restricted_zip) { FactoryBot.create(:export, format: :zip, visibility: :restricted, export_file: test_zip) }
 
-      context 'administrators' do
+      context 'by administrators' do
         before { sign_in admin }
-        it 'permits "open" export downloads' do
+        it 'permits download of "open" archives as attachments', :aggregate_failures do
           get export_download_path(public_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to start_with('PK')
+          expect(response.headers['Content-Disposition']).to include('filename="test_file.zip"')
         end
 
-        it 'permits "authenticated" export downloads' do
+        it 'permits download of "authenticated" archives' do
           get export_download_path(authenticated_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
         end
 
-        it 'permits "restricted" export downloads' do
+        it 'permits download of "restricted" archives' do
           get export_download_path(restricted_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
         end
       end
 
-      context 'regular users' do
+      context 'by regular users' do
         before { sign_in user }
-        it 'permits "open" export downloads' do
+        it 'permits download of "open" archives' do
           get export_download_path(public_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
         end
 
-        it 'permits "authenticated" export downloads' do
+        it 'permits download of "authenticated" archives' do
           get export_download_path(authenticated_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
         end
 
-        it 'BLOCKS "restricted" export downloads' do
+        it 'blocks download of "restricted" archives' do
           get export_download_path(restricted_zip)
-          expect(response).to be_not_found
+          expect(response).to have_http_status(:not_found)
         end
       end
 
-      context 'guests' do
+      context 'by guests' do
         before { sign_out user }
 
-        it 'permits "open" export downloads' do
+        it 'permits download of "open" archives' do
           get export_download_path(public_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
+          expect(response).to have_http_status(:ok)
         end
 
-        it 'BLOCKS "authenticated" export downloads' do
+        it 'blocks download of "authenticated" archives' do
           get export_download_path(authenticated_zip)
-          expect(response).to be_not_found
+          expect(response).to have_http_status(:not_found)
         end
 
-        it 'BLOCKS "restricted" export downloads' do
+        it 'blocks download of "restricted" archives' do
           get export_download_path(restricted_zip)
-          expect(response).to be_not_found
-        end
-      end
-    end
-
-    context 'for a zip export' do
-      context 'as an administrator' do
-        before { sign_in admin }
-
-        it 'redirects to the download' do
-          get export_download_path(attached_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
-        end
-      end
-
-      context 'as a regular user' do
-        before { sign_in user }
-
-        it 'redirects to the download' do
-          get export_download_path(attached_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
-        end
-      end
-
-      context 'when not logged in' do
-        it 'redirects to the download' do
-          get export_download_path(attached_zip)
-          expect(response).to redirect_to(/active_storage\/blobs/)
-        end
-      end
-    end
-
-    context 'for a bag export' do
-      context 'as an administrator' do
-        before { sign_in admin }
-
-        it 'redirects to the download' do
-          get export_download_path(attached_bag)
-          expect(response).to redirect_to(/active_storage\/blobs/)
-        end
-      end
-
-      context 'as a regular user' do
-        before { sign_in user }
-
-        it 'returns not found' do
-          get export_download_path(attached_bag)
-          expect(response).to have_http_status(:not_found)
-        end
-      end
-
-      context 'when not logged in' do
-        it 'returns not found' do
-          get export_download_path(attached_bag)
           expect(response).to have_http_status(:not_found)
         end
       end
     end
 
-    context 'when the export has no attached file' do
+    context 'for bags' do
+      let(:bag_export) { FactoryBot.create(:export, format: :bag, export_file: test_zip) }
+
+      context 'by administrators' do
+        before { sign_in admin }
+
+        it 'permits download of archives' do
+          get export_download_path(bag_export)
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'by regular users' do
+        before { sign_in user }
+
+        it 'blocks download of archives' do
+          get export_download_path(bag_export)
+          expect(response).to have_http_status(:not_found)
+        end
+      end
+
+      context 'by guests' do
+        it 'blocks download of archives' do
+          get export_download_path(bag_export)
+          expect(response).to have_http_status(:not_found)
+        end
+      end
+    end
+
+    context 'when no file is attached' do
       before { sign_in admin }
 
       it 'returns not found' do
@@ -198,7 +173,7 @@ RSpec.describe '/exports', type: :request do
       end
     end
 
-    context 'when the export does not exist' do
+    context 'when the ID does not exist' do
       it 'returns not found' do
         get export_download_path(id: 'nonexistent')
         expect(response).to have_http_status(:not_found)
