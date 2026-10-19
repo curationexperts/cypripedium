@@ -144,13 +144,22 @@ to match orgnizational style guidelines
   }
 }
 
+#search-form-header {
+  label[for="search-field-header"] {
+    display: none;
+  }
+
+  .input-group {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 #search-field-header {
   border-color: darkgray;
 }
 
 #search-submit-header {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
   color: black;
   background-color: var(--frbm-goldenrod);
   border-color: var(--frbm-pirate-gold)
