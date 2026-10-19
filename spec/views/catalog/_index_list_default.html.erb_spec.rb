@@ -18,7 +18,7 @@ RSpec.describe 'catalog/_index_list_default.html.erb', type: :view do
 
   it 'separates creators with semicolons' do
     render 'catalog/index_list_default', document: document
-    expect(rendered).to have_selector('tr.creator td',
+    expect(rendered).to have_selector('div.row.creator dd',
                                       exact_text: 'author, first; Creator, Second; and Originator, Third')
   end
 end

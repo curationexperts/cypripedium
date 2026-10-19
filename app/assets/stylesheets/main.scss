@@ -165,6 +165,14 @@ to match orgnizational style guidelines
   border-color: var(--frbm-pirate-gold)
 }
 
+/* Search results */
+#search-results {
+  dl.metadata {
+    dt { width: 10rem; }
+    dd p:last-child { margin-bottom: 0; }
+  }
+}
+
 /*
 HOMEPAGE Main Content Styling tweaks
  */
