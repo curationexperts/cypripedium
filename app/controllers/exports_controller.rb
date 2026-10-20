@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ExportsController < ApplicationController
-  include ActiveStorage::Streaming
-
   load_and_authorize_resource
   with_themed_layout 'dashboard'
 
@@ -42,14 +40,11 @@ class ExportsController < ApplicationController
   end
 
   # GET /exports/downloads/:id
-  def download
-    if @export.export_file.attached?
-      send_blob_stream(@export.export_file, disposition: 'attachment')
-    else
-      render404
-    end
-  end
+  # served by ExportDownloadsController#download
 
+  # GET /admin/exports/:id/items
+  # Renders the solr docs for the items in the export.
+  # Called using AJAX in the export#index view.
   def items
     ids = @export.items
     query = ids.map { |id| "id:#{RSolr.solr_escape(id)}" }.join(' OR ')

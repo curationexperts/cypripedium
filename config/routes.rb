@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   end
   # Since export download links will be publicly accessible, we do not
   # want them nested under the admin namespace.
-  get '/exports/downloads/:id', to: 'exports#download', as: 'export_download'
+  get '/exports/downloads/:id', to: 'export_downloads#download', as: 'export_download'
 
   resources :reports, only: [:index]
 

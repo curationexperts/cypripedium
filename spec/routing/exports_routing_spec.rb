@@ -26,8 +26,8 @@ RSpec.describe ExportsController, type: :routing do
   end
 
   describe 'public routes' do
-    it 'routes GET /exports/downloads/:id to #download' do
-      expect(get: '/exports/downloads/1').to route_to('exports#download', id: '1')
+    it 'routes GET /exports/downloads/:id to export_downloads#download' do
+      expect(get: '/exports/downloads/1').to route_to('export_downloads#download', id: '1')
     end
   end
 
