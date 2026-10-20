@@ -115,6 +115,7 @@ class ExportPackager
       member_id:          file_set.id,
       type:               'File',
       visibility:         VisibilityLabel.for(file_set.visibility),
+      title:              file_set.title.join('|'),
       date_uploaded:      file_set.date_uploaded&.strftime('%F'),
       location_url:       Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
       filename:           file_set.original_file.file_name.first,

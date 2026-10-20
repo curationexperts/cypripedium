@@ -162,10 +162,11 @@ Both formats include `metadata.csv` at the top level of the export.
 | `type` | Work type (`Publication`, `Dataset`, `ConferenceProceeding`) | `File` |
 | `visibility` | Public / FRBM / Private | Public / FRBM / Private |
 | `representative_id` | ID of the work's representative file | (blank) |
-| `title`, `creator`, `corporate_author`, `date_created`, `date_modified`, `identifier`, `series`, `issue_number`, `collection`, `abstract`, `table_of_contents` | From the work's metadata | (blank) |
+| `title` | From the work's metadata | Original filename or later manual edit |
+| `creator`, `corporate_author`, `date_created`, `date_modified`, `identifier`, `series`, `issue_number`, `collection`, `abstract`, `table_of_contents` | From the work's metadata | (blank) |
 | `date_uploaded` | Date the work was uploaded | Date the file was uploaded |
 | `location_url` | Link to the work page | Link to download the file |
-| `filename` | (blank) | File name |
+| `filename` | (blank) | Originally uploaded file name |
 | `path` | (blank) | Path to the file, relative to the export folder (ZIP) or its `data/` folder (Bag), e.g., `abc123/1/wp345.pdf` |
 
 > **Implementation Details**

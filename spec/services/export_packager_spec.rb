@@ -16,9 +16,9 @@ RSpec.describe ExportPackager do
 
   before(:all) do
     pdf_path = Rails.root.join('spec', 'fixtures', 'files', 'pdf-sample.pdf')
-    @pdf     = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('2020-07-31'))
+    @pdf     = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('2020-07-31'), title: ['Sample PDF v1'])
     @pdf_dup = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'restricted')
-    @pdf_alt = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('1999-10-27'))
+    @pdf_alt = FactoryBot.create(:file_set, content: File.open(pdf_path), visibility: 'open', date_uploaded: Time.zone.parse('1999-10-27'), title: ['Public File on Restricted Publication'])
     @txt     = FactoryBot.create(:file_set, content: File.open(Rails.root.join('spec', 'fixtures', 'files', 'tiny.txt')), visibility: 'authenticated')
 
     creator = FactoryBot.create(:creator, display_name: 'Smith, Jane')
@@ -199,7 +199,7 @@ RSpec.describe ExportPackager do
                       'member_id' => file_set.id,
                       'type' => 'File',
                       'visibility' => 'Public',
-                      'title' => nil,
+                      'title' => 'Sample PDF v1',
                       'filename' => 'pdf-sample.pdf',
                       'path' => "#{publication.id}/pdf-sample.pdf",
                       'date_uploaded' => '2020-07-31',
@@ -276,7 +276,7 @@ RSpec.describe ExportPackager do
                       'member_id' => restricted_publication_open_file_set.id,
                       'type' => 'File',
                       'visibility' => 'Public',
-                      'title' => nil,
+                      'title' => 'Public File on Restricted Publication',
                       'filename' => 'pdf-sample.pdf',
                       'path' => "#{restricted_publication.id}/pdf-sample.pdf",
                       'date_uploaded' => '1999-10-27',
