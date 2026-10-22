@@ -30,9 +30,33 @@ RSpec.describe ExportJob, type: :job do
     it 'sets status to :failed with an error message when an exception occurs', :aggregate_failures do
       # Stub Packaging error
       allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
-      described_class.perform_now(export)
+      expect { described_class.perform_now(export) }.to raise_error(StandardError)
       expect(export.reload.status).to eq 'failed'
+    end
+  end
+
+  describe 'exception handling' do
+    it 'raises the error' do
+      # Stub Packaging error
+      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
+      expect { described_class.perform_now(export) }.to raise_error(StandardError)
+    end
+
+    it 'sets the export message to the error message', :aggregate_failures do
+      # Stub Packaging error
+      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
+      expect { described_class.perform_now(export) }.to raise_error(StandardError)
       expect(export.reload.message).to eq 'Packaging failed'
+    end
+
+    it 'provides a default message when the error has no message', :aggregate_failures do
+      allow(ExportPackager).to receive(:package_items).and_raise(Ldp::Gone, '')
+      expect { described_class.perform_now(export) }.to raise_error(Ldp::Gone)
+      expect(export.reload.message).to eq 'Ldp::Gone'
+    end
+
+    it 'disables Sidekiq retries' do
+      expect(described_class.sidekiq_options['retry']).to be false
     end
   end
 
@@ -55,7 +79,7 @@ RSpec.describe ExportJob, type: :job do
           a_string_matching(/Packaging failed/), # body
           a_string_matching(/failed/i)           # subject
         )
-        described_class.perform_now(export)
+        expect { described_class.perform_now(export) }.to raise_error(StandardError)
       end
 
       it 'includes a link to the export file' do
@@ -84,7 +108,7 @@ RSpec.describe ExportJob, type: :job do
         allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
 
         expect(system_user).not_to receive(:send_message)
-        described_class.perform_now(export)
+        expect { described_class.perform_now(export) }.to raise_error(StandardError)
       end
     end
   end
