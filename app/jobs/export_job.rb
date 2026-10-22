@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ExportJob < ApplicationJob
+  # Disable retries; if this job fails, it will be discarded immediately.
+  sidekiq_options retry: false
+
+  # Update the export status when a job is queued for the export.
   after_enqueue { |job| job.arguments.first.queued! }
 
   def perform(export)
@@ -12,8 +16,9 @@ class ExportJob < ApplicationJob
     notify_success(export, item_count)
 
   rescue StandardError => e
-    export.update!(status: :failed, message: e.message)
+    export.update!(status: :failed, message: e.message.presence || e.class.name)
     notify_failure(export)
+    raise e
   end
 
   private
