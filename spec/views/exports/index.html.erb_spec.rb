@@ -6,7 +6,7 @@ RSpec.describe 'exports/index', type: :view do
   let(:admin) { create(:admin) }
 
   let(:completed_export) { create(:export, user: admin, format: :bag, items: ['abc123'], status: :completed, visibility: :restricted) }
-  let(:failed_export)    { create(:export, user: admin, format: :bag, items: ['def456'], status: :failed) }
+  let(:failed_export)    { create(:export, user: admin, format: :bag, items: ['def456'], status: :failed, message: 'unspecified error') }
   let(:queued_export)    { create(:export, user: admin, format: :bag, items: ['ghi789'], status: :queued, visibility: :authenticated) }
   let(:working_export)   { create(:export, user: admin, format: :bag, items: ['jkl012'], status: :working) }
 
@@ -33,10 +33,17 @@ RSpec.describe 'exports/index', type: :view do
   end
 
   it 'has a download link for completed exports' do
+    # We need an actual attachment for this test
+    completed_export.export_file.attach(io: StringIO.new('zip'), filename: 'export.zip', content_type: 'application/zip')
     render
-    within("tr#export_#{completed_export.id}") do
-      expect(rendered).to have_link(href: download_export_path(completed_export))
-    end
+    row = Capybara.string(rendered).find("tr#export_#{completed_export.id}")
+    expect(row).to have_link('export.zip', href: export_download_path(completed_export))
+  end
+
+  it 'displays an error message for failed exports' do
+    render
+    row = Capybara.string(rendered).find("tr#export_#{failed_export.id}")
+    expect(row).to have_selector('.output', text: 'Error: unspecified error')
   end
 
   it 'includes an actions column header' do
@@ -46,30 +53,26 @@ RSpec.describe 'exports/index', type: :view do
 
   it 'shows a delete link for completed exports' do
     render
-    within("tr#export_#{completed_export.id}") do
-      expect(rendered).to have_button('Delete')
-    end
+    row = Capybara.string(rendered).find("tr#export_#{completed_export.id}")
+    expect(row).to have_button('Delete')
   end
 
   it 'shows a delete link for failed exports' do
     render
-    within("tr#export_#{failed_export.id}") do
-      expect(rendered).to have_button('Delete')
-    end
+    row = Capybara.string(rendered).find("tr#export_#{failed_export.id}")
+    expect(row).to have_button('Delete')
   end
 
   it 'does not show a delete link for queued exports' do
     render
-    within("tr#export_#{queued_export.id}") do
-      expect(rendered).not_to have_button('Delete')
-    end
+    row = Capybara.string(rendered).find("tr#export_#{queued_export.id}")
+    expect(row).not_to have_button('Delete')
   end
 
   it 'does not show a delete link for working exports' do
     render
-    within("tr#export_#{working_export.id}") do
-      expect(rendered).not_to have_button('Delete')
-    end
+    row = Capybara.string(rendered).find("tr#export_#{working_export.id}")
+    expect(row).not_to have_button('Delete')
   end
 
   it 'delete link submits to the correct path' do

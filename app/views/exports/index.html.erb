@@ -14,7 +14,7 @@
         <th class="format">Format</th>
         <th class="visibility">Visibility</th>
         <th class="item_count">Items</th>
-        <th class="file">File</th>
+        <th class="output">File</th>
         <th class="actions">Actions</th>
       </tr>
       </thead>
@@ -45,7 +45,15 @@
               <%= export.items.count %> <span class="fa fa-circle-info" aria-hidden="true"></span>
             </a>
           </td>
-          <td class="file"><%= link_to(export.export_file.filename, export_download_path(export, locale: nil), download: export.export_file.filename) if export.export_file.attached? -%></td>
+          <td class="output">
+            <% if export.export_file.attached? -%>
+              <%= link_to(export.export_file.filename, export_download_path(export, locale: nil), download: export.export_file.filename) -%>
+            <% elsif export.message.present? -%>
+              <span class="export-error text-break">
+                <strong class="text-danger">Error:</strong> <%= export.message -%>
+              </span>
+            <% end -%>
+          </td>
           <td class="actions">
             <% unless export.queued? || export.working? %>
               <%= button_to export_path(export), method: :delete, class: 'btn btn-danger btn-sm' do %>
