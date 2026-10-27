@@ -7,7 +7,7 @@ class ExportPackager
   METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title,
                       :creator, :corporate_author, :date_created, :date_uploaded, :date_modified,
                       :location_url, :identifier, :filename, :path, :series, :issue_number, :collection,
-                      :abstract, :table_of_contents].freeze
+                      :abstract, :table_of_contents, :error].freeze
 
   METADATA_FILENAME = 'metadata.csv'
 
@@ -74,21 +74,59 @@ class ExportPackager
   end
 
   def add_item(item_id)
-    work = ActiveFedora::Base.find(item_id)
-    raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
-    return unless permitted_visibilities.include?(work.visibility)
-    add_metadata_for_item(work)
-    add_members(work)
+    begin
+      work = ActiveFedora::Base.find(item_id)
+      raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
+      file_sets = visible_file_sets(work)
+      return unless permitted_visibilities.include?(work.visibility)
+    rescue => error
+      file_sets ||= []
+    end
+    add_metadata_for_item(item_id, work, error)
+    @metadata_rows.concat(add_members(item_id, file_sets))
     @metadata_rows << []
     @item_count += 1
   end
 
-  def add_metadata_for_item(work)
-    writer.write_item_metadata(work)
+  def add_metadata_for_item(item_id, work, error = nil)
+
+    case error
+    when nil # no errors, try writing the JSON metadata file
+      begin # but catch any I/O errors
+        writer.write_item_metadata(work)
+      rescue => error
+        proxy = OpenStruct.new(type: work.class.name, title: work.title.first )
+      end
+    when ActiveFedora::ObjectNotFoundError
+      proxy = OpenStruct.new(type: 'NOT FOUND', title: "ID: #{item_id} NOT FOUND" )
+    when Ldp::Gone
+      proxy = OpenStruct.new(type: 'DELETED',   title: "ID: #{item_id} PERMANENTLY DELETED" )
+    else
+      proxy = OpenStruct.new(type: 'UNKNOWN', title: "ID: #{item_id} UNEXPECTED ERROR" )
+    end
+
+    begin
+      row = item_metadata(work)
+    rescue => error
+    end
+
+    if error
+      @metadata_rows << {
+        internal_id:        item_id,
+        type:               proxy.type,
+        title:              proxy.title,
+        error:              ((error.message.presence || error.class.name) if error)
+      }
+    else
+      @metadata_rows << row
+    end
+  end
+
+  def item_metadata(work)
     # rubocop:disable Layout/HashAlignment
-    add_metadata_row(
+    {
       internal_id:        work.id,
-      type:               work.class.to_s,
+      type:               work.class.name,
       visibility:         VisibilityLabel.for(work.visibility),
       representative_id:  work.representative_id,
       title:              work.title.join('|'),
@@ -104,13 +142,13 @@ class ExportPackager
       collection:         work.member_of_collections.to_a.join('|'),
       abstract:           work.abstract.join('|'),
       table_of_contents:  work.table_of_contents.join('|')
-    )
+    }
     # rubocop:enable Layout/HashAlignment
   end
 
-  def add_metadata_for_file(work_id, file_set, path)
+  def metadata_for_file(work_id, file_set, path, error)
     # rubocop:disable Layout/HashAlignment
-    add_metadata_row(
+    {
       internal_id:        work_id,
       member_id:          file_set.id,
       type:               'File',
@@ -118,15 +156,11 @@ class ExportPackager
       title:              file_set.title.join('|'),
       date_uploaded:      file_set.date_uploaded&.strftime('%F'),
       location_url:       Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
-      filename:           file_set.original_file.file_name.first,
-      path:               path
-    )
+      filename:           (file_set.original_file.file_name.first rescue 'missing'),
+      path:               path,
+      error:              ((error.message.presence || error.class.name) if error)
+    }
     # rubocop:enable Layout/HashAlignment
-  end
-
-  def add_metadata_row(row)
-    row.assert_valid_keys(*METADATA_HEADERS)
-    @metadata_rows << row
   end
 
   def normalized_creators(work)
@@ -134,21 +168,28 @@ class ExportPackager
     creators.join('|')
   end
 
-  def add_members(work)
-    # add the work's files to package
-    file_sets = visible_file_sets(work)
+  def add_members(work_id, file_sets)
     count = file_sets.count
+    file_rows = []
 
     file_sets.each.with_index(1) do |file_set, index|
-      file = file_set.original_file
-      relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
-      writer.write_content(relative_path, file)
-      add_metadata_for_file(work.id, file_set, relative_path)
+      relative_path, error = add_file_set(work_id, file_set, count, index)
+      file_rows << metadata_for_file(work_id, file_set, relative_path, error)
     end
+    file_rows
   end
 
   def visible_file_sets(work)
     work.ordered_members.to_a.select { |member| member.file_set? && permitted_visibilities.include?(member.visibility) }
+  end
+
+  def add_file_set(work_id, file_set, count, index)
+    file = file_set.original_file
+    relative_path = File.join(work_id, padded_index(index, count), file.file_name.first)
+    writer.write_content(relative_path, file)
+    [relative_path, nil]
+  rescue => error
+    [relative_path, error]
   end
 
   def padded_index(index, count)
