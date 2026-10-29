@@ -163,11 +163,12 @@ Both formats include `metadata.csv` at the top level of the export.
 | `visibility` | Public / FRBM / Private | Public / FRBM / Private |
 | `representative_id` | ID of the work's representative file | (blank) |
 | `title` | From the work's metadata | Original filename or later manual edit |
-| `creator`, `corporate_author`, `date_created`, `date_modified`, `identifier`, `series`, `issue_number`, `collection`, `abstract`, `table_of_contents` | From the work's metadata | (blank) |
+| `creator`, `corporate_author`, <br/>`date_created`, `date_modified`, `identifier`, <br/>`series`, `issue_number`, `collection`, <br/>`abstract`, `table_of_contents` | From the work's metadata | (blank) |
 | `date_uploaded` | Date the work was uploaded | Date the file was uploaded |
 | `location_url` | Link to the work page | Link to download the file |
 | `filename` | (blank) | Originally uploaded file name |
 | `path` | (blank) | Path to the file, relative to the export folder (ZIP) or its `data/` folder (Bag), e.g., `abc123/1/wp345.pdf` |
+| `error` | The work-level error that occured, if any, or <br/>(blank) | The file-level error that occured, if any, or <br/>(blank) |
 
 > **Implementation Details**
 > - Columns are defined in `ExportPackager::METADATA_HEADERS`.
@@ -191,6 +192,7 @@ numbers, periods, hyphens, and underscores, and can be up to 250 characters long
 
 ## Limitations
 - Only **Publication**, **Dataset**, and **Conference Proceeding** works can be exported. If you select
-  any other kind of item, the whole export fails, and the error appears in the failure notification.
+  any other kind of item, that item will only have an entry in the metadata spreadsheet indicating it was
+  not included.
 - Exports are snapshots. Later changes to a work don't update an export that already exists. Create a
   new export to pick up changes.

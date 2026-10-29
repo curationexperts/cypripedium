@@ -43,7 +43,7 @@ class ExportPackager
   private
 
   def archive_root
-    @archive_root = File.join(@tmp_dir, 'archive')
+    @archive_root ||= File.join(@tmp_dir, 'archive')
   end
 
   def writer
@@ -73,53 +73,40 @@ class ExportPackager
     end
   end
 
-  def add_item(item_id)
-    begin
-      work = ActiveFedora::Base.find(item_id)
-      raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
-      file_sets = visible_file_sets(work)
-      return unless permitted_visibilities.include?(work.visibility)
-    rescue => error
-      file_sets ||= []
-    end
-    add_metadata_for_item(item_id, work, error)
-    @metadata_rows.concat(add_members(item_id, file_sets))
-    @metadata_rows << []
-    @item_count += 1
+  def visible_file_sets(work)
+    work.ordered_members.to_a.select { |member| member.file_set? && permitted_visibilities.include?(member.visibility) }
   end
 
-  def add_metadata_for_item(item_id, work, error = nil)
+  # Write one work and its visible file sets to the archive
+  def add_item(item_id)
+    row = { internal_id: item_id } # minimal version for error reporting
+    members = []
 
-    case error
-    when nil # no errors, try writing the JSON metadata file
-      begin # but catch any I/O errors
-        writer.write_item_metadata(work)
-      rescue => error
-        proxy = OpenStruct.new(type: work.class.name, title: work.title.first )
-      end
-    when ActiveFedora::ObjectNotFoundError
-      proxy = OpenStruct.new(type: 'NOT FOUND', title: "ID: #{item_id} NOT FOUND" )
-    when Ldp::Gone
-      proxy = OpenStruct.new(type: 'DELETED',   title: "ID: #{item_id} PERMANENTLY DELETED" )
-    else
-      proxy = OpenStruct.new(type: 'UNKNOWN', title: "ID: #{item_id} UNEXPECTED ERROR" )
-    end
-
-    begin
+    error = capture_error(export_id: @export.id, work_id: item_id) do
+      work = ActiveFedora::Base.find(item_id)
+      raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
+      return unless permitted_visibilities.include?(work.visibility)
       row = item_metadata(work)
-    rescue => error
+      writer.write_item_metadata(work)
+      members = add_members(work.id, visible_file_sets(work))
+      @item_count += 1
     end
 
-    if error
-      @metadata_rows << {
-        internal_id:        item_id,
-        type:               proxy.type,
-        title:              proxy.title,
-        error:              ((error.message.presence || error.class.name) if error)
-      }
-    else
-      @metadata_rows << row
-    end
+    @metadata_rows.push(row.merge(error: error), *members, [])
+  end
+
+  # Wrap a block in a rescue block and report any errors
+  # @return [String, nil] the error message raised by the block, if any
+  def capture_error(**context)
+    yield
+    nil
+  rescue => error
+    Rails.error.report(error, context: context)
+    error_message(error)
+  end
+
+  def error_message(error)
+    error.message.presence || error.class.name
   end
 
   def item_metadata(work)
@@ -146,7 +133,7 @@ class ExportPackager
     # rubocop:enable Layout/HashAlignment
   end
 
-  def metadata_for_file(work_id, file_set, path, error)
+  def file_metadata(work_id, file_set)
     # rubocop:disable Layout/HashAlignment
     {
       internal_id:        work_id,
@@ -156,9 +143,7 @@ class ExportPackager
       title:              file_set.title.join('|'),
       date_uploaded:      file_set.date_uploaded&.strftime('%F'),
       location_url:       Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
-      filename:           (file_set.original_file.file_name.first rescue 'missing'),
-      path:               path,
-      error:              ((error.message.presence || error.class.name) if error)
+      filename:           (file_set.original_file.file_name.first rescue 'missing') # rubocop:disable Style/RescueModifier
     }
     # rubocop:enable Layout/HashAlignment
   end
@@ -168,28 +153,30 @@ class ExportPackager
     creators.join('|')
   end
 
+  # Write each file set to the archive
+  # @return [Array<Hash>] one metadata row per file set
   def add_members(work_id, file_sets)
     count = file_sets.count
-    file_rows = []
-
-    file_sets.each.with_index(1) do |file_set, index|
-      relative_path, error = add_file_set(work_id, file_set, count, index)
-      file_rows << metadata_for_file(work_id, file_set, relative_path, error)
+    file_sets.map.with_index(1) do |file_set, index|
+      directory = File.join(work_id, padded_index(index, count))
+      add_member(work_id, file_set, directory) # returns the metadata row
     end
-    file_rows
   end
 
-  def visible_file_sets(work)
-    work.ordered_members.to_a.select { |member| member.file_set? && permitted_visibilities.include?(member.visibility) }
-  end
+  # Write one file set to the archive
+  # @return [Hash] metadata row; path is nil if it couldn't be determined
+  def add_member(work_id, file_set, directory)
+    row = { internal_id: work_id, member_id: file_set.id } # minimal version for error reporting
+    path = nil
 
-  def add_file_set(work_id, file_set, count, index)
-    file = file_set.original_file
-    relative_path = File.join(work_id, padded_index(index, count), file.file_name.first)
-    writer.write_content(relative_path, file)
-    [relative_path, nil]
-  rescue => error
-    [relative_path, error]
+    error = capture_error(export_id: @export.id, work_id: work_id, file_set_id: file_set.id, directory: directory) do
+      row = file_metadata(work_id, file_set)
+      file = file_set.original_file
+      path = File.join(directory, file.file_name.first)
+      writer.write_content(path, file)
+    end
+
+    row.merge(path: path, error: error)
   end
 
   def padded_index(index, count)
