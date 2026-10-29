@@ -184,11 +184,20 @@ class ExportPackager
     index.to_s.rjust(count.to_s.length, '0')
   end
 
+  # Compress the archive and attach it to the Export
   def attach_archive
-    output_file = File.join(@tmp_dir, "export.zip")
-    Zip::File.add_recursive(output_file, archive_root, prefix: @export.base_filename)
+    output_file = compress_archive
     File.open(output_file) do |file|
       @export.export_file.attach(io: file, filename: "#{@export.base_filename}.zip", content_type: 'application/zip')
     end
+  end
+
+  # Zip the archive directory, then remove it
+  # @return [String] path to the zip file
+  def compress_archive
+    output_file = File.join(@tmp_dir, "export.zip")
+    Zip::File.add_recursive(output_file, archive_root, prefix: @export.base_filename)
+    FileUtils.rm_rf(archive_root) # no longer needed once we have the zip file (saves 1x the total export size)
+    output_file
   end
 end
