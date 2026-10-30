@@ -49,8 +49,8 @@ RSpec.describe ExportPackager do
              'member_id' => nil,
              'type' => 'Publication',
              'visibility' => 'Public',
-             'location_url' => 'http://localhost:3000/concern/publications/public_work'
-             # 'error' => nil
+             'location_url' => 'http://localhost:3000/concern/publications/public_work',
+             'error' => nil
            )
         expect(csv[1].to_h)
           .to include(
@@ -60,8 +60,8 @@ RSpec.describe ExportPackager do
              'visibility' => 'Public',
              'location_url' => 'http://localhost:3000/downloads/public_file',
              'filename' => 'pdf-sample.pdf',
-             'path' => 'public_work/pdf-sample.pdf'
-             # 'error' => nil
+             'path' => 'public_work/pdf-sample.pdf',
+             'error' => nil
            )
       end
     end
