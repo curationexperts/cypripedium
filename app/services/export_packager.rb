@@ -46,6 +46,8 @@ class ExportPackager
     @archive_root ||= File.join(@tmp_dir, 'archive')
   end
 
+  # Choose the appropriate file writer based on the export format
+  # @return [ExportPackager::ZipWriter, ExportPackager::BagWriter]
   def writer
     @writer ||= case @export.format
                 when 'zip' then ExportPackager::ZipWriter.new(archive_root)
@@ -75,23 +77,23 @@ class ExportPackager
 
   # Write a visible work and its members (files) to the archive
   def add_item(item_id)
-    row = { internal_id: item_id } # minimal version for error reporting
+    work_row = { internal_id: item_id } # minimal version for error reporting
     members = []
 
     error = capture_error(export_id: @export.id, work_id: item_id) do
       work = ActiveFedora::Base.find(item_id)
       raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
       return unless permitted_visibilities.include?(work.visibility)
-      row = add_metadata_for_item(work)
+      work_row = item_metadata(work)
       writer.write_item_metadata(work)
       members = add_members(work)
       @item_count += 1
     end
 
-    @metadata_rows.push(row.merge(error: error), *members, [])
+    @metadata_rows.push(work_row.merge(error: error), *members, [])
   end
 
-  def add_metadata_for_item(work)
+  def item_metadata(work)
     # rubocop:disable Layout/HashAlignment
     {
       internal_id:        work.id,
@@ -115,7 +117,7 @@ class ExportPackager
     # rubocop:enable Layout/HashAlignment
   end
 
-  def add_metadata_for_file(work_id, file_set)
+  def file_metadata(work_id, file_set)
     # rubocop:disable Layout/HashAlignment
     {
       internal_id:        work_id,
@@ -149,17 +151,17 @@ class ExportPackager
   # Write one file set to the archive
   # @return [Hash] metadata row; path is nil if it couldn't be determined
   def add_member(work_id, file_set, directory)
-    row = { internal_id: work_id, member_id: file_set.id } # minimal version for error reporting
-    relative_path = nil
+    file_row = { internal_id: work_id, member_id: file_set.id } # minimal version for error reporting
+    path = nil
 
     error = capture_error(export_id: @export.id, work_id: work_id, file_set_id: file_set.id, directory: directory) do
-      row = add_metadata_for_file(work_id, file_set)
+      file_row = file_metadata(work_id, file_set)
       file = file_set.original_file
-      relative_path = File.join(directory, file.file_name.first)
-      writer.write_content(relative_path, file)
+      path = File.join(directory, file.file_name.first)
+      writer.write_content(path, file)
     end
 
-    row.merge(path: relative_path, error: error)
+    file_row.merge(path: path, error: error)
   end
 
   def visible_file_sets(work)
