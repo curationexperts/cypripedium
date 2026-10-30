@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_16_201244) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_30_212856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,6 +140,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_16_201244) do
     t.datetime "updated_at", null: false
     t.string "filename"
     t.string "visibility", default: "open", null: false
+    t.integer "error_count", default: 0, null: false
+    t.integer "exported_count"
     t.index ["user_id"], name: "index_exports_on_user_id"
   end
 

@@ -60,6 +60,8 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  # ATTRIBUTE METHODS
+
   describe '#items' do
     it 'is an array' do
       expect(export.items).to be_an Array
@@ -78,6 +80,18 @@ RSpec.describe Export, type: :model do
     it 'persists as a sorted and deduplicated list' do
       export = create(:export, items: ['zzz', 'aaa', 'abc', 'aaa'])
       expect(export.reload.items).to eq ['aaa', 'abc', 'zzz']
+    end
+  end
+
+  describe '#error_count' do
+    it 'defaults to 0' do
+      expect(export.error_count).to eq 0
+    end
+  end
+
+  describe '#exported_count' do
+    it 'defaults to nil' do
+      expect(export.exported_count).to eq nil
     end
   end
 
@@ -152,6 +166,8 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  ## HELPER METHODS
+
   describe '#base_filename' do
     it 'returns the filename when it is present' do
       export.filename = 'my_export'
@@ -193,6 +209,8 @@ RSpec.describe Export, type: :model do
       expect(subject.duplicate_records).to be_empty
     end
   end
+
+  ## MISCELLANEOUS
 
   describe 'system user' do
     it 'can be assigned User.system_user as the submitting user' do
