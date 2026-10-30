@@ -196,7 +196,7 @@ class ExportPackager
     yield
     nil
   rescue => error
-    Rails.error.report(error, context: context)
+    Rails.error.report(error, severity: :error, context: context)
     error_message(error)
   end
 

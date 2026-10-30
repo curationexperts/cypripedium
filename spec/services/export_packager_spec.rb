@@ -224,6 +224,7 @@ RSpec.describe ExportPackager do
       it 'reports the error with context' do
         expect(Rails.error).to have_received(:report).with(
           an_instance_of(RuntimeError).and(having_attributes(message: 'Unsupported work type: Collection')),
+          severity: :error,
           context: { export_id: 4321, work_id: 'abc123' }
         )
       end
@@ -288,6 +289,7 @@ RSpec.describe ExportPackager do
         row # force row to build to trigger the error
         expect(Rails.error).to have_received(:report).with(
           an_instance_of(IOError).and(having_attributes(message: 'disk full')),
+          severity: :error,
           context: { export_id: 4321, work_id: 'abc123', file_set_id: 'fs1', directory: 'abc123/' }
         )
       end
