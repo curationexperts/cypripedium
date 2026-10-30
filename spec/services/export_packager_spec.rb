@@ -62,7 +62,9 @@ RSpec.describe ExportPackager do
     end
 
     it 'saves visible items to the attached archive', :aggregate_failures do
-      expect(described_class.package_items(export)).to eq 1 # 1 work exported
+      described_class.package_items(export)
+      expect(export.exported_count).to eq 1
+      expect(export.error_count).to eq 0
       expect(export.export_file.filename.to_s).to eq 'test_export.zip' # testing the overridden file name
       expect(zip_filenames(export)).to eq ["test_export/abc123/1/a.pdf",
                                            "test_export/abc123/2/c.txt",
@@ -163,7 +165,9 @@ RSpec.describe ExportPackager do
       end
 
       it 'exports the remaining works and files', :aggregate_failures do
-        expect(described_class.package_items(export)).to eq 1 # one errored work excluded from count
+        described_class.package_items(export)
+        expect(export.exported_count).to eq 1
+        expect(export.error_count).to eq 2
         csv = parsed_csv(export)
         expect(csv.size).to eq 5 # 2 works + 3 files
         # rubocop:disable Layout/ExtraSpacing, Layout/SpaceInsideArrayLiteralBrackets
@@ -192,6 +196,7 @@ RSpec.describe ExportPackager do
   end
 
   describe '#run' do
+    let(:export) { FactoryBot.create(:export, items: ['abc123'], filename: 'test_export') }
     let(:tmp_dir) { packager.instance_variable_get(:@tmp_dir) }
 
     it 'removes its temporary directory on exit' do
@@ -278,17 +283,18 @@ RSpec.describe ExportPackager do
 
     context 'with a file write error' do
       before do
-        allow(writer).to receive(:write_content).and_raise(IOError, 'disk full')
+        allow(writer).to receive(:write_content).and_raise(IOError, "Disk Full\nPlease check disk space.")
       end
 
       it 'records the error and intended path on the file row' do
-        expect(row).to include(internal_id: 'abc123', member_id: 'fs1', path: 'abc123/a.pdf', error: 'disk full')
+        # NOTE: this test also checks that multi-line errors only save the first line.
+        expect(row).to include(internal_id: 'abc123', member_id: 'fs1', path: 'abc123/a.pdf', error: 'Disk Full')
       end
 
       it 'reports the error with context' do
         row # force row to build to trigger the error
         expect(Rails.error).to have_received(:report).with(
-          an_instance_of(IOError).and(having_attributes(message: 'disk full')),
+          an_instance_of(IOError).and(having_attributes(message: "Disk Full\nPlease check disk space.")),
           severity: :error,
           context: { export_id: 4321, work_id: 'abc123', file_set_id: 'fs1', directory: 'abc123/' }
         )
