@@ -197,10 +197,6 @@ class ExportPackager
     nil
   rescue => error
     Rails.error.report(error, severity: :error, context: context)
-    error_message(error)
-  end
-
-  def error_message(error)
-    error.message.presence || error.class.name
+    ErrorMessage.for(error)
   end
 end
