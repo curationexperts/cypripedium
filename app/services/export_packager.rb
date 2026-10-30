@@ -73,22 +73,29 @@ class ExportPackager
     end
   end
 
+  # Write a visible work and its members (files) to the archive
   def add_item(item_id)
-    work = ActiveFedora::Base.find(item_id)
-    raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
-    return unless permitted_visibilities.include?(work.visibility)
-    add_metadata_for_item(work)
-    @metadata_rows.push(*add_members(work))
-    @metadata_rows << []
-    @item_count += 1
+    row = { internal_id: item_id } # minimal version for error reporting
+    members = []
+
+    error = capture_error(export_id: @export.id, work_id: item_id) do
+      work = ActiveFedora::Base.find(item_id)
+      raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
+      return unless permitted_visibilities.include?(work.visibility)
+      row = add_metadata_for_item(work)
+      writer.write_item_metadata(work)
+      members = add_members(work)
+      @item_count += 1
+    end
+
+    @metadata_rows.push(row.merge(error: error), *members, [])
   end
 
   def add_metadata_for_item(work)
-    writer.write_item_metadata(work)
     # rubocop:disable Layout/HashAlignment
-    add_metadata_row(
+    {
       internal_id:        work.id,
-      type:               work.class.to_s,
+      type:               work.class.name,
       visibility:         VisibilityLabel.for(work.visibility),
       representative_id:  work.representative_id,
       title:              work.title.join('|'),
@@ -104,7 +111,7 @@ class ExportPackager
       collection:         work.member_of_collections.to_a.join('|'),
       abstract:           work.abstract.join('|'),
       table_of_contents:  work.table_of_contents.join('|')
-    )
+    }
     # rubocop:enable Layout/HashAlignment
   end
 
@@ -121,11 +128,6 @@ class ExportPackager
       filename:           file_set.original_file.file_name.first
     }
     # rubocop:enable Layout/HashAlignment
-  end
-
-  def add_metadata_row(row)
-    row.assert_valid_keys(*METADATA_HEADERS)
-    @metadata_rows << row
   end
 
   def normalized_creators(work)
