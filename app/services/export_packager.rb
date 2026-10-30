@@ -7,7 +7,7 @@ class ExportPackager
   METADATA_HEADERS = [:internal_id, :member_id, :type, :visibility, :representative_id, :title,
                       :creator, :corporate_author, :date_created, :date_uploaded, :date_modified,
                       :location_url, :identifier, :filename, :path, :series, :issue_number, :collection,
-                      :abstract, :table_of_contents].freeze
+                      :abstract, :table_of_contents, :error].freeze
 
   METADATA_FILENAME = 'metadata.csv'
 
@@ -43,7 +43,7 @@ class ExportPackager
   private
 
   def archive_root
-    @archive_root = File.join(@tmp_dir, 'archive')
+    @archive_root ||= File.join(@tmp_dir, 'archive')
   end
 
   def writer
@@ -78,7 +78,7 @@ class ExportPackager
     raise "Unsupported work type: #{work.class}" unless SUPPORTED_TYPES.include?(work.class)
     return unless permitted_visibilities.include?(work.visibility)
     add_metadata_for_item(work)
-    add_members(work)
+    @metadata_rows.push(*add_members(work))
     @metadata_rows << []
     @item_count += 1
   end
@@ -108,9 +108,9 @@ class ExportPackager
     # rubocop:enable Layout/HashAlignment
   end
 
-  def add_metadata_for_file(work_id, file_set, path)
+  def add_metadata_for_file(work_id, file_set)
     # rubocop:disable Layout/HashAlignment
-    add_metadata_row(
+    {
       internal_id:        work_id,
       member_id:          file_set.id,
       type:               'File',
@@ -118,9 +118,8 @@ class ExportPackager
       title:              file_set.title.join('|'),
       date_uploaded:      file_set.date_uploaded&.strftime('%F'),
       location_url:       Hyrax::Engine.routes.url_helpers.download_url(file_set, host: Rails.application.config.rdf_uri),
-      filename:           file_set.original_file.file_name.first,
-      path:               path
-    )
+      filename:           file_set.original_file.file_name.first
+    }
     # rubocop:enable Layout/HashAlignment
   end
 
@@ -134,17 +133,31 @@ class ExportPackager
     creators.join('|')
   end
 
+  # Write each file set to the archive
+  # @return [Array<Hash>] one metadata row per file set
   def add_members(work)
-    # add the work's files to package
     file_sets = visible_file_sets(work)
     count = file_sets.count
-
-    file_sets.each.with_index(1) do |file_set, index|
-      file = file_set.original_file
-      relative_path = File.join(work.id, padded_index(index, count), file.file_name.first)
-      writer.write_content(relative_path, file)
-      add_metadata_for_file(work.id, file_set, relative_path)
+    file_sets.map.with_index(1) do |file_set, index|
+      directory = File.join(work.id, padded_index(index, count))
+      add_member(work.id, file_set, directory) # returns the metadata row
     end
+  end
+
+  # Write one file set to the archive
+  # @return [Hash] metadata row; path is nil if it couldn't be determined
+  def add_member(work_id, file_set, directory)
+    row = { internal_id: work_id, member_id: file_set.id } # minimal version for error reporting
+    relative_path = nil
+
+    error = capture_error(export_id: @export.id, work_id: work_id, file_set_id: file_set.id, directory: directory) do
+      row = add_metadata_for_file(work_id, file_set)
+      file = file_set.original_file
+      relative_path = File.join(directory, file.file_name.first)
+      writer.write_content(relative_path, file)
+    end
+
+    row.merge(path: relative_path, error: error)
   end
 
   def visible_file_sets(work)
@@ -156,11 +169,34 @@ class ExportPackager
     index.to_s.rjust(count.to_s.length, '0')
   end
 
+  # Attach a compressed version of the archive to the Export
   def attach_archive
-    output_file = File.join(@tmp_dir, "export.zip")
-    Zip::File.add_recursive(output_file, archive_root, prefix: @export.base_filename)
+    output_file = compress_archive
     File.open(output_file) do |file|
       @export.export_file.attach(io: file, filename: "#{@export.base_filename}.zip", content_type: 'application/zip')
     end
+  end
+
+  # Zip the archive directory, then remove it
+  # @return [String] path to the zip file
+  def compress_archive
+    output_file = File.join(@tmp_dir, "export.zip")
+    Zip::File.add_recursive(output_file, archive_root, prefix: @export.base_filename)
+    FileUtils.rm_rf(archive_root) # no longer needed once we have the zip file (saves 1x the total export size)
+    output_file
+  end
+
+  # Wrap a block in a rescue block and report any errors
+  # @return [String, nil] the error message raised by the block, if any
+  def capture_error(**context)
+    yield
+    nil
+  rescue => error
+    Rails.error.report(error, context: context)
+    error_message(error)
+  end
+
+  def error_message(error)
+    error.message.presence || error.class.name
   end
 end
