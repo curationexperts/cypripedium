@@ -28,7 +28,8 @@ RSpec.describe ExportPackager do
       end
 
       it 'includes only open works and files', :aggregate_failures do
-        expect(described_class.package_items(export)).to eq 1
+        described_class.package_items(export)
+        expect(export.exported_count).to eq 1
 
         expect(zip_filenames(export))
           .to contain_exactly(
@@ -73,7 +74,9 @@ RSpec.describe ExportPackager do
       end
 
       it 'includes every work and file', :aggregate_failures do
-        expect(described_class.package_items(export)).to eq 2
+        described_class.package_items(export)
+        expect(export.exported_count).to eq 2
+        expect(export.error_count).to eq 0
 
         expect(zip_filenames(export)).to eq [
           'test_export/metadata.csv',

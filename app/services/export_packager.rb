@@ -27,6 +27,7 @@ class ExportPackager
     @export        = export
     @metadata_rows = []
     @item_count    = 0
+    @error_count   = 0
   end
 
   # @return [Integer] number of works included after visibility filtering
@@ -37,6 +38,7 @@ class ExportPackager
       finalize_archive
       attach_archive
     end
+    @export.update!(exported_count: @item_count, error_count: @error_count)
     @item_count
   end
 
@@ -196,6 +198,7 @@ class ExportPackager
     yield
     nil
   rescue => error
+    @error_count += 1
     Rails.error.report(error, severity: :error, context: context)
     ErrorMessage.for(error)
   end
