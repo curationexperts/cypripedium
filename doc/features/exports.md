@@ -78,13 +78,14 @@ Click **Exports** in the Dashboard sidebar to open the **Exported Archive Files*
 - **Delete:** available once the export is no longer queued or working.
 
 Administrators will get a notification when their submitted export finishes. 
-- **Export completed** includes the download link and the actual number of works exported based on the visibility filter
+- **Export completed** includes the download link and a count of works exported or excluded due to visibility
+  filtering or errors.
   (This number will always be less than or equal to the number of works initially selected for export). 
 - **Export failed** includes the error message.
 
     > **Implementation Details**
-    > - The work count in the notification is the number of works that passed visibility filtering, not
-        the number selected.
+    > - Exports are stored in the database as `Export` records, which are stored in the `exports` table.
+    > - Downloadable archive files are attached to `Export` records as ActiveStorage attachments (`export_file`)
     > - Exports are built in the background by `ExportJob`, which hands off to `ExportPackager`.
 
 ## Sharing download links

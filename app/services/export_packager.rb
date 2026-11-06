@@ -30,7 +30,6 @@ class ExportPackager
     @error_count   = 0
   end
 
-  # @return [Integer] number of works included after visibility filtering
   def run
     Dir.mktmpdir do |tmp_dir|
       @tmp_dir = tmp_dir
@@ -39,7 +38,6 @@ class ExportPackager
       attach_archive
     end
     @export.update!(exported_count: @item_count, error_count: @error_count)
-    @item_count
   end
 
   private

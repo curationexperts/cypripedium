@@ -8,14 +8,15 @@ class ExportNotification
     @export = export
   end
 
-  # Subject line suitable for notifications, e.g. "Export 25 completed successfully"
+  # Subject line suitable for notifications, e.g. "Export 25 completed"
   #
   # @return [String] the export ID and status
   # @return [nil] if the export is not completed or failed
   def subject
     return unless @export.completed? || @export.failed?
 
-    "Export #{@export.id} #{@export.status}"
+    errors = @export.error_count.positive? ? "with #{helpers.pluralize(@export.error_count, 'error')}" : nil
+    ['Export', @export.id, @export.status, errors].compact.join(' ')
   end
 
   # Humanized status message suitable for notifications in HTML format
@@ -101,8 +102,13 @@ class ExportNotification
 
   def summary_action
     return 'no items were exported' if @export.exported_count.zero?
-    return 'some items were not exported' if @export.exported_count < @export.items.count
-    'all items were exported'
+    return "some items #{summary_missing_count} were not exported" if @export.exported_count < @export.items.count
+    return "1 item was exported" if @export.items.count == 1
+    "all #{@export.items.count} items were exported"
+  end
+
+  def summary_missing_count
+    "(#{@export.items.count - @export.exported_count} of #{@export.items.count})"
   end
 
   def summary_adverb
