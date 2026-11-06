@@ -42,12 +42,14 @@
                data-target="#items-modal"
                data-items-url="<%= items_export_path(export) %>"
                aria-label="Show <%= export.items.count %> included items">
+              <%= tag.span("#{export.exported_count} / ", class: 'exported_count') if export.exported_count.present? %>
               <%= export.items.count %> <span class="fa fa-circle-info" aria-hidden="true"></span>
             </a>
           </td>
           <td class="output">
             <% if export.export_file.attached? -%>
               <%= link_to(export.export_file.filename, export_download_path(export, locale: nil), download: export.export_file.filename) -%>
+              <%= tag.span("(#{export.error_count} #{'error'.pluralize(export.error_count)})", class: 'error_count') if export.error_count.positive? %>
             <% elsif export.message.present? -%>
               <span class="export-error text-break">
                 <strong class="text-danger">Error:</strong> <%= export.message -%>
