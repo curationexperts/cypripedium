@@ -8,6 +8,61 @@
     &.queued { color: var(--frbm-pirate-gold); }
   }
 
+  #items-modal {
+    .export-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .item_count {
+        white-space: nowrap;
+      }
+    }
+
+    .item-counts {
+      display: flex;
+      color: lightslategray;
+
+      .exported_count {
+        font-weight: bold;
+        &::after {
+          font-weight: normal;
+          content: "/";
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .status {
+      padding: 0;
+      font-weight: bold;
+      &::after {
+        content: ": ";
+        margin-right: 0.5rem;
+        margin-left: 0;
+      }
+    }
+
+    .error_count {
+      margin-left: auto;
+      color: darkred;
+    }
+
+    .format {
+      text-transform: uppercase;
+      margin-right: 0;
+    }
+
+    .download-link {
+      &::before {
+        content: "\2014 "; // em dash
+        display: inline-flex;
+        width: 1.25rem;
+      }
+    }
+  }
+
   table {
     .id {
       max-width: 3rem;
@@ -22,7 +77,7 @@
       a {
         text-decoration: none;
 
-        ::after {
+        &::after {
           font-family: 'FontAwesome';
           content: '\f05a'; // fa-info-circle
           margin-left: 0.25rem;

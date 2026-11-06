@@ -14,6 +14,13 @@ RSpec.describe ExportNotification do
       end
     end
 
+    context 'for completed exports with errors' do
+      let(:export) { FactoryBot.build(:export, id: 37, status: :completed, error_count: 7) }
+      it 'lists the id, status, and error count' do
+        expect(notification.subject).to eq "Export 37 completed with 7 errors"
+      end
+    end
+
     context 'for failed exports' do
       let(:export) { FactoryBot.build(:export, id: 37, status: :failed) }
       it 'lists the id and status' do
@@ -125,21 +132,21 @@ RSpec.describe ExportNotification do
       context 'for successful exports' do
         let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two'], exported_count: 2, error_count: 0) }
         it 'gives a success message' do
-          expect(summary_text).to eq 'All items were exported successfully.'
+          expect(summary_text).to eq 'All 2 items were exported successfully.'
         end
       end
 
-      context 'for failed exports with errors' do
+      context 'for completed exports with errors' do
         let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two'], exported_count: 2, error_count: 1000) }
         it 'gives a message without the "successfully" suffix' do
-          expect(summary_text).to eq 'All items were exported.'
+          expect(summary_text).to eq 'All 2 items were exported.'
         end
       end
 
       context 'when some items are omitted due to visibility' do
-        let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two'], exported_count: 1, error_count: 0) }
+        let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two', 'three'], exported_count: 1, error_count: 0) }
         it 'flags filtering' do
-          expect(summary_text).to eq 'Due to visibility restrictions, some items were not exported.'
+          expect(summary_text).to eq 'Due to visibility restrictions, some items (2 of 3) were not exported.'
         end
       end
 
@@ -151,9 +158,9 @@ RSpec.describe ExportNotification do
       end
 
       context 'when some items are omitted' do
-        let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two'], exported_count: 1, error_count: 3) }
+        let(:export) { FactoryBot.build(:export, status: :completed, items: ['one', 'two', 'three'], exported_count: 1, error_count: 3) }
         it 'flags filtering' do
-          expect(summary_text).to eq 'Due to visibility restrictions or errors, some items were not exported.'
+          expect(summary_text).to eq 'Due to visibility restrictions or errors, some items (2 of 3) were not exported.'
         end
       end
 

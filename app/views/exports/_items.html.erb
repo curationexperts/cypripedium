@@ -1,6 +1,27 @@
-<h3>Export ID: <%= export.id %><br/></h3>
-<%= link_to(export.export_file.filename, export_download_path(export), download: export.export_file.filename) if export.export_file.attached?  %><br/>
-created: <%= export.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+<div class="export-heading">
+  <h3>Export ID: <%= export.id %></h3>
+  <div class="item-counts">
+    <% partial_export = export.exported_count && export.exported_count != export.items.count  %>
+    <% if partial_export %>
+      <div class="exported_count"><%= export.exported_count -%></div>
+    <% end %>
+    <div class="item_count"><%= pluralize(export.items.count, 'item') -%></div>
+  </div>
+</div>
+<div class="export-status d-flex">
+  <div class="status <%= export.status %>"><%= export.status.capitalize -%></div>
+  <div class="updated_at"><%= export.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></div>
+  <% if export.export_file.attached? && export.error_count.positive? %>
+    <div class="error_count"><%= pluralize(export.error_count, 'error') -%></div>
+  <% end  %>
+</div>
+<div>
+  <span class="format"><%= export.format -%></span>
+  <% if export.export_file.attached? %>
+    <%= link_to(export.export_file.filename, export_download_path(export, locale: nil), download: export.export_file.filename, class: 'download-link') -%>
+  <% end %>
+</div>
+
 
 <ul class="list-unstyled mt-4 mb-0 border-top">
   <% docs.each do |doc| %>

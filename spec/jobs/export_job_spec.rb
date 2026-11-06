@@ -6,12 +6,19 @@ RSpec.describe ExportJob, type: :job do
   let(:admin) { FactoryBot.create(:admin) }
   let(:guest) { FactoryBot.create(:guest) }
   let(:system_user) { FactoryBot.create(:admin, email: Hyrax.config.system_user_key) }
+  let(:exported_count) { 1 }
+  let(:error_count) { 0 }
 
   let(:export) { FactoryBot.create(:export, user: admin) }
 
   before do
     allow(User).to receive(:system_user).and_return(system_user)
-    allow(ExportPackager).to receive(:package_items).and_return(7)
+    allow(system_user).to receive(:send_message)
+    allow(ExportPackager).to receive(:package_items) do |packaged_export|
+      packaged_export.export_file.attach(io: StringIO.new('zip'), filename: 'my_export.zip', content_type: 'application/zip')
+      packaged_export.update!(exported_count: exported_count, error_count: error_count)
+    end
+    allow(Rails.error).to receive(:report)
   end
 
   describe 'status lifecycle' do
@@ -21,13 +28,27 @@ RSpec.describe ExportJob, type: :job do
       expect(export.reload.status).to eq 'queued'
     end
 
-    it 'sets status to :completed on success', :aggregate_failures do
-      expect(export).to receive(:working!)
+    it 'sets status to :working while packaging' do
+      status_while_packaging = nil
+      allow(ExportPackager).to receive(:package_items) { |packaged_export| status_while_packaging = packaged_export.status }
+      described_class.perform_now(export)
+      expect(status_while_packaging).to eq 'working'
+    end
+
+    it 'sets status to :completed on success with no errors', :aggregate_failures do
       described_class.perform_now(export)
       expect(export.reload.status).to eq 'completed'
     end
 
-    it 'sets status to :failed with an error message when an exception occurs', :aggregate_failures do
+    context 'with work or file errors' do
+      let(:error_count) { 1 }
+      it 'sets status to :completed without raising an exception', :aggregate_failures do
+        expect { described_class.perform_now(export) }.not_to raise_error
+        expect(export.reload.status).to eq 'completed'
+      end
+    end
+
+    it 'sets status to :failed when an exception occurs', :aggregate_failures do
       # Stub Packaging error
       allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
       expect { described_class.perform_now(export) }.to raise_error(StandardError)
@@ -36,23 +57,29 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'exception handling' do
+    let(:export) { FactoryBot.create(:export, id: 4321) }
+    before do
+      # Stub Packaging error
+      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
+    end
+
     it 'raises the error' do
-      # Stub Packaging error
-      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
-      expect { described_class.perform_now(export) }.to raise_error(StandardError)
+      expect { described_class.perform_now(export) }.to raise_error(StandardError, 'Packaging failed')
     end
 
-    it 'sets the export message to the error message', :aggregate_failures do
-      # Stub Packaging error
-      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
+    it 'reports the error with the export id' do
       expect { described_class.perform_now(export) }.to raise_error(StandardError)
-      expect(export.reload.message).to eq 'Packaging failed'
+      expect(Rails.error).to have_received(:report).with(
+        an_instance_of(StandardError).and(having_attributes(message: 'Packaging failed')),
+        severity: :error,
+        context: { export_id: 4321 }
+      )
     end
 
-    it 'provides a default message when the error has no message', :aggregate_failures do
-      allow(ExportPackager).to receive(:package_items).and_raise(Ldp::Gone, '')
-      expect { described_class.perform_now(export) }.to raise_error(Ldp::Gone)
-      expect(export.reload.message).to eq 'Ldp::Gone'
+    it 'saves the first line of the exception message', :aggregate_failures do
+      allow(ExportPackager).to receive(:package_items).and_raise(StandardError, "Disk full\nat line 3")
+      expect { described_class.perform_now(export) }.to raise_error(StandardError)
+      expect(export.reload.message).to eq 'Disk full'
     end
 
     it 'disables Sidekiq retries' do
@@ -61,37 +88,28 @@ RSpec.describe ExportJob, type: :job do
   end
 
   describe 'user notification' do
+    let(:export) { FactoryBot.create(:export, id: 4321, user: admin) }
+
     context 'for admins' do
-      it 'sends a success message on completion' do
-        expect(system_user).to receive(:send_message).with(
-          admin,                                    # to:
-          a_string_matching(/containing 7 items/i), # body
-          a_string_matching(/completed/i)           # subject
-        )
+      it 'sends a message on completion', :aggregate_failures do
         described_class.perform_now(export)
+        expect(system_user).to have_received(:send_message) do |recipient, body, subject|
+          expect(recipient).to eq admin
+          expect(subject).to eq 'Export 4321 completed'
+          expect(Capybara.string(body).text.squish)
+            .to eq 'Export 4321 completed. 1 item was exported successfully. ' \
+                   'The exported archive can be downloaded at my_export.zip.'
+        end
       end
 
-      it 'sends a failure message on error' do
+      it 'sends a message on failure', :aggregate_failures do
         allow(ExportPackager).to receive(:package_items).and_raise(StandardError, 'Packaging failed')
-
-        expect(system_user).to receive(:send_message).with(
-          admin,                                 # to:
-          a_string_matching(/Packaging failed/), # body
-          a_string_matching(/failed/i)           # subject
-        )
         expect { described_class.perform_now(export) }.to raise_error(StandardError)
-      end
-
-      it 'includes a link to the export file' do
-        export.update!(filename: 'my_export')
-        allow(system_user).to receive(:send_message)
-
-        described_class.perform_now(export)
-
-        expect(system_user).to have_received(:send_message) do |_recipient, body, _subject|
-          link = Nokogiri::HTML.fragment(body).at_css('a')
-          expect(link['href']).to eq "/exports/downloads/#{export.id}"
-          expect(link.text.strip).to eq 'my_export.zip'
+        expect(system_user).to have_received(:send_message) do |recipient, body, subject|
+          expect(recipient).to eq admin
+          expect(subject).to eq 'Export 4321 failed'
+          expect(Capybara.string(body).text.squish)
+            .to eq 'Export 4321 failed. The error message was: "Packaging failed".'
         end
       end
     end
