@@ -25,7 +25,7 @@ RSpec.describe ExportPackager::BagWriter do
       expect(ApplicationController).to have_received(:render).with(
         template: 'hyrax/base/show',
         formats: [:json],
-        assigns: { curation_concern: work, presenter: an_instance_of(Hyrax::WorkShowPresenter) }
+        assigns: { curation_concern: work, presenter: a_kind_of(Hyrax::WorkShowPresenter) }
       )
     end
   end

@@ -35,7 +35,7 @@ class ExportPackager
         template: 'hyrax/base/show',
         formats: [:json],
         assigns: { curation_concern: work,
-                   presenter: Hyrax::WorkShowPresenter.new(SolrDocument.new(work.to_solr), nil) }
+                   presenter: CypripediumWorkPresenter.new(SolrDocument.new(work.to_solr), nil) }
       )
     end
   end
