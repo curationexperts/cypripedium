@@ -1,0 +1,10 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Widen the page on large screens only; small screens keep the theme's responsive layout. */
+@media screen and (min-width: 1281px) {
+  .wrapper { width: 1200px; }
+  section  { width: 840px; }
+}
