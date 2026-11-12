@@ -1,0 +1,15 @@
+title: RDB Admin Docs
+description: Administrator guides for the Research Database
+
+# Built-in GitHub Pages theme. No gems to install.
+theme: jekyll-theme-minimal
+plugins: [jekyll-relative-links]
+
+show_downloads: false
+
+# Jekyll skips files and folders starting with "_" or "." by default,
+# so _developer/ and _proposed/ are already excluded. Listing them
+# makes that intent explicit and survives a future config change.
+exclude:
+  - _developer
+  - _proposed
