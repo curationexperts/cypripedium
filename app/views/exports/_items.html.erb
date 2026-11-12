@@ -1,8 +1,7 @@
 <div class="export-heading">
   <h3>Export ID: <%= export.id %></h3>
   <div class="item-counts">
-    <% partial_export = export.exported_count && export.exported_count != export.items.count  %>
-    <% if partial_export %>
+    <% if export.missing_items? %>
       <div class="exported_count"><%= export.exported_count -%></div>
     <% end %>
     <div class="item_count"><%= pluralize(export.items.count, 'item') -%></div>

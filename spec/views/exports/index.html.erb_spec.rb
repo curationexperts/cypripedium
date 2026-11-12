@@ -73,10 +73,17 @@ RSpec.describe 'exports/index', type: :view do
   context 'exported count' do
     let(:completed_export) { create(:export, items: ['d', 'e', 'f'], status: :completed, exported_count: 2) }
 
-    it 'displays when present' do
+    it 'displays when different from item count' do
       render
       row = Capybara.string(rendered).find("tr#export_#{completed_export.id}")
       expect(row).to have_selector('.item_count', text: '2 / 3', normalize_ws: true)
+    end
+
+    it 'does not display when equal to item count' do
+      completed_export.update!(exported_count: completed_export.items.count)
+      render
+      row = Capybara.string(rendered).find("tr#export_#{completed_export.id}")
+      expect(row).not_to have_selector('.exported_count')
     end
 
     it 'does not display when nil' do

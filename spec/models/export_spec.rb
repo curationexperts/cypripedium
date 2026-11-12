@@ -95,6 +95,25 @@ RSpec.describe Export, type: :model do
     end
   end
 
+  describe '#missing_items?' do
+    let(:export) { build(:export, items: ['abc123', 'def456']) }
+    it 'returns true if exported_count is less than items.count' do
+      export.exported_count = 1
+      expect(export.missing_items?).to be true
+    end
+
+    it 'returns false if exported_count is equal to items.count' do
+      export.exported_count = 2
+      expect(export.missing_items?).to be false
+    end
+
+    # If there is no exported_count, we can't assert that the export is missing items.
+    it 'returns false if the exported_count is nil' do
+      export.exported_count = nil
+      expect(export.missing_items?).to be false
+    end
+  end
+
   describe '#filename' do
     it 'normalizes blank fielnames' do
       export.filename = '    '

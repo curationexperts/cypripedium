@@ -33,4 +33,8 @@ class Export < ApplicationRecord
   def duplicates?
     duplicate_records.any?
   end
+
+  def missing_items?
+    exported_count.present? && exported_count < items.count
+  end
 end
