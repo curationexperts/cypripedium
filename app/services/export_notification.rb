@@ -91,7 +91,7 @@ class ExportNotification
   end
 
   def summary_because
-    return if @export.exported_count == @export.items.count # nothing omitted
+    return unless @export.missing_items?
 
     if @export.error_count.positive?
       'due to visibility restrictions or errors,'
@@ -112,7 +112,7 @@ class ExportNotification
   end
 
   def summary_adverb
-    return unless @export.error_count.zero? && @export.exported_count == @export.items.count
+    return if @export.error_count.positive? || @export.missing_items?
 
     'successfully'
   end

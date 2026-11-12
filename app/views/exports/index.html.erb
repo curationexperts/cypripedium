@@ -42,7 +42,7 @@
                data-target="#items-modal"
                data-items-url="<%= items_export_path(export) %>"
                aria-label="Show <%= export.items.count %> included items">
-              <%= tag.span("#{export.exported_count} / ", class: 'exported_count') if export.exported_count.present? %>
+              <%= tag.span("#{export.exported_count} / ", class: 'exported_count') if export.missing_items? %>
               <%= export.items.count %> <span class="fa fa-circle-info" aria-hidden="true"></span>
             </a>
           </td>
