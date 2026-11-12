@@ -25,6 +25,10 @@ RSpec.describe 'exports/_items', type: :view do
     expect(rendered).to have_selector('.format', text: 'zip')
   end
 
+  it 'displays the export visibility' do
+    expect(rendered).to have_selector('.visibility', text: 'Public')
+  end
+
   describe 'counts' do
     context 'when the exported_count is nil' do
       it 'displays the item count alone', :aggregate_failures do
@@ -96,7 +100,7 @@ RSpec.describe 'exports/_items', type: :view do
   end
 
   it 'renders a row for each item' do
-    expect(rendered).to have_selector('li', count: 2)
+    expect(rendered).to have_selector('.export-item', count: 2)
   end
 
   context 'when the item is missing' do
