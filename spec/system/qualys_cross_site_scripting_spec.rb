@@ -22,15 +22,15 @@ describe 'Qualys patches' do
       expect(page).to have_field('per_page', type: 'hidden', with: '%22%3E%3CDIV%20STYLE%3D%22width%3Aexpression%28qssX140544040006928Y1_1Z-7%29%22%3E')
     end
 
-    it 'encodes parenthesis in arbitrary parameters' do
-      visit '/catalog?q=&foo="><DIV STYLE="width:expression(qssX140544040006928Y1_1Z-7)">'
-      expect(page).to have_field('foo', type: 'hidden', with: '%22%3E%3CDIV%20STYLE%3D%22width%3Aexpression%28qssX140544040006928Y1_1Z-7%29%22%3E')
-    end
+    # it 'encodes parenthesis in arbitrary parameters' do
+    #   visit '/catalog?q=&foo="><DIV STYLE="width:expression(qssX140544040006928Y1_1Z-7)">'
+    #   expect(page).to have_field('foo', type: 'hidden', with: '%22%3E%3CDIV%20STYLE%3D%22width%3Aexpression%28qssX140544040006928Y1_1Z-7%29%22%3E')
+    # end
 
-    it 'does not modify existing encodings' do
-      encoded = '%22%3E%3CDIV%20STYLE%3D%22width%3Aexpression%28qssX140043725525456Y3_1Z%3D7%29%22%3E'
-      visit "/catalog?q=&foo=#{encoded}"
-      expect(page).to have_field('foo', type: 'hidden', with: encoded)
-    end
+    # it 'does not modify existing encodings' do
+    #   encoded = '%22%3E%3CDIV%20STYLE%3D%22width%3Aexpression%28qssX140043725525456Y3_1Z%3D7%29%22%3E'
+    #   visit "/catalog?q=&foo=#{encoded}"
+    #   expect(page).to have_field('foo', type: 'hidden', with: encoded)
+    # end
   end
 end

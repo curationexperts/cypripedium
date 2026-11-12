@@ -38,6 +38,7 @@ RSpec.describe 'Collection landing page', type: :system, clean: true, js: true d
   context 'result sorting' do
     it 'defaults to issue number descending', :aggregate_failures do
       visit Hyrax::Engine.routes.url_helpers.collection_path(collection.id)
+      debugger
       issue_numbers = page.all('tr.document td.issue_number').map(&:text)
       expect(issue_numbers).to eq ['5', '4', '3', '2', '1']
     end

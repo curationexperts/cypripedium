@@ -12,6 +12,9 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # whitelist fields accepted by the search form
+    config.filter_search_state_fields = true
+
     config.view.gallery(document_component: Blacklight::Gallery::DocumentComponent, icon: Blacklight::Gallery::Icons::GalleryComponent)
     config.view.masonry(document_component: Blacklight::Gallery::DocumentComponent, icon: Blacklight::Gallery::Icons::MasonryComponent)
     config.view.slideshow(document_component: Blacklight::Gallery::SlideshowComponent, icon: Blacklight::Gallery::Icons::SlideshowComponent)
