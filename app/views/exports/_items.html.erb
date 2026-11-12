@@ -1,18 +1,21 @@
-<div class="export-heading">
+<div class="heading-row">
   <h3>Export ID: <%= export.id %></h3>
+  <div class="visibility"><%= visibility_badge(export.visibility) -%></div>
+</div>
+<div class="heading-row">
+  <div class="export-status">
+    <span class="status <%= export.status %>"><%= export.status.capitalize -%></span>
+    <span class="updated_at"><%= export.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>
+    <% if export.export_file.attached? && export.error_count.positive? %>
+      <span class="error_count"><%= pluralize(export.error_count, 'error') -%></span>
+    <% end %>
+  </div>
   <div class="item-counts">
     <% if export.missing_items? %>
-      <div class="exported_count"><%= export.exported_count -%></div>
+      <span class="exported_count"><%= export.exported_count -%></span>
     <% end %>
-    <div class="item_count"><%= pluralize(export.items.count, 'item') -%></div>
+    <span class="item_count"><%= pluralize(export.items.count, 'item') -%></span>
   </div>
-</div>
-<div class="export-status d-flex">
-  <div class="status <%= export.status %>"><%= export.status.capitalize -%></div>
-  <div class="updated_at"><%= export.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></div>
-  <% if export.export_file.attached? && export.error_count.positive? %>
-    <div class="error_count"><%= pluralize(export.error_count, 'error') -%></div>
-  <% end  %>
 </div>
 <div>
   <span class="format"><%= export.format -%></span>
@@ -21,11 +24,10 @@
   <% end %>
 </div>
 
-
-<ul class="list-unstyled mt-4 mb-0 border-top">
+<ul class="item-list">
   <% docs.each do |doc| %>
     <% item_link = work_path(doc) %>
-    <li class="py-1 border-bottom d-flex" id="<%= dom_id(doc) %>">
+    <li class="export-item" id="<%= dom_id(doc) %>">
       <span class="id"><%= link_to_if item_link, doc.id, item_link, target: '_blank', rel: 'noopener noreferrer' %></span>
       <span class="title"><%= doc.title.first || content_tag(:em, "Item not available") %></span>
     </li>
@@ -34,7 +36,7 @@
 
 <% if export.message.present? %>
   <div id="export-message">
-    <h4 class="status <%= export.status%>" ><%= export.status.capitalize %></h4>
+    <h4 class="status <%= export.status %>" ><%= export.status.capitalize %></h4>
     <pre><%= export.message %></pre>
   </div>
 <% end %>
