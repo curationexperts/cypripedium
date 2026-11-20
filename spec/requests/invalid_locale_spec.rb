@@ -6,7 +6,7 @@ RSpec.describe 'Requesting an unsupported locale', type: :request do
 
   it 'responds with 406 Not Acceptable' do
     get '/', params: { locale: 'pluto' }
-    expect(response).to have_http_status(406)
+    expect(response).to have_http_status(:not_acceptable)
   end
 
   it 'says the site is only available in English' do

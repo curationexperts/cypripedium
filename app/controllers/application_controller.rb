@@ -2,6 +2,10 @@
 
 class ApplicationController < ActionController::Base
   helper Openseadragon::OpenseadragonHelper
+
+  # filter out invalid query strings
+  include ParamFilter
+
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
@@ -12,8 +16,6 @@ class ApplicationController < ActionController::Base
   with_themed_layout '1_column'
 
   protect_from_forgery with: :exception
-
-  before_action :encode_parentheses
 
   rescue_from I18n::InvalidLocale, with: :render_406
 
@@ -27,11 +29,5 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload[:request_id] = request.request_id
-  end
-
-  def encode_parentheses
-    request.query_parameters.each do |key, value|
-      params[key] = CGI.escapeURIComponent(value) if value.is_a?(String) && /[)(]/.match?(value)
-    end
   end
 end
