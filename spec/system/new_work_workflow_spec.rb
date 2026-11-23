@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe 'New work creation', type: :system, js: true do
   let(:admin_user) { FactoryBot.create(:admin) }
@@ -16,7 +15,7 @@ RSpec.describe 'New work creation', type: :system, js: true do
   end
 
   example 'administrative deposit', :aggregate_failures do
-    login_as(admin_user)
+    sign_in(admin_user)
     visit hyrax.dashboard_path
     click_on 'Works'
     click_on 'Add New Work'

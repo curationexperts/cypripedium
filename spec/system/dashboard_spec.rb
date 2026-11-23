@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 # TODO: investigate turning this into a view spec
 RSpec.describe 'dashboard', js: true do
@@ -17,7 +16,7 @@ RSpec.describe 'dashboard', js: true do
 
   context 'for regular users' do
     before do
-      login_as user
+      sign_in user
       visit('dashboard')
     end
 
@@ -32,7 +31,7 @@ RSpec.describe 'dashboard', js: true do
 
   context 'for admin users' do
     before do
-      login_as admin
+      sign_in admin
       visit('dashboard')
     end
 
@@ -47,7 +46,7 @@ RSpec.describe 'dashboard', js: true do
     # We need an engine routing test because Hrax namespaced controllers
     # don't access tenejo routes as expected
     it 'allows Hyrax controllers to access Cypripedium paths' do
-      login_as admin
+      sign_in admin
       visit('dashboard/my/works')
       # Hyrax controllers should render sidebar with main app links
       expect(page).to have_link(id: 'dashboard-sidebar-reports', href: /reports/)

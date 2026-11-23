@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 
-include Warden::Test::Helpers
 include ActionView::RecordIdentifier
 
 RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
@@ -58,7 +57,7 @@ RSpec.describe 'Creators', :aggregate_failures, type: :system, js: true do
     let(:admin_user) { FactoryBot.create(:admin) }
 
     before do
-      login_as admin_user
+      sign_in admin_user
     end
 
     it "can show the index page" do

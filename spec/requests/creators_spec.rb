@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe "/creators", type: :request, clean: true do
   let(:valid_attributes) {
@@ -13,7 +12,7 @@ RSpec.describe "/creators", type: :request, clean: true do
   }
   let(:admin) { FactoryBot.create(:admin) }
   before do
-    login_as admin
+    sign_in admin
   end
 
   describe "GET /index" do

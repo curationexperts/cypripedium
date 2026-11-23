@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe 'Collections listing', type: :system, clean: true do
   let(:admin_user) { FactoryBot.create(:admin) }
@@ -28,7 +27,7 @@ RSpec.describe 'Collections listing', type: :system, clean: true do
 
   before do
     collection_members
-    login_as admin_user
+    sign_in admin_user
   end
 
   context 'from homepage link' do

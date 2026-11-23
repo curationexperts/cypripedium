@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe "/concern/publications", type: :request, clean: true do
   let(:user) { FactoryBot.create(:admin) }
 
   before do
     Hyrax::AdminSetCreateService.find_or_create_default_admin_set
-    login_as user
+    sign_in user
   end
 
   # As you add validations to Publication, be sure to

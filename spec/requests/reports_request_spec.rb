@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe "/reports", type: :request do
   let(:admin) { FactoryBot.create(:admin) }
 
   context 'as an administrator' do
     before do
-      login_as admin
+      sign_in admin
     end
 
     describe "GET /index" do
@@ -33,9 +32,7 @@ RSpec.describe "/reports", type: :request do
     end
   end
 
-  context 'as a regular user' do
-    logout
-
+  context 'as an unauthenticated user' do
     describe "GET /index" do
       it "is not accessible" do
         get reports_path
