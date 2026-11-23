@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe 'Edit markdown fields:', type: :system, js: true do
   let(:admin_user) { FactoryBot.create(:admin) }
@@ -9,7 +8,7 @@ RSpec.describe 'Edit markdown fields:', type: :system, js: true do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
     Hyrax::AdminSetCreateService.find_or_create_default_admin_set
-    login_as admin_user
+    sign_in admin_user
   end
 
   context 'edit a collection' do

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe 'Collection landing page', type: :system, clean: true, js: true do
   let(:admin_user) { FactoryBot.create(:admin) }
@@ -32,7 +31,7 @@ RSpec.describe 'Collection landing page', type: :system, clean: true, js: true d
 
   before do
     collection_members
-    login_as admin_user
+    sign_in admin_user
   end
 
   context 'result sorting' do

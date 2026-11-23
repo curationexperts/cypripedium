@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'rails_helper'
-include Warden::Test::Helpers
 
 RSpec.describe 'Use structured data that Google can parse', type: :system, clean: true, js: true do
   let(:creator_one) { FactoryBot.create(:creator, display_name: 'McGrattan, Ellen R.') }
