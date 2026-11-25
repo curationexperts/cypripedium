@@ -6,5 +6,4 @@ ActiveSupport::Reloader.to_prepare do
   Hyrax::Collections::CollectionMemberSearchService.include(Extensions::CollectionMemberSearchService)
   Hydra::FileCharacterization::Characterizers::Fits.include(Extensions::ServletCharacterizer)
   Deprecation.include(Extensions::DeprecationReporting)
-  Hyrax::PresentsAttributes.include(Extensions::PresentsAttributes)
 end
